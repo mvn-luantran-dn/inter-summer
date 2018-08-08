@@ -1,0 +1,31 @@
+<% provide(:title, 'Sign up') %>
+
+<div id="login-box">
+  <div class="left">
+    <h1>Sign up</h1>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+
+        <%= f.submit "Sign me up", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
+    
+    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin google">Log in with Google+</button>
+  </div>
+  <div class="or">OR</div>
+</div>
