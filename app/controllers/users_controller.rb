@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update correct_user destroy]
-  before_action :logged_in_user, only: %i[index edit update destroy]
+  before_action :find_user, only: %i[show edit update correct_user]
+  before_action :logged_in_user, only: %i[index edit update]
   before_action :correct_user, only: %i[edit update]
-  before_action :admin_user, only: :destroy
-
-  def index
-    @users = User.paginate(page: params[:page])
-  end
 
   def new
     @user = User.new
