@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20_180_807_075_401) do
     t.string 'password_digest'
     t.string 'remember_digest'
     t.string 'role'
+    t.string 'provider'
+    t.string 'uid'
     t.string 'activation_digest'
     t.datetime 'activated_at'
     t.string 'reset_digest'

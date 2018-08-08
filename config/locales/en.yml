@@ -30,4 +30,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        name: 'Name'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'password_confirmation'
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: 'Please input name'
+            email:
+              blank: 'Please input email'
+              invalid: 'Email input fail format'
+            password:
+              blank: 'Please input password'
+            password_confirmation:
+              blank: 'Please input password comfirm'

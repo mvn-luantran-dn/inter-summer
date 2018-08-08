@@ -30,8 +30,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
+gem 'figaro'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-facebook', '~> 3.0.0'
+gem 'omniauth-google-oauth2'
+gem 'pry'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

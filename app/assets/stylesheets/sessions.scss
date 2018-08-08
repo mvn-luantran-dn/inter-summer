@@ -33,11 +33,9 @@ h1 {
   font-size: 28px;
 }
 
-input[type="email"],
-input[type="password"] {
+.form-input {
   display: block;
   box-sizing: border-box;
-  margin-bottom: 20px;
   padding: 4px;
   width: 220px;
   height: 32px;
@@ -49,14 +47,13 @@ input[type="password"] {
   transition: 0.2s ease;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+.form-input:focus {
   border-bottom: 2px solid #16a085;
   color: #16a085;
   transition: 0.2s ease;
 }
 
-input[type="submit"] {
+.form-submit {
   margin-top: 28px;
   margin-left: 50px;
   width: 120px;
@@ -124,7 +121,7 @@ input[type="submit"]:active {
   text-align: center;
 }
 
-button.social-signin {
+.social-signin {
   margin-bottom: 20px;
   width: 220px;
   height: 36px;
@@ -137,26 +134,25 @@ button.social-signin {
   cursor: pointer;
 }
 
-button.social-signin:hover,
-button.social-signin:focus {
+.social-signin:hover,
+.social-signin:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   transition: 0.2s ease;
+  text-decoration: none
 }
 
-button.social-signin:active {
+.social-signin:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   transition: 0.2s ease;
 }
 
-button.social-signin.facebook {
+.social-signin.facebook {
+  padding: 14px 44px;
   background: #32508E;
 }
 
-button.social-signin.twitter {
-  background: #55ACEE;
-}
-
-button.social-signin.google {
+.social-signin.google {
+  padding: 14px 47px;
   background: #DD4B39;
 }
 
@@ -169,4 +165,10 @@ button.social-signin.google {
 
 .forgot:hover {
   color: red;
+}
+.help-block {
+  font-size: 12px;
+}
+.gooogle-footer{
+  margin-top: 50px;
 }
