@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-User.create!(name:  'Example User',
+User.create!(name:  'admin',
              email: 'example@railstutorial.org',
              password: 'foobar',
              password_confirmation: 'foobar',

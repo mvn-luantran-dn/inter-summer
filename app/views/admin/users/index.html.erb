@@ -1,0 +1,47 @@
+<% provide(:manage, 'Manage Users') %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>List Users</p>
+      </div>
+      <div class="panel-body">
+        <div class='header-panel-body'>
+          <%= link_to 'Add user', new_admin_user_path, class: 'button-item add-item' %>
+          <%= form_tag '#', class: 'col-lg-3', id: 'search'  do %>
+            <%= search_field_tag 'name', '', { class: 'form-control', placeholder: 'Search' } %>
+          <% end %>
+        </div>
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @users.each_with_index do |user, i| %>
+                <tr class="odd gradeX">
+                  <td class="center"><%= i + 1 %></td>
+                  <td class="center"><%= link_to user.name, '#', class: 'detail-item' %></td>
+                  <td class="center"><%= user.email %></td>
+                  <td class="center"><%= user.role %></td>
+                  <td class="center">
+                    <%= link_to 'Update', edit_admin_user_path(user), class: 'button-item update-item' %> 
+                    <% if admin_user? && !current_user?(user) %>
+                      <%= link_to 'Delete', admin_user_path(user), method: :delete, class: 'button-item delete-item',
+                                          data: { confirm: "You sure?" } %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>  
+          </tbody>
+        </table>
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>

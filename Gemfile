@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
 gem 'faker'
 gem 'figaro'
 gem 'font-awesome-rails'
@@ -36,6 +37,7 @@ gem 'omniauth'
 gem 'omniauth-facebook', '~> 3.0.0'
 gem 'omniauth-google-oauth2'
 gem 'pry'
+gem 'will_paginate', '3.1.6'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

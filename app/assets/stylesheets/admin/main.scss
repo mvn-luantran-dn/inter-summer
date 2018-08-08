@@ -1,0 +1,34 @@
+.button-item {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  float: left;
+  margin-bottom: 10px;
+}
+.button-item:hover {
+  color: whitesmoke;
+  text-decoration: none;
+}
+.add-item {
+  background-color: green;  
+}
+.header-panel-body{
+  position: relative;
+}
+#search {
+  position: absolute;
+  right: 0;
+}
+.update-item {
+  background-color: #5bc0de;
+  margin-left: 10px;
+}
+
+.delete-item {
+  background-color: #d9534f;
+  margin-left: 10px;
+}
+#nav-right {
+  margin-right: 0;
+}
