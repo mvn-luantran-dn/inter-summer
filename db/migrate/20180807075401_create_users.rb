@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
@@ -6,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
       t.string :remember_digest
       t.string :role
+      t.string :provider
+      t.string :uid
       t.string :activation_digest
       t.datetime :activated_at
       t.string :reset_digest

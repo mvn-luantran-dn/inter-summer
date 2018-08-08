@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShopAdmin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <div id="wrapper">
+        <%= render 'layouts/admin/nav' %>
+        <div id="page-wrapper">
+        <div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">Blank</h1>
+							<%= yield %>
+						</div>
+					</div>
+        </div>
+        </div>
+    </div>
+  </body>
+</html>

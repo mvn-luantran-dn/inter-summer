@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 class AccountActivationsController < ApplicationController
   def edit
     user = User.find_by(email: params[:email])
-    debugger
     if user && !user.activated_at? && user.authenticated?(:activation, params[:id])
       user.activate
-      # log_in user
-      flash[:success] = "Account activated!"
-      redirect_to user
+      login user
+      flash[:success] = 'Account activated!'
+      redirect_to root_path
     else
-      flash[:danger] = "Invalid activation link"
-      redirect_to '/'
+      flash[:danger] = 'Invalid activation link'
+      redirect_to root_url
     end
   end
 end

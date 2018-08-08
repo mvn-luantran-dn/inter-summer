@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
   before_action :get_user, only: %i[edit update]
   before_action :valid_user, only: %i[edit update]
@@ -12,15 +13,14 @@ class PasswordResetsController < ApplicationController
       @user.create_reset_digest
       @user.send_password_reset_email
       flash[:info] = 'Email sent with password reset instructions'
-      redirect_to '/'
+      redirect_to root_path
     else
       flash.now[:danger] = 'Email address not found'
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if params[:user][:password].empty?
@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
     elsif @user.update_attributes(user_params)
       login @user
       flash[:success] = 'Password has been reset.'
-      redirect_to @user
+      redirect_to root_path
     else
       render :edit
     end

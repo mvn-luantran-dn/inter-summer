@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
@@ -26,7 +28,6 @@ class User < ApplicationRecord
 
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
-    debugger
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
@@ -55,6 +56,19 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def self.find_or_create_from_auth_hash(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.first_name + ' ' + auth.info.last_name
+      user.email = auth.info.email
+      user.password = '123456'
+      user.role = 'user'
+      user.activated_at = Time.zone.now
+      user.save!
+    end
   end
 
   private
