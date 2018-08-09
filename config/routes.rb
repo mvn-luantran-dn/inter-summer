@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   namespace :admin do
     root 'base#index'
-    resources :users
+    resources :users, :categories
   end
   get '/signup', to: 'users#new'
   resources :users

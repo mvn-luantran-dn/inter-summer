@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class AutionTest < ActiveSupport::TestCase
+class Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
