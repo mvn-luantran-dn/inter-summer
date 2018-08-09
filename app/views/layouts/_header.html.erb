@@ -1,32 +1,67 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "auction", root_path , id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
-        <% if logged_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", "edit_user_path" %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <% if admin_user? %>
-                <li><%= link_to "Admin", admin_root_path %></li>
-              <% end %>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
+<div class="header">
+	<div class="container">
+		<div class="header-main">
+			<div class="logo">
+        <%= link_to image_tag("logo.png", alt: "auction logo"), root_path %>
+			</div>
+			<div class="head-right">
+			  <div class="top-nav">
+				  <ul class="res">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Help", help_path %></li>
+            <% if logged_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", "#" %></li>
+                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                  <% if admin_user? %>
+                    <li><%= link_to "Admin", admin_root_path %></li>
+                  <% end %>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: :delete %>
+                </li>
+                </ul>
               </li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Log in", login_path %></li>
-          <li><%= link_to "Sign up", signup_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
+            <% else %>
+              <li><%= link_to "Log in", login_path %></li>
+              <li><%= link_to "Sign up", signup_path %></li>
+            <% end %>
+            <div class="clearfix"> </div>
+          </ul>
+				<!-- script-for-menu -->
+							 <script>
+							   $( "span.menu" ).click(function() {
+								 $( "ul.res" ).slideToggle( 300, function() {
+								 // Animation complete.
+								  });
+								 });
+							</script>
+			<!-- /script-for-menu -->
+			 </div>				
+			<div class="search-box">
+				<div id="sb-search" class="sb-search">
+					<form>
+						<input class="sb-search-input" placeholder="Search" type="search" name="search" id="search">
+						<input class="sb-search-submit" type="submit" value="">
+						<span class="sb-icon-search"> </span>
+					</form>
+			   </div>
+			</div>
+			<div class="clearfix"> </div>
+			   <!-- search-scripts -->
+					<script src="js/classie.js"></script>
+					<script src="js/uisearch.js"></script>
+						<script>
+							new UISearch( document.getElementById( 'sb-search' ) );
+						</script>
+			  <!-- //search-scripts -->
+		</div>
+		
+		<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
