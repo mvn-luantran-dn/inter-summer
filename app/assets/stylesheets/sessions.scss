@@ -6,7 +6,7 @@
   outline: none;
 }
 
-#login-box {
+.login-box {
   position: relative;
   margin: 5% auto;
   width: 600px;
@@ -25,6 +25,16 @@
   width: 300px;
   height: 400px;
   border: 1px solid #e1e4ea;
+}
+
+.sign-up {
+  height: 500px;
+  .sign-up-left {
+    height: 500px;
+  }
+  .sign-up-right {
+    height: 500px;
+  }
 }
 
 h1 {
@@ -136,6 +146,7 @@ input[type="submit"]:active {
 
 .social-signin:hover,
 .social-signin:focus {
+  color: #DDD;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   transition: 0.2s ease;
   text-decoration: none
