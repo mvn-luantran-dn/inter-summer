@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: one
+  name: MyString
+  detail: MyString
+  price: 1
+  start_at: 2018-08-09 11:24:40
+  end_at: 2018-08-09 11:24:40
+  period: 1
+  step: 1
+  status: MyString
+  price_at: 1
+
+two:
+  category: two
+  name: MyString
+  detail: MyString
+  price: 1
+  start_at: 2018-08-09 11:24:40
+  end_at: 2018-08-09 11:24:40
+  period: 1
+  step: 1
+  status: MyString
+  price_at: 1
