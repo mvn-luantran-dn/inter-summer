@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aution_detail: one
+  address: MyString
+  phone: MyString
+  total_price: 1
+
+two:
+  aution_detail: two
+  address: MyString
+  phone: MyString
+  total_price: 1
