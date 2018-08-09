@@ -1,7 +1,6 @@
 <% provide(:title, 'Sign up') %>
-
-<div id="login-box">
-  <div class="left">
+<div class="login-box sign-up">
+  <div class="left sign-up-left">
     <h1>Sign up</h1>
       <%= form_for(@user) do |f| %>
         <%= form_group_for f, :name, label: false  do %>
@@ -12,15 +11,14 @@
         <% end %>
         <%= form_group_for f, :password, label: false  do %>
           <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
-        <% end %>
+        <% end %> 
         <%= form_group_for f, :password, label: false  do %>
           <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: 'form-input' %>
         <% end %>
         <%= f.submit "Sign me up", class: 'form-submit' %>
     <% end %>
   </div>
-  
-  <div class="right">
+  <div class="right sign-up-right">
     <span class="loginwith">Sign in with<br />social network</span>
     <div>
       <%= link_to "Log in with facebook", '/auth/facebook' ,class: "social-signin facebook" %>
