@@ -37,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.name == 'admin'
       flash[:danger] = 'Admin root'
       redirect_to admin_users_url
-    else
+    elsez
       @user.destroy
       flash[:success] = 'User deleted'
       redirect_to admin_users_url
