@@ -7,12 +7,9 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :detail
       t.integer :price
-      t.datetime :start_at
-      t.datetime :end_at
-      t.integer :period
-      t.integer :step
-      t.string :status
+      t.integer :quantity
       t.integer :price_at
+      t.string :status
 
       t.timestamps
     end
