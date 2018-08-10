@@ -1,0 +1,19 @@
+<%= form_group_for f, :name, label: false  do %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+  </div>
+<% end %>
+<div class="form-group">
+  <%= f.label(:category_id, 'Category:')%>
+  <%= f.select(:category_id, options_for_select(@categories.collect{ |u| [u.name, u.id] }, selected: @product.category_id), { prompt: 'Choose category' }, { class: 'form-control' } ) %>
+</div>
+<div>
+<div class="image-list">
+  <%= f.fields_for :assets do |asset| %>
+    <%= render "asset_fields", f: asset %>
+  <% end %>
+</div>
+<%= link_to_add_fields("Add picture", f, :assets) %>
+<%= f.submit "Submit", class: 'btn btn-success' %>
+<%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
