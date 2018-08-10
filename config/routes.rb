@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'base#index'
     resources :users
+    resources :auctions
   end
   get '/signup', to: 'users#new'
   resources :users

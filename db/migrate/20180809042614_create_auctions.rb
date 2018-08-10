@@ -1,6 +1,6 @@
-class CreateAutions < ActiveRecord::Migration[5.2]
+class CreateAuctions < ActiveRecord::Migration[5.2]
   def change
-    create_table :autions do |t|
+    create_table :auctions do |t|
       t.references :product
       t.string :status
 

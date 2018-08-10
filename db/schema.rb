@@ -12,22 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2018_08_09_044318) do
 
-  create_table "aution_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "aution_id"
+  create_table "auction_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "auction_id"
     t.bigint "user_id"
     t.string "price_bid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aution_id"], name: "index_aution_details_on_aution_id"
-    t.index ["user_id"], name: "index_aution_details_on_user_id"
+    t.index ["auction_id"], name: "index_auction_details_on_auction_id"
+    t.index ["user_id"], name: "index_auction_details_on_user_id"
   end
 
-  create_table "autions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_autions_on_product_id"
+    t.index ["product_id"], name: "index_auctions_on_product_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(version: 2018_08_09_044318) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "aution_detail_id"
+    t.bigint "auction_detail_id"
     t.string "address"
     t.string "phone"
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aution_detail_id"], name: "index_orders_on_aution_detail_id"
+    t.index ["auction_detail_id"], name: "index_orders_on_auction_detail_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_044318) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "aution_details", "autions"
-  add_foreign_key "aution_details", "users"
-  add_foreign_key "orders", "aution_details"
+  add_foreign_key "auction_details", "auctions"
+  add_foreign_key "auction_details", "users"
+  add_foreign_key "orders", "auction_details"
   add_foreign_key "products", "categories"
 end
