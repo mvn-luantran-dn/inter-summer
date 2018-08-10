@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class AutionTest < ActiveSupport::TestCase
+class ItemTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
