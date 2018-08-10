@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     root 'base#index'
     resources :users
     resources :auctions
+    resources :orders
   end
   get '/signup', to: 'users#new'
   resources :users

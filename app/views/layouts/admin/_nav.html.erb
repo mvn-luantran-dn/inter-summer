@@ -93,7 +93,12 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fa fa-table fa-fw"></i> Orders</a>
+          <a href="#"><i class="fa fa-table fa-fw"></i> Orders<span class="fa arrow"></a>
+          <ul class="nav nav-second-level">
+            <li>
+              <%= link_to "Manage Orders", admin_orders_path %>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
