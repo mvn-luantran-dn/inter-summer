@@ -1,0 +1,23 @@
+<% provide(:manage, 'Manage products') %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>Detail Product</p>
+      </div>
+      <div class="panel-body">
+        <p>Name: <%= @product.name %></p>
+        <p>Category: <%= parent_name(@product.category_id) %></p>
+        <p>Detail: <%= @product.name %></p>
+        <p>Price: <%= @product.price %></p>
+        <p>Quantity: <%= @product.quantity %></p>
+        <p>Status: <%= @product.status %></p>
+        <p>Price start: <%= @product.price_at %></p>
+        <p>Picture:</p>
+        <% @product.assets.each_with_index do |asset, i|%>
+          <p><%= i + 1 %>. <%= image_tag asset.file_name.url, class: 'img-resize' %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

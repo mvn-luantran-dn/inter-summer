@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class Admin::CategoriesController < Admin::BaseController
-  before_action :all_categories, only: %i[new create]
-  before_action :find_category, expect: %i[index new create]
+  before_action :load_categories, only: %i[new create]
+  before_action :find_category, except: %i[index new create]
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
@@ -10,6 +8,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def new
+    @parent_id = params[:format] unless params[:format].nil?
     @category = Category.new
   end
 
@@ -21,6 +20,10 @@ class Admin::CategoriesController < Admin::BaseController
     else
       render :new
     end
+  end
+
+  def edit
+    @parent_id = @category.parent_id
   end
 
   def update
@@ -40,19 +43,20 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
 
-  def category_params
-    params.require(:category).permit(:name, :parent_id)
-  end
+    def category_params
+      params.require(:category).permit(:name, :parent_id)
+    end
 
-  def all_categories
-    @categories = Category.all
-  end
+    def load_categories
+      @categories = Category.all
+    end
 
-  def find_category
-    @category = Category.find_by(id: params[:id])
-  end
+    def find_category
+      @category = Category.find_by(id: params[:id])
+      redirect_to '/404' unless @category
+    end
 
-  def all_categories_without_self
-    @categories = Category.get_without_self(@category.id).get_without_parent_self(@category.id)
-  end
+    def all_categories_without_self
+      @categories = Category.get_without_self(@category.id).get_without_parent_self(@category.id)
+    end
 end

@@ -1,0 +1,139 @@
+AllCops:
+ TargetRubyVersion: '2.5.0'
+ Exclude:
+   - 'tmp/**/*'
+   - 'log/**/*'
+   - 'vendor/**/*'
+   - 'config/deploy/*'
+   - 'bin/*'
+   - 'Gemfile'
+   - 'Gemfile.lock'
+   - 'Rakefile'
+   - 'db/schema.rb'
+   - 'db/migrate/*'
+   - 'config.ru'
+   - 'config/application.rb'
+   - 'config/environments/development.rb'
+   - 'config/environments/production.rb'
+   - 'config/initializers/cors.rb'
+   - 'config/puma.rb'
+   - 'config/spring.rb'
+   - 'config/routes/*.rb'
+   - 'lib/tasks/auto_annotate_models.rake'
+   - 'spec/spec_helper.rb'
+   - 'spec/rails_helper.rb'
+   - 'app/contracts/application_contract.rb'
+   - 'app/policies/application_policy.rb'
+   - 'app/views/layouts/*'
+ DisplayCopNames: true
+ DisplayStyleGuide: true
+
+##################### Style ##################################
+Style/FrozenStringLiteralComment:
+ EnforcedStyle: never
+
+Style/SingleLineBlockParams:
+ Enabled: false
+
+Style/AsciiComments:
+ Enabled: false
+
+Style/EmptyElse:
+ EnforcedStyle: empty
+
+Style/GuardClause:
+ MinBodyLength: 5
+
+Style/Documentation:
+ Enabled: false
+
+Layout/IndentationConsistency:
+ EnforcedStyle: rails
+
+Style/ClassAndModuleChildren:
+ Enabled: false
+
+Style/Lambda:
+ Enabled: false
+
+Style/AndOr:
+ Enabled: false
+
+Style/WordArray:
+ Enabled: false
+
+Style/NumericLiterals:
+ MinDigits: 7
+
+Style/RedundantSelf:
+ Enabled: false
+
+Layout/SpaceBeforeFirstArg:
+ Enabled: false
+
+Layout/MultilineOperationIndentation:
+ Enabled: true
+
+Layout/SpaceInsideParens:
+ Enabled: false
+
+Style/EmptyCaseCondition:
+ Enabled: false
+##################### Lint ##################################
+
+Lint/UnderscorePrefixedVariableName:
+ Enabled: false
+
+Lint/UnusedMethodArgument:
+ Enabled: false
+
+##################### Metrics ##################################
+Metrics/AbcSize:
+ Max: 40
+
+Metrics/CyclomaticComplexity:
+ Max: 10
+
+Metrics/LineLength:
+ Max: 100
+ Exclude:
+   - "db/migrate/*.rb"
+   - "config/initializers/*.rb"
+   - "db/seeds.rb"
+ IgnoredPatterns: ['(\A|\s)#']
+
+Metrics/MethodLength:
+ Max: 30
+ Exclude:
+   - "db/migrate/*.rb"
+   - "app/models/raw_sql/*.rb"
+
+Metrics/PerceivedComplexity:
+ Max: 8
+
+Style/SymbolProc:
+ Enabled: false
+
+Metrics/ModuleLength:
+ Max: 200
+ Exclude:
+   - "**/*_spec.rb"
+
+Metrics/BlockLength:
+ Max: 200
+ Exclude:
+   - "**/*_spec.rb"
+
+Metrics/ClassLength:
+ Max: 300
+ Exclude:
+   - "app/models/*.rb"
+
+Lint/UnusedBlockArgument:
+ Enabled: false
+
+Rails/SkipsModelValidations:
+ Exclude:
+   - "lib/tasks/*.rake"
+   - "lib/tasks/migrate/*.rake"
+   - 'app/operations/**/*'

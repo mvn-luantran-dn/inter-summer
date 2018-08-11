@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
@@ -74,12 +72,12 @@ class User < ApplicationRecord
 
   private
 
-  def downcase_email
-    self.email = email.downcase
-  end
+    def downcase_email
+      self.email = email.downcase
+    end
 
-  def create_activation_digest
-    self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end

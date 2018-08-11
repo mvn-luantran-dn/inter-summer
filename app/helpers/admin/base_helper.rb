@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::BaseHelper
   def link_to_add_fields(name, f, association, _opts = {})
     # creaate a new object given the form object, and the association name
@@ -21,7 +19,7 @@ module Admin::BaseHelper
                      h("add_fields(this,
                        \"#{association}\", \"#{escape_javascript(fields)}\");return false;"),
                      class: 'btn btn-primary add')
- end
+  end
 
   def link_to_function(name, js, opts = {})
     link_to name, '#', opts.merge(onclick: js)

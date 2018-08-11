@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: %i[edit update]
+  before_action :find_user, only: %i[edit update]
   before_action :valid_user, only: %i[edit update]
   before_action :check_expiration, only: %i[edit update]
 
@@ -37,25 +35,25 @@ class PasswordResetsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:password, :password_confirmation)
-  end
-
-  def get_user
-    @user = User.find_by(email: params[:email])
-  end
-
-  def valid_user
-    unless @user&.activated_at? &&
-           @user&.authenticated?(:reset, params[:id])
-      redirect_to root_path
+    def user_params
+      params.require(:user).permit(:password, :password_confirmation)
     end
-  end
 
-  def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = 'Password reset has expired.'
-      redirect_to new_password_reset_url
+    def find_user
+      @user = User.find_by(email: params[:email])
     end
-  end
+
+    def valid_user
+      unless @user&.activated_at? &&
+             @user&.authenticated?(:reset, params[:id])
+        redirect_to root_path
+      end
+    end
+
+    def check_expiration
+      if @user.password_reset_expired?
+        flash[:danger] = 'Password reset has expired.'
+        redirect_to new_password_reset_url
+      end
+    end
 end
