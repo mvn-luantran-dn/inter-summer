@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Category < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :childcategories, class_name: Category.name,

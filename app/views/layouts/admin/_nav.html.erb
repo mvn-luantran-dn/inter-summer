@@ -30,16 +30,16 @@
           </div>
         </li>
         <li>
-          <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          <%= link_to raw('<i class="fa fa-dashboard fa-fw"></i> Dashboard'), admin_root_path %>
         </li>
         <li>
           <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="/admin/users/new">Add user</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add user'), new_admin_user_path %>
             </li>
             <li>
-              <a href="/admin/users">Manage Users</a>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage users'), admin_users_path %>
             </li>
           </ul>
         </li>
@@ -47,10 +47,10 @@
           <a href="#"><i class="fa fa-sitemap fa-fw"></i> Categories<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="/admin/categories/new">Add Category</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add category'), new_admin_category_path %>
             </li>
             <li>
-              <a href="/admin/categories">Manage Categoties</a>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage categories'), admin_categories_path %>
             </li>
           </ul>
         </li>
@@ -58,10 +58,10 @@
           <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Products<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="/admin/products/new">Add product</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add product'), new_admin_product_path %>
             </li>
             <li>
-              <a href="/admin/products">Manage Products</a>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage products'), admin_products_path %>
             </li>
           </ul>
         </li>

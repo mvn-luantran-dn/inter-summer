@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::UsersController < Admin::BaseController
   before_action :logged_in_user, only: %i[index edit update destroy]
   before_action :find_user, only: %i[show edit update destroy]
@@ -35,33 +33,32 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     if @user.name == 'admin'
       flash[:danger] = 'Admin root'
-      redirect_to admin_users_url
     else
       @user.destroy
       flash[:success] = 'User deleted'
-      redirect_to admin_users_url
     end
+    redirect_to admin_users_url
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_comfirmation, :role)
-  end
-
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_comfirmation, :role)
     end
-  end
 
-  def find_user
-    @user = User.find_by(id: params[:id])
-    redirect_to '/404' unless @user
-  end
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = 'Please log in.'
+        redirect_to login_url
+      end
+    end
 
-  def admin_user
-    redirect_to(admin_users_url) unless current_user.role == 'admin'
-  end
+    def find_user
+      @user = User.find_by(id: params[:id])
+      redirect_to '/404' unless @user
+    end
+
+    def admin_user
+      redirect_to(admin_users_url) unless current_user.role == 'admin'
+    end
 end

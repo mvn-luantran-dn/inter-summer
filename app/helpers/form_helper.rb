@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module FormHelper
   def form_group_for(form, field, opts = {}, &block)
     label = opts.fetch(:label) { true }
