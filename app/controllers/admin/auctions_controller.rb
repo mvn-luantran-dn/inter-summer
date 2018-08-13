@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
@@ -9,6 +11,15 @@ class Admin::AuctionsController < Admin::BaseController
     @auction_details = @auction.auction_details.paginate(page: params[:page], per_page: 20)
   end
 
+  def update
+    if @auction.update_attributes(auction_params)
+      flash[:success] = 'Update success'
+      redirect_to admin_auctions_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @auction.destroy
     flash[:success] = 'Auction deleted'
@@ -16,10 +27,13 @@ class Admin::AuctionsController < Admin::BaseController
   end
 
   private
+
   def find_auction
     @auction = Auction.find_by(id: params[:id])
     redirect_to '/404' unless @auction
   end
-  
-end
 
+  def auction_params
+    params.require(:auction).permit(:product_id, :start_at, :period, :bid_step)
+  end
+end

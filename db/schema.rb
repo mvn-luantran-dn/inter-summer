@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,90 +12,88 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_073920) do
-
-  create_table "auction_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "auction_id"
-    t.bigint "user_id"
-    t.string "price_bid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["auction_id"], name: "index_auction_details_on_auction_id"
-    t.index ["user_id"], name: "index_auction_details_on_user_id"
+ActiveRecord::Schema.define(version: 20_180_810_075_712) do
+  create_table 'auction_details', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'auction_id'
+    t.bigint 'user_id'
+    t.string 'price_bid'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['auction_id'], name: 'index_auction_details_on_auction_id'
+    t.index ['user_id'], name: 'index_auction_details_on_user_id'
   end
 
-  create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_auctions_on_product_id"
+  create_table 'auctions', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'product_id'
+    t.datetime 'start_at'
+    t.integer 'period'
+    t.integer 'bid_step'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['product_id'], name: 'index_auctions_on_product_id'
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'categories', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'parent_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "order_id"
-    t.string "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_items_on_order_id"
-    t.index ["product_id"], name: "index_items_on_product_id"
+  create_table 'items', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'order_id'
+    t.bigint 'product_id'
+    t.integer 'amount'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['order_id'], name: 'index_items_on_order_id'
+    t.index ['product_id'], name: 'index_items_on_product_id'
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "auction_detail_id"
-    t.string "address"
-    t.string "phone"
-    t.integer "total_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["auction_detail_id"], name: "index_orders_on_auction_detail_id"
+  create_table 'orders', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'user_id'
+    t.string 'address'
+    t.string 'phone'
+    t.integer 'total_price'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_orders_on_user_id'
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "category_id"
-    t.string "name"
-    t.string "detail"
-    t.integer "price"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.integer "period"
-    t.integer "step"
-    t.string "status"
-    t.integer "price_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_products_on_category_id"
+  create_table 'products', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'category_id'
+    t.string 'name'
+    t.string 'detail'
+    t.integer 'price'
+    t.integer 'quantity'
+    t.integer 'price_at'
+    t.string 'status'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['category_id'], name: 'index_products_on_category_id'
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "password_digest"
-    t.string "remember_digest"
-    t.string "role"
-    t.string "provider"
-    t.string "uid"
-    t.string "activation_digest"
-    t.datetime "activated_at"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'email', null: false
+    t.string 'password_digest'
+    t.string 'remember_digest'
+    t.string 'role'
+    t.string 'provider'
+    t.string 'uid'
+    t.string 'activation_digest'
+    t.datetime 'activated_at'
+    t.string 'reset_digest'
+    t.datetime 'reset_sent_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "auction_details", "auctions"
-  add_foreign_key "auction_details", "users"
-  add_foreign_key "items", "orders"
-  add_foreign_key "items", "products"
-  add_foreign_key "orders", "auction_details"
-  add_foreign_key "products", "categories"
+  add_foreign_key 'auction_details', 'auctions'
+  add_foreign_key 'auction_details', 'users'
+  add_foreign_key 'items', 'orders'
+  add_foreign_key 'items', 'products'
+  add_foreign_key 'orders', 'users'
+  add_foreign_key 'products', 'categories'
 end

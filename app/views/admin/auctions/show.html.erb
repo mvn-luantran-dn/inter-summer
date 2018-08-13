@@ -1,6 +1,8 @@
 <% provide(:manage, 'Auction Detail') %>
-<p>Product name: <%= @auction.product.name %></p>
-<p>Status: <%= @auction.status %></p>
+<p>Product Name: <%= @auction.product.name %></p>
+<p>Start At: <%= @auction.start_at %></p>
+<p>Period: <%= @auction.period %></p>
+<p>Bid Step: <%= @auction.bid_step %></p>
 <% if @auction.auction_details.any? %>
   <div class="row">
   <div class="col-lg-12">
@@ -36,4 +38,4 @@
 </div>
 <% else %>
   <p>Không có ai đáu giá sản phẩm này</p>
-<% end %>  
+<% end %>

@@ -22,7 +22,7 @@
               <% @orders.each_with_index do |order, i| %>
                 <tr class="odd gradeX">
                   <td class="center"><%= i + 1 %></td>
-                  <td class="center"><%= link_to order.auction_detail.user.name , '#', class: 'detail-item' %></td>
+                  <td class="center"><%= link_to order.user.name , '#', class: 'detail-item' %></td>
                   <td class="center"><%= order.address %></td>
                   <td class="center"><%= order.phone %></td>
                   <td class="center"><%= order.total_price %></td>
