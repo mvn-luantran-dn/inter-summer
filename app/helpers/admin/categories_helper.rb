@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 module Admin::CategoriesHelper
-  def parent_name(category)
-    Category.find_by(id: category.parent_id).name
+  def parent_name(id)
+    Category.find_by(id: id).name
   end
 end

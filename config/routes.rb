@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/help', to: 'static_pages#help'
@@ -10,14 +8,12 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get 'auth/:provider/callback', to: 'omniauths#create'
   get 'auth/failure', to: redirect('/')
-  namespace :admin do
-    root 'base#index'
-    resources :users, :categories
-  end
   get '/signup', to: 'users#new'
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
-  get 'password_resets/new'
-  get 'password_resets/edit'
+  namespace :admin do
+    root 'base#index'
+    resources :users, :categories, :products
+  end
 end

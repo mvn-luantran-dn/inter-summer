@@ -1,0 +1,30 @@
+<%= form_group_for f, :name, label: false  do %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :email, label: false  do %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :password, label: false  do %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :password, label: false  do %>
+  <div class="form-group">
+    <%= f.label 'Password confirmation' %>
+    <%= f.password_field :password_confirm, placeholder: 'Password_confirmation', class: 'form-control' %>
+  </div>
+<% end %>
+<div class="form-group">
+  <%= f.label 'Role' %>
+  <%= f.select(:role, options_for_select(['admin', 'user'], selected: @user.role), { prompt: 'Choose role' }, { class: 'form-control' } ) %>
+</div>
+<%= f.submit "Submit", class: 'btn btn-success' %>
+<%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
