@@ -42,7 +42,7 @@ class Admin::ProductsController < Admin::BaseController
     flash[:success] = 'Product deleted'
     redirect_to admin_products_url
   end
-
+  
   private
 
     def product_params

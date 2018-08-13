@@ -9,4 +9,12 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :price_at, presence: true
   validates :assets, length: { minimum: 1, maximum: 4}
+
+  def sale_product
+    self.update_attribute(:status, 'selling')
+  end
+
+  def un_sale_product
+    self.update_attribute(:status, 'unselling')
+  end
 end
