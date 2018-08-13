@@ -10,6 +10,10 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new
     @product.assets.build
   end
+  
+  def show
+    @assets = @product.assets
+  end
 
   def create
     @product = Product.new(product_params)

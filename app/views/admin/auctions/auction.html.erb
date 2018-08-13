@@ -1,0 +1,14 @@
+<tr class="odd gradeX">
+  <td class="center"><%= auction.id %></td>
+  <td class="center"><%= link_to auction.product.name, '#', class: 'detail-item' %></td>
+  <td class="center"><%= auction.start_at %></td>
+  <td class="center"><%= auction.period %></td>
+  <td class="center"><%= auction.bid_step %></td>
+  <td class="center">
+    <%= link_to 'Update', edit_admin_auction_path(auction), class: 'button-item update-item' %> 
+    <%= link_to 'Delete', admin_auction_path(auction), method: :delete, class: 'button-item delete-item',
+                          data: { confirm: "You sure?" } %>
+    <%= link_to 'Detail', admin_auction_path(auction), class: 'button-item update-item' %> 
+
+  </td>
+</tr>

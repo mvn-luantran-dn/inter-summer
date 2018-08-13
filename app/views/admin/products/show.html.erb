@@ -14,9 +14,7 @@
         <p>Status: <%= @product.status %></p>
         <p>Price start: <%= @product.price_at %></p>
         <p>Picture:</p>
-        <% @product.assets.each_with_index do |asset, i|%>
-          <p><%= i + 1 %>. <%= image_tag asset.file_name.url, class: 'img-resize' %></p>
-        <% end %>
+        <%= render @product.assets %>
       </div>
     </div>
   </div>
