@@ -43,15 +43,15 @@ en:
             name:
               blank: 'Please input name'
               too_long: 'Name 100 characters is the maximum allowed'
-            category_id: 'Category'
+            category_id:
               blank: 'Please choose category'
-            detail: 'Detail'
+            detail:
               blank: 'Please input detail'
-            price: 'Price'
+            price:
               blank: 'Please input price'
-            quantity: 'Quantity'
+            quantity:
               blank: 'Please input quantity'
-            price_at: 'Price start'
+            price_at:
               blank: 'Please input price start'
             assets:
               too_short: 'Please add at least 1 picture'

@@ -25,23 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @categories.each_with_index do |category, i| %>
-              <tr class="odd gradeX">
-                <td class="center"><%= i + 1 %></td>
-                <td class="center"><%= link_to category.name, '#', class: 'detail-item' %></td>
-                <% if category.parent_id.nil? %>
-                  <td class="center">No</td>
-                <% else %>
-                  <td class="center"><%= parent_name(category.parent_id) %></td>
-                <% end %>
-                <td class="center">
-                  <%= link_to 'Add', new_admin_category_path(category), class: 'button-item add-item' %> 
-                  <%= link_to 'Update', edit_admin_category_path(category), class: 'button-item update-item' %>
-                  <%= link_to 'Delete', admin_category_path(category), method: :delete, class: 'button-item delete-item',
-                                        data: { confirm: "You sure?" } %>
-                </td>
-              </tr>
-            <% end %>  
+            <%= render @categories %>
           </tbody>
         </table>
         <%= will_paginate %>
