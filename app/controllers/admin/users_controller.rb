@@ -13,7 +13,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    binding.pry
     @user = User.new(user_params)
     @user.activated_at = Time.zone.now
     if @user.save
