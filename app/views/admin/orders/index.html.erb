@@ -19,21 +19,7 @@
             </tr>
           </thead>
             <tbody>
-              <% @orders.each_with_index do |order, i| %>
-                <tr class="odd gradeX">
-                  <td class="center"><%= i + 1 %></td>
-                  <td class="center"><%= link_to order.user.name , '#', class: 'detail-item' %></td>
-                  <td class="center"><%= order.address %></td>
-                  <td class="center"><%= order.phone %></td>
-                  <td class="center"><%= order.total_price %></td>
-                  <td class="center"> status</td>
-                  <td class="center">
-                    <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item',
-                                          data: { confirm: "You sure?" } %>
-                    <%= link_to 'Detail', admin_order_path(order), class: 'button-item update-item' %> 
-                  </td>
-                </tr>
-              <% end %>  
+              <%= render @orders %>
           </tbody>
         </table>
         <%= will_paginate %>
