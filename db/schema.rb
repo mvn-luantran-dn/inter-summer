@@ -100,10 +100,10 @@ ActiveRecord::Schema.define(version: 2018_08_10_075712) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "auction_details", "auctions"
-  add_foreign_key "auction_details", "users"
-  add_foreign_key "items", "orders"
-  add_foreign_key "items", "products"
-  add_foreign_key "orders", "auction_details"
-  add_foreign_key "products", "categories"
+  add_foreign_key 'auction_details', 'auctions'
+  add_foreign_key 'auction_details', 'users'
+  add_foreign_key 'items', 'orders'
+  add_foreign_key 'items', 'products'
+  add_foreign_key 'orders', 'auction_details'
+  add_foreign_key 'products', 'categories'
 end
