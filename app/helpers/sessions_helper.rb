@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module SessionsHelper
   def login(user)
     session[:user_id] = user.id
@@ -19,10 +17,6 @@ module SessionsHelper
     user.forget
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
-  end
-
-  def current_user?(user)
-    user == current_user
   end
 
   def current_user

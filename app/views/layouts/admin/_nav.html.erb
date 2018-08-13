@@ -8,12 +8,10 @@
         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
-        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-        </li>
-        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-        </li>
+        <li><%= link_to raw('<i class="fa fa-user fa-fw"></i> User Profile'), '#' %></li>
+        <li><%= link_to raw('<i class="fa fa-gear fa-fw"></i> Settings'), '#' %></li>
         <li class="divider"></li>
-        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        <li><%= link_to raw('<i class="fa fa-sign-out fa-fw"></i> Logout'), logout_url, method: :delete %></li>
         </li>
       </ul>
     </li>
@@ -32,16 +30,16 @@
           </div>
         </li>
         <li>
-          <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          <%= link_to raw('<i class="fa fa-dashboard fa-fw"></i> Dashboard'), admin_root_path %>
         </li>
         <li>
           <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="/admin/users/new">Add user</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add user'), new_admin_user_path %>
             </li>
             <li>
-              <a href="/admin/users">Manage Users</a>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage users'), admin_users_path %>
             </li>
           </ul>
         </li>
@@ -49,27 +47,10 @@
           <a href="#"><i class="fa fa-sitemap fa-fw"></i> Categories<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="#">Second Level Item</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add category'), new_admin_category_path %>
             </li>
             <li>
-              <a href="#">Second Level Item</a>
-            </li>
-            <li>
-              <a href="#">Third Level <span class="fa arrow"></span></a>
-              <ul class="nav nav-third-level">
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-              </ul>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage categories'), admin_categories_path %>
             </li>
           </ul>
         </li>
@@ -77,10 +58,10 @@
           <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Products<span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
             <li>
-              <a href="#">Add product</a>
+              <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add product'), new_admin_product_path %>
             </li>
             <li>
-              <a href="#">Manage Products</a>
+              <%= link_to raw('<i class="fa fa-bank fa-fw"></i> Manage products'), admin_products_path %>
             </li>
           </ul>
         </li>

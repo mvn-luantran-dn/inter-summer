@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  file: MyString
+  file_name: MyString
+  module_id: 1
+  module: MyString
+
+two:
+  file: MyString
+  file_name: MyString
+  module_id: 1
+  module: MyString

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::OrdersController < Admin::BaseController
-  before_action :find_order, only: %i[show edit update destroy]
+  before_action :find_order, only: %i[show destroy]
 
   def index
     @orders = Order.paginate(page: params[:page], per_page: 10).order('id DESC')

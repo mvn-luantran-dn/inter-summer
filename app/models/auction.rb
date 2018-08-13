@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Auction < ApplicationRecord
   belongs_to :product
   has_many :auction_details, dependent: :destroy
