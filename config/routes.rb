@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   namespace :admin do
     root 'base#index'
-    resources :users, :categories, :products
+    resources :users, :categories, :products, :auctions, :orders
   end
 end

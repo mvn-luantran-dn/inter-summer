@@ -1,0 +1,45 @@
+<% provide(:manage, 'Manage Auction') %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>Update User</p>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <%= form_for(@auction, url: admin_auction_path) do |f| %>
+              <%= form_group_for f, :name, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :product_id %>
+                  <%= f.text_field :product_id, placeholder: 'product_id', class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :email, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :start_at %>
+                  <%= f.text_field :start_at, placeholder: 'start_at', class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :password, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :period %>
+                  <%= f.text_field :period, placeholder: 'period', class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :password, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :bid_step %>
+                  <%= f.text_field :bid_step, placeholder: 'bid_step', class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= f.submit "Submit", class: 'btn btn-success' %>
+              <%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
