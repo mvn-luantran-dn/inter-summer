@@ -34,6 +34,8 @@
     <%= f.text_field :price_at, placeholder: 'Price start at', class: 'form-control' %>
   </div>
 <% end %>
+<%= form_group_for f, :assets, label: false  do %>
+<% end %>
 <div class="image-list">
   <%= f.fields_for :assets do |asset| %>
     <%= render "asset_fields", f: asset %>

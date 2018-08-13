@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 2018_08_10_075712) do
     t.index ["product_id"], name: "index_items_on_product_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "auction_detail_id"
-    t.string "address"
-    t.string "phone"
-    t.integer "total_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["auction_detail_id"], name: "index_orders_on_auction_detail_id"
+  create_table 'orders', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.bigint 'user_id'
+    t.string 'address'
+    t.string 'phone'
+    t.integer 'total_price'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_orders_on_user_id'
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -100,10 +100,10 @@ ActiveRecord::Schema.define(version: 2018_08_10_075712) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "auction_details", "auctions"
-  add_foreign_key "auction_details", "users"
-  add_foreign_key "items", "orders"
-  add_foreign_key "items", "products"
-  add_foreign_key "orders", "auction_details"
-  add_foreign_key "products", "categories"
+  add_foreign_key 'auction_details', 'auctions'
+  add_foreign_key 'auction_details', 'users'
+  add_foreign_key 'items', 'orders'
+  add_foreign_key 'items', 'products'
+  add_foreign_key 'orders', 'users'
+  add_foreign_key 'products', 'categories'
 end
