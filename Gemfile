@@ -38,6 +38,8 @@ gem 'omniauth-facebook', '~> 3.0.0'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 gem 'will_paginate', '3.1.6'
+gem 'carrierwave', '1.2.2'
+gem 'mini_magick', '4.7.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
@@ -28,12 +26,12 @@ class Admin::AuctionsController < Admin::BaseController
 
   private
 
-  def find_auction
-    @auction = Auction.find_by(id: params[:id])
-    redirect_to '/404' unless @auction
-  end
+    def find_auction
+      @auction = Auction.find_by(id: params[:id])
+      redirect_to '/404' unless @auction
+    end
 
-  def auction_params
-    params.require(:auction).permit(:product_id, :start_at, :period, :bid_step)
-  end
+    def auction_params
+      params.require(:auction).permit(:product_id, :start_at, :period, :bid_step)
+    end
 end

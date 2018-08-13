@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update correct_user]
   before_action :logged_in_user, only: %i[index edit update]
@@ -32,24 +30,24 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_comfirm)
-  end
-
-  def find_user
-    @user = User.find_by(id: params[:id])
-    redirect_to '/404' unless @user
-  end
-
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_comfirm)
     end
-  end
 
-  def correct_user
-    redirect_to(root_url) unless current_user?(@user)
-  end
+    def find_user
+      @user = User.find_by(id: params[:id])
+      redirect_to '/404' unless @user
+    end
+
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = 'Please log in.'
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end
