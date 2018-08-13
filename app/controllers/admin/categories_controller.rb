@@ -4,6 +4,7 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
+    @categories_no_parent = Category.where(parent_id: nil)
     @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
   end
 
