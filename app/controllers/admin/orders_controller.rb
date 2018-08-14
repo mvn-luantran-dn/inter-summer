@@ -12,6 +12,6 @@ class Admin::OrdersController < Admin::BaseController
   private
 
     def find_order
-      @order = Order.find_by(id: params[:id])  or not_found
+      @order = Order.find_by(id: params[:id]) || redirect_to_not_found
     end
 end

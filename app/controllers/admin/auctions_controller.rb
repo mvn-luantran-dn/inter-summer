@@ -27,7 +27,7 @@ class Admin::AuctionsController < Admin::BaseController
   private
 
     def find_auction
-      @auction = Auction.find_by(id: params[:id]) or not_found
+      @auction = Auction.find_by(id: params[:id]) || redirect_to_not_found
     end
 
     def auction_params

@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-md-3 ser">
   <div class="product-item thumbnail">
-    <%= link_to image_tag(image_first_of_object(product)), root_path %>
+    <%= link_to image_tag image_first_of_object(product) %>
     <div class="caption text-center">
       <a href="#"><h3><%= product.name %></h3></a>
       <p><span id="countdowntimer" class="text-danger">1:10</span></p>
