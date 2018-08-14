@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'base#index'
     resources :users, :categories, :products, :auctions, :orders
+    get '/sale/:id', to: 'status_products#sale', as: '/sale'
+    get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
   end
 end

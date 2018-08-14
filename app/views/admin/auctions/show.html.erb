@@ -22,13 +22,7 @@
             </tr>
           </thead>
             <tbody>
-              <% @auction_details.each_with_index do |auction, i| %>
-                <tr class="odd gradeX">
-                  <td class="center"><%= i + 1 %></td>
-                  <td class="center"><%= auction.user.name %></td>
-                  <td class="center"><%= auction.price_bid %></td>
-                </tr>
-              <% end %>  
+              <%= render @auction_details %>
           </tbody>
         </table>
         <%= will_paginate @auction_details %>

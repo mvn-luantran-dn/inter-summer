@@ -1,0 +1,5 @@
+<% if product.status == 'selling' %>
+  <%= render 'unsale', product: product %>
+<% else %>
+  <%= render 'sale', product: product %>
+<% end %>
