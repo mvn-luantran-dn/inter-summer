@@ -12,7 +12,6 @@ class Admin::OrdersController < Admin::BaseController
   private
 
     def find_order
-      @order = Order.find_by(id: params[:id])
-      redirect_to '/404' unless @order
+      @order = Order.find_by(id: params[:id])  or not_found
     end
 end

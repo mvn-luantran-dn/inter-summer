@@ -8,18 +8,7 @@
 			</div>
 			<div class="services-bottom">
 				<div class="row">
-				  <% @products.each do |product| %>
-						<div class="col-sm-6 col-md-3 ser">
-							<div class="product-item thumbnail">
-								<%= link_to image_tag(image_first_of_object(product)), root_path %>
-								<div class="caption text-center">
-									<a href="#"><h3><%= product.name %></h3></a>
-									<p><span id="countdowntimer" class="text-danger">1:10</span></p>
-									<span class= "last-bid-user rows"><%= image_tag('auctions.png', class: 'icon-auction') %> 1K</span>
-								</div>
-							</div>
-						</div>
-					<% end %>
+				  <%= render @products %>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
