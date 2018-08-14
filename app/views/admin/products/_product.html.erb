@@ -2,11 +2,11 @@
   <td class="center"><%= product.id %></td>
   <td class="center"><%= link_to product.name, admin_product_path(product), class: 'detail-item' %></td>
   <td class="center"><%= parent_name(product.category_id) %></td>
-  <td class="center"><%= image_tag image_first_of_object(product).url, class: 'img-resize' %></td>
+  <td class="center"><%= image_tag image_first_of_object(product), class: 'img-resize' %></td>
   <td class="center"><%= product.detail %></td>
   <td class="center"><%= product.price %></td>
   <td class="center"><%= product.quantity %></td>
-  <td class="center"><%= product.status %></td>
+  <td class="center"><%= render 'status', product: product %></td>
   <td class="center"><%= product.price_at %></td>
   <td class="center">
     <%= link_to 'Update', edit_admin_product_path(product), class: 'button-item update-item' %> 
