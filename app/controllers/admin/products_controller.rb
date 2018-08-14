@@ -51,10 +51,6 @@ class Admin::ProductsController < Admin::BaseController
                                       %i[id file_name _destroy])
     end
 
-    def asset_params
-      params.require(:product).permit(:file_name)
-    end
-
     def find_product
       @product = Product.find_by(id: params[:id])
       redirect_to '/404' unless @product
