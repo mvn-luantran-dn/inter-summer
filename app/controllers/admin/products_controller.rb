@@ -11,6 +11,10 @@ class Admin::ProductsController < Admin::BaseController
     @product.assets.build
   end
 
+  def show
+    @assets = @product.assets
+  end
+
   def create
     @product = Product.new(product_params)
     @product.status = 'selling'

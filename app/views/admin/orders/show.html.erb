@@ -20,13 +20,7 @@
             </tr>
           </thead>
             <tbody>
-              <% @items.each_with_index do |item, i| %>
-                <tr class="odd gradeX">
-                  <td class="center"><%= i + 1 %></td>
-                  <td class="center"><%= item.product.name %></td>
-                  <td class="center"><%= item.amount %></td>
-                </tr>
-              <% end %>
+              <%= render @items %>
               <tr>
                 <td colspan="2">Total Price</td>
                 <td><%= @order.total_price %></td>
