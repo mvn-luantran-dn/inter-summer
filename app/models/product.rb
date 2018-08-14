@@ -8,5 +8,5 @@ class Product < ApplicationRecord
   validates :quantity, presence: true
   validates :price, presence: true
   validates :price_at, presence: true
-  validates :assets, length: { minimum: 1, maximum: 4}
+  validates :assets, length: { minimum: 1, maximum: 4 }
 end

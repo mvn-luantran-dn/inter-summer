@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
+  resources :products, only: %i[show]
   namespace :admin do
     root 'base#index'
     resources :users, :categories, :products, :auctions, :orders
