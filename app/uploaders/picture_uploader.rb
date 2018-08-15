@@ -45,6 +45,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w[jpg jpeg gif png]
   end
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
@@ -52,8 +53,9 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   protected
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
-  end
+
+    def secure_token
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    end
 end
