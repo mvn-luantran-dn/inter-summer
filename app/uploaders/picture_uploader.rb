@@ -1,7 +1,12 @@
 class PictureUploader < CarrierWave::Uploader::Base
+  before :cache, :save_original_filename
+  def save_original_filename(file)
+    model.file ||= file.original_filename if file.respond_to?(:original_filename)
+  end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  # process resize_to_limit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -32,7 +37,9 @@ class PictureUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process resize_to_fit: [50, 50]
   # end
-
+  # version :large do
+  #   resize_to_limit(600, 600)
+  # end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
@@ -40,7 +47,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  protected
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
 end

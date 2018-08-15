@@ -6,7 +6,7 @@
   <td class="center"><%= product.detail %></td>
   <td class="center"><%= product.price %></td>
   <td class="center"><%= product.quantity %></td>
-  <td class="center"><%= product.status %></td>
+  <td class="center"><%= render 'status', product: product %></td>
   <td class="center"><%= product.price_at %></td>
   <td class="center">
     <%= link_to 'Add Timer', new_admin_product_timer_path(product), class: 'button-item update-item' %> 

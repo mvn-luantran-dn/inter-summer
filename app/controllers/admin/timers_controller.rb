@@ -13,11 +13,8 @@ class Admin::TimersController < Admin::BaseController
 
   def create
     @timer = @product.timers.new(timer_params)
-    if @timer.save 
-      redirect_to admin_products_url
-    else
-      render :new
-    end
+    return redirect_to(admin_products_url) if @timer.save
+    render :new
   end
   
   def edit
