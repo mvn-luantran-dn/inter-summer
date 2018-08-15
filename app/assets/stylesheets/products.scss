@@ -1,0 +1,910 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.extended_view {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: block;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.extended_view::after {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+h1, h2, h3 {
+  font-weight: 700;
+  font-family: "open sans", sans-serif;
+}
+h2 {
+  font-size: 22px;
+}
+.product_title {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: block;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(204, 204, 204);
+}
+a {
+  color: rgb(26, 183, 234);
+}
+a:hover {
+  color: rgb(51, 204, 255);
+}
+h1 a, h2 a, h3 a {
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+.product_title a {
+  color: rgb(51, 51, 51);
+}
+.product_title a:hover {
+  color: rgb(26, 183, 234);
+}
+.bidding_msg, #ContentPlaceHolder1_pBiddingInfo, .bidding_wait_msg, #ContentPlaceHolder1_pBiddingInfo1 {
+  float: left;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.bidding_info_fail {
+  background-color: rgb(204, 51, 85);
+}
+.mbid_info {
+  display: none;
+}
+.product_photo_wrp {
+  margin-left: 10px;
+  float: left;
+  width: 260px;
+}
+.product_photo {
+  display: inline-block;
+}
+.zoomWrapper {
+  float: left;
+  position: relative;
+  width: 100%;
+}
+img {
+  vertical-align: middle;
+}
+.loading-image {
+  background-image: url("/Gfx/img-loader.gif");
+  background-size: initial;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-position-x: center;
+  background-position-y: 50%;
+  height: 200px;
+}
+ol, ul {
+  list-style-type: none;
+  list-style-position: initial;
+  list-style-image: initial;
+}
+.product_gallery {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: -5px;
+  margin-bottom: 5px;
+  margin-left: -5px;
+  width: 100%;
+}
+.product_thumb {
+  max-width: 250px;
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.single_product .product_thumb {
+  max-width: 72px;
+  max-height: 97px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+.single_product .product_thumb.active::after {
+  width: 72px;
+  height: 96px;
+  position: absolute;
+  top: 0px;
+  content: "";
+  display: block;
+  z-index: 2;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+a img {
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+.product_thumb img {
+  display: block;
+  margin-top: -1px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: -1px;
+}
+.single_product .product_thumb img {
+  width: 103%;
+}
+.product_info {
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 10px;
+  width: 720px;
+}
+.product_info .left-product, .product_info .right-product {
+  padding-bottom: 10px;
+}
+.product_info .left-product {
+  width: 45%;
+  float: left;
+}
+p {
+  line-height: 22px;
+}
+.info_field {
+  color: rgb(153, 153, 153);
+  font-family: quark;
+  font-size: 16px;
+}
+.single_product p.info_field::before {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+.current_bid, .timeout {
+  min-height: 40px;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  font-family: "open sans", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+.product_info .right-product {
+  width: 55%;
+  float: right;
+}
+.select_size {
+  width: 150px;
+  height: 45px;
+  display: inline-block;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  outline-color: initial;
+  outline-style: initial;
+  outline-width: 0px;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  box-sizing: border-box;
+}
+.select_size::before {
+  font-family: fontawesome;
+  font-size: 18px;
+  font-weight: 700;
+  content: "";
+  line-height: 45px;
+  color: rgb(153, 153, 153);
+  position: absolute;
+  margin-left: 125px;
+  z-index: 0;
+}
+.select_size:hover::before {
+  color: rgb(26, 183, 234);
+}
+.select_size .product_size {
+  width: 148px;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  position: relative;
+  font-size: 16px;
+  text-indent: 3px;
+  background-image: initial;
+  background-position-x: 0px;
+  background-position-y: 0px;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  outline-color: initial;
+  outline-style: initial;
+  outline-width: 0px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  box-shadow: none;
+  line-height: 1.8;
+  height: 45px;
+}
+select {
+  height: 40px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  width: 100%;
+}
+.bidding_help {
+  background-color: rgb(204, 204, 204);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  font-family: "open sans", sans-serif;
+  font-size: 14px;
+  height: 18px;
+  line-height: 18px;
+  margin-left: 5px;
+  text-align: center;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  width: 18px;
+}
+.bidding_help:hover {
+  background-color: rgb(51, 204, 255);
+  color: rgb(255, 255, 255);
+}
+.place_bid {
+  float: left;
+}
+.place_bid::after {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+.bidding_box {
+  float: left;
+}
+.product_info .bidding_box {
+  width: 100%;
+  padding-bottom: 13px;
+}
+.bid_box {
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(222, 220, 221);
+  border-right-color: rgb(222, 220, 221);
+  border-bottom-color: rgb(222, 220, 221);
+  border-left-color: rgb(222, 220, 221);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  display: inline-block;
+  width: 100%;
+}
+.box_puls_minus {
+  background-color: rgb(240, 240, 240);
+  display: inline-block;
+  height: 40px;
+  width: 20%;
+}
+.minus.box_puls_minus {
+  float: left;
+}
+.box_puls_minus > input {
+  background-image: initial;
+  background-position-x: 0px;
+  background-position-y: 0px;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  color: rgb(161, 159, 160);
+  cursor: pointer;
+  font-size: 20px;
+  height: 100%;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  text-align: center;
+  width: 100%;
+}
+.bid_text_number {
+  display: inline-block;
+  height: 40px;
+  max-width: 58.9%;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+}
+.bid_text_number .input_placebid, .bid_text_number .aspNetDisabled {
+  background-color: rgb(255, 255, 255);
+  font-size: 21px;
+  height: 100%;
+  padding-top: 0px;
+  padding-right: 14px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  text-align: center;
+  width: 100%;
+}
+.puls.box_puls_minus {
+  float: right;
+}
+.product_info .right-product .bidding_button {
+  float: left;
+  padding-top: 10px;
+}
+.bidding_button {
+  text-align: center;
+}
+.single_product .product_info .right-product .bidding_button {
+  padding-top: 0px;
+}
+.product_info .bidding_button {
+  width: 100%;
+}
+.buttons {
+  font-weight: 400;
+  text-align: center;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  font-family: "open sans", sans-serif;
+}
+.buttons::before {
+  font-family: fontawesome;
+  padding-right: 10px;
+}
+.large {
+  display: inline-block;
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 18px;
+}
+.bidding.large, .bidding.compact, .checkout.large, .checkout.compact, .print_invoice.large, .print_invoice.compact, .signin.large, .signin.compact, .recov_pswd.large, .recov_pswd.compact {
+  color: rgb(255, 255, 255);
+  background-color: rgb(26, 183, 234);
+}
+.bidding::before {
+  content: "";
+}
+.single_product .buttons.bidding.large {
+  float: left;
+  height: 45px;
+  line-height: 45px;
+  padding-top: 0px;
+  padding-right: 5px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  cursor: pointer;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 100%;
+}
+.product_info .buttons::before {
+  font-family: fontawesome;
+  padding-right: 15px;
+}
+.bidding_button .bidding_two {
+  display: none;
+}
+.service_charge {
+  float: left;
+  margin-top: 5px;
+  color: rgb(102, 102, 102);
+}
+.info-product-right {
+  margin-left: -183px;
+}
+.bidding_msg, .bidding_wait_msg {
+  background-color: rgb(26, 183, 234);
+  display: none;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-left: auto;
+  width: 100%;
+}
+.left-product-winner-icon {
+  display: table-cell;
+  padding-right: 0px;
+  vertical-align: middle;
+  width: 1%;
+}
+.left-product-winner-icon > img {
+  display: none;
+}
+.current-winner .info_field {
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+.current-winner .info_data {
+  display: inline-block;
+  word-break: break-all;
+}
+.current_winner::before {
+  content: "";
+  font-family: fontawesome;
+  padding-right: 5px;
+}
+.product_title .feed, .go-back-mobile, .info-product-right .current-winner > img {
+  display: none;
+}
+.service_condition {
+  display: inline-block;
+  margin-top: -5px;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  position: relative;
+  text-align: right;
+  top: -11px;
+  width: 100%;
+}
+.return_condition, .shipping_condition, .payment_condition {
+  display: inline-block;
+  margin-left: 20px;
+}
+.service_condition a {
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+.service_condition a::before {
+  font-family: fontawesome;
+  padding-right: 5px;
+}
+.return_condition a::before {
+  content: "";
+}
+.service_condition label {
+  display: inline-block;
+}
+.service_condition label:hover {
+  cursor: pointer;
+}
+.shipping_condition a::before {
+  content: "";
+}
+.payment_condition a::before {
+  content: "";
+}
+#view_return_condition, #view_shipping_condition, #view_payment_condition {
+  background-color: rgb(238, 238, 238);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-top: 17px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  text-align: left;
+}
+#languages, #cart, #user_profile, #view_return_condition, #view_shipping_condition, #view_payment_condition, #view_faq {
+  display: none;
+}
+#view_history {
+
+}
+#view_history::before {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+.bidding_history {
+  width: auto;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  box-sizing: border-box;
+}
+.bidding_history li {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+}
+.bidding_history li.history_heading {
+  font-size: 14px;
+  font-weight: 700;
+  background-color: rgb(238, 238, 238);
+}
+.bidding_history li.history_heading span {
+  font-size: 13px;
+  line-height: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.bidding_history li span {
+  display: inline-block;
+  line-height: 40px;
+  float: left;
+}
+.bid_user {
+  width: 30%;
+  padding-left: 30px;
+}
+.bid_amount {
+  width: 20%;
+}
+.bid_amount, .bid_total, .bid_time {
+  text-align: center;
+}
+.bid_total {
+  width: 20%;
+}
+.bid_time {
+  width: 30%;
+}
+.bidding_history li.odd {
+  background-color: rgb(255, 255, 255);
+}
+.odd {
+  background-color: rgb(246, 246, 246);
+}
+.bid_user.current_winner::before {
+  float: left;
+  display: inline-block;
+  margin-left: -20px;
+}
+.bidding_history li.even {
+  background-color: rgb(246, 246, 246);
+}
+.product_details {
+  float: left;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 20px;
+  padding-left: 0px;
+  line-height: 24px;
+  width: 100%;
+}
+#show_history {
+  margin-right: 10px;
+  padding-top: 8px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: rgb(26, 183, 234);
+  background-color: rgb(238, 238, 238);
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  z-index: 1;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  float: right;
+}
+#show_history:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(26, 183, 234);
+  border-top-color: rgb(26, 183, 234);
+  border-right-color: rgb(26, 183, 234);
+  border-bottom-color: rgb(26, 183, 234);
+  border-left-color: rgb(26, 183, 234);
+}
+.product_details_tab {
+  width: 100%;
+  height: 50px;
+  margin-top: -40px;
+  float: left;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(204, 204, 204);
+}
+.product_details_tab li {
+  float: left;
+  display: inline-block;
+}
+.product_details_tab li:last-child a {
+  border-top-right-radius: 5px;
+}
+.product_details_tab a {
+  height: 50px;
+  line-height: 50px;
+  padding-top: 0px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  float: left;
+  color: rgb(26, 183, 234);
+  background-color: rgb(238, 238, 238);
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-left-width: 0px;
+  border-left-style: initial;
+  border-left-color: initial;
+}
+.product_details_tab a.active {
+  height: 51px;
+  color: rgb(51, 51, 51);
+  background-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+}
+.product_details_tab a.active:hover {
+  color: rgb(51, 51, 51);
+  background-color: rgb(255, 255, 255);
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(255, 255, 255);
+}
+.product_details_tab a:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(26, 183, 234);
+  border-top-color: rgb(26, 183, 234);
+  border-right-color: rgb(26, 183, 234);
+  border-bottom-color: rgb(26, 183, 234);
+  border-left-color: rgb(26, 183, 234);
+}
+#view_details, #view_faq {
+  width: 100%;
+  margin-top: 20px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  float: left;
+}
+h3 {
+  font-size: 18px;
+}
+.product_details h3 {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+}
+table {
+  border-collapse: collapse;
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: 400;
+  vertical-align: middle;
+}

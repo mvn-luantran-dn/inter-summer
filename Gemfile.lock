@@ -86,6 +86,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    elevatezoom-rails (1.0.0)
     erubi (1.7.1)
     execjs (2.7.0)
     faker (1.8.7)
@@ -256,6 +257,7 @@ DEPENDENCIES
   carrierwave (= 1.2.2)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  elevatezoom-rails
   faker
   figaro
   font-awesome-rails
