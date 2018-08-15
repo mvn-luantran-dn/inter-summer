@@ -10,7 +10,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new
     @product.assets.build
   end
-  
+
   def show
     @assets = @product.assets
   end
@@ -18,31 +18,22 @@ class Admin::ProductsController < Admin::BaseController
   def create
     @product = Product.new(product_params)
     @product.status = 'selling'
-    if @product.save
-      flash[:success] = 'Add product success'
-      redirect_to admin_products_url
-    else
-      render :new
-    end
+    return  redirect_to admin_products_url, notice: 'Add product success' if @product.save
+    render :new
   end
 
   def edit; end
 
   def update
-    if @product.update_attributes(product_params)
-      flash[:success] = 'Update success'
-      redirect_to admin_products_path
-    else
-      render :edit
-    end
+    return  redirect_to admin_products_path, notice: 'Update success' if @product.update_attributes(product_params)
+    render :edit
   end
 
   def destroy
     @product.destroy
-    flash[:success] = 'Product deleted'
-    redirect_to admin_products_url
+    redirect_to admin_products_url, notice: 'Product deleted'
   end
-  
+
   private
 
     def product_params
@@ -52,8 +43,7 @@ class Admin::ProductsController < Admin::BaseController
     end
 
     def find_product
-      @product = Product.find_by(id: params[:id])
-      redirect_to '/404' unless @product
+      @product = Product.find_by(id: params[:id]) || redirect_to_not_found
     end
 
     def load_categories

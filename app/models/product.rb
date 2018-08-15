@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  SELLING = 'selling'.freeze
+  UNSELLING = 'unselling'.freeze
   belongs_to :category
   has_many :timers 
   has_many :assets, as: :module, dependent: :destroy
@@ -9,13 +11,13 @@ class Product < ApplicationRecord
   validates :quantity, presence: true
   validates :price, presence: true
   validates :price_at, presence: true
-  validates :assets, length: { minimum: 1, maximum: 4}
+  validates :assets, length: { minimum: 1, maximum: 4 }
 
-  def sale_product
-    self.update_attribute(:status, 'selling')
+  def change_status_to_sale
+    self.update_attribute(:status, SELLING)
   end
 
-  def un_sale_product
-    self.update_attribute(:status, 'unselling')
+  def change_status_to_unsale
+    self.update_attribute(:status, UNSELLING)
   end
 end

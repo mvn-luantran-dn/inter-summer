@@ -27,11 +27,10 @@ class Admin::AuctionsController < Admin::BaseController
   private
 
     def find_auction
-      @auction = Auction.find_by(id: params[:id])
-      redirect_to '/404' unless @auction
+      @auction = Auction.find_by(id: params[:id]) || redirect_to_not_found
     end
 
     def auction_params
-      params.require(:auction).permit(:product_id, :start_at, :period, :bid_step)
+      params.require(:auction).permit(%i(product_id start_at period bid_step))
     end
 end
