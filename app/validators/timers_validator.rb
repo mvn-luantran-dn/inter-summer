@@ -1,4 +1,3 @@
-
 class TimersValidator < ActiveModel::Validator
 
   def validate(record)
