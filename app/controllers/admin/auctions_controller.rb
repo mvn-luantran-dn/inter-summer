@@ -31,6 +31,6 @@ class Admin::AuctionsController < Admin::BaseController
     end
 
     def auction_params
-      params.require(:auction).permit(%i(product_id start_at period bid_step))
+      params.require(:auction).permit(%i[product_id start_at period bid_step])
     end
 end
