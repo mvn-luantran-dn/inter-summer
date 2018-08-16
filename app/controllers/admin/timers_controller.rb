@@ -22,8 +22,8 @@ class Admin::TimersController < Admin::BaseController
   end
 
   def destroy
-    @timer.destroy
-    redirect_to admin_product_timers_path, notice: 'Delete timer success'
+    return redirect_to admin_product_timers_path, notice: 'Delete timer success' if  @timer.destroy
+    flash[:alert] =  'Delete error'
   end
 
   private

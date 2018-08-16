@@ -31,7 +31,6 @@
 <div class="form-group">
   <%= f.label :status %>
   <br>
-  <% binding.pry %>
   <% if @timer.status == status::OFF %>
     <%= f.radio_button :status, status::ON %> 
     <%= label :status_on, status::ON %>

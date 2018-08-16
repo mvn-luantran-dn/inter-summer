@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-  include Common::Const::ProductStatus
   belongs_to :category
   has_many :timers
   has_many :assets, as: :module, dependent: :destroy
