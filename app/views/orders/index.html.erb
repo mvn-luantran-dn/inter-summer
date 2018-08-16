@@ -1,0 +1,60 @@
+<% provide(:title, 'Cart') %>
+<div id="my_orders" class="container main">
+  <div id="content">
+    <h1>
+      Cart
+    </h1>
+    <!-- UPDATES - In-Cart Only display 'in-cart' if users have product in the cart -->
+    <div class="">
+      <div class="div-inline-block full-width clearfix">
+        <div class="float-left">
+          <h2>
+            Cart - wait to checkout
+          </h2>
+        </div>
+      </div>
+      <%= render 'cart_table' %>
+      <div class="delivery-payment">
+        <ul>
+          <li>
+            <span>
+            <%= image_tag('delivery-car.png',alt: '')%>
+            </span>
+            <p class="minimize">
+              Free Delivery In 3 Days
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="delivery-details">
+    <ul>
+      <li>
+        <h3>
+          Khi nào tôi nhận được hàng?
+        </h3>
+        <p>
+          Trong vòng 1-3 ngày làm việc
+        </p>
+      </li>
+      <li>
+        <h3>
+          Điều khoản hoàn trả của Chilindo là gì?
+        </h3>
+        <p>
+          Nếu bạn không hài lòng với kiện hàng, bạn có thể hoàn lại trong vòng 14 ngày
+        </p>
+      </li>
+      <li>
+        <h3>
+          Thay đổi đơn hàng?
+        </h3>
+        <p>
+          Gọi cho chúng tôi theo số : support.vn@chilindo.com
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
