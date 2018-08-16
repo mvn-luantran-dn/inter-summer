@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'omniauths#create'
   get 'auth/failure', to: redirect('/')
   get '/signup', to: 'users#new'
-  resources :users do 
+  resources :users do
     resources :orders
-  end   
+  end
   resources :products
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]

@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   include UsersHelper
 
   def redirect_to_not_found
-    raise ActionController::RoutingError.new('Not Found')
-  rescue
+    raise ActionController::RoutingError, 'Not Found'
+  rescue StandardError
     redirect_to not_found_path
   end
 

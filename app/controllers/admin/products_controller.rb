@@ -17,15 +17,15 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
-    @product.status = 'selling'
-    return  redirect_to admin_products_url, notice: 'Add product success' if @product.save
+    @product.status = SELL
+    return redirect_to admin_products_url, notice: 'Add product success' if @product.save
     render :new
   end
 
   def edit; end
 
   def update
-    return  redirect_to admin_products_path, notice: 'Update success' if @product.update_attributes(product_params)
+    return redirect_to admin_products_path, notice: 'Update success' if @product.update_attributes(product_params)
     render :edit
   end
 

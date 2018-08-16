@@ -1,0 +1,62 @@
+<div class="row bootstrap snippets">
+  <!-- Cart -->
+  <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+    <div class="col-lg-12 col-sm-12 hero-feature">
+      <div class="table-responsive">
+        <table class="table table-bordered tbl-cart">
+          <thead>
+            <tr>
+              <td class="hidden-xs">Image</td>
+              <td>Product Name</td>
+              <td class="td-qty">Quantity</td>
+              <td>Unit Price</td>
+              <td>Remove</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hidden-xs">
+                <%= link_to image_tag('g3.jpg',alt: "") %>
+              </td>
+              <td><a href="#">Age Of Wisdom Tan Graphic Tee</a>
+              </td>
+              <td>
+              </td>
+              <td class="price">$ 122.21</td>
+              <td class="text-center">
+                <a href="#" class="remove_cart" rel="2">
+                <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td class="hidden-xs">
+                <%= link_to image_tag('g4.jpg',alt: "") %>
+              </td>
+              <td><a href="#">Adidas Men Red Printed T-shirt</a>
+              </td>
+              <td>
+              </td>
+              <td class="price">$ 20.63</td>
+              <td class="text-center">
+                <a href="#" class="remove_cart" rel="1">
+                <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3  " align="right">Total</td>
+              <td class="total" colspan="2"><b>$ 163.47</b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-group btns-cart">
+        <button type="button" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Continue Shopping</button>
+        <button type="button" class="btn btn-primary">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+      </div>
+    </div>
+  </div>
+  <!-- End Cart -->
+</div>
