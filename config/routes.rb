@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users do
     resources :orders
+    delete '/orders/:item_id', to: 'orders#destroy'
   end
   resources :products
   resources :account_activations, only: [:edit]
@@ -25,4 +26,5 @@ Rails.application.routes.draw do
     get '/sale/:id', to: 'status_products#sale', as: '/sale'
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
   end
+  mount ActionCable.server => '/cable'
 end

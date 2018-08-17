@@ -1,0 +1,15 @@
+<tr>
+  <td class="hidden-xs image-td">
+    <%= link_to image_tag(item.product.assets.first.file_name_url ,alt: "") %>
+  </td>
+  <td>
+    <%= item.product.name %>
+  </td>  
+  <td>
+    <%= item.product.quantity %>
+  </td>
+  <td class="price"><%= item.product.price %></td>
+  <td class="text-center">
+    <%= link_to raw('<i class="fa fa-trash-o"></i>'), user_order_path(current_user, item), method: :delete, data: { confirm: "You sure?" }%>
+  </td>
+</tr>

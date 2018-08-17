@@ -14,41 +14,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="hidden-xs">
-                <%= link_to image_tag('g3.jpg',alt: "") %>
-              </td>
-              <td><a href="#">Age Of Wisdom Tan Graphic Tee</a>
-              </td>
-              <td>
-              </td>
-              <td class="price">$ 122.21</td>
-              <td class="text-center">
-                <a href="#" class="remove_cart" rel="2">
-                <i class="fa fa-trash-o"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td class="hidden-xs">
-                <%= link_to image_tag('g4.jpg',alt: "") %>
-              </td>
-              <td><a href="#">Adidas Men Red Printed T-shirt</a>
-              </td>
-              <td>
-              </td>
-              <td class="price">$ 20.63</td>
-              <td class="text-center">
-                <a href="#" class="remove_cart" rel="1">
-                <i class="fa fa-trash-o"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3  " align="right">Total</td>
-              <td class="total" colspan="2"><b>$ 163.47</b>
-              </td>
-            </tr>
+            <%= render @items %>
           </tbody>
         </table>
       </div>
