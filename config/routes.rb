@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users do
     resources :orders
+<<<<<<< HEAD
     delete '/orders/:item_id', to: 'orders#destroy'
+=======
+>>>>>>> master
   end
   resources :products
   resources :account_activations, only: [:edit]
@@ -19,7 +22,10 @@ Rails.application.routes.draw do
   get '/404', to: 'application#page_not_found', as: '/not_found'
   namespace :admin do
     root 'base#index'
-    resources :users, :categories, :products, :auctions, :orders
+    resources :users, :categories, :auctions, :orders
+    resources :products do
+      resources :timers
+    end
     get '/sale/:id', to: 'status_products#sale', as: '/sale'
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
   end

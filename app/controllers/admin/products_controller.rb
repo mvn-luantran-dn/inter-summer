@@ -17,7 +17,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
+<<<<<<< HEAD
     @product.status = 'selling'
+=======
+    @product.status = SELL
+>>>>>>> master
     return redirect_to admin_products_url, notice: 'Add product success' if @product.save
     render :new
   end
@@ -40,10 +44,6 @@ class Admin::ProductsController < Admin::BaseController
       params.require(:product).permit(:name, :category_id, :detail, :price,
                                       :price_at, :quantity, assets_attributes:
                                       %i[id file_name _destroy])
-    end
-
-    def asset_params
-      params.require(:product).permit(:file_name)
     end
 
     def find_product

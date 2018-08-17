@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+<<<<<<< HEAD
   def index
     @order = Order.find_by(user_id: current_user.id, status: 'wait')
     @items = @order.items
@@ -9,4 +10,9 @@ class OrdersController < ApplicationController
     @item.destroy
     redirect_to user_orders_path
   end
+=======
+  def show; end
+
+  def index; end
+>>>>>>> master
 end

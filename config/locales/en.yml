@@ -56,3 +56,13 @@ en:
             assets:
               too_short: 'Please add at least 1 picture'
               too_long: 'Name 4 pictures is the maximum allowed'
+        timer:
+          attributes:
+            start_at:
+              blank: 'Please input start at time'
+            end_at:
+              blank: 'Please input end at time'
+            period:
+              blank: 'Please input period'
+            status:
+              blank: 'Please choose status'
