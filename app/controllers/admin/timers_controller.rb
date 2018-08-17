@@ -1,10 +1,9 @@
 class Admin::TimersController < Admin::BaseController
-  before_action :find_product, only: %i(show new create)
+  before_action :find_product
+  before_action :find_timer, only: %i(edit update destroy)
   
   def index
-  end
-  
-  def show
+    @timers = @product.timers
   end
   
   def new
@@ -13,14 +12,18 @@ class Admin::TimersController < Admin::BaseController
 
   def create
     @timer = @product.timers.new(timer_params)
-    return redirect_to(admin_products_url) if @timer.save
+    return redirect_to(admin_product_timers_path) if @timer.save
     render :new
   end
   
-  def edit
+  def update
+    return redirect_to admin_product_timers_path, notice: 'Update success' if @timer.update_attributes(timer_params)
+    render :edit
   end
 
-  def update
+  def destroy
+    return redirect_to admin_product_timers_path, notice: 'Delete timer success' if  @timer.destroy
+    flash[:alert] =  'Delete error'
   end
 
   private
@@ -30,5 +33,9 @@ class Admin::TimersController < Admin::BaseController
     
     def find_product
       @product = Product.find_by(id: params[:product_id]) || redirect_to_not_found
+    end
+
+    def find_timer
+      @timer = Timer.find_by(id: params[:id]) || redirect_to_not_found
     end
 end
