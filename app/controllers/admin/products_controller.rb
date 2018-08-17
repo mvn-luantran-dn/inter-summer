@@ -17,7 +17,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
+<<<<<<< HEAD
+    @product.status = 'selling'
+=======
     @product.status = SELL
+>>>>>>> master
     return redirect_to admin_products_url, notice: 'Add product success' if @product.save
     render :new
   end
