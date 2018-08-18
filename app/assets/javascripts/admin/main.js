@@ -1,6 +1,6 @@
 function check() {
   var number = $('.image-list').find('input[value="false"]').length;
-  if (number > 4) {
+  if (number > 3) {
     $('.add').hide();
   } else {
     $('.add').show();
