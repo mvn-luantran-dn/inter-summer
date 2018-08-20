@@ -19,6 +19,7 @@ class AuctionData
         product_price: obj.product.price,
         product_quantity: obj.product.quantity,
         product_pictures: obj.product.assets,
+        product_detail: obj.product.detail,
         product_category: obj.product.category_id
       }
       $redis.set(obj.id, data.to_json) if auction_id.nil?

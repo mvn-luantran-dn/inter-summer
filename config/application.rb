@@ -29,6 +29,7 @@ module Autions
       config.after_initialize do
         Rails.application.load_tasks
         Rake::Task['start:send_data'].invoke
+        Rake::Task['show:auction_detail'].invoke
       end
     end
 
