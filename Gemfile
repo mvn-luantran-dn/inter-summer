@@ -41,6 +41,10 @@ gem 'will_paginate', '3.1.6'
 gem 'carrierwave', '1.2.2'
 gem 'mini_magick', '4.7.0'
 gem 'elevatezoom-rails'
+gem 'redis', '~> 3.0'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

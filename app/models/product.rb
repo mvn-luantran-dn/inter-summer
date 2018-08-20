@@ -12,10 +12,10 @@ class Product < ApplicationRecord
   validates :assets, length: { minimum: 1, maximum: 4 }
 
   def change_status_to_sale
-    self.update_attribute(:status, SELLING)
+    self.update_attribute(:status, ProductStatus::SELLING)
   end
 
   def change_status_to_unsale
-    self.update_attribute(:status, UNSELLING)
+    self.update_attribute(:status, ProductStatus::UNSELLING)
   end
 end

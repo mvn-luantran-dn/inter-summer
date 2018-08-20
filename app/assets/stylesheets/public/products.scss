@@ -109,7 +109,7 @@ img {
   vertical-align: middle;
 }
 .loading-image {
-  background-image: url("/Gfx/img-loader.gif");
+  // background-image: url("loading.gif");
   background-size: initial;
   background-repeat-x: no-repeat;
   background-repeat-y: no-repeat;
@@ -519,10 +519,6 @@ select {
   text-decoration-color: initial;
   font-family: "open sans", sans-serif;
 }
-.buttons::before {
-  font-family: fontawesome;
-  padding-right: 10px;
-}
 .large {
   display: inline-block;
   padding-top: 12px;
@@ -540,9 +536,6 @@ select {
 .bidding.large, .bidding.compact, .checkout.large, .checkout.compact, .print_invoice.large, .print_invoice.compact, .signin.large, .signin.compact, .recov_pswd.large, .recov_pswd.compact {
   color: rgb(255, 255, 255);
   background-color: rgb(26, 183, 234);
-}
-.bidding::before {
-  content: "";
 }
 .single_product .buttons.bidding.large {
   float: left;
@@ -598,12 +591,7 @@ select {
 .current-winner .info_data {
   display: inline-block;
   word-break: break-all;
-}
-.current_winner::before {
-  content: "";
-  font-family: fontawesome;
-  padding-right: 5px;
-}
+}                                                                                                                                                                                                                                                 
 .product_title .feed, .go-back-mobile, .info-product-right .current-winner > img {
   display: none;
 }
@@ -632,20 +620,11 @@ select {
   font-family: fontawesome;
   padding-right: 5px;
 }
-.return_condition a::before {
-  content: "";
-}
 .service_condition label {
   display: inline-block;
 }
 .service_condition label:hover {
   cursor: pointer;
-}
-.shipping_condition a::before {
-  content: "";
-}
-.payment_condition a::before {
-  content: "";
 }
 #view_return_condition, #view_shipping_condition, #view_payment_condition {
   background-color: rgb(238, 238, 238);
