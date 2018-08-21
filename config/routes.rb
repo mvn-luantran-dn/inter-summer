@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users do
     resources :orders
+    get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
   end
   resources :products

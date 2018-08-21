@@ -12,4 +12,11 @@ module ApplicationHelper
     time = time.strftime('%H:%M:%S').split(':')
     time[0].to_i * 3600 + time[1].to_i * 60 + time[2].to_i
   end
+
+  def size_cart
+    return unless logged_in?
+    if Order.find_by(user_id: current_user.id)
+      @size_cart = Order.find_by(user_id: current_user.id).items.size
+    end
+  end
 end
