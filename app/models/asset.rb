@@ -1,6 +1,8 @@
 class Asset < ApplicationRecord
   attr_accessor :_destroy
   belongs_to :module, polymorphic: true
+  validates :file_name, presence: true
+  validates :file, presence: true
   mount_uploader :file_name, PictureUploader
   validate :picture_size
 
