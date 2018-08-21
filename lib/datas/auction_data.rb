@@ -86,7 +86,7 @@ class AuctionData
     $redis.set(obj.id, data.to_json)
   end
   
-  def update(timer)
+  def self.update(timer)
     data = JSON.parse($redis.get(timer.id))
     period = format_time_to_seconds(timer.period)
     data['start_at'] = timer.start_at
@@ -104,7 +104,7 @@ class AuctionData
     data['status'] = timer.status
     $redis.set(timer.id, data.to_json)
   end
-  
+
   def self.delete(obj)
     $redis.del(obj.id)
   end
