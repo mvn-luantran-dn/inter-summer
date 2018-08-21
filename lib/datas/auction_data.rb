@@ -85,7 +85,7 @@ class AuctionData
     }
     $redis.set(obj.id, data.to_json)
   end
-  
+
   def self.update(timer)
     data = JSON.parse($redis.get(timer.id))
     period = format_time_to_seconds(timer.period)
