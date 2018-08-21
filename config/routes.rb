@@ -29,4 +29,5 @@ Rails.application.routes.draw do
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
   end
   mount ActionCable.server => '/cable'
+  get '/current_user', to: 'user#id_current_user'
 end
