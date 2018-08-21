@@ -7,34 +7,36 @@
 
 <div id="product_id" class="extended_view single_product" data-timer-id=<%= params['id'] %>>
   <h2 class="product_title">
-    <a id="ContentPlaceHolder1_lnkTitle"><span id="ContentPlaceHolder1_lbTitle"></span></a>
+    <a id="ContentPlaceHolder1_lnkTitle"><span id="ContentPlaceHolder1_lbTitle"><%= @product.name %></span></a>
   </h2>
   <div id="ContentPlaceHolder1_UpdatePanel2">
-    <div id="ContentPlaceHolder1_pBiddingInfo1" class="bidding_info_fail mbid_info">
-    </div>
   </div>
   <div class="product_photo_wrp">
     <div class="product_photo">
-      <div class="zoomWrapper" id="first-image"></div>
+      <div class="zoomWrapper" id="first-image">
+        <%= image_tag @product.assets.first.file_name_url, class: "slow-images", style: "max-width: 100%;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;" %>
+      </div>
       <div class="loading-image" style="display: none;"></div>
     </div>
     <ul class="product_gallery" id="js-gallery">
+      <% @product.assets.each do |asset| %>
+        <li class="product_thumb"><%= image_tag asset.file_name_url, class: "slow-images" %></li>
+      <% end %>
     </ul>
   </div>
   <div class="product_info">
     <div class="left-product">
       <p class="info_field ends_in_label">Kết thúc trong: </p>
-      <p class="timeout last_minute" style="height: 20px; color: rgb(204, 51, 85);"><span id="spanEndAuction"></span><span id="spanCountDown" class="timeout last_minute" style="color: rgb(204, 51, 85);"></span></p>
+      <p class="timeout last_minute" style="height: 20px; color: rgb(204, 51, 85);"><span id="spanEndAuction"></span><span id="spanCountDown" class="timeout last_minute" style="color: rgb(204, 51, 85);">LOADING</span></p>
     </div>
     <div id="ContentPlaceHolder1_UpdatePanel4">
       <div class="right-product">
         <p class="info_field current_bid_label">Giá thầu hiện tại: </p>
-        <p class="info_data current_bid" id="product-price"></p>
+        <p class="info_data current_bid" id="product-price">LOADING</p>
       </div>
     </div>
     <div id="ContentPlaceHolder1_UpdatePanel1">
       <div class="right-product">
-        <span id="ContentPlaceHolder1_Timer1" style="visibility:hidden;display:none;"></span>
         <p class="info_field place_bid_label">Đấu giá ngay: <a href="#view_faq" class="bidding_help">?</a></p>
         <div class="info_data place_bid">
           <span class="bidding_box">
@@ -43,17 +45,13 @@
           <input class="slider_minus" type="button" value="-" id="moins">
           </span>
           <span class="bid_text_number">
-          <input name="ctl00$ContentPlaceHolder1$txtBidNew" value="49" maxlength="10" id="ContentPlaceHolder1_txtBidNew" type="tel" onblur="document.getElementById('ContentPlaceHolder1_txtBid').value = this.value" class="input_placebid">
-          <input name="ctl00$ContentPlaceHolder1$txtBid" type="text" value="49" maxlength="10" id="ContentPlaceHolder1_txtBid" class="input_placebid" data-slider-values="49,56,63,70,77,84,91,98,105,112,119,126,133,140,147,154,161,168,175,182,189" style="display:none;">
+          <input name="ctl00$ContentPlaceHolder1$txtBidNew" value="100000" maxlength="10" id="ContentPlaceHolder1_txtBidNew" type="tel" class="input_placebid">
           </span>
           <span class="puls box_puls_minus">
           <input class="slider_plus" type="button" value="+" id="plus">
           </span>
           </span>
           </span> 
-          <script type="text/javascript">
-            document.getElementById('ContentPlaceHolder1_txtBidNew').value = document.getElementById('ContentPlaceHolder1_txtBid').value;
-          </script>
           <span class="bidding_button"><a id="ContentPlaceHolder1_btnBid" class="buttons bidding large" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$btnBid','')"><span class="place_one">Đấu giá ngay</span><span class="bidding_two">Bidding..</span></a></span>
           <p class="service_charge">10% phí dịch vụ</p>
         </div>
@@ -67,12 +65,7 @@
           </div>
           <p id="pBiddingWaitMsg" class="bidding_wait_msg"></p>
         </div>
-        <span id="ContentPlaceHolder1_spanCurrentMaxBidOnAuction"></span>
-        <input type="hidden" name="ctl00$ContentPlaceHolder1$hdnIsFocusOnSizeDLL" id="hdnIsFocusOnSizeDLL" value="0">
       </div>
-    </div>
-    <div class="go-back-mobile">                
-      <a href="/">Đấu giá cho sản phẩm khác. <i class="fa fa-angle-double-right"></i></a>
     </div>
   </div>
   <div class="service_condition">
@@ -120,12 +113,12 @@
           </tr>
           <tr>
             <td>Sản phẩm số </td>
-            <td></td>
+            <td><%= @product.id %></td>
           </tr>
         </tbody>
       </table>
       <h3>Mô tả sản phẩm</h3>
-      <p id="detail-product"></p>
+      <p><%= @product.detail %></p>
     </div>
   </div>
 </div>
