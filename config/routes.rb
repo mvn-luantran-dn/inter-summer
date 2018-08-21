@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get  '/help', to: 'static_pages#help'
   get  '/about', to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
+  get '/auctions/:id', to: 'static_pages#show'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users do
     resources :orders
+    get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
   end
   resources :products
@@ -26,4 +28,5 @@ Rails.application.routes.draw do
     get '/sale/:id', to: 'status_products#sale', as: '/sale'
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
   end
+  mount ActionCable.server => '/cable'
 end

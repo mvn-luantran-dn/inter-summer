@@ -9,7 +9,6 @@
   <td class="center">
     <%= link_to 'Add', new_admin_category_path(category), class: 'button-item add-item' %> 
     <%= link_to 'Update', edit_admin_category_path(category), class: 'button-item update-item' %>
-    <%= link_to 'Delete', admin_category_path(category), method: :delete, class: 'button-item delete-item',
-                          data: { confirm: "You sure?" } %>
+    <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
   </td>
 </tr>

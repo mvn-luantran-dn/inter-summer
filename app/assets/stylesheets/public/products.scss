@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .extended_view {
+  width: 1000px;
   margin-bottom: 10px;
   padding-bottom: 10px;
   display: block;
@@ -109,7 +110,7 @@ img {
   vertical-align: middle;
 }
 .loading-image {
-  background-image: url("/Gfx/img-loader.gif");
+  // background-image: url("loading.gif");
   background-size: initial;
   background-repeat-x: no-repeat;
   background-repeat-y: no-repeat;
@@ -223,7 +224,7 @@ a img {
 }
 .product_info {
   display: inline-block;
-  padding-left: 8px;
+  padding-left: 120px;
   padding-right: 10px;
   width: 720px;
 }
@@ -231,8 +232,9 @@ a img {
   padding-bottom: 10px;
 }
 .product_info .left-product {
-  width: 45%;
+  width: 20%;
   float: left;
+  margin-left: 90px;
 }
 p {
   line-height: 22px;
@@ -241,6 +243,9 @@ p {
   color: rgb(153, 153, 153);
   font-family: quark;
   font-size: 16px;
+}
+.winner {
+padding-left: 180px;
 }
 .single_product p.info_field::before {
   width: 100%;
@@ -519,10 +524,6 @@ select {
   text-decoration-color: initial;
   font-family: "open sans", sans-serif;
 }
-.buttons::before {
-  font-family: fontawesome;
-  padding-right: 10px;
-}
 .large {
   display: inline-block;
   padding-top: 12px;
@@ -540,9 +541,6 @@ select {
 .bidding.large, .bidding.compact, .checkout.large, .checkout.compact, .print_invoice.large, .print_invoice.compact, .signin.large, .signin.compact, .recov_pswd.large, .recov_pswd.compact {
   color: rgb(255, 255, 255);
   background-color: rgb(26, 183, 234);
-}
-.bidding::before {
-  content: "";
 }
 .single_product .buttons.bidding.large {
   float: left;
@@ -598,12 +596,7 @@ select {
 .current-winner .info_data {
   display: inline-block;
   word-break: break-all;
-}
-.current_winner::before {
-  content: "";
-  font-family: fontawesome;
-  padding-right: 5px;
-}
+}                                                                                                                                                                                                                                                 
 .product_title .feed, .go-back-mobile, .info-product-right .current-winner > img {
   display: none;
 }
@@ -632,20 +625,11 @@ select {
   font-family: fontawesome;
   padding-right: 5px;
 }
-.return_condition a::before {
-  content: "";
-}
 .service_condition label {
   display: inline-block;
 }
 .service_condition label:hover {
   cursor: pointer;
-}
-.shipping_condition a::before {
-  content: "";
-}
-.payment_condition a::before {
-  content: "";
 }
 #view_return_condition, #view_shipping_condition, #view_payment_condition {
   background-color: rgb(238, 238, 238);
@@ -910,4 +894,16 @@ caption, th, td {
   text-align: left;
   font-weight: 400;
   vertical-align: middle;
+}
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+.carousel { overflow: hidden; }
+.item { overflow: hidden; }
+.carousel-inner > .next {
+  display: none;
+}
+.carousel-inner > .prev {
+  display: none;
 }
