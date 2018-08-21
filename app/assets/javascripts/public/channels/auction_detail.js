@@ -8,19 +8,13 @@ $(document).on('turbolinks:load', function () {
       },
       {
         conntected: function () {
-          swal.close()
+          auction.connected();
         },
         disconnected: function () {
-          swal(
-            'Lost connection',
-            'Please check again!',
-            'warning'
-          )
+          auction.disconnected();          
         },
         received: function(data) {
-          data = data.obj;
-          $('#spanCountDown').html(time_convert(data.period));
-          $('#product-price').html(formatMoney(data.product_price_start));
+          auction.load_detail(data);
         }
     });
   } else {

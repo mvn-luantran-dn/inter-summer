@@ -21,8 +21,8 @@ module Autions
 
     config.autoload_paths << "#{Rails.root}/lib"
     config.action_view.embed_authenticity_token_in_remote_forms = true
-    config.time_zone = 'UTC'
-    config.active_record.default_timezone = :utc
+    config.time_zone = 'Asia/Ho_Chi_Minh'
+    config.active_record.default_timezone = :local
     config.assets.enabled = true
 
     if defined?(Rails::Server)
