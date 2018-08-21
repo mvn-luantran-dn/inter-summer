@@ -1,6 +1,17 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.left_col {
+  width: 1000px;
+  float: left;
+}
+.right_col {
+  width: 300px;
+  float: right;
+}
+.wrap {
+  margin-bottom: 100px;
+}
 .extended_view {
   width: 1000px;
   margin-bottom: 10px;
@@ -906,4 +917,160 @@ caption, th, td {
 }
 .carousel-inner > .prev {
   display: none;
+}
+//Right col
+
+#feed_list .right_col {
+  margin-top: 24px;
+  max-width: 220px;
+  float: right;
+}
+#auction_feed .right_col br {
+  display: none;
+}
+.item-box, .item-box hr {
+  display: inline-block;
+  margin-bottom: 4px;
+  width: 100%;
+}
+.item-box > h4 {
+  font-weight: 700;
+  padding-top: 2px;
+  padding-right: 0px;
+  padding-bottom: 2px;
+  padding-left: 0px;
+}
+.item-box .item-box-left {
+  float: left;
+  max-height: 108px;
+  padding-top: 6px;
+  padding-right: 6px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+a {
+  color: rgb(26, 183, 234);
+}
+a:hover {
+  color: rgb(51, 204, 255);
+}
+.item-box .item-box-left a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px 0px;
+  display: inline-block;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+a img {
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-bottom-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+img {
+  vertical-align: middle;
+}
+.item-box .item-box-left a img {
+  margin-top: -1px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: -1px;
+  width: 102%;
+}
+.current_bid, .timeout {
+  min-height: 40px;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  font-family: "open sans", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+.item-box-left .timeout {
+  display: table;
+}
+.item-box-right {
+  float: right;
+  text-align: right;
+}
+.item-box-right .timeout {
+  display: block;
+  font-size: 18px;
+  padding-top: 10px;
+}
+.item-box-right .current_bid {
+  display: block;
+  font-size: 18px;
+}
+.buttons {
+  font-weight: 400;
+  text-align: center;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  font-family: "open sans", sans-serif;
+}
+.buttons::before {
+  font-family: fontawesome;
+  padding-right: 10px;
+}
+.bidding.small, .checkout.small, .print_invoice.small, .signin.small, .recov_pswd.small {
+  color: rgb(255, 119, 0);
+  background-color: transparent;
+}
+.bidding::before {
+  content: "";
+}
+.item-box-right .bidding.small {
+  background-color: rgb(26, 183, 234);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  box-shadow: none;
+  color: rgb(255, 255, 255);
+  display: block;
+  font-size: 14px;
+  padding-top: 7px;
+  padding-right: 12px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+}
+.item-box-right .bidding.small:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+}
+#auction_feed .right_col hr {
+  background-image: none;
+  background-position-x: 0px;
+  background-position-y: 0px;
+  background-size: initial;
+  background-repeat-x: repeat;
+  background-repeat-y: repeat;
+  background-attachment: scroll;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(167, 167, 167);
+  color: rgb(255, 255, 255);
+  height: 1px;
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
 }
