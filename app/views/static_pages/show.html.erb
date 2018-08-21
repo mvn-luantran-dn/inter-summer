@@ -13,15 +13,15 @@
   </div>
   <div class="product_photo_wrp">
     <div class="product_photo">
-      <div class="zoomWrapper" id="first-image">
-        <%= image_tag @product.assets.first.file_name_url, class: "slow-images", style: "max-width: 100%;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;" %>
+      <div class="zoomWrapper" id = "first-image">
+        <%= image_tag @product.assets.first.file_name.url, alt: @product.name, id: "expandImg", class: "slow-images", style: "max-width: 150%;border: 1px solid #ccc;" %>        
       </div>
       <div class="loading-image" style="display: none;"></div>
     </div>
     <ul class="product_gallery" id="js-gallery">
-      <% @product.assets.each do |asset| %>
-        <li class="product_thumb"><%= image_tag asset.file_name_url, class: "slow-images" %></li>
-      <% end %>
+    <% @product.assets.each do |asset| %>
+      <li class="product_thumb"><%= image_tag asset.file_name_url, onclick: "changeImg(this)", class: "slow-images" %></li>
+    <% end %>
     </ul>
   </div>
   <div class="product_info">
@@ -37,7 +37,7 @@
     </div>
     <div id="ContentPlaceHolder1_UpdatePanel1">
       <div class="right-product">
-        <p class="info_field place_bid_label">Đấu giá ngay: <a href="#view_faq" class="bidding_help">?</a></p>
+        <p class="info_field place_bid_label">Đấu giá ngay:</p>
         <div class="info_data place_bid">
           <span class="bidding_box">
           <span class="bid_box">
@@ -52,14 +52,13 @@
           </span>
           </span>
           </span> 
-          <span class="bidding_button"><a id="ContentPlaceHolder1_btnBid" class="buttons bidding large" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$btnBid','')"><span class="place_one">Đấu giá ngay</span><span class="bidding_two">Bidding..</span></a></span>
-          <p class="service_charge">10% phí dịch vụ</p>
+          <span class="bidding_button"><a class="buttons bidding large"><span class="place_one">Đấu giá ngay</span><span class="bidding_two">Bidding..</span></a></span>
         </div>
         <div class="info-product-right">
           <p class="bidding_msg"></p>
           <div class="current-winner">
             <div class="right-winner-name">
-              <p class="info_field">Người thắng hiện tại</p>
+              <p class="info_field winner">Người thắng hiện tại</p>
               <p class="info_data"><span class="current_winner">kaklong85 </span></p>
             </div>
           </div>
@@ -99,7 +98,7 @@
     </div>
   </div>
   <div class="product_details">
-    <a href="#view_history" id="show_history">Ẩn lịch sử đấu giá</a>
+    <a href= '#' id="show_history">Ẩn lịch sử đấu giá</a>
     <ul class="product_details_tab">
       <li><a href="#view_details" id="show_details" class="active">Chi tiết sản phẩm</a></li>
     </ul>
