@@ -3,6 +3,6 @@ class StaticPagesController < ApplicationController
 
   def show
     timer = Timer.find_by(id: params[:id])
-    product = timer.product
+    @product = timer.product
   end
 end

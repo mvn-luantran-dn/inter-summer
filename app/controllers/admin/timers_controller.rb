@@ -1,3 +1,5 @@
+require 'datas/auction_data'
+
 class Admin::TimersController < Admin::BaseController
   before_action :find_product
   before_action :find_timer, only: %i[edit update destroy]
@@ -12,18 +14,29 @@ class Admin::TimersController < Admin::BaseController
 
   def create
     @timer = @product.timers.new(timer_params)
-    return redirect_to(admin_product_timers_path) if @timer.save
+    if @timer.save
+      AuctionData.add(@timer)
+      return redirect_to(admin_product_timers_path)
+    end
     render :new
   end
 
   def update
-    return redirect_to admin_product_timers_path, notice: 'Update success' if @timer.update_attributes(timer_params)
+    if @timer.update_attributes(timer_params)
+      update_timer(@timer)
+      return redirect_to admin_product_timers_path, notice: 'Update success'
+    end
     render :edit
   end
 
   def destroy
-    return redirect_to admin_product_timers_path, notice: 'Delete timer success' if @timer.destroy
-    flash[:alert] = 'Delete error'
+    if @timer.status == 'off'
+      flash[:notice] = 'Delete timer success' if @timer.destroy
+      flash[:alert] = 'Delete error'
+    else
+      flash[:alert] = 'Timer off before delete'
+    end
+    redirect_to admin_product_timers_path
   end
 
   private
@@ -38,5 +51,17 @@ class Admin::TimersController < Admin::BaseController
 
     def find_timer
       @timer = Timer.find_by(id: params[:id]) || redirect_to_not_found
+    end
+
+    def update_timer(timer)
+      if $redis.get(timer.id)
+        if timer_params['status'] == 'off'
+          $redis.del(timer.id)
+        else
+          AuctionData.update(timer)
+        end
+      else
+        AuctionData.add(timer) if timer_params['status'] == 'on'
+      end
     end
 end

@@ -10,3 +10,15 @@ namespace :show do
     end
   end
 end
+
+def set_interval(delay)
+  mutex = Mutex.new
+  Thread.new do
+    mutex.synchronize do
+      loop do
+        sleep delay
+        yield
+      end
+    end
+  end
+end

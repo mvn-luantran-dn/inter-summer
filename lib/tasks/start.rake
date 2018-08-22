@@ -1,4 +1,4 @@
-require 'backgrounds/auction_data'
+require 'datas/auction_data'
 
 namespace :start do
   desc 'send data to channel'
