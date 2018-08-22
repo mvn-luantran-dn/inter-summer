@@ -17,7 +17,6 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
-    byebug
     @product.status = ProductStatus::SELLING
     return redirect_to admin_products_url, notice: 'Add product success' if @product.save
     render :new
