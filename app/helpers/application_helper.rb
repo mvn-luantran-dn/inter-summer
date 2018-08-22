@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def size_cart
     return unless logged_in?
-    if Order.find_by(user_id: current_user.id)
+    if Order.find_by(user_id: current_user.id, status: 'wait')
       @size_cart = Order.find_by(user_id: current_user.id).items.size
     end
   end
