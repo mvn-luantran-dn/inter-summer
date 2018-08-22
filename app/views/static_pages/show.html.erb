@@ -52,14 +52,14 @@
           </span>
           </span>
           </span> 
-          <button class='btn btn-primary' id='bidding'>Bid Now</button>
+          <span class="bidding_button"><a id="ContentPlaceHolder1_btnBid" class="buttons bidding large"><span class="place_one">Đấu giá ngay</span><span class="bidding_two">Bidding..</span></a></span>          
         </div>
         <div class="info-product-right">
           <p class="bidding_msg"></p>
           <div class="current-winner">
             <div class="right-winner-name">
-              <p class="info_field winner">Người thắng hiện tại</p>
-              <p class="info_data"><span class="current_winner">kaklong85 </span></p>
+              <p class="info_field winner">Winner:</p>
+              <p class="info_data"><span class="current_winner" id="user-winner"><%= @auction_details.last.user.name if @auction_details.last %></span></p>
             </div>
           </div>
           <p id="pBiddingWaitMsg" class="bidding_wait_msg"></p>
@@ -89,11 +89,9 @@
           <span class="bid_amount">Giá dự thầu, ₫</span>
           <span class="bid_time">Thời gian đấu giá</span>
         </li>
-        <li class="history_rows odd">
-          <span class="bid_user current_winner pro_user">kaklong85  </span>
-          <span class="bid_amount">42K</span>
-          <span class="bid_time">13-08-2018 15:27:57 </span>
-        </li>
+        <div id="bid-final">
+          <%= render @auction_details %>
+        </div>
       </ul>
     </div>
   </div>

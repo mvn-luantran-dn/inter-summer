@@ -1,7 +1,7 @@
 require 'datas/auction_data'
 
 namespace :start do
-  desc 'send data to channel'
+  desc 'Send data to channel'
   task send_data: :environment do
     AuctionData.send_data_to_redis
     set_interval(1) do

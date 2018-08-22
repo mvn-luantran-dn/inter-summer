@@ -14,7 +14,7 @@ var auction = {
   },
   load_detail :function(data) {
     data = data.obj;
-    step = data['bid_step']
+    step = data['bid_step'];
     $('#spanCountDown').html(time_convert(data.period));
     $('#product-price').html(formatMoney(data.product_price_start));
   auction.loadDefaultPriceInput(data['product_price_start'], step);
@@ -33,7 +33,7 @@ var auction = {
     $('#sub-price').prop('disabled', true);
     $('#sub-price').on('click', function () {
       auction.tmp_price -= step;
-      $('#price-input').val(formatMoney(price));
+      $('#price-input').val(formatMoney(auction.tmp_price));
       if (auction.tmp_price === auction.current_price) {
         $('#sub-price').prop('disabled', true);
       }
@@ -41,21 +41,28 @@ var auction = {
 
     $('#plus-price').on('click', function () {
       auction.tmp_price += step;
-      $('#price-input').val(formatMoney(price));
+      $('#price-input').val(formatMoney(auction.tmp_price));
       if (auction.tmp_price !== auction.current_price) {
         $('#plus-price').prop('disabled', false);
       }
     });
   },
   eventSubmitPrice: function () {
-    $('#bidding').on('click', function () {
-      alert('123123');
+    $('#ContentPlaceHolder1_btnBid').on('click', function () {
+      if (auction.tmp_price === auction.current_price) {
+        auction.tmp_price += auction.step;
+      }
+      data = {
+        price: auction.tmp_price,
+        user_id: auction.loadIdCurrentUser()
+      };
+      App.auction_detail.send(data);
     });
   },
   refreshPage: function (period) {
     if (period == 0) {
-      $('.loadbid').children().remove();
-      $('.user-win').html("");
+      $('#bid-final').html("");
+      $('#user-winner').html("");
     }
   },
   loadIdCurrentUser: function () {
@@ -78,4 +85,5 @@ var auction = {
 }
 
 $(document).on('turbolinks:load', function () {
+  auction.eventSubmitPrice();
 });

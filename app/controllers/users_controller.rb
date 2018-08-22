@@ -27,12 +27,13 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def id_current_user
     respond_to do |format|
       format.json { render json: current_user.id }
     end
   end
+
   private
 
     def user_params

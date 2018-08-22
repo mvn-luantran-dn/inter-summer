@@ -1,11 +1,11 @@
 require "#{Rails.root}/app/helpers/application_helper"
 include ApplicationHelper
-
+require 'datas/db_data'
 class AuctionData
   def self.send_data_to_redis
-    @auction = Timer.all.includes(:product)
-    @auction.each do |obj|
-      auction_id = $redis.get(obj.id)
+    @timer = Timer.all.includes(:product)
+    @timer.each do |obj|
+      timer_id = $redis.get(obj.id)
       time = format_time_to_seconds(obj.period)
       data = {
         id: obj.id,
@@ -23,13 +23,15 @@ class AuctionData
         product_detail: obj.product.detail,
         product_category: obj.product.category_id
       }
-      $redis.set(obj.id, data.to_json) if auction_id.nil?
+      $redis.set(obj.id, data.to_json) if timer_id.nil?
     end
   end
 
   def push_data(key, data)
-    auction = JSON.parse($redis.get(key))
-    if auction['status'] == 'on' && auction['product_quantity'].positive?
+    db = DbData.new
+    timer = JSON.parse($redis.get(key))
+    if timer['status'] == 'on' && timer['product_quantity'].positive?
+      db.create_auction(timer)
       decreasing_time(key)
       finish_auction(key)
       key = JSON.parse($redis.get(key))
@@ -38,31 +40,40 @@ class AuctionData
   end
 
   def decreasing_time(key)
-    auction = JSON.parse($redis.get(key))
-    auction['period'] = auction['period'] - 1
-    $redis.set(key, auction.to_json)
+    timer = JSON.parse($redis.get(key))
+    timer['period'] = timer['period'] - 1
+    $redis.set(key, timer.to_json)
   end
 
   def finish_auction(key)
-    auction = JSON.parse($redis.get(key))
-    period = auction['period']
-    reset_auction_price(auction) if period.negative?
+    timer = JSON.parse($redis.get(key))
+    period = timer['period']
+    if period.negative?
+      submit(timer)
+      reset_auction_price(timer)
+    end
   end
 
-  def reset_auction_price(auction)
-    auction['period'] = load_period_default(auction['id'])
-    auction['product_price_start'] = load_price_default(auction['id'])
-    $redis.set(auction['id'], auction.to_json)
+  def reset_auction_price(timer)
+    timer['period'] = load_period_default(timer['id'])
+    timer['product_price_start'] = load_price_default(timer['id'])
+    $redis.set(timer['id'], timer.to_json)
   end
 
   def load_period_default(id)
-    auction = Timer.find_by(id: id)
-    format_time_to_seconds(auction.period)
+    timer = Timer.find_by(id: id)
+    format_time_to_seconds(timer.period)
   end
 
   def load_price_default(id)
-    auction = Timer.find_by(id: id)
-    auction.product.price_at
+    timer = Timer.find_by(id: id)
+    timer.product.price_at
+  end
+
+  def submit(timer)
+    db_data = DbData.new
+    db_data.close_auction(timer)
+    db_data.user_win(timer)
   end
 
   def self.add(obj)
@@ -85,7 +96,7 @@ class AuctionData
     }
     $redis.set(obj.id, data.to_json)
   end
-  
+
   def self.update(timer)
     data = JSON.parse($redis.get(timer.id))
     period = format_time_to_seconds(timer.period)
