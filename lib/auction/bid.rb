@@ -3,7 +3,7 @@ class Bid
     timer = JSON.load($redis.get(key))
     auction = Auction.auction_timer(timer['id']).last
     unless auction.nil?
-      auction_dls = auction.auction_details.last
+      auction_dls = auction.auction_details.order('price_bid DESC').first
       user_id = data['user_id'].to_i
       if auction_dls.nil?
         auction.auction_details.create!(
@@ -14,7 +14,11 @@ class Bid
         Bid.set_auction(timer, data, key)
       else
         if auction_dls.user_id == user_id
-          ActionCable.server.broadcast("message_#{key}", obj: auction_dls.price_bid)
+          obj = {
+            user_id: user_id,
+            price_bid: auction_dls.price_bid,
+          }
+          ActionCable.server.broadcast("message_#{key}", obj: obj)
         else
           auction_dls = auction.auction_details
           user = auction_dls.find_by(user_id: user_id)
@@ -26,7 +30,6 @@ class Bid
           else
             user.update_attributes(price_bid: data['price'], created_at: DateTime.now)
           end
-          byebug
           Bid.append_bid(key, auction)
           Bid.set_auction(timer, data, key)
         end
@@ -41,7 +44,7 @@ class Bid
   end
 
   def self.append_bid(key, auction)
-    auction_dls = auction.auction_details
+    auction_dls = auction.auction_details.order('price_bid DESC')
     arr = []
     auction_dls.each do |obj|
       hash_tmp = {

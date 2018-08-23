@@ -16,13 +16,17 @@ $(document).on('turbolinks:load', function () {
         )
       },
       received: function (data) {
-        price = data.obj;
-        swal({
-          title: 'Thông báo!',
-          type: 'info',
-          text: 'Bạn đang giữ giá ' + price + ' đ là giá cao nhất !',
-          timer: 2000
-        })
+        current_id = auction.loadIdCurrentUser();
+        user_notice = data.obj['user_id'];
+        price = data.obj['price_bid'];
+        if (current_id === user_notice) {
+          swal({
+            title: 'Notification !',
+            type: 'info',
+            text: 'You are still keepping ' + price + ' đ is max price !',
+            timer: 2000
+          })
+        }
       }
     });
   } else {
