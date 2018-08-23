@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   def destroy
     @item = Item.find_by(id: params[:id])
     @item.destroy
+    @order.destroy unless @order.items.any?
     redirect_to user_orders_path
   end
 
