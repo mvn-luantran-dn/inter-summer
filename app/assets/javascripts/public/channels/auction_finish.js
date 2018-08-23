@@ -19,20 +19,14 @@ $(document).on('turbolinks:load', function () {
         current_id = auction.loadIdCurrentUser();
         if (current_id === data.obj) {
           swal({
-            html: '',
+            html: 'Winner Winner Chicken Dinner',
+            type: 'info',
             timer: 10000
           })
         } else {
           swal({
-            html: '<img src="/assets/tear-6f754a657a179' +
-              'fe8b497562db896006fc90812af94443b1210' +
-              '0a2ae86a07789d.png"><br><br>' +
-              'Rất tiếc , bạn không phải ' +
-              'người thắng cuộc trong ' +
-              'phiên đấu giá này !<br> Nhưng ' +
-              'không sao cả, hãy bắt đầu lại nào !<br>' +
-              'Thông báo này sẽ được đóng trong 10 giây' +
-              ', chuyển bạn sang phiên đấu giá mới !',
+            html: 'Oops!!! Better luck next time',
+            type: 'info',
             timer: 10000
           })
         }

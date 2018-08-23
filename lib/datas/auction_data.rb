@@ -30,12 +30,19 @@ class AuctionData
   def push_data(key, data)
     db = DbData.new
     timer = JSON.parse($redis.get(key))
-    if timer['status'] == 'on' && timer['product_quantity'].positive?
-      db.create_auction(timer)
-      decreasing_time(key)
-      finish_auction(key)
-      key = JSON.parse($redis.get(key))
-      data << key
+    if timer['status'] == 'on'
+      if timer['product_quantity'].positive?
+        db.create_auction(timer)
+        decreasing_time(key)
+        finish_auction(key)
+        key = JSON.parse($redis.get(key))
+        data << key
+      else
+        timer_db = Timer.find_by(id: timer['id'])
+        timer_db.update_attribute(:status, 'off')
+        $redis.del(timer['id'])
+        ActionCable.server.broadcast("notice_sold_#{timer_db.id}", obj: 'notice')
+      end
     end
   end
 

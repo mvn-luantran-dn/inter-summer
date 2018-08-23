@@ -59,7 +59,7 @@
             <div class="current-winner">
               <div class="right-winner-name">
                 <p class="info_field winner">Winner:</p>
-                <p class="info_data"><span class="current_winner" id="user-winner"><%= @auction_details.last.user.name if @auction_details.last %></span></p>
+                <p class="info_data"><span class="current_winner" id="user-winner"><%= @auction_details.first.user.name if @auction_details.first %></span></p>
               </div>
               <p id="pBiddingWaitMsg" class="bidding_wait_msg"></p>
             </div>

@@ -39,12 +39,12 @@ class DbData
   end
 
   def create_order(product, auction_dls)
-    order = Order.find_by(user_id: auction_dls.user_id)
+    order = Order.find_by(user_id: auction_dls.user_id, status: 'wait')
     if order.nil?
       order = Order.new
       order.user_id = auction_dls.user_id
+      order.status = 'wait'
       order.save
-      byebug
       create_item(order, product, auction_dls)
     else
       create_item(order, product, auction_dls)
