@@ -248,12 +248,11 @@ color: #a75d54;
 .fa-trash-o {
   color: red;
 }
-
+.border-show-details {
+  border-left: solid 1px #ccc;
+}
 //Payment
 
-#checkout {
-
-}
 #checkout #content {
   margin-bottom: 30px;
 }
@@ -611,8 +610,6 @@ select {
   background-image: url("/Gfx/checkmark-green.png");
   background-position-x: right;
   background-position-y: center;
-  background-repeat-x: no-repeat;
-  background-repeat-y: no-repeat;
 }
 .payment_info .form-group.country {
   margin-top: 10px;
@@ -929,8 +926,6 @@ ol, ul {
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
-  background-repeat-x: initial;
-  background-repeat-y: initial;
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;

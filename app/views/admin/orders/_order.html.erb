@@ -6,7 +6,7 @@
   <td class="center"><%= order.total_price %></td>
   <td class="center"> status</td>
   <td class="center">
-    <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item',
+    <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item btn-margin',
                           data: { confirm: "You sure?" } %>
     <%= link_to 'Detail', admin_order_path(order), class: 'button-item update-item' %> 
   </td>
