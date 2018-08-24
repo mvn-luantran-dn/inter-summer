@@ -13,12 +13,30 @@ var auction = {
     )
   },
   load_detail :function(data) {
-    data = data.obj;
-    step = data['bid_step'];
-    $('#spanCountDown').html(time_convert(data.period));
-    $('#product-price').html(formatMoney(data.product_price_start));
-  auction.loadDefaultPriceInput(data['product_price_start'], step);
-  auction.refreshPage(data['period']);
+    timer = data.obj;
+    step = timer['bid_step'];
+    cat_timer = data.cat
+    $('#spanCountDown').html(time_convert(timer.period));
+    $('#product-price').html(formatMoney(timer.product_price_start));
+    html = "";
+    cat_timer.forEach(function (e) {
+      html += '<div class="item-box">';
+      html += '<h4>'+ e.product_name +'</h4>';
+      html += '<div class="item-box-left">';
+      html += '<a href="/auctions/'+ e.id +'"><img style="border-width:0px;", src="' + e.product_pictures[0].file_name.url  + '"></a>';
+      html += '<div class="info_data timeout last_minute"></div>';
+      html += '</div>';
+      html += '<div class="item-box-right">';
+      html += '<div class="timeout last_minute">' + time_convert(e.period) + '</div>';
+      html += '<div class="current_bid right-product">'+ formatMoney(e.product_price_start) +'</div>';
+      html += '<a class="buttons bidding small see_details" href="/auctions/' + e.id + '">Bid now</a>';
+      html += '</div>';
+      html += '</div>';
+      html += '<hr>';
+    });
+    $('#cat-timer').html(html);
+    auction.loadDefaultPriceInput(timer['product_price_start'], step);
+    auction.refreshPage(timer['period']);
   },
   loadDefaultPriceInput: function (price, step) {
     if (price !== auction.current_price) {

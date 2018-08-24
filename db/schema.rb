@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_021654) do
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "category_id"
     t.string "name"
-    t.string "detail"
+    t.text "detail"
     t.integer "price"
     t.integer "quantity"
     t.integer "price_at"

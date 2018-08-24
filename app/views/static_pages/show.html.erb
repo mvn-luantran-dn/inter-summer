@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Auction</li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @product.name %></li>
   </ol>
 </nav>
 <div class= "left_col">
@@ -26,18 +26,18 @@
     </div>
     <div class="product_info">
       <div class="left-product">
-        <p class="info_field ends_in_label">Kết thúc trong: </p>
+        <p class="info_field ends_in_label">Finish in: </p>
         <p class="timeout last_minute" style="height: 20px; color: rgb(204, 51, 85);"><span id="spanEndAuction"></span><span id="spanCountDown" class="timeout last_minute" style="color: rgb(204, 51, 85);">LOADING</span></p>
       </div>
       <div id="ContentPlaceHolder1_UpdatePanel4">
         <div class="right-product">
-          <p class="info_field current_bid_label">Giá thầu hiện tại: </p>
+          <p class="info_field current_bid_label">Price at: </p>
           <p class="info_data current_bid" id="product-price">LOADING</p>
         </div>
       </div>
       <div id="ContentPlaceHolder1_UpdatePanel1">
         <div class="right-product">
-          <p class="info_field place_bid_label">Đấu giá ngay:</p>
+          <p class="info_field place_bid_label">Bid now:</p>
           <div class="info_data place_bid">
             <span class="bidding_box">
             <span class="bid_box">
@@ -52,7 +52,7 @@
             </span>
             </span>
             </span> 
-            <span class="bidding_button"><a id="ContentPlaceHolder1_btnBid" class="buttons bidding large"><span class="place_one">Đấu giá ngay</span><span class="bidding_two">Bidding..</span></a></span>          
+            <span class="bidding_button"><a id="ContentPlaceHolder1_btnBid" class="buttons bidding large"><span class="place_one">Bid now</span><span class="bidding_two">Bidding..</span></a></span>          
           </div>
           <div class="info-product-right">
             <p class="bidding_msg"></p>
@@ -123,81 +123,6 @@
 <div class="right_col">
   <div style="padding-bottom:15px;">
   </div>
-  <div class="auction-item">
-    <div></div>
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl00$Weight" id="ContentPlaceHolder1_ending_soon_repEndingSoon_Weight_0" value="0.150">
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl00$baseCostTHB" id="ContentPlaceHolder1_ending_soon_repEndingSoon_baseCostTHB_0" value="53.13">
-    <div class="item-box">
-      <h4>Máy massage 5 trong 1</h4>
-      <div class="item-box-left">
-        <a href="/Product/15-067" id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkAuction_0" aid="183280890" w250="/XML/Gfx/15-067/15-067-5_250.jpg" itemno="15-067"><img id="ContentPlaceHolder1_ending_soon_repEndingSoon_imgItem_0" src="https://www.cdn-chilindo.com/XML/Gfx/15-067/15-067-5_75.jpg" style="border-width:0px;"></a>
-        <div class="info_data timeout last_minute"></div>
-      </div>
-      <div class="item-box-right">
-        <div class="timeout last_minute">00:01:33</div>
-        <div class="current_bid right-product"> 1K ₫</div>
-        <a id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkBtnAuction_0" class="buttons bidding small see_details" href="/Product/15-067">Đấu giá ngay</a>
-      </div>
-    </div>
-    <hr>
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl02$Weight" id="ContentPlaceHolder1_ending_soon_repEndingSoon_Weight_1" value="0.040">
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl02$baseCostTHB" id="ContentPlaceHolder1_ending_soon_repEndingSoon_baseCostTHB_1" value="13.15">
-    <div class="item-box">
-      <h4>Dụng cụ uốn mi: Đen/Hồng/Xanh</h4>
-      <div class="item-box-left">
-        <a href="/Product/43-809" id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkAuction_1" aid="183276670" w250="/XML/Gfx/43-809/43-809_01_250.jpg" itemno="43-809"><img id="ContentPlaceHolder1_ending_soon_repEndingSoon_imgItem_1" src="https://www.cdn-chilindo.com/XML/Gfx/43-809/43-809_01_75.jpg" style="border-width:0px;"></a>
-        <div class="info_data timeout last_minute"></div>
-      </div>
-      <div class="item-box-right">
-        <div class="timeout last_minute">00:01:33</div>
-        <div class="current_bid right-product"> 1K ₫</div>
-        <a id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkBtnAuction_1" class="buttons bidding small see_details" href="/Product/43-809">Đấu giá ngay</a>
-      </div>
-    </div>
-    <hr>
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl04$Weight" id="ContentPlaceHolder1_ending_soon_repEndingSoon_Weight_2" value="0.540">
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl04$baseCostTHB" id="ContentPlaceHolder1_ending_soon_repEndingSoon_baseCostTHB_2" value="149.52">
-    <div class="item-box">
-      <h4>Gương trang điểm có gắn đèn</h4>
-      <div class="item-box-left">
-        <a href="/Product/43-824" id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkAuction_2" aid="183270407" w250="/XML/Gfx/43-824/43-824_01_250.jpg" itemno="43-824"><img id="ContentPlaceHolder1_ending_soon_repEndingSoon_imgItem_2" src="https://www.cdn-chilindo.com/XML/Gfx/43-824/43-824_01_75.jpg" style="border-width:0px;"></a>
-        <div class="info_data timeout last_minute"></div>
-      </div>
-      <div class="item-box-right">
-        <div class="timeout last_minute">00:02:01</div>
-        <div class="current_bid right-product"> 71K ₫</div>
-        <a id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkBtnAuction_2" class="buttons bidding small see_details" href="/Product/43-824">Đấu giá ngay</a>
-      </div>
-    </div>
-    <hr>
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl06$Weight" id="ContentPlaceHolder1_ending_soon_repEndingSoon_Weight_3" value="0.216">
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl06$baseCostTHB" id="ContentPlaceHolder1_ending_soon_repEndingSoon_baseCostTHB_3" value="42.56">
-    <div class="item-box">
-      <h4>Máy sấy tóc</h4>
-      <div class="item-box-left">
-        <a href="/Product/15-294" id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkAuction_3" aid="183280644" w250="/XML/Gfx/15-294/15-294-01_250.jpg" itemno="15-294"><img id="ContentPlaceHolder1_ending_soon_repEndingSoon_imgItem_3" src="https://www.cdn-chilindo.com/XML/Gfx/15-294/15-294-01_75.jpg" style="border-width:0px;"></a>
-        <div class="info_data timeout last_minute"></div>
-      </div>
-      <div class="item-box-right">
-        <div class="timeout last_minute">00:02:27</div>
-        <div class="current_bid right-product"> 1K ₫</div>
-        <a id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkBtnAuction_3" class="buttons bidding small see_details" href="/Product/15-294">Đấu giá ngay</a>
-      </div>
-    </div>
-    <hr>
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl08$Weight" id="ContentPlaceHolder1_ending_soon_repEndingSoon_Weight_4" value="0.318">
-    <input type="hidden" name="ctl00$ContentPlaceHolder1$ending_soon$repEndingSoon$ctl08$baseCostTHB" id="ContentPlaceHolder1_ending_soon_repEndingSoon_baseCostTHB_4" value="72.13">
-    <div class="item-box">
-      <h4>Bộ giác hơi không dùng lửa </h4>
-      <div class="item-box-left">
-        <a href="/Product/15-544" id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkAuction_4" aid="183273875" w250="/XML/Gfx/15-544/15-544-01_250.jpg" itemno="15-544"><img id="ContentPlaceHolder1_ending_soon_repEndingSoon_imgItem_4" src="https://www.cdn-chilindo.com/XML/Gfx/15-544/15-544-01_75.jpg" style="border-width:0px;"></a>
-        <div class="info_data timeout last_minute"></div>
-      </div>
-      <div class="item-box-right">
-        <div class="timeout last_minute">00:02:40</div>
-        <div class="current_bid right-product"> 22K ₫</div>
-        <a id="ContentPlaceHolder1_ending_soon_repEndingSoon_lnkBtnAuction_4" class="buttons bidding small see_details" href="/Product/15-544">Đấu giá ngay</a>
-      </div>
-    </div>
+  <div class="auction-item" id="cat-timer">
   </div>
 </div>

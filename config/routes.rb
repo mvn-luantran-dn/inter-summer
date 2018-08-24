@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
   end
-  resources :products
+  resources :products, :categories
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
   get '/404', to: 'application#page_not_found', as: '/not_found'
