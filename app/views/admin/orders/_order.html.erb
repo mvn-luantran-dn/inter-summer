@@ -4,7 +4,7 @@
   <td class="center"><%= order.address %></td>
   <td class="center"><%= order.phone %></td>
   <td class="center"><%= order.total_price %></td>
-  <td class="center"> status</td>
+  <td class="center"><%= order.status %></td>
   <td class="center">
     <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item btn-margin',
                           data: { confirm: "You sure?" } %>
