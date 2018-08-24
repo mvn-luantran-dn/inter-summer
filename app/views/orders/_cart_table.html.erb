@@ -18,7 +18,7 @@
               <%= render @items %>
               <tr>
                 <td colspan="3" align ="right">Total</td>
-                <td class="total" colspan="2"><b>$ 163.47</b></td>
+                <td class="total" colspan="2"><b><%= @order.total_price %></b></td>
               </tr>
             </tbody>
           </table>
