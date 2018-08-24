@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_order, only: %i[index destroy edit update total_quantity]
   def index
     @items = @order.items if @order
+    @auction_details = AuctionDetail.find_by(user_id: current_user.id) if @order
   end
 
   def destroy

@@ -1003,6 +1003,13 @@ img {
 .item-box-left .timeout {
   display: table;
 }
+.item-box-left {
+  width: 200px;
+  height: 175px;
+}
+.item-box {
+  height: 250px;
+}
 .item-box-right {
   float: right;
   text-align: right;
