@@ -7,7 +7,7 @@ namespace :show do
         timer = JSON.load($redis.get(key))
         cat_timer = []
         key_timer.each do |timer_key|
-          timer_check = JSON.load($redis.get(timer_key)) 
+          timer_check = JSON.load($redis.get(timer_key))
           cat_timer << timer_check if timer['product_category'] == timer_check['product_category'] && timer_check['id'] != timer['id']
           break if cat_timer.size == 5
         end

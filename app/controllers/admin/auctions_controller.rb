@@ -2,7 +2,7 @@ class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
   def index
-    @auctions = Auction.paginate(page: params[:page], per_page: 10).order('id DESC')
+    @auctions = Auction.includes(:auction_details).paginate(page: params[:page], per_page: 10).order('id DESC')
   end
 
   def show

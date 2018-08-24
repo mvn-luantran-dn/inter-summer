@@ -4,11 +4,13 @@
   <td class="center"><%= timer.end_at %></td>
   <td class="center"><%= timer.period %></td>
   <td class="center"><%= timer.bid_step %></td>
+  <td class="center">
   <% if timer.status == 'on' %>
-    <td class="center status-on"><%= timer.status %></td>
+    <p class="auction-item run"><%= timer.status %></p>
   <% else %>
-    <td class="center status-off"><%= timer.status %></td>
+    <p class="auction-item finish"><%= timer.status %></p>
   <% end %>
+  </td>
   <td class="center">
     <%= link_to 'Update', edit_admin_product_timer_path(@product, timer), class: 'button-item update-item' %> 
     <%= link_to 'Delete', admin_product_timer_path(@product, timer), method: :delete, class: 'button-item delete-item',

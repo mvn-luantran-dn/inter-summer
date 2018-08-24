@@ -13,6 +13,9 @@
 .add-item {
   background-color: green;  
 }
+.add-item-child {
+  background-color: #998f8f;
+}
 .header-panel-body{
   position: relative;
 }
@@ -42,11 +45,13 @@
 .center {
   text-align: center;
 }
-.status-on {
-  color: #d9534f;
-  font-size: 20px;
+.auction-item {
+  border-radius: 5px;
+  padding: 2px;
 }
-.status-off {
-  color: #33c252;
-  font-size: 20px;
+.run {
+  background-color: #3be339;
+}
+.finish {
+  background-color: #9ca2b8;
 }
