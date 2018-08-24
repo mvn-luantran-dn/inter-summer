@@ -48,8 +48,8 @@ class DbData
       order.save
       create_item(order, product, auction_dls)
     else
-      total_price = order.toral_price + auction_dls.price_bid
-      order.update_attribute(total_price: total_price)
+      total_price = order.total_price + auction_dls.price_bid.to_i
+      order.update_attribute(:total_price, total_price)
       create_item(order, product, auction_dls)
     end
   end
