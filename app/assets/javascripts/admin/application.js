@@ -18,4 +18,6 @@
 //= require turbolinks
 //= require sweetalert2
 //= require sweet-alert2-rails
+//= require dataTables/jquery.dataTables
+//= require ckeditor/init
 //= require_tree .

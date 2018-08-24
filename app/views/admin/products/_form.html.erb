@@ -13,7 +13,7 @@
 <%= form_group_for f, :detail, label: false  do %>
   <div class="form-group">
     <%= f.label :detail %>
-    <%= f.text_area :detail, :size => "50x10", placeholder: 'Detail', class: 'form-control' %>
+    <%= f.text_area :detail, placeholder: 'Detail', class: 'form-control', class: "ckeditor" %>
   </div>
 <% end %>
 <%= form_group_for f, :price, label: false  do %>

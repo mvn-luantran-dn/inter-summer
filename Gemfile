@@ -47,6 +47,8 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
 gem 'sweet-alert2-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'ckeditor'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
