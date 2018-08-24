@@ -43,8 +43,8 @@ var auction = {
       auction.current_price = price;
       auction.tmp_price = price;
       $('#price-input').val(formatMoney(price));
-      auction.eventAddBtnPrice(price, step);
       auction.step = step;
+      auction.eventAddBtnPrice(price, step);
     }
   },
   eventAddBtnPrice: function (price, step) {

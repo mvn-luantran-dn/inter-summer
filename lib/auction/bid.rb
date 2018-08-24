@@ -16,7 +16,7 @@ class Bid
         if auction_dls.user_id == user_id
           obj = {
             user_id: user_id,
-            price_bid: auction_dls.price_bid,
+            price_bid: auction_dls.price_bid
           }
           ActionCable.server.broadcast("message_#{key}", obj: obj)
         else

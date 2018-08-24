@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
   before_action :load_categories
-   
+
   def redirect_to_not_found
     raise ActionController::RoutingError, 'Not Found'
   rescue StandardError

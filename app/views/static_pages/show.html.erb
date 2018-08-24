@@ -45,7 +45,7 @@
             <input type="button" value="-" id="sub-price">
             </span>
             <span class="bid_text_number">
-            <input value="" maxlength="10" class="input_placebid" id="price-input">
+            <input value="" maxlength="10" class="input_placebid" id="price-input" readonly>
             </span>
             <span class="puls box_puls_minus">
             <input type="button" value="+" id="plus-price">
@@ -101,19 +101,6 @@
         <li><a href="#view_details" id="show_details" class="active">Chi tiết sản phẩm</a></li>
       </ul>
       <div id="view_details">
-        <h3>Chi tiết sản phẩm</h3>
-        <table width="230" cellspacing="1" cellpadding="1">
-          <tbody>
-            <tr>
-              <td>Phiên đấu giá số</td>
-              <td id="litAuctionId"></td>
-            </tr>
-            <tr>
-              <td>Sản phẩm số </td>
-              <td><%= @product.id %></td>
-            </tr>
-          </tbody>
-        </table>
         <h3>Mô tả sản phẩm</h3>
         <p><%= @product.detail %></p>
       </div>
