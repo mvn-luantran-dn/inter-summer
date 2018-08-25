@@ -13,7 +13,6 @@ class Admin::TimersController < Admin::BaseController
   end
 
   def create
-    byebug
     @timer = @product.timers.new(timer_params)
     if @timer.save
       AuctionData.add(@timer)

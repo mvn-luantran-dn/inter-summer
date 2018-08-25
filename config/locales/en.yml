@@ -16,6 +16,12 @@ en:
         quantity: 'Quantity'
         price_at: 'Price start'
         status: 'Status'
+      timer:
+        start_at: 'Start at'
+        end_at: 'End at'
+        period: 'Period'
+        status: 'Status'
+        bid_step: 'Bid step'
     errors:
       models:
         user:
@@ -66,3 +72,5 @@ en:
               blank: 'Please input period'
             status:
               blank: 'Please choose status'
+            bid_step:
+              blank: 'Please input bid step'

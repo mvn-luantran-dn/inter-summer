@@ -32,11 +32,15 @@ class AuctionData
     timer = JSON.parse($redis.get(key))
     if timer['status'] == 'on'
       if timer['product_quantity'].positive?
-        db.create_auction(timer)
-        decreasing_time(key)
-        finish_auction(key)
-        key = JSON.parse($redis.get(key))
-        data << key
+        start_at = timer['start_at'].to_s.to_time.strftime("%H:%M:%S").to_time
+        end_at = timer['end_at'].to_s.to_time.strftime("%H:%M:%S").to_time
+        if Time.now > start_at && Time.now < end_at
+          db.create_auction(timer)
+          decreasing_time(key)
+          finish_auction(key)
+          key = JSON.parse($redis.get(key))
+          data << key
+        end
       else
         timer_db = Timer.find_by(id: timer['id'])
         timer_db.update_attribute(:status, 'off')
