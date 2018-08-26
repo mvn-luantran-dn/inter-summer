@@ -5,7 +5,11 @@ class Admin::CategoriesController < Admin::BaseController
 
   def index
     @categories_no_parent = Category.where(parent_id: nil)
-    @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+    if params[:content].blank?
+      @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+    else
+      @categories = Category.search_name(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+    end
   end
 
   def new

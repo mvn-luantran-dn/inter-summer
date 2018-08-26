@@ -3,7 +3,11 @@ class Admin::ProductsController < Admin::BaseController
   before_action :load_categories, only: %i[new create edit update]
 
   def index
-    @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+    if params[:content].blank?
+      @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+    else
+      @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+    end
   end
 
   def new

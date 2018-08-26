@@ -22,6 +22,10 @@
 #search {
   position: absolute;
   right: 0;
+  display: flex;
+}
+.search-item {
+  margin-left: 10px;
 }
 .update-item {
   background-color: #5bc0de;

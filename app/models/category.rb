@@ -7,4 +7,5 @@ class Category < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   scope :get_without_self, ->(id) { where.not(id: id) }
   scope :get_without_parent_self, ->(parent_id) { where.not(parent_id: parent_id) }
+  scope :search_name, ->(content) { where 'name LIKE ?', "%#{content}%" }
 end

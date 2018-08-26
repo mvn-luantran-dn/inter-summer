@@ -5,7 +5,7 @@ class Admin::TimersController < Admin::BaseController
   before_action :find_timer, only: %i[edit update destroy]
 
   def index
-    @timers = @product.timers
+    @timers = @product.timers.order('id DESC')
   end
 
   def new

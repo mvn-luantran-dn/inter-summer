@@ -1,8 +1,8 @@
 <tr class="odd gradeX">
   <td class="center"><%= timer.id %></td>
-  <td class="center"><%= timer.start_at %></td>
-  <td class="center"><%= timer.end_at %></td>
-  <td class="center"><%= timer.period %></td>
+  <td class="center"><%= timer.start_at.strftime('%H:%M:%S') %></td>
+  <td class="center"><%= timer.end_at.strftime('%H:%M:%S') %></td>
+  <td class="center"><%= timer.period.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.bid_step %></td>
   <td class="center">
   <% if timer.status == 'on' %>

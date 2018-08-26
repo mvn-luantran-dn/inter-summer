@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :role, presence: true
+  scope :search_name_email, ->(content) { where 'name LIKE ? or email LIKE ? ', "%#{content}%", "%#{content}%" }
+
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

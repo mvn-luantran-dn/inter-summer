@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :price_at, presence: true
   validates :assets, length: { minimum: 1, maximum: 4 }
+  scope :search_product, ->(content) { where 'name LIKE ?', "%#{content}%" }
 
   def change_status_to_sale
     self.update_attribute(:status, ProductStatus::SELLING)
