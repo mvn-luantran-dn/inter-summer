@@ -40,6 +40,14 @@ class AuctionData
           finish_auction(key)
           key = JSON.parse($redis.get(key))
           data << key
+        else
+          auction = Auction.auction_timer(timer['id']).last
+          if auction.status == 'run'
+            decreasing_time(key)
+            finish_auction(key)
+            key = JSON.parse($redis.get(key))
+            data << key
+          end
         end
       else
         timer_db = Timer.find_by(id: timer['id'])
