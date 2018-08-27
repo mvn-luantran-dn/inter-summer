@@ -1,6 +1,6 @@
 <tr class="odd gradeX">
   <td class="center"><%= order.id %></td>
-  <td class="center"><%= link_to order.user.name , '#', class: 'detail-item' %></td>
+  <td class="center"><%= link_to order.name , '#', class: 'detail-item' %></td>
   <td class="center"><%= order.address %></td>
   <td class="center"><%= order.phone %></td>
   <td class="center"><%= order.total_price %></td>
@@ -10,6 +10,6 @@
     <%= link_to 'Update', edit_admin_order_path(order), class: 'button-item update-item btn-margin' %>
     <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
-    <%= link_to 'Detail', admin_order_path(order), class: 'button-item update-item' %> 
+    <%= link_to 'Detail', admin_order_path(order), class: 'button-item detail-items' %> 
   </td>
 </tr>

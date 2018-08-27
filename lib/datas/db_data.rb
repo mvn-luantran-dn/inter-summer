@@ -45,6 +45,7 @@ class DbData
       order.user_id = auction_dls.user_id
       order.status = 'wait'
       order.total_price = auction_dls.price_bid
+      order.name = auction_dls.user.name
       order.save
       create_item(order, product, auction_dls)
     else

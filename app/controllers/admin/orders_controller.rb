@@ -2,7 +2,11 @@ class Admin::OrdersController < Admin::BaseController
   before_action :find_order, only: %i[edit update show destroy]
 
   def index
-    @orders = Order.paginate(page: params[:page], per_page: 10).order('id DESC')
+    if params[:content].blank?
+      @orders = Order.paginate(page: params[:page], per_page: 10).order('id DESC')
+    else
+      @orders = Order.search(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+    end
   end
 
   def show

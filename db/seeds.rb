@@ -17,10 +17,3 @@ User.create!(name:  'admin',
                password_confirmation: password,
                activated_at: Time.zone.now)
 end
-
-5.times do |_n|
-  name = Faker::Name.name
-  Category.create!(
-    name: name
-  )
-end

@@ -5,9 +5,18 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @item = Item.find_by(id: params[:id])
-    total = @order.total_price - @item.amount
-    @item.destroy
+    item = Item.find_by(id: params[:id])
+    total = @order.total_price - item.amount
+    product = item.product
+    product.timers.each do |timer|
+      byebug
+      obj_timer = JSON.parse($redis.get(timer.id))
+      obj_timer['product_quantity'] += 1
+      $redis.set(timer.id, obj_timer.to_json)
+    end
+    quantity = product.quantity + 1
+    product.update_attribute(:quantity, quantity)
+    item.destroy
     @order.update_attribute(:total_price, total)
     @order.destroy unless @order.items.any?
     redirect_to user_orders_path
