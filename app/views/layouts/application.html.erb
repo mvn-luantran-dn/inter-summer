@@ -11,7 +11,7 @@
   <body>
     <%= render 'layouts/header' %>
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %></div>
       <% end %>
     <div class="container wrap">
       <%= yield %>

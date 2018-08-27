@@ -22,6 +22,10 @@
 #search {
   position: absolute;
   right: 0;
+  display: flex;
+}
+.search-item {
+  margin-left: 10px;
 }
 .update-item {
   background-color: #5bc0de;
@@ -41,6 +45,7 @@
 }
 
 #nav-right {
+  display: flex;
   margin-right: 0;
 }
 .img-resize {
@@ -62,4 +67,7 @@
 }
 .btn-margin {
   margin-left: 40%;
+}
+.search-edit {
+  margin-bottom: 40px;
 }

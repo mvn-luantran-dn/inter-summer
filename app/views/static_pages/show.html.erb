@@ -1,3 +1,4 @@
+<% provide(:title, @product.name)%>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -102,7 +103,8 @@
       </ul>
       <div id="view_details">
         <h3>Mô tả sản phẩm</h3>
-        <%= @product.detail %>
+        <%= raw @product.detail %>
+      <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="970" data-numposts="5"></div>
       </div>
     </div>
   </div>  
@@ -113,3 +115,11 @@
   <div class="auction-item" id="cat-timer">
   </div>
 </div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=2113993788848488&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

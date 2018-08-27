@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update correct_user]
   before_action :logged_in_user, only: %i[index edit update]
   before_action :correct_user, only: %i[edit update]
+  before_action :redirect_logined, only: :new
 
   def new
     @user = User.new
@@ -43,14 +44,6 @@ class UsersController < ApplicationController
     def find_user
       @user = User.find_by(id: params[:id])
       redirect_to '/404' unless @user
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = 'Please log in.'
-        redirect_to login_url
-      end
     end
 
     def correct_user

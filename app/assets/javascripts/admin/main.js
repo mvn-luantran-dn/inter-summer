@@ -31,9 +31,11 @@ function removeField(link) {
 
 $(document).ready(function () {
   check();
-  $('#dataTables-example').dataTable();
 });
 $(document).on('turbolinks:load', function () {
+  CKEDITOR.config.height = 500;
+  CKEDITOR.config.width = 800;
+  CKEDITOR.config.entities_processNumerical = 'force';
   if ($('textarea').length > 0) {
     var data = $('.ckeditor');
     $.each(data, function (i) {

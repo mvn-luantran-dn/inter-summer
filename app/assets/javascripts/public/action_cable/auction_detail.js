@@ -62,6 +62,7 @@ var auction = {
       $('#price-input').val(formatMoney(auction.tmp_price));
       if (auction.tmp_price !== auction.current_price) {
         $('#plus-price').prop('disabled', false);
+        $('#sub-price').prop('disabled', false);
       }
     });
   },
@@ -69,6 +70,9 @@ var auction = {
     $('#ContentPlaceHolder1_btnBid').on('click', function () {
       if (auction.tmp_price === auction.current_price) {
         auction.tmp_price += auction.step;
+      }
+      if (auction.tmp_price > (auction.current_price + auction.step)) {
+        auction.tmp_price = auction.current_price + auction.step;
       }
       data = {
         price: auction.tmp_price,

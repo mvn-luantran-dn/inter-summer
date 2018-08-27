@@ -6,6 +6,14 @@
         <p>List Auctions</p>
       </div>
       <div class="panel-body">
+        <div class='header-panel-body search-edit'>
+          <%= form_tag admin_auctions_path, method: :get, class: 'col-lg-8', id: 'search'  do %>
+            <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
+            <%= select_date() %>
+            <%= select_date() %>
+            <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
+          <% end %>
+        </div>
         <table width="100%" class="table table-striped table-hover" id="dataTables-example">
           <thead>
             <tr>

@@ -37,6 +37,7 @@ $(document).on('turbolinks:load', function () {
         $('#auction-categories').html(html);
       } else {
         html = "";
+        finish = "";
         list = data.obj;
         list.forEach(function (e) {
           html += '<div class="col-sm-6 col-md-3 ser">';
@@ -49,8 +50,21 @@ $(document).on('turbolinks:load', function () {
           html += '</div>'
           html += '</div>'
           html += '</div>'
+          if(e.period < 20) {
+            finish += '<div class="col-sm-6 col-md-3 ser">';
+            finish += '<div class="product-item thumbnail">';
+            finish += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file_name.url + '" alt="' + e.product_name + '"></a>';
+            finish += '<div class="caption text-center">';
+            finish += '<a href="/auctions/' + e.id + '"><h3>' + e.product_name + '</h3></a>';
+            finish += '<p><span id="countdowntimer" class="text-danger">' + time_convert(e.period) + '</span></p>';
+            finish += '<span class= "last-bid-user rows"><img src="/auctions.png" alt="' + e.product_name + '" class="icon-auction">' + formatMoney(e.product_price_start) + '</span>';
+            finish += '</div>'
+            finish += '</div>'
+            finish += '</div>'
+          }
         });
         $('#listauctions').html(html);
+        $('#listauctions-finish').html(finish);
       }
     }
   });

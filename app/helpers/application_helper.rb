@@ -19,4 +19,8 @@ module ApplicationHelper
       @size_cart = Order.find_by(user_id: current_user.id).items.size
     end
   end
+
+  def redirect_logined
+    redirect_to root_path if logged_in?
+  end
 end
