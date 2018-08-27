@@ -7,45 +7,22 @@
 			</div>	
 			<div class="col-md-4 footer-grid">
 				<h3>Recents Posts</h3>
-			  <div class="ftr-sub-gd">
-				<div class="col-md-4 ftr-gd2-img">
-					<%= link_to image_tag("s1.jpg", alt: ""), '#' %>
-				</div>
-				<div class="col-md-8 ftr-gd2-text">
-						<a href="#"><h4>How to Have The Best Vacation</h4></a>
-						<a href="#"><p>Mar 3rd,2015</p></a>
-				</div>
-				<div class="clearfix"> </div>
-			  </div>
-			  <div class="ftr-sub-gd">
-				<div class="col-md-4 ftr-gd2-img">
-					<%= link_to image_tag("s2.jpg", alt: ""), '#' %>
-				</div>
-				<div class="col-md-8 ftr-gd2-text">
-						<a href="#"><h4>How to Have The Best Vacation</h4></a>
-						<a href="#"><p>Mar 3rd,2015</p></a>
-				</div>
-				<div class="clearfix"> </div>
-			  </div>
-			  <div class="ftr-sub-gd">
-				<div class="col-md-4 ftr-gd2-img">
-					<%= link_to image_tag("s3.jpg", alt: ""), '#' %>
-				</div>
-				<div class="col-md-8 ftr-gd2-text">
-						<a href="#"><h4>How to Have The Best Vacation</h4></a>
-						<a href="#"><p>Mar 3rd,2015</p></a>
-				</div>
-				<div class="clearfix"> </div>
-			  </div>
-		   </div>
+				<% @products_footer.each do |p| %>
+					<div class="ftr-sub-gd">
+						<div class="col-md-4 ftr-gd2-img">
+							<%= image_tag image_first_of_object(p), class: "footer-images" %>
+						</div>
+						<div class="col-md-8 ftr-gd2-text">
+								<%= link_to p.name  %>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				<% end %>
+			</div>
 			<div class="col-md-4 footer-grid">
 				<h3>Categories</h3>
 				<ul>
-					<li><a href="#">Featured</a></li>
-					<li><a href="#">General</a></li>
-					<li><a href="#">Lorem Ipsum</a></li>
-					<li><a href="#">literature</a></li>
-					<li><a href="#">Videos</a></li>
+					<%=render @categories_footer %>
 				</ul>
 			</div>
 		<div class="clearfix"> </div>
@@ -59,9 +36,8 @@
 			<div class="copy-right"> 
 				<ul>
 					<li><%= link_to "Home", root_path %></li>/
-					<li><a href="about.html">About</a></li>/
-					<li><a href="blog.html">Blog</a></li>/
-					<li><a href="contact.html">Contact</a></li>
+					<li><%= link_to "Help", help_path %></li>/
+					<li><%= link_to "Contact", contact_path %></li>
 				</ul>
 			</div>
 		</div>
