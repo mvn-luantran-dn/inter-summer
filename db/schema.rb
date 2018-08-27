@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_170729) do
     t.datetime "updated_at", null: false
     t.string "status"
     t.string "name"
+    t.string "type_payment"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

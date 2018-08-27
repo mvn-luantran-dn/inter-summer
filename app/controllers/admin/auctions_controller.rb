@@ -9,15 +9,6 @@ class Admin::AuctionsController < Admin::BaseController
     @auction_details = @auction.auction_details.paginate(page: params[:page], per_page: 20)
   end
 
-  def update
-    if @auction.update_attributes(auction_params)
-      flash[:success] = 'Update success'
-      redirect_to admin_auctions_path
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @auction.destroy
     flash[:success] = 'Auction deleted'
