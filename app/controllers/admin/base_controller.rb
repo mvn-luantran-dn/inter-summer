@@ -5,5 +5,10 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin/application'
 
-  def index; end
+  def index
+    @products = Product.all.size
+    @users = User.all.size
+    @orders = Order.all.size
+    @categories = Category.all.size
+  end
 end

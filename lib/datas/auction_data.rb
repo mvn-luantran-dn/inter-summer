@@ -93,6 +93,8 @@ class AuctionData
     db_data = DbData.new
     db_data.close_auction(timer)
     db_data.user_win(timer)
+    auction = Auction.auction_timer(timer_id).last
+    db_data.del_auction_no_bid(auction)
   end
 
   def self.add(obj)

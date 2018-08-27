@@ -60,4 +60,8 @@ class DbData
       amount: auction_dls.price_bid
     )
   end
+
+  def del_auction_no_bid(auction)
+    auction.destroy unless auction.auction_details.any?
+  end
 end
