@@ -1,0 +1,51 @@
+<% provide(:manage, 'Manage Order') %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>Update Order</p>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <%= form_for(@order, url: admin_order_path) do |f| %>
+              <%= form_group_for f, :name, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, placeholder: @order.name, readonly: :true, class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :address, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :address %>
+                  <%= f.text_field :address, placeholder: @order.address, readonly: :true, class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :phone, label: false  do %>
+                <div class="form-group">
+                  <%= f.label :phone %>
+                  <%= f.text_field :phone, placeholder: @order.phone, readonly: :true, class: 'form-control' %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :status, label: false  do %>
+                <div class="form-group">
+                  <%= f.label(:status, 'Status:' ) %>
+                  <%= f.select(:status, options_for_select(["wait","checkouted","delivered"], selected: @order.status), {}, { class: 'form-control col-3' }) %>
+                </div>
+              <% end %>
+              <%= form_group_for f, :type_payment, label: false  do %>
+                <div class="form-group">
+                  <%= f.label(:type_payment, 'Type Payment:')%>
+                  <%= f.select(:type_payment, options_for_select(["Cash on delivery","Ngan Luong"], selected: @order.type_payment), {}, { class: 'form-control col-3' }) %>
+                </div>
+              <% end %>              
+              <%= f.submit "Submit", class: 'btn btn-success' %>
+              <%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

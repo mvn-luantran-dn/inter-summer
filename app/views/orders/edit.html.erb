@@ -53,6 +53,50 @@
                       <%= f.text_field :phone, placeholder: 'phone', class: 'address_input form-control' %>
                     </div>
                   <% end %>
+                  <div id="ContentPlaceHolder1_payment_options" class="payment_info active">
+                    <div id="ContentPlaceHolder1_dvPaymentOptions">
+                      <div style="width: 650px;" class="payment_options_head">
+                      </div>
+                      <div id="ContentPlaceHolder1_dvPaymentOptions_inner">
+                        <div class="payment_options_main">
+                          <h2>
+                            Bạn muốn thanh toán theo cách nào?
+                          </h2>
+                          <ul class="payment_option_list carts-det">
+                            <li>
+                              <div id="ContentPlaceHolder1_repPaymentOptions_payment_option_list_inner_0" class="payment_option_list_inner">
+                                <span id="ContentPlaceHolder1_repPaymentOptions_spanPaymentTitle_0" class="method_option_title">Thanh Toán Khi Nhận Hàng</span>
+                                <div class="method_option_images">
+                                  <%= image_tag('delivery-car.png', alt: "")%>
+                                </div>
+                                <span class="method_option">
+                                <span deliverytypeprice="29000.00" paymentoptionprice="0.00" method_text_id="0" method_option_text_id="0" deliverytype="STANDARD" isbasecurrencyprice="False"><input id="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl00_radPaymentOption" type="radio" name="ctl00$ContentPlaceHolder1$repPaymentOptions$ctl00$payment_option" value="COD" onclick="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$repPaymentOptions$ctl00$radPaymentOption\',\'\')', 0)"><label for="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl00_radPaymentOption">+0 ₫</label></span>
+                                </span>
+                              </div>
+                            </li>
+                            <li>
+                              <div id="ContentPlaceHolder1_repPaymentOptions_payment_option_list_inner_1" class="payment_option_list_inner">
+                                <span id="ContentPlaceHolder1_repPaymentOptions_spanPaymentTitle_1" class="method_option_title">ATM/Chuyển khoản</span>
+                                <div class="method_option_images">
+                                  <img src="/gfx/my_bank.png" alt="ATM/Bank">
+                                </div>
+                                <span class="method_option">
+                                <span deliverytypeprice="29000.00" paymentoptionprice="0.00" method_text_id="283" method_option_text_id="283" deliverytype="STANDARD" isbasecurrencyprice="False"><input id="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl01_radPaymentOption" type="radio" name="ctl00$ContentPlaceHolder1$repPaymentOptions$ctl01$payment_option" value="BANKWIRE" onclick="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$repPaymentOptions$ctl01$radPaymentOption\',\'\')', 0)"><label for="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl01_radPaymentOption">+0 ₫</label></span>
+                                </span>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="payment_options_details">
+                          <div class="payment_info active">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="payment_options_validate">
+                      <span id="ContentPlaceHolder1_lbPaymentInfoValidate" style="color:Red;"></span>
+                    </div>
+                  </div>
                   <div class="checkout_progress">
                     <%= f.submit "Submit", class: 'buttons checkout large bg-btn-icon'%>
                   </div>

@@ -9,7 +9,7 @@
 				  <ul class="res">
             <li><%= link_to "Help", help_path %></li>
             <% if logged_in? %>           
-              <li><%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"></i>' + size_cart.to_s  + " Cart"), user_orders_path(current_user) %></li>
+              <li><%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"></i>' + " Cart" + '<span id="itemCount">' + size_cart.to_s + '</span>'), user_orders_path(current_user) %></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Account <b class="caret"></b>

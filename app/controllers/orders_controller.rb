@@ -6,7 +6,9 @@ class OrdersController < ApplicationController
 
   def destroy
     @item = Item.find_by(id: params[:id])
+    total = @order.total_price - @item.amount
     @item.destroy
+    @order.update_attribute(:total_price, total)
     @order.destroy unless @order.items.any?
     redirect_to user_orders_path
   end
