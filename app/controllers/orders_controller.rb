@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.require(:order).permit(%i[name address phone])
+      params.require(:order).permit(%i[name address phone type_payment])
     end
 
     def find_order
