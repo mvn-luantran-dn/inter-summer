@@ -1,6 +1,6 @@
 <div id="checkout" class="checkout_payment">
   <div id="content" style="min-height: 635px;">
-    <div class="wrapper">
+    <div>
       <div id="heading">
         <div class="wrapper">
           <h1>
@@ -9,23 +9,11 @@
         </div>
       </div>
       <div class="left-payment">
-        <div id="payment_progress">
-          <span class="progress_bar first">
-          <a id="lnkProgressBarBillingAddress" class="active" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarBillingAddress','')">Địa chỉ thanh toán</a></span>
-          <span class="progress_bar second">
-          <a id="lnkProgressBarDeliveryOptions" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarDeliveryOptions','')">HÌnh thức giao hàng</a></span>
-          <span class="progress_bar third" style="display: none;">
-          <a id="lnkProgressBarPaymentOptions" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarPaymentOptions','')">Các hình thức thanh toán</a></span>
-          <span class="progress_bar fourth">
-          <a id="ContentPlaceHolder1_lnkProgressBarStatus" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarStatus','')">Tình trạng đơn hàng</a></span>
-          <span class="progress_bar inactive"><a href="#invoice">
-          Hoá đơn của bạn</a></span>
-        </div>
         <div id="ContentPlaceHolder1_billing_address" class="payment_info active">
           <div id="ContentPlaceHolder1_UpdateProgress1" style="display:none;" role="status" aria-hidden="true">
             <div class="divWaiting">
               <span id="ContentPlaceHolder1_lblWait"> Please wait... </span>
-              <img id="ContentPlaceHolder1_imgWait" src="../Gfx/loader.gif" align="middle">
+              <img id="ContentPlaceHolder1_imgWait" src="" align="middle">
             </div>
           </div>
           <div id="ContentPlaceHolder1_UpdatePanel1">
@@ -62,27 +50,23 @@
                           <h2>
                             Bạn muốn thanh toán theo cách nào?
                           </h2>
-                          <ul class="payment_option_list carts-det">
-                            <li>
-                              <div id="ContentPlaceHolder1_repPaymentOptions_payment_option_list_inner_0" class="payment_option_list_inner">
+                          <ul class="payment_option_list carts-det form-group">
+                            <li class="payment_option_item">
+                              <div class="payment_option_list_inner">
+                                <%= f.radio_button :type_payment, "Cash on delivery"%>
                                 <span id="ContentPlaceHolder1_repPaymentOptions_spanPaymentTitle_0" class="method_option_title">Thanh Toán Khi Nhận Hàng</span>
                                 <div class="method_option_images">
                                   <%= image_tag('delivery-car.png', alt: "")%>
                                 </div>
-                                <span class="method_option">
-                                <span deliverytypeprice="29000.00" paymentoptionprice="0.00" method_text_id="0" method_option_text_id="0" deliverytype="STANDARD" isbasecurrencyprice="False"><input id="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl00_radPaymentOption" type="radio" name="ctl00$ContentPlaceHolder1$repPaymentOptions$ctl00$payment_option" value="COD" onclick="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$repPaymentOptions$ctl00$radPaymentOption\',\'\')', 0)"><label for="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl00_radPaymentOption">+0 ₫</label></span>
-                                </span>
                               </div>
                             </li>
-                            <li>
-                              <div id="ContentPlaceHolder1_repPaymentOptions_payment_option_list_inner_1" class="payment_option_list_inner">
+                            <li class="payment_option_item">
+                              <div class="payment_option_list_inner">
+                                <%= f.radio_button :type_payment, "Ngan Luong"%>
                                 <span id="ContentPlaceHolder1_repPaymentOptions_spanPaymentTitle_1" class="method_option_title">ATM/Chuyển khoản</span>
                                 <div class="method_option_images">
-                                  <img src="/gfx/my_bank.png" alt="ATM/Bank">
+                                  <a target="_blank" href="https://www.nganluong.vn/button_payment.php?receiver=thanphong936@gmail.com&product_name=<%= @order.id %>&price=<%= @order.total_price %>&return_url=(URL thanh toán thành công)&comments=(Ghi chú về đơn hàng)"><img src="https://www.nganluong.vn/css/newhome/img/button/safe-pay-3.png"border="0" /></a>
                                 </div>
-                                <span class="method_option">
-                                <span deliverytypeprice="29000.00" paymentoptionprice="0.00" method_text_id="283" method_option_text_id="283" deliverytype="STANDARD" isbasecurrencyprice="False"><input id="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl01_radPaymentOption" type="radio" name="ctl00$ContentPlaceHolder1$repPaymentOptions$ctl01$payment_option" value="BANKWIRE" onclick="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$repPaymentOptions$ctl01$radPaymentOption\',\'\')', 0)"><label for="ctl00_ContentPlaceHolder1_repPaymentOptions_ctl01_radPaymentOption">+0 ₫</label></span>
-                                </span>
                               </div>
                             </li>
                           </ul>
@@ -97,6 +81,7 @@
                       <span id="ContentPlaceHolder1_lbPaymentInfoValidate" style="color:Red;"></span>
                     </div>
                   </div>
+                  <div class="clearfix"></div>
                   <div class="checkout_progress">
                     <%= f.submit "Submit", class: 'buttons checkout large bg-btn-icon'%>
                   </div>
@@ -108,7 +93,7 @@
         <div id="ContentPlaceHolder1_UpdateProgress2" style="display:none;" role="status" aria-hidden="true">
           <div class="divWaiting">
             <span id="ContentPlaceHolder1_lblWait1"> Please wait... </span>
-            <img id="ContentPlaceHolder1_imgWait1" src="../Gfx/loader.gif" align="middle">
+            <img id="ContentPlaceHolder1_imgWait1" src="" align="middle">
           </div>
         </div>
         <div id="ContentPlaceHolder1_UpdatePanel2">

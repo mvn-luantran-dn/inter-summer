@@ -297,7 +297,7 @@ h1 {
   padding-bottom: 8px;
 }
 #checkout .left-payment {
-  width: 700px;
+  width: 1000px;
   float: left;
 }
 #payment_progress {
@@ -416,7 +416,7 @@ a:hover {
   display: block;
 }
 .payment_info {
-  width: 700px;
+  width: 1000px;
   float: left;
   padding-top: 10px;
   padding-right: 0px;
@@ -482,10 +482,11 @@ p {
   clear: both;
 }
 .payment_info label {
+  text-align: right;
   float: left;
   font-weight: 700;
   line-height: 36px;
-  padding-left: 30px;
+  padding-right: 30px;
   width: 35%;
 }
 .payment_info_inner span {
@@ -692,7 +693,6 @@ select {
   font-size: 18px;
 }
 .bg-btn-icon {
-  background-image: url("../gfx/btn-icon-cart.png");
   background-position-x: 12px;
   background-position-y: 15px;
   background-repeat-x: no-repeat;
@@ -1024,15 +1024,6 @@ ol, ul {
 }
 //Payment info
 
-.payment_info {
-  width: 700px;
-  float: left;
-  padding-top: 10px;
-  padding-right: 0px;
-  padding-bottom: 10px;
-  padding-left: 0px;
-  display: block;
-}
 .delivery_option_list_main .payment_info {
   float: none;
   width: auto;
@@ -1040,31 +1031,8 @@ ol, ul {
 .payment_options_main {
 
 }
-h1, h2, h3 {
-  font-weight: 700;
-  font-family: "open sans", sans-serif;
-}
-h2 {
-  font-size: 22px;
-}
-#checkout h2 {
-  font-size: 18px;
-  font-family: "Open Sans";
-  padding-top: 5px;
-  padding-right: 0px;
-  padding-bottom: 10px;
-  padding-left: 0px;
-}
-.payment_info h2, .payment_info h3, .payment_info h4, .payment_info h5, .payment_info p {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-  height: auto;
+.payment_option_item {
+  height: 162px;
 }
 #checkout .address-block h2, #ContentPlaceHolder1_UpdatePanel2 h2 {
   font-family: "open sans";
@@ -1079,8 +1047,8 @@ ol, ul {
   list-style-image: initial;
 }
 .payment_option_list {
+  margin-left: 20%; 
   border-bottom-width: 1px;
-  border-bottom-style: solid;
   border-bottom-color: rgb(233, 239, 252);
   display: inline-block;
   padding-top: 10px;
@@ -1215,16 +1183,6 @@ img {
   top: 0px;
   width: 100%;
   cursor: pointer;
-}
-.payment_info label {
-  float: left;
-  font-weight: 700;
-  line-height: 36px;
-  padding-left: 30px;
-  width: 35%;
-}
-.payment_info .method_option label {
-  width: auto;
 }
 .method_option label {
   display: inline-block;
