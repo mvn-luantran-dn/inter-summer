@@ -6,16 +6,16 @@
         <p>List Auctions</p>
       </div>
       <div class="panel-body">
-        <div class='header-panel-body search-edit'>
+        <div class='header-panel-body search-auction'>
           <%= form_tag admin_auctions_path, method: :get, class: 'col-lg-8', id: 'search'  do %>
-            <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
+            <%= search_field_tag 'content', '', { class: 'form-control search-right', placeholder: 'Search' } %>
             <div class="form-group">
-              <%= select_date() %>
-              <%= select_date() %>
+              <%= date_select(:start_date, "", {default: { day: 1, month: 1, year: 1900 }}, { class: 'form-control-static' }) %>
+              <%= date_select(:end_date, "", {default: { day: 1, month: 1, year: 1900 }}, { class: 'form-control-static' }) %>
             </div>
             <div class="form-group">
-              <%= select_date() %>
-              <%= select_date() %>
+              <%= time_select(:start_hour, '', { default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' }) %>
+              <%= time_select(:end_hour, '', { default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' }) %>
             </div>
             <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
           <% end %>
