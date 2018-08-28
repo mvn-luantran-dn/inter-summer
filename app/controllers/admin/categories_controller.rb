@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_categories, only: %i[new create]
-  before_action :find_category, except: %i[index new create]
+  before_action :find_category, except: %i[index new create show_import import]
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
@@ -44,6 +44,20 @@ class Admin::CategoriesController < Admin::BaseController
     @category.destroy
     flash[:success] = 'Category deleted'
     redirect_to admin_categories_url
+  end
+
+  def import
+    if params[:file].nil?
+      flash[:notice] = 'Please choose file'
+      render :show_import
+    else
+      if Category.import_file params[:file]
+        flash[:notice] = 'Data imported'
+      else
+        flash[:danger] = 'Import error'
+      end
+      redirect_to admin_categories_path
+    end
   end
 
   private
