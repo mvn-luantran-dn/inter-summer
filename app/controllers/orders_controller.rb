@@ -18,9 +18,9 @@ class OrdersController < ApplicationController
     if item.destroy
       @order.update_attribute(:total_price, total)
       @order.destroy unless @order.items.any?
-      flash[:success] = "Delete success"
+      flash[:success] = 'Delete success'
     else
-      flash[:danger] = "Delete error"
+      flash[:danger] = 'Delete error'
     end
     redirect_to user_orders_path
   end

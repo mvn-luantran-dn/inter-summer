@@ -1,3 +1,4 @@
+require 'csv'
 class Product < ApplicationRecord
   belongs_to :category
   has_many :timers, dependent: :destroy

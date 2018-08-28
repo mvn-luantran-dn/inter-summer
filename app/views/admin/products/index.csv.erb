@@ -1,0 +1,6 @@
+<%- attributes = ['id', 'category_id', 'name', 'price', 'price_at', 'quantity'] -%>
+<%= CSV.generate_line attributes %>
+<%- @products.each do |product| -%>
+  <%- record = attributes.map { |attribute| product.send(attribute) } -%>
+  <%= CSV.generate_line(record) -%>
+<%- end -%>
