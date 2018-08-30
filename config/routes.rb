@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :orders
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
+    resources :auctions
   end
   resources :products, :categories
   resources :account_activations, only: [:edit]

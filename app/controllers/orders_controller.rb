@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     total = @order.total_price - item.amount
     product = item.product
     product.timers.each do |timer|
-      byebug
       obj_timer = JSON.parse($redis.get(timer.id))
       obj_timer['product_quantity'] += 1
       $redis.set(timer.id, obj_timer.to_json)

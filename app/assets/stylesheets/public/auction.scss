@@ -1,0 +1,439 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#my_auctions .left_col {
+  float: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+}
+#my_auctions.myauctions .title_mycart > .left_col {
+  border-top-color: initial;
+  border-top-style: initial;
+  border-top-width: initial;
+  border-right-color: initial;
+  border-right-style: initial;
+  border-right-width: initial;
+  border-bottom-color: initial;
+  border-bottom-style: initial;
+  border-bottom-width: initial;
+  border-left-color: initial;
+  border-left-style: initial;
+  border-left-width: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  float: left;
+  width: 280px;
+}
+h1, h2, h3 {
+  font-weight: 700;
+  font-family: "open sans", sans-serif;
+}
+h1 {
+  padding-bottom: 20px;
+  font-size: 35px;
+}
+.myauctions .title_mycart h1 {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+}
+.single_page .right_col {
+  width: 220px;
+  float: right;
+}
+#my_auctions.myauctions .title_mycart > .right_col {
+  width: 470px;
+}
+.sky-blue {
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(0, 182, 231);
+  padding-top: 0px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+.cart_total {
+  text-align: center;
+}
+.myauctions .title_mycart .cart_total.sky-blue {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.cart_total > span > a, .my_cart_now, .my_total_now {
+  margin-top: 9px;
+}
+.my_cart_now {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 6px;
+  margin-right: 2px;
+}
+.my_cart_now, .my_total_now {
+  background-color: rgb(255, 255, 255);
+  color: rgb(128, 129, 132);
+  padding-top: 7px;
+  padding-right: 8px;
+  padding-bottom: 7px;
+  padding-left: 8px;
+  display: inline-table;
+  min-width: 150px;
+}
+.cart_total .my_cart_now > span, .cart_total .my_total_now > span {
+  float: left;
+  margin-right: 5px;
+}
+.my_total_now {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  margin-right: 9px;
+}
+a {
+  color: rgb(26, 183, 234);
+}
+a:hover {
+  color: rgb(51, 204, 255);
+}
+.buttons {
+  font-weight: 400;
+  text-align: center;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  font-family: "open sans", sans-serif;
+}
+.buttons::before {
+  font-family: fontawesome;
+  padding-right: 10px;
+}
+.large {
+  display: inline-block;
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 3px 0px;
+  font-size: 18px;
+}
+.cart_total .buttons.large {
+  background-color: rgb(250, 163, 49);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: initial;
+  padding-top: 6px;
+  padding-right: 13px;
+  padding-bottom: 6px;
+  padding-left: 13px;
+  color: rgb(255, 255, 255);
+  vertical-align: top;
+}
+ol, ul {
+  list-style-type: none;
+  list-style-position: initial;
+  list-style-image: initial;
+}
+.tabs_content {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+.tabs_content li {
+  width: 26%;
+  float: left;
+  display: inline-block;
+}
+.tabs_content a {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  background-color: rgb(238, 238, 238);
+  border-bottom-width: inherit;
+  border-bottom-style: inherit;
+  border-bottom-color: inherit;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: rgb(204, 204, 204);
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: rgb(204, 204, 204);
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  letter-spacing: 1px;
+}
+.tabs_content a.active {
+  background-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: rgb(26, 183, 234);
+}
+.auction_list {
+  width: 100%;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.auction_list::after {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+.myauctions .auction_list {
+  border-top-left-radius: initial;
+  border-top-right-radius: initial;
+  border-bottom-right-radius: initial;
+  border-bottom-left-radius: initial;
+}
+.auction_list li {
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(204, 204, 204);
+}
+.auction_list li:first-child {
+  border-top-width: initial;
+  border-top-style: none;
+  border-top-color: initial;
+}
+.auction_list li:hover {
+  cursor: pointer;
+}
+.auction_list li::after {
+  width: 100%;
+  display: block;
+  content: "";
+  clear: both;
+}
+.auction_list .heading {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  font-weight: 700;
+  background-color: rgb(238, 238, 238);
+}
+.auction_list .heading:hover {
+  cursor: default;
+  background-color: rgb(238, 238, 238);
+}
+.auction_list li span {
+  display: inline-block;
+  text-align: center;
+}
+.auction_list li.heading span, .auction_list li .bidding_details span {
+  float: left;
+}
+.auction_list li > span:first-child {
+  padding-left: 10px;
+}
+.auction_list .bid_result {
+  width: 8%;
+  float: left;
+}
+.auction_list .heading .cur_bid, .auction_list .heading .las_bid, .auction_list .heading .win_bid {
+  width: 22%;
+}
+.auction_list .cur_bid, .auction_list .las_bid, .auction_list .win_bid {
+  width: 24%;
+}
+.auction_list .heading .win_user_bid, .auction_list .heading .min_bid {
+  width: 28%;
+}
+.auction_list .win_user_bid, .auction_list .min_bid {
+  width: 30%;
+}
+.auction_list .heading .num_bid {
+  width: 12%;
+}
+.auction_list .num_bid {
+  width: 14%;
+}
+.auction_list .heading .ended {
+  width: 30%;
+}
+.auction_list .ended {
+  width: 32%;
+}
+#auctions_won {
+  display: none;
+}
+.auction_list .heading .max_bid {
+  width: 28%;
+}
+.auction_list .max_bid {
+  width: 30%;
+}
+.odd {
+  background-color: rgb(246, 246, 246);
+}
+.auction_list .odd, .auction_list .even {
+  background-color: rgb(255, 255, 255);
+}
+.myauctions .auction_list .auction_list_row.odd:nth-child(2n+1) {
+  background-color: rgb(221, 238, 255);
+}
+.myauctions .auction_list:last-child .auction_list_row.odd:nth-child(2n+1) {
+  background-color: rgb(221, 238, 255);
+}
+.auction_list .users_winning::before {
+  content: "";
+  color: rgb(102, 153, 51);
+}
+.auction_list .bid_result label {
+  color: rgb(153, 153, 153);
+}
+.product_info {
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 10px;
+  width: 50%;
+}
+.auction_list .product_info {
+  display: inline-block;
+  float: none;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  width: 92%;
+}
+.myauctions .auction_list li span.product_summary {
+  display: inline;
+}
+.myauctions .auction_list_row.odd .product_summary span {
+  color: rgb(26, 183, 234);
+}
+.myauctions .auction_list_row.odd span.product_summary > span:first-child {
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  float: left;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-right: 15px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 30%;
+}
+.product_summary > span {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: rgb(204, 204, 204);
+}
+.product_info .auction_no, .product_info .order_no, .product_info .next_auction {
+  padding-top: 0px;
+  padding-right: 15px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+}
+.product_summary .auction_no > a, .product_summary span.order_no {
+  color: rgb(0, 0, 0);
+}
+.auction_no > a {
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+.product_info .product_summary .auction_no br, .product_info .product_summary .order_no br {
+  display: none;
+}
+.auction_no span, .order_no span {
+  text-decoration-line: underline;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+.auction_list li .payment_due {
+  color: red;
+  float: right;
+}
+.product_info .payment_due {
+  padding-right: 22px;
+}
+.auction_list .bidding_details {
+  display: inline-block;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  width: 92%;
+}
+.auction_list_row.odd .bidding_details span:last-child {
+  border-right-width: medium;
+  border-right-style: initial;
+  border-right-color: initial;
+}
+#auctions_lost {
+  display: none;
+}
+#auctions_lost .heading .win_user_bid, #auctions_lost .heading .min_bid {
+  width: 22%;
+}
+#auctions_lost .win_user_bid, #auctions_lost .min_bid {
+  width: 24%;
+}
+.auction_list .users_losing::before {
+  content: "";
+  color: rgb(204, 51, 85);
+}
+.product_summary .next_auction {
+  border-right-width: inherit;
+  border-right-style: inherit;
+  border-right-color: inherit;
+}
