@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_030008) do
+ActiveRecord::Schema.define(version: 2018_08_30_012640) do
 
   create_table "assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 2018_08_27_030008) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_items_on_order_id"
     t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.integer "status"
+    t.integer "timer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -130,6 +140,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_030008) do
   add_foreign_key "auctions", "timers"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "products"
+  add_foreign_key "notifications", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "timers", "products"
