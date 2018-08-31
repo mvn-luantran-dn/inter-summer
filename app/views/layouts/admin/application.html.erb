@@ -19,7 +19,7 @@
               </div>
             </div>
             <% flash.each do |message_type, message| %>
-              <div class="alert alert-success"><%= message %></div>
+              <div class="alert alert-success col-sm-3"><%= message %></div>
             <% end %>
             <%= yield %>
         </div>

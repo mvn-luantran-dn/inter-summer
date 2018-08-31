@@ -18,6 +18,8 @@ $(document).on('turbolinks:load', function () {
       received: function(data) {
         current_id = auction.loadIdCurrentUser();
         if (current_id === data.obj) {
+          number = parseInt($('#itemCount').html()) + 1;
+          $('#itemCount').html(number);
           swal({
             html: 'Winner Winner Chicken Dinner',
             type: 'info',

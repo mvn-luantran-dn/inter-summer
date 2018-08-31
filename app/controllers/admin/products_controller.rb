@@ -1,12 +1,25 @@
+require 'csv'
+
 class Admin::ProductsController < Admin::BaseController
   before_action :find_product, only: %i[show edit update destroy]
   before_action :load_categories, only: %i[new create edit update]
 
   def index
-    if params[:content].blank?
-      @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
-    else
-      @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+    respond_to do |format|
+      format.html do
+        if params[:content].blank?
+          @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+        else
+          @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+        end
+      end
+
+      format.csv do
+        filename = "Product_#{Time.now.to_i}.csv"
+        headers['Content-Disposition'] = "attachment; filename=#{filename}"
+        headers['Content-Type'] ||= 'text/csv'
+        @products = Product.all
+      end
     end
   end
 

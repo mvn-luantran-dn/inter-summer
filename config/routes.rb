@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :orders
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
+    resources :auctions
   end
   resources :products, :categories
   resources :account_activations, only: [:edit]
@@ -22,7 +23,13 @@ Rails.application.routes.draw do
   get '/404', to: 'application#page_not_found', as: '/not_found'
   namespace :admin do
     root 'base#index'
-    resources :users, :categories, :auctions, :orders
+    resources :users, :auctions, :orders
+    resources :categories do
+      collection do
+        get 'import', to: 'categories#show_import'
+        post 'import', to: 'categories#import'
+      end
+    end
     resources :products do
       resources :timers
     end
@@ -31,4 +38,5 @@ Rails.application.routes.draw do
   end
   mount ActionCable.server => '/cable'
   get '/current_user' => 'users#id_current_user'
+  get '/change/:id' => 'notifications#change'
 end
