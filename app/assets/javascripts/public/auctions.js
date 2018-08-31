@@ -8,6 +8,6 @@ function openTab(evt, Tab) {
   for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(Tab).style.display = "block";
+  document.getElementById(Tab).style.display = "table";
   evt.currentTarget.className += " active";
 }

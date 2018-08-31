@@ -1,54 +1,6 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#my_auctions .left_col {
-  float: none;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 100%;
-}
-#my_auctions.myauctions .title_mycart > .left_col {
-  border-top-color: initial;
-  border-top-style: initial;
-  border-top-width: initial;
-  border-right-color: initial;
-  border-right-style: initial;
-  border-right-width: initial;
-  border-bottom-color: initial;
-  border-bottom-style: initial;
-  border-bottom-width: initial;
-  border-left-color: initial;
-  border-left-style: initial;
-  border-left-width: initial;
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-  float: left;
-  width: 280px;
-}
-h1, h2, h3 {
-  font-weight: 700;
-  font-family: "open sans", sans-serif;
-}
-h1 {
-  padding-bottom: 20px;
-  font-size: 35px;
-}
-.myauctions .title_mycart h1 {
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-bottom: 5px;
-  padding-left: 0px;
-}
-.single_page .right_col {
-  width: 220px;
-  float: right;
-}
-#my_auctions.myauctions .title_mycart > .right_col {
-  width: 470px;
-}
 .sky-blue {
   background-image: initial;
   background-position-x: initial;
@@ -197,6 +149,8 @@ ol, ul {
   border-top-color: rgb(26, 183, 234);
 }
 .auction_list {
+  display: table;
+  padding-left: 0;
   width: 100%;
   margin-top: 0px;
   margin-right: auto;
@@ -226,12 +180,6 @@ ol, ul {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.auction_list::after {
-  width: 100%;
-  display: block;
-  content: "";
-  clear: both;
-}
 .myauctions .auction_list {
   border-top-left-radius: initial;
   border-top-right-radius: initial;
@@ -255,12 +203,6 @@ ol, ul {
 .auction_list li:hover {
   cursor: pointer;
 }
-.auction_list li::after {
-  width: 100%;
-  display: block;
-  content: "";
-  clear: both;
-}
 .auction_list .heading {
   padding-top: 10px;
   padding-right: 0px;
@@ -274,7 +216,6 @@ ol, ul {
   background-color: rgb(238, 238, 238);
 }
 .auction_list li span {
-  display: inline-block;
   text-align: center;
 }
 .auction_list li.heading span, .auction_list li .bidding_details span {
@@ -340,13 +281,11 @@ ol, ul {
   color: rgb(153, 153, 153);
 }
 .product_info {
-  display: inline-block;
   padding-left: 8px;
   padding-right: 10px;
   width: 50%;
 }
 .auction_list .product_info {
-  display: inline-block;
   float: none;
   padding-top: 5px;
   padding-right: 0px;
@@ -362,7 +301,6 @@ ol, ul {
 }
 .myauctions .auction_list_row.odd span.product_summary > span:first-child {
   color: rgb(0, 0, 0);
-  display: inline-block;
   float: left;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -407,7 +345,6 @@ ol, ul {
   padding-right: 22px;
 }
 .auction_list .bidding_details {
-  display: inline-block;
   padding-top: 5px;
   padding-right: 0px;
   padding-bottom: 5px;
@@ -436,4 +373,7 @@ ol, ul {
   border-right-width: inherit;
   border-right-style: inherit;
   border-right-color: inherit;
+}
+#auction_tabs {
+  padding-left: 0;
 }

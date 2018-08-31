@@ -1,89 +1,95 @@
 <div id="content">
-  <div class="wrapper">
-    <div class="left_col">
+  <h1>My Auction</h1>
+  <div class="container">
+    <div class="">
       <ul id="auction_tabs" class="tabs_content">
         <li><a  class="tablinks" onclick="openTab(event, 'active_bids')"> Current Active Bids </a></li>
         <li><a  class="tablinks" onclick="openTab(event, 'auctions_won')"> Auctions Won </a></li>
         <li><a  class="tablinks" onclick="openTab(event, 'auctions_lost')"> Auctions Lost </a></li>
       </ul>
-      <ul id="active_bids" class="auction_list">
-        <li class="auction_list_row heading">
-          <span class="bid_result">Status</span>
-          <span class="cur_bid">Your current bid</span>
-          <span class="win_user_bid">Current minimum bid</span>
-          <span class="num_bid">Bids</span>
-          <span class="ended">Completed</span>
-        </li>
+      <table id="active_bids" class="auction_list table tbl-cart">
+        <thead>
+          <tr class="heading">
+            <td class="center">Status</td>
+            <td class="center product_summary">Your current bid</td>
+            <td class="center min_bid thb_cur">Current minimum bid</td>
+            <td class="center num_bid">Bids</td>
+            <td class="center ended">Time Bid</td>
+          </td>
+        </thead>
+        <tbody>
           <% if @active.any? %>
             <% @active.each do |active| %>
-              <li class="auction_list_row odd">
-                <span isuserwinner="True" class="bid_result users_winning"><label><%= active.status %></label></span>
-                <div class="product_info">
-                  <span class="product_summary"><%= active.timer.product.name %>[<a id="ContentPlaceHolder1_repActiveBids_lnkSEO_0" auctionsubject="EVE Watch" auctionid="186688374" href="/auction/186688374/EVEWatch"><%= active.id %></a>]</span>
-                </div>
-                <div class="bidding_details">
-                  <span class="cur_bid thb_cur"><%= active.auction_details.find_by(user_id: current_user.id).price_bid %></span>
-                  <span class="min_bid thb_cur"><%= active.auction_details.order('price_bid DESC').first.price_bid %></span>
-                  <span class="num_bid">2</span>
-                  <span class="ended"><%= active.auction_details.find_by(user_id: current_user.id).created_at %></span>
-                </div>
-              </li>
-            <% end %>
+              <tr class="odd">
+                <td class="users_winning center"><label><%= active.status %></label></td>
+                <td class="product_summary center"><%= active.timer.product.name %>
+                                              [<a id="" href=""><%= active.id %></a>]<br>
+                                              <%= active.auction_details.find_by(user_id: current_user.id).price_bid %>
+                </td>
+                <td class="min_bid thb_cur center"><%= active.auction_details.order('price_bid DESC').first.price_bid %></td>
+                <td class="num_bid center">2</td>
+                <td class="ended center"><%= active.auction_details.find_by(user_id: current_user.id).created_at %></td>
+              </tr>
+            <% end %> 
           <% else %>  
            <li id="ContentPlaceHolder1_No_Active_Bids" style="text-align: center; padding: 10px 0px;"><span>You currently do not have any active bid</span></li>
           <% end %>
-      </ul>
-      <ul id="auctions_won" class="auction_list">
-        <li class="auction_list_row heading">
-          <span class="bid_result">Status</span>
-          <span class="win_bid">Your winning bid</span>
-          <span class="max_bid">Your maximum bid</span>
-          <span class="num_bid">Bids</span>
-          <span class="ended">Completed</span>
-        </li>
-        <% @finished.each do |win| %>
-          <% if win.auction_details.order('price_bid DESC').first.user_id == current_user.id %>
-            <li class="auction_list_row odd">
-              <span class="bid_result users_winning" orderid="" orderguid="" reserveditem="X"><label><%= win.status %></label></span>
-              <div class="product_info">
-                <span class="product_summary"><span><%= win.timer.product.name %></span> <span class="auction_no"><a href="/auction/181096836?GoNext=No">Auction:<br> [<span>181096836</span>]</a></span></span>
-                <span class="payment_due"></span>
-              </div>
-              <div class="bidding_details">
-                <span class="cur_bid thb_cur"><%= win.auction_details.order('price_bid DESC').first.price_bid %></span>
-                <span class="max_bid thb_cur"><%= win.auction_details.order('price_bid DESC').first.price_bid %></span>
-                <span class="num_bid">28</span>
-                <span class="ended"><%= win.auction_details.order('price_bid DESC').first.created_at %></span>
-              </div>
-            </li>
-          <% end %>  
-        <% end %>  
-      </ul>
-      <ul id="auctions_lost" class="auction_list">
-        <li class="auction_list_row heading">
-          <span class="bid_result">Status</span>
-          <span class="max_bid">Your maximum bid</span>
-          <span class="win_user_bid">Highest Bidder</span>
-          <span class="num_bid">Bids</span>
-          <span class="ended">Completed</span>
-        </li>
-        <% @finished.each do |lose| %>
-          <% if lose.auction_details.order('price_bid DESC').first.user_id != current_user.id %>
-            <li class="auction_list_row odd">
-              <span id="spStatus" class="bid_result users_losing"><label><%= lose.status %></label></span>
-              <div class="product_info">
-                <span class="product_summary"><span><%= lose.timer.product.name %></span> <span class="auction_no"><a href="/auction/181077766?GoNext=No">Auction:<br> [<span>181077766</span>]</a></span><span id="ContentPlaceHolder1_repLostBids_litNextAuction_0" class="next_auction" reference="45-755"><a href="/product/45-755">Check next auction..</a></span></span>
-              </div>
-              <div class="bidding_details">
-                <span class="max_bid thb_cur"><%= lose.auction_details.find_by(user_id: current_user.id).price_bid %></span>
-                <span class="min_bid thb_cur"><%= lose.auction_details.order('price_bid DESC').first.price_bid %></span>
-                <span class="num_bid">2</span>
-                <span class="ended"><%= lose.auction_details.find_by(user_id: current_user.id).created_at %></span>
-              </div>
-            </li>
+         </tbody> 
+      </table>
+      <table id="auctions_won" class="auction_list table tbl-cart">
+        <thead>
+          <tr class="auction_list_row heading">
+            <td class="center">Status</td>
+            <td class="center win_bid">Your winning bid</td>
+            <td class="center max_bid">Your maximum bid</td>
+            <td class="center num_bid">Bids</td>
+            <td class="center ended">Completed</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @finished.each do |win| %>
+            <% if win.auction_details.order('price_bid DESC').first.user_id == current_user.id %>
+              <tr class="odd">
+                <td class="center users_winning"><label><%= win.status %></label></td>
+                <td class="center product_summary"><%= win.timer.product.name %>
+                                            [<a href=""><%= win.id %></a>]<br>
+                                            <%= win.auction_details.order('price_bid DESC').first.price_bid %>
+                </td>
+                <td class="center max_bid thb_cur"><%= win.auction_details.order('price_bid DESC').first.price_bid %></td>
+                <td class="center num_bid">28</td>
+                <td class="center ended"><%= win.auction_details.order('price_bid DESC').first.created_at %></td>
+              </tr>
+            <% end %>  
+          <% end %>
+        </tbody>  
+      </table>
+      <table id="auctions_lost" class="auction_list table tbl-cart">
+        <thead> 
+          <tr class="auction_list_row heading">
+            <td class="center">Status</td>
+            <td class="center max_bid">Your maximum bid</td>
+            <td class="center win_user_bid">Highest Bidder</td>
+            <td class="center num_bid">Bids</td>
+            <td class="center ended">Completed</td>
+          </li>
+        </thead>
+        <tbody>
+          <% @finished.each do |lose| %>
+            <% if lose.auction_details.order('price_bid DESC').first.user_id != current_user.id %>
+              <tr class="auction_list_row odd">
+                <td class="center users_losing"><label><%= lose.status %></label></td>
+                <td class="center product_summary"><%= lose.timer.product.name %>
+                                            [<a href=""><%= lose.id %></a>]<br>
+                                            <%= lose.auction_details.find_by(user_id: current_user.id).price_bid %>
+                </td>
+                <td class="center min_bid thb_cur"><%= lose.auction_details.order('price_bid DESC').first.price_bid %></td>
+                <td class="center num_bid">2</td>
+                <td class="center ended"><%= lose.auction_details.find_by(user_id: current_user.id).created_at %></td>
+              </tr>
             <% end %>
-          <% end %>  
-      </ul>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

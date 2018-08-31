@@ -8,14 +8,45 @@
 			  <div class="top-nav">
 				  <ul class="res">
             <% if logged_in? %>
-              <li><%= link_to "My auction", user_auctions_path(current_user) %></li>           
-              <li><%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"></i>' + " Cart" + '<span id="itemCount">' + size_cart.to_s + '</span>'), user_orders_path(current_user) %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="change-status">
+                  <i class="fa fa-bell"></i>
+                  <% if @quantity_notif > 0 %>
+                    <span class="notification" id="quantity-notify"><%= @quantity_notif %></span>
+                  <% else %>
+                     <span class="notification" id="quantity-notify" style="display: none;">0</span>
+                  <% end %>
+                </a>
+                <ul class="dropdown-menu" id="list-notif">
+                  <% @notifications.each do |notif| %>
+                    <li>
+                      <a href="/auctions/<%= notif.timer_id %>">
+                        <div>
+                          <div><%= notif.content %></div>
+                          <div><%= notif.created_at %></div>
+                        </div>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>   
+              <li><%= link_to "My auction", user_auctions_path(current_user) %></li>
+              <li>
+                <%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"> Cart</i>'), user_orders_path(current_user), class: "cart" %>
+              </li>
+              <li>
+                <% if size_cart > 0 %>
+                 <span id="itemCount"><%= size_cart.to_s %></span>
+                <% else %>
+                  <span id="itemCount" style="display: none">0</span>
+                <% end %>
+              </li>  
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Account <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                  <li><%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif'%></li>
                   <% if admin_user? %>
                     <li><%= link_to "Admin", admin_root_path %></li>
                   <% end %>
