@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: %i[index destroy edit update total_quantity]
+  before_action :find_order, only: %i[index edit update]
   def index
     @items = @order.items if @order
   end
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   def update
     if @order.update_attributes(order_params)
       @order.update_attributes(status: 'checkouted')
-      redirect_to root_path, notice: 'Success'
+      redirect_to root_path, success: 'Success'
     else
       render :edit
     end

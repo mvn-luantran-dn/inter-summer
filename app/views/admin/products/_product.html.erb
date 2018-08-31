@@ -3,7 +3,7 @@
   <td class="center"><%= link_to product.name, admin_product_path(product), class: 'detail-item' %></td>
   <td class="center"><%= parent_name(product.category_id) %></td>
   <td class="center"><%= image_tag image_first_of_object(product), class: 'img-resize' %></td>
-  <td class="center col-sm-3"><div class="more"><%= raw product.detail %></div></td>
+  <td class="center col-sm-3"><div class="more"><%= product.detail %></div></td>
   <td class="center"><%= product.price %></td>
   <td class="center"><%= product.quantity %></td>
   <td class="center"><%= product.price_at %></td>

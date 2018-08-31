@@ -23,19 +23,19 @@
               </h2>
               <div class="payment_info_inner">
                 <%= form_for(@order, url: user_order_path) do |f| %>
-                  <%= form_group_for f, :email, label: false  do %>
+                  <%= form_group_for f, :name, label: false  do %>
                     <div class="form-group">
                      <%= f.label :name %>
                      <%= f.text_field :name, placeholder: @order.user.name, class: 'address_input form-control' %>
                     </div>
                   <% end %>
-                  <%= form_group_for f, :email, label: false  do %>
+                  <%= form_group_for f, :address, label: false  do %>
                     <div class="form-group">
                       <%= f.label :address %>
                       <%= f.text_field :address, placeholder: 'address', class: 'address_input form-control' %>
                     </div>
                   <% end %>
-                  <%= form_group_for f, :email, label: false  do %>
+                  <%= form_group_for f, :phone, label: false  do %>
                     <div class="form-group">
                       <%= f.label :phone %>
                       <%= f.text_field :phone, placeholder: 'phone', class: 'address_input form-control' %>
