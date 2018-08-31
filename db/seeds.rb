@@ -3,6 +3,7 @@ User.create!(name:  'admin',
              password: 'foobar',
              password_confirmation: 'foobar',
              role: 'admin',
+             status: 'on',
              activated_at: Time.zone.now)
 
 10.times do |n|
@@ -10,10 +11,12 @@ User.create!(name:  'admin',
   email = "example-#{n + 1}@railstutorial.org"
   password = 'password'
   role = 'user'
+  status = 'on'
   User.create!(name:  name,
                email: email,
                password: password,
                role: role,
+               status: status,
                password_confirmation: password,
                activated_at: Time.zone.now)
 end

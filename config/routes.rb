@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   get '/404', to: 'application#page_not_found', as: '/not_found'
   namespace :admin do
     root 'base#index'
-    resources :users, :auctions, :orders
+    resources :auctions, :orders
+    resources :users do
+      member do
+        get 'block'
+      end
+    end
     resources :categories do
       collection do
         get 'import', to: 'categories#show_import'
