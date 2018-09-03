@@ -2,10 +2,28 @@ class Admin::OrdersController < Admin::BaseController
   before_action :find_order, only: %i[edit update show destroy]
 
   def index
-    if params[:content].blank?
+    if params[:content].blank? and params[:status].blank? and params[:"date-start"].blank? and params[:"date-end"].blank?
       @orders = Order.paginate(page: params[:page], per_page: 10).order('id DESC')
     else
-      @orders = Order.search(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+      content = params[:content]
+      status = params[:status]
+      if params[:"date-end"].blank? 
+        if params[:"date-start"].blank?
+          @orders = Order.search_with_out_time(content, status).paginate(page: params[:page], per_page: 10).order('id DESC')
+        else
+          date_start = params[:"date-start"].to_time
+          @orders = Order.search_start_time(content, status, date_start).paginate(page: params[:page], per_page: 10).order('id DESC')
+        end
+      else
+        date_end = params[:"date-end"].to_time
+        if params[:"date-start"].blank?
+          @orders = Order.search_end_time(content, status, date_end).paginate(page: params[:page], per_page: 10).order('id DESC')
+        else
+          date_start = params[:"date-start"].to_time
+          @orders = Order.search(content, status, date_start, date_end).paginate(page: params[:page], per_page: 10).order('id DESC')
+        end
+      end
+      byebug
     end
   end
 

@@ -7,15 +7,15 @@
       </div>
       <div class="panel-body">
         <div class='header-panel-body search-auction'>
-          <%= form_tag admin_auctions_path, method: :get, class: 'col-lg-8', id: 'search'  do %>
+          <%= form_tag admin_auctions_path, method: :get, class: 'col-lg-7', id: 'search'  do %>
             <%= search_field_tag 'content', '', { class: 'form-control search-right', placeholder: 'Search' } %>
             <div class="form-group">
-              <%= date_select(:start_date, "", {default: { day: 1, month: 1, year: 1900 }}, { class: 'form-control-static' }) %>
-              <%= date_select(:end_date, "", {default: { day: 1, month: 1, year: 1900 }}, { class: 'form-control-static' }) %>
+              <input type="text" name="time-start" id="time-start" class="form-control">              
+              <input type="text" name="time-end" id="time-end" class="form-control">
             </div>
             <div class="form-group">
-              <%= time_select(:start_hour, '', { default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' }) %>
-              <%= time_select(:end_hour, '', { default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' }) %>
+              <input type="date" name="date-start" id="date-start" class="form-control">
+              <input type="date" name="date-end" class="form-control">
             </div>
             <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
           <% end %>

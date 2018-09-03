@@ -42,8 +42,14 @@ class Admin::ProductsController < Admin::BaseController
   def edit; end
 
   def update
-    return redirect_to admin_products_path, notice: 'Update success' if @product.update_attributes(product_params)
-    render :edit
+    if @product.update_attributes(product_params)
+      @product.timers.each do |timer|
+        AuctionData.update(timer)
+      end
+      return redirect_to admin_products_path, notice: 'Update success'
+    else  
+      render :edit
+    end
   end
 
   def destroy
