@@ -38,6 +38,16 @@ class Admin::TimersController < Admin::BaseController
     end
     redirect_to admin_product_timers_path
   end
+  
+  def delete_more_timer
+    if request.post?
+      delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
+      delete_ids.each do |id|
+        Timer.find(id).destroy
+      end
+    end
+    redirect_to admin_product_timers_path, notice: "Delete success"
+  end
 
   private
 

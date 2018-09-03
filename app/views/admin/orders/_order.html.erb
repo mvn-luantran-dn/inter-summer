@@ -1,5 +1,5 @@
 <tr class="odd gradeX">
-  <td class="center"><%= order.id %></td>
+  <td class="center"><%= check_box_tag 'ids[]', order.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center"><%= link_to order.name , '#', class: 'detail-item' %></td>
   <td class="center"><%= order.address %></td>
   <td class="center"><%= order.phone %></td>

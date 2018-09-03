@@ -51,7 +51,8 @@ gem 'ckeditor'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 gem 'roo'
 gem 'activerecord-import'
-
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

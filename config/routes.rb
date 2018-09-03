@@ -22,7 +22,16 @@ Rails.application.routes.draw do
   get '/404', to: 'application#page_not_found', as: '/not_found'
   namespace :admin do
     root 'base#index'
-    resources :auctions, :orders
+    resources :auctions do
+      collection do
+        post 'delete', to: 'auctions#delete_more_auction'
+      end
+    end
+    resources :orders do
+      collection do
+        post 'delete', to: 'orders#delete_more_order'
+      end
+    end
     resources :users do
       member do
         get 'block'
@@ -32,10 +41,18 @@ Rails.application.routes.draw do
       collection do
         get 'import', to: 'categories#show_import'
         post 'import', to: 'categories#import'
+        post 'delete', to: 'categories#delete_more_cat'
       end
     end
     resources :products do
-      resources :timers
+      collection do
+        post 'delete', to: 'products#delete_more_product'
+      end
+      resources :timers do
+        collection do
+          post 'delete', to: 'timers#delete_more_timer'
+        end
+      end
     end
     get '/sale/:id', to: 'status_products#sale', as: '/sale'
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'

@@ -44,7 +44,7 @@ class Admin::ProductsController < Admin::BaseController
   def update
     if @product.update_attributes(product_params)
       @product.timers.each do |timer|
-        AuctionData.update(timer)
+        AuctionData.update(timer) unless $redis.get(timer.id).nil? 
       end
       return redirect_to admin_products_path, notice: 'Update success'
     else  
@@ -58,6 +58,16 @@ class Admin::ProductsController < Admin::BaseController
       flash[:success] = 'Delete product success'
     end
     redirect_to admin_products_url
+  end
+  
+  def delete_more_product
+    if request.post?
+      delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
+      delete_ids.each do |id|
+        Product.find(id).destroy
+      end
+    end
+    redirect_to admin_products_url, notice: "Delete success"
   end
 
   private

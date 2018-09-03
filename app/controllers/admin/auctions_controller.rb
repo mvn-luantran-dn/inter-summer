@@ -2,9 +2,7 @@ class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
   def index
-    if params[:content].blank?
-      @auctions = Auction.includes(:auction_details).paginate(page: params[:page], per_page: 10).order('id DESC')
-    else
+    if params[:content].present? && params[:"time-start"].present? && params[:"time-end"].present? && params[:"date-start"].present? && params[:"date-end"].present? 
       content = params[:content]
       time_start = params[:"time-start"]
       time_end = params[:"time-end"]
@@ -13,7 +11,9 @@ class Admin::AuctionsController < Admin::BaseController
       start_time = convert_time(time_start, date_start)
       end_time = convert_time(time_end, date_end)
       @auctions = Auction.search(content, start_time, end_time).paginate(page: params[:page], per_page: 10).order('id DESC')
-      byebug
+      byebug   
+    else
+      @auctions = Auction.includes(:auction_details).paginate(page: params[:page], per_page: 10).order('id DESC')
     end
   end
   
@@ -22,9 +22,31 @@ class Admin::AuctionsController < Admin::BaseController
   end
 
   def destroy
-    @auction.destroy
-    flash[:success] = 'Auction deleted'
-    redirect_to admin_auctions_path
+    if check_delete_auction @auction
+      @auction.destroy
+      flash[:success] = 'Auction deleted'
+      redirect_to admin_auctions_path
+    else
+      redirect_to admin_auctions_path, notice: 'Please wait auction finish'
+    end
+  end
+  
+  def delete_more_auction
+    if request.post?
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if check_delete_auction Auction.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_auctions_path, notice: "Please wait auction finish"
+          end
+        end
+        if delete_ids.length > 0 
+          Auction..where("id IN ?", delete_ids).delete_all
+          redirect_to admin_auctions_path, notice: "Delete success"
+        end
+      end
   end
 
   private
@@ -40,5 +62,10 @@ class Admin::AuctionsController < Admin::BaseController
     def convert_time(time, date)
       hour, min = time.split(":").map(&:to_i)
       date.change(hour: hour, min: min)
+    end
+
+    def check_delete_auction auction
+      return true if order.status == 'finished'
+      false
     end
 end

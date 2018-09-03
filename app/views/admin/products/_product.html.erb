@@ -1,5 +1,5 @@
 <tr class="odd gradeX">
-  <td class="center"><%= product.id %></td>
+  <td class="center"><%= check_box_tag 'ids[]', product.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center"><%= link_to product.name, admin_product_path(product), class: 'detail-item' %></td>
   <td class="center"><%= parent_name(product.category_id) %></td>
   <td class="center"><%= image_tag image_first_of_object(product), class: 'img-resize' %></td>

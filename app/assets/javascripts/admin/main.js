@@ -31,27 +31,15 @@ function removeField(link) {
 
 $(document).ready(function () {
   check();
-
-  var timepicker = new TimePicker('time-start', {
-    lang: 'en',
-    theme: 'light'
-  });
-  var time = new TimePicker('time-end', {
-    lang: 'en',
-    theme: 'light'
-  });
-  timepicker.on('change', function (evt) {
-    console.log(evt.element);    
-    var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-    evt.element.value = value;
-  });
-  time.on('change', function (evt) {
-    console.log(evt.element);
-    var value = (evt.hour || '00') + ':' + (evt.minute || '00');
-    evt.element.value = value;
-  });
 });
 $(document).on('turbolinks:load', function () {
+  $("#checkAll").click(function () {
+    $('input:checkbox').not(this).prop('checked', this.checked);
+  });
+  if ($("tbody").find("input[type=checkbox]").length < 1)
+    $('.delete-more').hide();
+  else
+    $('.delete-more').show();
   CKEDITOR.config.height = 500;
   CKEDITOR.config.width = 800;
   CKEDITOR.config.entities_processNumerical = 'force';

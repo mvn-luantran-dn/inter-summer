@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_categories, only: %i[new create]
-  before_action :find_category, except: %i[index new create show_import import]
+  before_action :find_category, except: %i[index new create show_import import delete_more_cat]
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
@@ -58,6 +58,16 @@ class Admin::CategoriesController < Admin::BaseController
       end
       redirect_to admin_categories_path
     end
+  end
+  
+  def delete_more_cat
+    if request.post?
+      delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
+      delete_ids.each do |id|
+        Category.find(id).destroy
+      end
+    end
+    redirect_to admin_categories_path, notice: "Delete success"
   end
 
   private

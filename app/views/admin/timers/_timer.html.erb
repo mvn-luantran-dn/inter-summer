@@ -1,5 +1,5 @@
 <tr class="odd gradeX">
-  <td class="center"><%= timer.id %></td>
+  <td class="center"><%= check_box_tag 'ids[]', timer.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center"><%= timer.start_at.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.end_at.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.period.strftime('%H:%M:%S') %></td>

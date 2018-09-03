@@ -43,12 +43,35 @@ class Admin::OrdersController < Admin::BaseController
   end
   
   def destroy
-    if @order.destroy
-      flash[:success] = "Delete success"
+    if check_delete_order @order
+      if @order.destroy
+        flash[:success] = "Delete success"
+      else
+        flash[:notice] = "Delete error"
+      end
     else
-      flash[:notice] = "Delete error"
+      flash[:notice] = "Please wait for order checkout"
     end
     redirect_to admin_orders_path
+  end
+  
+  def delete_more_order
+    if request.post?
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if check_delete_order Order.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_orders_path, notice: "Please wait for order checkout"
+          end
+        end
+        if delete_ids.length > 0 
+          Order.delete_all(:id => delete_ids)
+          redirect_to admin_orders_path, notice: "Delete success"
+        end
+      end
+    end
   end
 
   private
@@ -59,5 +82,10 @@ class Admin::OrdersController < Admin::BaseController
 
     def order_params
       params.require(:order).permit(%i[status type_payment])
+    end
+
+    def check_delete_order order
+      return true if order.status == 'received'
+      false
     end
 end
