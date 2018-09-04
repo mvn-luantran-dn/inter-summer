@@ -14,7 +14,7 @@
                   <% if @quantity_notif > 0 %>
                     <span class="notification" id="quantity-notify"><%= @quantity_notif %></span>
                   <% else %>
-                     <span class="notification" id="quantity-notify" style="display: none;">0</span>
+                    <span class="notification" id="quantity-notify" style="display: none;">0</span>
                   <% end %>
                 </a>
                 <ul class="dropdown-menu" id="list-notif">
@@ -35,7 +35,7 @@
                 <%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"> Cart</i>'), user_orders_path(current_user), class: "cart" %>
               </li>
               <li>
-                <% if size_cart > 0 %>
+                <% if size_cart.present? %>
                  <span id="itemCount"><%= size_cart.to_s %></span>
                 <% else %>
                   <span id="itemCount" style="display: none">0</span>

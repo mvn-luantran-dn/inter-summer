@@ -24,6 +24,15 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def destroy
+    if @order.destroy
+      flash[:success] = 'Delete success'
+    else
+      flash[:notice] = 'Delete error'
+    end
+    redirect_to admin_orders_path
+  end
+
   private
 
     def find_order

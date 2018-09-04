@@ -47,8 +47,11 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product.destroy
-    redirect_to admin_products_url, notice: 'Product deleted'
+    if product_can_delete @product
+      @product.destroy
+      flash[:success] = 'Delete product success'
+    end
+    redirect_to admin_products_url
   end
 
   private
@@ -65,5 +68,20 @@ class Admin::ProductsController < Admin::BaseController
 
     def load_categories
       @categories = Category.all
+    end
+
+    def product_can_delete(product)
+      if !product.timers.where(status: 'on').empty?
+        flash[:notice] = 'Please turn off all timer'
+        return false
+      else
+        Item.where(product_id: product.id).each do |item|
+          if item.order.status != 'received'
+            flash[:notice] = 'Product in order. Please wait for chekout'
+            return false
+          end
+        end
+      end
+      true
     end
 end

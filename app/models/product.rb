@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_many :timers, dependent: :destroy
   has_many :assets, as: :module, dependent: :destroy
   accepts_nested_attributes_for :assets, allow_destroy: true
-  has_many :item
+  has_many :items, dependent: :destroy
   validates :name, presence: true, length: { maximum: 100 }
   validates :detail, presence: true
   validates :quantity, presence: true

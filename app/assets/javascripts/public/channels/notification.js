@@ -26,14 +26,25 @@ $(document).on('turbolinks:load', function () {
           list = data.obj;
           html = "";
           list.forEach(function (e) {
-            html += "<li>";
-            html += "<a href='/auctions/"+ e.timer_id +"'>";
-            html += "<div>";
-            html += "<div>"+ e.content +"</div>";
-            html += "<div>"+ e.created_at +"</div>";
-            html += "</div>";
-            html += "</a>";
-            html += "</li>";
+            if(e.status == 1){
+              html += "<li class='notif-item'>";
+              html += "<a href='/auctions/" + e.timer_id + "'>";
+              html += "<div class='content-notif'>";
+              html += "<div>" + e.content + "</div>";
+              html += "<div class='content-right'>" + e.created_at + "</div>";
+              html += "</div>";
+              html += "</a>";
+              html += "</li>";
+            } else {
+              html += "<li class='notif-item'>";
+              html += "<a href='/auctions/" + e.timer_id + "'>";
+              html += "<div>";
+              html += "<div>" + e.content + "</div>";
+              html += "<div class='content-right'>" + e.created_at + "</div>";
+              html += "</div>";
+              html += "</a>";
+              html += "</li>";
+            }
           });
           $('#list-notif').html(html);
         }

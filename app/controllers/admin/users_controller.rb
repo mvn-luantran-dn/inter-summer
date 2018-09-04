@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :logged_in_user, only: %i[index edit update destroy]
-  before_action :find_user, only: %i[show edit update destroy]
-  before_action :admin_user, only: :destroy
+  before_action :logged_in_user, only: %i[index edit update destroy block]
+  before_action :find_user, only: %i[show edit update destroy block]
+  before_action :admin_user, only: %i[destroy block]
 
   def index
     if params[:content].blank?
@@ -41,6 +41,27 @@ class Admin::UsersController < Admin::BaseController
     else
       @user.destroy
       flash[:success] = 'User deleted'
+    end
+    redirect_to admin_users_url
+  end
+
+  def block
+    if @user.name == 'admin'
+      flash[:danger] = 'Admin root'
+    else
+      if @user.status == 'on'
+        if @user.update_attribute(:status, 'off')
+          flash[:success] = 'User blocked'
+        else
+          flash[:notice] = 'Block user error'
+        end
+      else
+        if @user.update_attribute(:status, 'on')
+          flash[:success] = 'User opened'
+        else
+          flash[:notice] = 'Block user error'
+        end
+      end
     end
     redirect_to admin_users_url
   end

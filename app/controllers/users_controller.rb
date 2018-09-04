@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = 'user'
+    @user.status = 'on'
     if @user.save
       @user.send_activation_email
       flash[:info] = 'Please check your email to activate your account.'
