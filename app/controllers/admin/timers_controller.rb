@@ -30,23 +30,33 @@ class Admin::TimersController < Admin::BaseController
   end
 
   def destroy
-    if @timer.status == 'off'
+    if check_delete_timer @timer
       flash[:notice] = 'Delete timer success' if @timer.destroy
-      flash[:alert] = 'Delete error'
     else
       flash[:alert] = 'Timer off before delete'
     end
     redirect_to admin_product_timers_path
   end
-  
+
   def delete_more_timer
     if request.post?
-      delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
-      delete_ids.each do |id|
-        Timer.find(id).destroy
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if check_delete_timer Timer.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
+          end
+        end
+        unless delete_ids.empty?
+          delete_ids.each do |id|
+            Timer.find(id).destroy
+          end
+          redirect_to admin_product_timers_path, notice: 'Delete success'
+        end
       end
     end
-    redirect_to admin_product_timers_path, notice: "Delete success"
   end
 
   private
@@ -73,5 +83,10 @@ class Admin::TimersController < Admin::BaseController
       else
         AuctionData.add(timer) if timer_params['status'] == 'on'
       end
+    end
+
+    def check_delete_timer(timer)
+      return true if timer.status == 'off'
+      false
     end
 end

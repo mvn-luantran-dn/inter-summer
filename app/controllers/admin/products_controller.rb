@@ -44,10 +44,10 @@ class Admin::ProductsController < Admin::BaseController
   def update
     if @product.update_attributes(product_params)
       @product.timers.each do |timer|
-        AuctionData.update(timer) unless $redis.get(timer.id).nil? 
+        AuctionData.update(timer) unless $redis.get(timer.id).nil?
       end
-      return redirect_to admin_products_path, notice: 'Update success'
-    else  
+      redirect_to admin_products_path, notice: 'Update success'
+    else
       render :edit
     end
   end
@@ -59,15 +59,26 @@ class Admin::ProductsController < Admin::BaseController
     end
     redirect_to admin_products_url
   end
-  
+
   def delete_more_product
     if request.post?
-      delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
-      delete_ids.each do |id|
-        Product.find(id).destroy
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if product_can_delete Product.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_products_url
+          end
+        end
+        unless delete_ids.empty?
+          delete_ids.each do |id|
+            Product.find(id).destroy
+          end
+          redirect_to admin_products_url, notice: 'Delete success'
+        end
       end
     end
-    redirect_to admin_products_url, notice: "Delete success"
   end
 
   private
@@ -86,15 +97,15 @@ class Admin::ProductsController < Admin::BaseController
       @categories = Category.all
     end
 
-    def product_can_delete product
-      if product.timers.where(status: 'on').size > 0
+    def product_can_delete(product)
+      if !product.timers.where(status: 'on').empty?
         flash[:notice] = 'Please turn off all timer'
         return false
       else
         Item.where(product_id: product.id).each do |item|
           if item.order.status != 'received'
             flash[:notice] = 'Product in order. Please wait for chekout'
-            return false  
+            return false
           end
         end
       end

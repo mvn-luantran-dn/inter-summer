@@ -32,14 +32,25 @@ function removeField(link) {
 $(document).ready(function () {
   check();
 });
+
 $(document).on('turbolinks:load', function () {
   $("#checkAll").click(function () {
+    if (this.checked) {
+      $('.delete-more').show();
+    } else {
+      $('.delete-more').hide();
+    }
     $('input:checkbox').not(this).prop('checked', this.checked);
   });
-  if ($("tbody").find("input[type=checkbox]").length < 1)
-    $('.delete-more').hide();
-  else
-    $('.delete-more').show();
+  $(".table-row-checkbox").change(function () {
+    if (this.checked) {
+      $('.delete-more').show();
+    } else {
+      if ($("tbody").find("input[type=checkbox]:checked").length < 1) {
+        $('.delete-more').hide();
+      }
+    }
+  });
   CKEDITOR.config.height = 500;
   CKEDITOR.config.width = 800;
   CKEDITOR.config.entities_processNumerical = 'force';

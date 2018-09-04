@@ -2,7 +2,7 @@ class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
   def index
-    if params[:content].present? && params[:"time-start"].present? && params[:"time-end"].present? && params[:"date-start"].present? && params[:"date-end"].present? 
+    if params[:content].present? && params[:"time-start"].present? && params[:"time-end"].present? && params[:"date-start"].present? && params[:"date-end"].present?
       content = params[:content]
       time_start = params[:"time-start"]
       time_end = params[:"time-end"]
@@ -11,12 +11,12 @@ class Admin::AuctionsController < Admin::BaseController
       start_time = convert_time(time_start, date_start)
       end_time = convert_time(time_end, date_end)
       @auctions = Auction.search(content, start_time, end_time).paginate(page: params[:page], per_page: 10).order('id DESC')
-      byebug   
+      byebug
     else
       @auctions = Auction.includes(:auction_details).paginate(page: params[:page], per_page: 10).order('id DESC')
     end
   end
-  
+
   def show
     @auction_details = @auction.auction_details.paginate(page: params[:page], per_page: 20)
   end
@@ -30,7 +30,7 @@ class Admin::AuctionsController < Admin::BaseController
       redirect_to admin_auctions_path, notice: 'Please wait auction finish'
     end
   end
-  
+
   def delete_more_auction
     if request.post?
       if params[:ids]
@@ -39,14 +39,17 @@ class Admin::AuctionsController < Admin::BaseController
           if check_delete_auction Auction.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_auctions_path, notice: "Please wait auction finish"
+            redirect_to admin_auctions_path, notice: 'Please wait auction finish'
           end
         end
-        if delete_ids.length > 0 
-          Auction..where("id IN ?", delete_ids).delete_all
-          redirect_to admin_auctions_path, notice: "Delete success"
+        unless delete_ids.empty?
+          delete_ids.each do |id|
+            Auction.find(id).destroy
+          end
+          redirect_to admin_auctions_path, notice: 'Delete success'
         end
       end
+    end
   end
 
   private
@@ -58,14 +61,14 @@ class Admin::AuctionsController < Admin::BaseController
     def auction_params
       params.require(:auction).permit(%i[product_id start_at period bid_step])
     end
-    
+
     def convert_time(time, date)
-      hour, min = time.split(":").map(&:to_i)
+      hour, min = time.split(':').map(&:to_i)
       date.change(hour: hour, min: min)
     end
 
-    def check_delete_auction auction
-      return true if order.status == 'finished'
+    def check_delete_auction(auction)
+      return true if auction.status == 'finished'
       false
     end
 end
