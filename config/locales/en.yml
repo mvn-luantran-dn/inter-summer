@@ -22,6 +22,11 @@ en:
         period: 'Period'
         status: 'Status'
         bid_step: 'Bid step'
+      order:
+        name: 'Name'
+        address: 'Address'  
+        phone: 'Phone'
+        type_payment: 'Type payment'
     errors:
       models:
         user:
@@ -74,3 +79,17 @@ en:
               blank: 'Please choose status'
             bid_step:
               blank: 'Please input bid step'
+        order:
+          attributes:
+            name:
+              blank: 'Please input Name'
+              too_long: 'Name 50 characters is the maximum allowed'
+            address:
+              blank: 'Please input Address'  
+            phone:
+              blank: 'Please input Phone'
+              too_long: 'Phone 15 characters is the maximum allowed'
+              invalid: 'Phone input fail format'
+              not_a_number: 'Please input number'
+            type_payment:
+              blank: 'Please choose type Payment'
