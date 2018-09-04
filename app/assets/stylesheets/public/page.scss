@@ -648,15 +648,24 @@ span.blog-clr {
 }
 /*--services end here--*/
 
-//itemcount
+//itemcount-cart
+#cart {
+  padding-right: 5px;
+}
 #itemCount {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: red;
+  position: relative;
+  top: 33px;
+  padding: 4px 8px;
+  margin-left: -12px;
+  background-color: #d04646;
+  border-radius: 100%;
   color: white;
-  text-align: center;
+  font-family: 'Lora', serif;
+}
+.notification {
+  padding: 4px 8px;
+  background-color: #d04646;
+  border-radius: 100%;
 }
 .notification {
   padding: 4px 8px;

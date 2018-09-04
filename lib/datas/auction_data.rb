@@ -42,11 +42,13 @@ class AuctionData
           data << key
         else
           auction = Auction.auction_timer(timer['id']).last
-          if auction.status == 'run'
-            decreasing_time(key)
-            finish_auction(key)
-            key = JSON.parse($redis.get(key))
-            data << key
+          unless auction.nil?
+            if auction.status == 'run'
+              decreasing_time(key)
+              finish_auction(key)
+              key = JSON.parse($redis.get(key))
+              data << key
+            end
           end
         end
       else

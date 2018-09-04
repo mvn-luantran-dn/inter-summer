@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function () {
     addEventChangeStatus(check.dataset.userId);
     App.notification = App.cable.subscriptions.create({
       channel: "NotificationChannel",
-      user_id: check.dataset.userId,
+      user_id_notif: check.dataset.userId,
     },
      {
       connected: function () {
