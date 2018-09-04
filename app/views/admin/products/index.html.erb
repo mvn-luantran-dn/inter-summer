@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= form_tag(delete_admin_products_path,:id => 'form_id',) do %>
+            <%= form_tag(delete_admin_products_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
               <%= render @products %>
             <% end %>
           </tbody>

@@ -63,7 +63,7 @@ class Admin::OrdersController < Admin::BaseController
           if check_delete_order Order.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_orders_path, notice: 'Please wait for order checkout'
+            return redirect_to admin_orders_path, notice: 'Please wait for order checkout'
           end
         end
         unless delete_ids.empty?
