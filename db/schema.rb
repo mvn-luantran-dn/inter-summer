@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_022333) do
   create_table "auction_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "auction_id"
     t.bigint "user_id"
-    t.string "price_bid"
+    t.integer "price_bid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auction_id"], name: "index_auction_details_on_auction_id"

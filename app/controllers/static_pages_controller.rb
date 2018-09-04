@@ -4,8 +4,16 @@ class StaticPagesController < ApplicationController
 
   def show
     timer = Timer.find_by(id: params[:id])
-    @product = timer.product
-    auction = Auction.auction_timer(timer.id).last
-    @auction_details = auction.auction_details.order('price_bid DESC')
+    if timer.nil?
+      redirect_to '/404'
+    else
+      @product = timer.product
+      auction = Auction.auction_timer(timer.id).last
+      if auction.nil?
+        redirect_to '/404'
+      else
+        @auction_details = auction.auction_details.order('price_bid DESC')
+      end
+    end
   end
 end
