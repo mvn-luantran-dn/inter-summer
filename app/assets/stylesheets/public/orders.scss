@@ -493,46 +493,7 @@ p {
   font-family: "Open Sans";
   font-weight: 400;
 }
-.address_input, .mobile_input, .option_placeholder {
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-top-color: rgb(204, 204, 204);
-  border-right-color: rgb(204, 204, 204);
-  border-bottom-color: rgb(204, 204, 204);
-  border-left-color: rgb(204, 204, 204);
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-  color: rgb(153, 153, 153);
-  display: inline-block;
-  float: left;
-  font-size: 15px;
-  height: 36px;
-  padding-top: 0px;
-  padding-right: 10px;
-  padding-bottom: 0px;
-  padding-left: 10px;
-  width: 395px;
-}
-#register .form-control input, .payment_info .address_input, .mobile_input, .address_input {
-  -webkit-appearance: none;
-  box-shadow: transparent 0px 0px 0px inset;
-}
-.payment_info_inner input, .post_code_input, .option_placeholder {
-  margin-bottom: 10px;
-  border-top-color: rgb(224, 224, 224);
-  border-right-color: rgb(224, 224, 224);
-  border-bottom-color: rgb(224, 224, 224);
-  border-left-color: rgb(224, 224, 224);
-}
+
 .required_field {
   color: rgb(204, 51, 85);
   display: inline-block;
@@ -570,35 +531,7 @@ p {
 .payment_info select:hover {
   cursor: pointer;
 }
-.option_placeholder .address_input {
-  color: rgb(180, 180, 180);
-  height: 24px;
-  padding-top: 0px;
-  padding-right: 10px;
-  padding-bottom: 0px;
-  padding-left: 10px;
-  position: relative;
-  background-color: transparent;
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 0px;
-  border-left-width: 0px;
-  border-top-style: initial;
-  border-right-style: initial;
-  border-bottom-style: initial;
-  border-left-style: initial;
-  border-top-color: initial;
-  border-right-color: initial;
-  border-bottom-color: initial;
-  border-left-color: initial;
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-  z-index: 1;
-  box-shadow: none;
-}
+
 select {
   height: 40px;
   padding-top: 10px;
@@ -618,24 +551,9 @@ select {
   margin-bottom: 0px;
   margin-left: 0px;
 }
-#checkout .has-success.country .option_placeholder, .email .address_input.form-control {
-  background-color: rgb(238, 238, 238);
-  border-top-color: rgb(238, 238, 238);
-  border-right-color: rgb(238, 238, 238);
-  border-bottom-color: rgb(238, 238, 238);
-  border-left-color: rgb(238, 238, 238);
-}
+
 .country .option_placeholder::after {
   display: none;
-}
-.payment_info .address_input[disabled="disabled"] {
-  font-style: italic;
-}
-.payment_info .address_input[disabled="disabled"]:hover {
-  cursor: default;
-}
-.payment_info .country .address_input[disabled="disabled"], .payment_info .email .address_input[disabled="disabled"] {
-  font-style: normal;
 }
 .payment_info .form-group.email {
   margin-top: 0px;
@@ -649,9 +567,6 @@ select {
   padding-right: 10px;
   padding-bottom: 7px;
   padding-left: 10px;
-}
-.address_input.text_area, .mobile_input.text_area, .option_placeholder.text_area {
-  min-height: 100px;
 }
 .checkout_progress {
   display: table;
@@ -1033,6 +948,7 @@ ol, ul {
 }
 .payment_option_item {
   height: 162px;
+  padding: 0;
 }
 #checkout .address-block h2, #ContentPlaceHolder1_UpdatePanel2 h2 {
   font-family: "open sans";
@@ -1047,7 +963,7 @@ ol, ul {
   list-style-image: initial;
 }
 .payment_option_list {
-  margin-left: 20%; 
+  margin-left: 5%; 
   border-bottom-width: 1px;
   border-bottom-color: rgb(233, 239, 252);
   display: inline-block;
@@ -1067,10 +983,6 @@ ol, ul {
   border-right-style: solid;
   border-bottom-style: solid;
   border-left-style: solid;
-  border-top-color: rgb(243, 243, 243);
-  border-right-color: rgb(243, 243, 243);
-  border-bottom-color: rgb(243, 243, 243);
-  border-left-color: rgb(243, 243, 243);
   border-image-source: initial;
   border-image-slice: initial;
   border-image-width: initial;
@@ -1110,6 +1022,7 @@ ol, ul {
   padding-right: 10px;
   padding-bottom: 25px;
   padding-left: 10px;
+  height: 160px;
   position: relative;
   transition-duration: 0.3s;
   transition-timing-function: ease;
@@ -1230,4 +1143,10 @@ img {
   position: absolute;
   top: 0px;
   width: 10px;
+}
+.form-address {
+  padding-left: 220px;
+}
+.purchase_items {
+  padding-left: 0;
 }
