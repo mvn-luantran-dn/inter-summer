@@ -106,6 +106,6 @@ var auction = {
   }
 }
 
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   auction.eventSubmitPrice();
 });

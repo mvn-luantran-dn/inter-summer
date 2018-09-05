@@ -31,9 +31,9 @@
           <% end %>
         </div>
         <% if @auctions.any? %>
-          <p>Total auction: <%= @auctions.size %></p>
-          <p>Total auction run: <%= @auctions.where(status: 'run').size %></p>
-          <p>Total money: <%= money(@auctions) %></p>
+          <p class="total-space"><strong class="total-auction blue-space">Total auction:</strong> <%= @auctions.size %></p>
+          <p class="total-space"><strong class="total-auction red-space">Total auction run:</strong> <%= @auctions.where(status: 'run').size %></p>
+          <p class="total-space"><strong class="total-auction gray-space">Total money:</strong><span id="total_money"> <%= money(@auctions) %></span></p>
           <table width="100%" class="table table-striped table-hover" id="dataTables-example">
             <thead>
               <tr>

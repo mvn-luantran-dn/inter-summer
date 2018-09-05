@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   check = document.querySelector('#user-notif');
   if (check) {
     addEventChangeStatus(check.dataset.userId);

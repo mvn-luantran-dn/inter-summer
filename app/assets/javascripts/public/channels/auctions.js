@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   obj = document.querySelector('#cat_id');
   App.auctions = App.cable.subscriptions.create(
     { 

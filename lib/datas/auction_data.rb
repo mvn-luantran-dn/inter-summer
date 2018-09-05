@@ -118,6 +118,7 @@ class AuctionData
       product_id: obj.product_id,
       product_name: obj.product.name,
       product_price: obj.product.price,
+      product_status: obj.product.status,
       product_price_start: obj.product.price_at,
       product_quantity: obj.product.quantity,
       product_pictures: obj.product.assets,

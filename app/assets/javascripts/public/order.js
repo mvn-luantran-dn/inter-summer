@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function () {
   $('#myModal').on('show.bs.modal', function (e) {
       var getname = $('#field-name').val();
       var number = $('#field-phone').val()

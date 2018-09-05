@@ -42,13 +42,17 @@ class Admin::ProductsController < Admin::BaseController
   def edit; end
 
   def update
-    if @product.update_attributes(product_params)
-      @product.timers.each do |timer|
-        AuctionData.update(timer) unless $redis.get(timer.id).nil?
+    if product_can_update @product
+      if @product.update_attributes(product_params)
+        @product.timers.each do |timer|
+          AuctionData.update(timer) unless $redis.get(timer.id).nil?
+        end
+        redirect_to admin_products_path, notice: 'Update success'
+      else
+        render :edit
       end
-      redirect_to admin_products_path, notice: 'Update success'
     else
-      render :edit
+      redirect_to admin_products_path
     end
   end
 
@@ -108,6 +112,14 @@ class Admin::ProductsController < Admin::BaseController
             return false
           end
         end
+      end
+      true
+    end
+
+    def product_can_update(product)
+      if !product.timers.where(status: 'on').empty?
+        flash[:notice] = 'Please turn off all timer'
+        return false
       end
       true
     end

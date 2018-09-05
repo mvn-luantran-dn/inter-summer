@@ -31,9 +31,10 @@
               <% end %>
             </tbody>
           </table>
+          <%= will_paginate %>          
           <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
         <% else %>
-          <p>No timer</p>
+          <p class="space-bottom">No timer</p>
         <% end %>
       </div>
     </div>

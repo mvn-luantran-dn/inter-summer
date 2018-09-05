@@ -5,7 +5,7 @@ class Admin::TimersController < Admin::BaseController
   before_action :find_timer, only: %i[edit update destroy]
 
   def index
-    @timers = @product.timers.order('id DESC')
+    @timers = @product.timers.paginate(page: params[:page], per_page: 10).order('id DESC')
   end
 
   def new
@@ -46,7 +46,7 @@ class Admin::TimersController < Admin::BaseController
           if check_delete_timer Timer.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
+            return redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
           end
         end
         unless delete_ids.empty?
@@ -76,6 +76,10 @@ class Admin::TimersController < Admin::BaseController
     def update_timer(timer)
       if $redis.get(timer.id)
         if timer_params['status'] == 'off'
+          auction = timer.auctions.last
+          if auction.status == 'run'
+            auction.destroy
+          end
           $redis.del(timer.id)
         else
           AuctionData.update(timer)
