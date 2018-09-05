@@ -16,28 +16,32 @@
             <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
-        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-          <thead>
-            <tr>
-              <th class="center"><input type="checkbox" id="checkAll"></th>
-              <th class="center">Name</th>
-              <th class="center">Category</th>
-              <th class="center">Picture</th>              
-              <th class="center">Detail</th>
-              <th class="center">Price</th>
-              <th class="center">Quantity</th>
-              <th class="center">Price start</th>
-              <th class="center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= form_tag(delete_admin_products_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
-              <%= render @products %>
-            <% end %>
-          </tbody>
-        </table>
-        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-        <%= will_paginate %>
+        <% if @products.any? %>
+          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+            <thead>
+              <tr>
+                <th class="center"><input type="checkbox" id="checkAll"></th>
+                <th class="center">Name</th>
+                <th class="center">Category</th>
+                <th class="center">Picture</th>              
+                <th class="center">Detail</th>
+                <th class="center">Price</th>
+                <th class="center">Quantity</th>
+                <th class="center">Price start</th>
+                <th class="center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= form_tag(delete_admin_products_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
+                <%= render @products %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
+          <%= will_paginate %>
+        <% else %>
+          <p>No product</p>
+        <% end %>
       </div>
     </div>
   </div>

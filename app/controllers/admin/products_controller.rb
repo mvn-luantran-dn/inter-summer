@@ -8,9 +8,9 @@ class Admin::ProductsController < Admin::BaseController
     respond_to do |format|
       format.html do
         if params[:content].blank?
-          @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+          @products = Product.where(status: ProductStatus::SELLING).paginate(page: params[:page], per_page: 10).order('id DESC')
         else
-          @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+          @products = Product.where(status: ProductStatus::SELLING).search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
         end
       end
 
@@ -54,7 +54,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if product_can_delete @product
-      @product.destroy
+      @product.update_attribute(:status, ProductStatus::UNSELLING)
       flash[:success] = 'Delete product success'
     end
     redirect_to admin_products_url
@@ -73,7 +73,7 @@ class Admin::ProductsController < Admin::BaseController
         end
         unless delete_ids.empty?
           delete_ids.each do |id|
-            Product.find(id).destroy
+            Product.find(id)..update_attribute(:status, ProductStatus::UNSELLING)
           end
           redirect_to admin_products_url, notice: 'Delete success'
         end

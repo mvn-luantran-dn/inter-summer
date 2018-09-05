@@ -19,6 +19,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def create
     @category = Category.new(category_params)
+    @category.status = "selling"
     if @category.save
       flash[:success] = 'Add category success'
       redirect_to admin_categories_path
@@ -42,8 +43,10 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if check_delete_category @category
-      @category.destroy
+      update_category_chid @category
       flash[:success] = 'Category deleted'
+    else
+      flash[:success] = 'Delete error'
     end
     redirect_to admin_categories_url
   end
@@ -63,13 +66,24 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def delete_more_cat
-    # if request.post?
-    #   delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
-    #   delete_ids.each do |id|
-    #     Category.find(id).destroy
-    #   end
-    # end
-    # redirect_to admin_categories_path, notice: "Delete success"
+    if request.post?
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if check_delete_category Category.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_categories_path, notice: 'Delete error'
+          end
+        end
+        unless delete_ids.empty?
+          delete_ids.each do |id|
+            update_category_chid @category
+          end
+          redirect_to admin_categories_path, notice: 'Delete success'
+        end
+      end
+    end
   end
 
   private
@@ -93,7 +107,7 @@ class Admin::CategoriesController < Admin::BaseController
 
     def check_delete_category(category)
       category.products.each do |product|
-        redirect_to admin_categories_path unless product_can_delete product
+        return false unless product_can_delete product
       end
       check_delete_category category.childcategories if category.childcategories.any?
       true
@@ -101,16 +115,23 @@ class Admin::CategoriesController < Admin::BaseController
 
     def product_can_delete(product)
       if !product.timers.where(status: 'on').empty?
-        flash[:notice] = 'Please turn off all timer'
         return false
       else
         Item.where(product_id: product.id).each do |item|
           if item.order.status != 'received'
-            flash[:notice] = 'Product in order. Please wait for chekout'
             return false
           end
         end
       end
+      true
+    end
+
+    def update_category_chid category
+      category.update_attribute(:status, 'unselling')
+      category.products.each do |product|
+        product.update_attribute(:status, 'unselling')
+      end
+      update_category_chid category.childcategories if category.childcategories.any?
       true
     end
 end

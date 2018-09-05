@@ -20,27 +20,31 @@
             <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
-        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-          <thead>
-            <tr>
-              <th class="center"><input type="checkbox" id="checkAll"></th>
-              <th class="center">Name</th>
-              <th class="center">Address</th>
-              <th class="center">Phone</th>
-              <th class="center">Total Price</th>
-              <th class="center">Status</th>
-              <th class="center">Type Payment</th>
-              <th class="center">Action</th>
-            </tr>
-          </thead>
-            <tbody>
-              <%= form_tag(delete_admin_orders_path, :id => 'form_id', data: { confirm: "Your sure?" }) do %>
-                <%= render @orders %>
-              <% end %>
-          </tbody>
-        </table>
-        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-        <%= will_paginate %>
+        <% if @orders.any? %>
+          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+            <thead>
+              <tr>
+                <th class="center"><input type="checkbox" id="checkAll"></th>
+                <th class="center">Name</th>
+                <th class="center">Address</th>
+                <th class="center">Phone</th>
+                <th class="center">Total Price</th>
+                <th class="center">Status</th>
+                <th class="center">Type Payment</th>
+                <th class="center">Action</th>
+              </tr>
+            </thead>
+              <tbody>
+                <%= form_tag(delete_admin_orders_path, :id => 'form_id', data: { confirm: "Your sure?" }) do %>
+                  <%= render @orders %>
+                <% end %>
+            </tbody>
+          </table>
+          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
+          <%= will_paginate %>
+        <% else %>
+          <p>No order</p>
+        <% end %>
       </div>
     </div>
   </div>
