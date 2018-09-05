@@ -3,6 +3,15 @@ module Admin::AuctionsHelper
     auction == current_auction
   end
 
-  def money auction
+  def money auctions
+    total = 0
+    auctions.each do |auction|
+      if auction.status == 'finished'
+        price_bid = auction.auction_details.order('price_bid DESC').first.price_bid
+        price = auction.timer.product.price
+        total += (price_bid - price)
+      end
+    end
+    total
   end
 end

@@ -19,14 +19,25 @@
                 </a>
                 <ul class="dropdown-menu" id="list-notif">
                   <% @notifications.each do |notif| %>
-                    <li>
-                      <a href="/auctions/<%= notif.timer_id %>">
-                        <div>
-                          <div><%= notif.content %></div>
-                          <div><%= notif.created_at %></div>
-                        </div>
-                      </a>
-                    </li>
+                    <% if notif.status == 1 %>
+                      <li class='notif-item'>
+                        <a href="/auctions/<%= notif.timer_id %>">
+                          <div>
+                            <div class='content-notif'><%= notif.content %></div>
+                            <div class='content-right'><%= notif.created_at %></div>
+                          </div>
+                        </a>
+                      </li>
+                    <% else %>
+                      <li class='notif-item'>
+                        <a href="/auctions/<%= notif.timer_id %>">
+                          <div>
+                            <div><%= notif.content %></div>
+                            <div class='content-right'><%= notif.created_at %></div>
+                          </div>
+                        </a>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
               </li>   

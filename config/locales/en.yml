@@ -44,7 +44,7 @@ en:
               too_short: 'Password 6 characters is the minimum allowed'
             password_confirmation:
               blank: 'Please input password comfirm'
-              too_short: 'Password 6 characters is the minimum allowed'
+              too_short: 'Password confirm 6 characters is the minimum allowed'
             role:
               blank: 'Please choose role'
         category:

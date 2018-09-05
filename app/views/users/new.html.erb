@@ -12,7 +12,7 @@
       <%= form_group_for f, :password, label: false  do %>
         <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
       <% end %> 
-      <%= form_group_for f, :password, label: false  do %>
+      <%= form_group_for f, :password_confirmation, label: false  do %>
         <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: 'form-input' %>
       <% end %>
       <%= f.submit "Sign me up", class: 'form-submit' %>
