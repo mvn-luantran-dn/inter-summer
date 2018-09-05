@@ -5,8 +5,10 @@
   <td class="center"><%= order.phone %></td>
   <td class="center"><%= order.total_price %></td>
   <td class="center"><%= order.status %></td>
+  <td class="center"><%= order.type_payment %></td>
   <td class="center">
-    <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item btn-margin',
+    <%= link_to 'Update', edit_admin_order_path(order), class: 'button-item update-item btn-margin' %>
+    <%= link_to 'Delete', admin_order_path(order), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
     <%= link_to 'Detail', admin_order_path(order), class: 'button-item update-item' %> 
   </td>
