@@ -31,6 +31,9 @@
           <% end %>
         </div>
         <% if @auctions.any? %>
+          <p>Total auction: <%= @auctions.size %></p>
+          <p>Total auction run: <%= @auctions.where(status: 'run').size %></p>
+          <p>Total money: <%= money(@auctions) %></p>
           <table width="100%" class="table table-striped table-hover" id="dataTables-example">
             <thead>
               <tr>
@@ -39,6 +42,7 @@
                 <th class="center">Start at</th>
                 <th class="center">User win</th>
                 <th class="center">Price final</th>
+                <th class="center">Money</th>                
                 <th class="center">Status</th>
                 <th class="center">Action</th>
               </tr>

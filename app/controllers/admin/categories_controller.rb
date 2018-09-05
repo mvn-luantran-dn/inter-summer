@@ -6,9 +6,9 @@ class Admin::CategoriesController < Admin::BaseController
   def index
     @categories_no_parent = Category.where(parent_id: nil)
     if params[:content].blank?
-      @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+      @categories = Category.where(status: 'selling').paginate(page: params[:page], per_page: 10).order('id DESC')
     else
-      @categories = Category.search_name(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+      @categories = Category.search_name(params[:content]).where(status: 'selling').paginate(page: params[:page], per_page: 10).order('id DESC')
     end
   end
 

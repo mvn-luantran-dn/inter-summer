@@ -17,6 +17,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
+    @user.status = 'on'
     @user.activated_at = Time.zone.now
     if @user.save
       flash[:success] = 'Add user success'

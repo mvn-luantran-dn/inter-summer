@@ -6,9 +6,9 @@ class Admin::BaseController < ApplicationController
   layout 'admin/application'
 
   def index
-    @products = Product.all.size
+    @products = Product.where(status: 'selling').size
     @users = User.all.size
     @orders = Order.all.size
-    @categories = Category.all.size
+    @categories = Category.where(status: 'selling').size
   end
 end
