@@ -115,7 +115,7 @@ ol, ul {
   line-height: 40px;
 }
 .tabs_content li {
-  width: 26%;
+  width: 25%;
   float: left;
   display: inline-block;
 }
@@ -376,4 +376,7 @@ ol, ul {
 }
 #auction_tabs {
   padding-left: 0;
+}
+#view-order {
+  display: none;
 }
