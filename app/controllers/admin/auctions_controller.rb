@@ -39,7 +39,7 @@ class Admin::AuctionsController < Admin::BaseController
           if check_delete_auction Auction.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_auctions_path, notice: 'Please wait auction finish'
+            return redirect_to admin_auctions_path, notice: 'Please wait auction finish'
           end
         end
         unless delete_ids.empty?

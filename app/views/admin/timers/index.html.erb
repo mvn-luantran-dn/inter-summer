@@ -25,7 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= form_tag(delete_admin_product_timers_path,:id => 'form_id',) do %>
+            <%= form_tag(delete_admin_product_timers_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
               <%= render @timers %>
             <% end %>
           </tbody>
