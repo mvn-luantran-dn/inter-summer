@@ -1,7 +1,7 @@
 class AuctionsController < ApplicationController
   before_action :find_auction, :load_active_bids
   def index; end
-
+  
   private
 
     def find_auction

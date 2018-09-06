@@ -96,6 +96,7 @@
             <th class="center">Date</th>
             <th class="center">Order Status</th>
             <th class="center">Total Price</th>
+            <th class="center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -105,6 +106,11 @@
             <td class="center"><%= order.updated_at %></td>
             <td class="center"><%= order.status%></td>
             <td class="center"><%= order.total_price%></td>
+            <td class='center'>
+              <% if order.status == 'checkouted'%>
+                <%= link_to 'Cancel', user_order_path(current_user, order), method: :post, class: 'button-item btn btn-default btn-margin' %>
+              <% end %>  
+            </td>
           </tr>  
           <% end %>
         </tbody>
