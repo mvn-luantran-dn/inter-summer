@@ -93,7 +93,7 @@
   <div class="col-lg-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+        <i class="fa fa-bar-chart-o fa-fw"></i> Chart order
         <div class="pull-right">
           <div class="btn-group">
             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -101,14 +101,7 @@
             <span class="caret"></span>
             </button>
             <ul class="dropdown-menu pull-right" role="menu">
-              <li><a href="#">Action</a>
-              </li>
-              <li><a href="#">Another action</a>
-              </li>
-              <li><a href="#">Something else here</a>
-              </li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a>
+              <li><a href="#">Order</a>
               </li>
             </ul>
           </div>
@@ -209,30 +202,31 @@
   </div>
 </div>
 <script>
-obj = total_order();
-obj.forEach( function(e){
-  console.log(e);
-})
 window.onload = function () {
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,  
-	title:{
-		text: "Order"
-	},
-	data: [{
-		yValueFormatString: "#,### Orders",
-		xValueFormatString: "DDDD",
-		type: "spline",
-		dataPoints: [
-			{ x: new Date(2018, 08, 01), y: 1},
-      { x: new Date(2018, 08, 02), y: 2},
-      { x: new Date(2018, 08, 03), y: 5},
-      { x: new Date(2018, 08, 04), y: 5},      
-      { x: new Date(2018, 08, 05), y: 6}
-		]
-	}]
-});
-chart.render();
+  obj = total_order();
+  arr = [];
+  for(var item in obj){
+    var a = item.split("-");
+    a = { x: new Date(a[0], a[1], a[2]), y: obj[item].length }
+    arr.push(a);
+  }
+  var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,  
+    title:{
+      text: "Order"
+    },
+    axisX:{      
+      valueFormatString: "DDDD",
+      valueMaxWidth: 500
+    },
+    data: [{
+      yValueFormatString: "#,### Orders",
+      xValueFormatString: "DD MMMM YYYY",
+      type: "spline",
+      dataPoints: arr
+    }]
+  });
+  chart.render();
 }
 </script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
