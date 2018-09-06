@@ -3,7 +3,8 @@ module Admin::AuctionsHelper
     auction == current_auction
   end
 
-  def money auctions
+  def money
+    auctions = Auction.all
     total = 0
     auctions.each do |auction|
       if auction.status == 'finished'
