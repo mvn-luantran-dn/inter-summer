@@ -72,7 +72,7 @@ class Admin::ProductsController < Admin::BaseController
           if product_can_delete Product.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_products_url
+            return redirect_to admin_products_url
           end
         end
         unless delete_ids.empty?

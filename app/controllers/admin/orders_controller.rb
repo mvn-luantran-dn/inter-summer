@@ -23,7 +23,6 @@ class Admin::OrdersController < Admin::BaseController
           @orders = Order.search(content, status, date_start, date_end).paginate(page: params[:page], per_page: 10).order('id DESC')
         end
       end
-      byebug
     end
   end
 
