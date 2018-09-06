@@ -1,5 +1,5 @@
 <tr class="odd gradeX">
-  <td class="center"><%= check_box_tag 'ids[]', category.id, false, :class => 'table-row-checkbox' %></td>
+  <td class="center"><%= category.id %></td>
   <td class="center"><%= link_to category.name, '#', class: 'detail-item' %></td>
   <% if category.parent_id.nil? %>
     <td class="center">No</td>

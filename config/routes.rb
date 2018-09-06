@@ -61,4 +61,5 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   get '/current_user' => 'users#id_current_user'
   get '/change/:id' => 'notifications#change'
+  get '/order_sum' => 'orders#sum_order_date'
 end

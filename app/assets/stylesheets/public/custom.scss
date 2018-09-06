@@ -143,3 +143,8 @@ footer {
 .status-spinner {
   color: #4384b1;
 }
+#bid-final >li:first-child {
+  span:first-child {
+    font-weight: bold;
+  }
+}

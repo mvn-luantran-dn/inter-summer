@@ -28,6 +28,8 @@ en:
         address: 'Address'  
         phone: 'Phone'
         type_payment: 'Type payment'
+      asset:
+        file_name: "File name"
     errors:
       models:
         user:
@@ -96,3 +98,6 @@ en:
               not_a_number: 'Please input number'
             type_payment:
               blank: 'Please choose type Payment'
+        asset:
+          attributes:
+            file_name: 'Please add file'

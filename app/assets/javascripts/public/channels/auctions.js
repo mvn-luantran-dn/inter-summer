@@ -50,7 +50,7 @@ $(document).ready(function () {
           html += '</div>'
           html += '</div>'
           html += '</div>'
-          if(e.period < 20) {
+          if(e.period < 60) {
             finish += '<div class="col-sm-6 col-md-3 ser">';
             finish += '<div class="product-item thumbnail">';
             finish += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file_name.url + '" alt="' + e.product_name + '"></a>';

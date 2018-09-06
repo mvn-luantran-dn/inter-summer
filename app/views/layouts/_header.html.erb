@@ -43,7 +43,7 @@
               </li>   
               <li><%= link_to "My auction", user_auctions_path(current_user) %></li>
               <li>
-                <%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"> Cart</i>'), user_orders_path(current_user), class: "cart" %>
+                <%= link_to raw('<i class="glyphicon glyphicon-shopping-cart">Cart</i>'), user_orders_path(current_user), class: "cart" %>
               </li>
               <li>
                 <% if size_cart.present? %>

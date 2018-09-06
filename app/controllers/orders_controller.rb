@@ -37,6 +37,13 @@ class OrdersController < ApplicationController
       render :edit
     end
   end
+  
+  def sum_order_date
+    respond_to do |format|
+      arr_order = Order.all.group_by { |order| order.created_at.to_date }
+      format.json { render json: arr_order.to_json }
+    end
+  end
 
   private
 

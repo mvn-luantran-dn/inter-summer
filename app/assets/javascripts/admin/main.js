@@ -29,6 +29,24 @@ function removeField(link) {
   check();
 }
 
+function total_order() {
+  result = null;
+  $.ajax({
+    url: "/order_sum",
+    type: 'GET',
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'JSON',
+    async: false,
+    success: function (response) {
+      result = response;
+    },
+    error: function (err) {
+      console.log(err);
+    }
+  });
+  return result;
+}
+
 $(document).ready(function () {
   check();
   total_money = $('#total_money');
