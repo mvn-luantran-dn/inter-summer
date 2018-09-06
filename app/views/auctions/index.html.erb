@@ -108,7 +108,7 @@
             <td class="center"><%= order.total_price%></td>
             <td class='center'>
               <% if order.status == 'checkouted'%>
-                <%= link_to 'Cancel', user_order_path(current_user, order), method: :post, class: 'button-item btn btn-default btn-margin' %>
+                <%= link_to 'Cancel', user_order_path(current_user, order), method: :post, class: 'button-item btn btn-danger btn-margin' %>
               <% end %>  
             </td>
           </tr>  
