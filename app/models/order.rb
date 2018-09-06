@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   validates :address, presence: true, on: :update
   validates :phone, presence: true, length: { maximum: 15 },
                     format: { with: PHONE_REGEX }, numericality: true, on: :update
-  validates :type_payment, presence: true
+  validates :type_payment, presence: true, on: :update
   scope :search, ->(content, status, time_start, time_end) {
                    where 'name = ? or address = ?
                            or phone = ? or type_payment = ? or status = ? or created_at BETWEEN ? AND ?', content, content, content, content, status, time_start, time_end
