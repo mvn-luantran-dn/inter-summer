@@ -31,9 +31,10 @@ function removeField(link) {
 
 $(document).ready(function () {
   check();
-});
-
-$(document).on('turbolinks:load', function () {
+  total_money = $('#total_money');
+  if(total_money.html()){
+    total_money.html(" " + formatMoney(parseInt($('#total_money').html())));
+  }
   $("#checkAll").click(function () {
     if (this.checked) {
       $('.delete-more').show();
@@ -61,3 +62,10 @@ $(document).on('turbolinks:load', function () {
     });
   }
 });
+
+function formatMoney(number) {
+  return number.toLocaleString('it-IT', {
+    style: 'currency',
+    currency: 'VND'
+  });
+}

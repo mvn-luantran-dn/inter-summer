@@ -8,9 +8,9 @@ class Admin::ProductsController < Admin::BaseController
     respond_to do |format|
       format.html do
         if params[:content].blank?
-          @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+          @products = Product.where(status: ProductStatus::SELLING).paginate(page: params[:page], per_page: 10).order('id DESC')
         else
-          @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+          @products = Product.where(status: ProductStatus::SELLING).search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
         end
       end
 
@@ -42,19 +42,23 @@ class Admin::ProductsController < Admin::BaseController
   def edit; end
 
   def update
-    if @product.update_attributes(product_params)
-      @product.timers.each do |timer|
-        AuctionData.update(timer) unless $redis.get(timer.id).nil?
+    if product_can_update @product
+      if @product.update_attributes(product_params)
+        @product.timers.each do |timer|
+          AuctionData.update(timer) unless $redis.get(timer.id).nil?
+        end
+        redirect_to admin_products_path, notice: 'Update success'
+      else
+        render :edit
       end
-      redirect_to admin_products_path, notice: 'Update success'
     else
-      render :edit
+      redirect_to admin_products_path
     end
   end
 
   def destroy
     if product_can_delete @product
-      @product.destroy
+      @product.update_attribute(:status, ProductStatus::UNSELLING)
       flash[:success] = 'Delete product success'
     end
     redirect_to admin_products_url
@@ -73,7 +77,7 @@ class Admin::ProductsController < Admin::BaseController
         end
         unless delete_ids.empty?
           delete_ids.each do |id|
-            Product.find(id).destroy
+            Product.find(id)..update_attribute(:status, ProductStatus::UNSELLING)
           end
           redirect_to admin_products_url, notice: 'Delete success'
         end
@@ -108,6 +112,14 @@ class Admin::ProductsController < Admin::BaseController
             return false
           end
         end
+      end
+      true
+    end
+
+    def product_can_update(product)
+      if !product.timers.where(status: 'on').empty?
+        flash[:notice] = 'Please turn off all timer'
+        return false
       end
       true
     end

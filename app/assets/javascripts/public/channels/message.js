@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   check = document.querySelector('#product_id');
   if (check) {
     App.message = App.cable.subscriptions.create({

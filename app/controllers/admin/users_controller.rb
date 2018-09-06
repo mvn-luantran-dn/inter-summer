@@ -17,7 +17,9 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
+    @user.status = 'on'
     @user.activated_at = Time.zone.now
+    byebug
     if @user.save
       flash[:success] = 'Add user success'
       redirect_to admin_users_path
@@ -69,7 +71,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_comfirmation, :role)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
     end
 
     def logged_in_user

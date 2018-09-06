@@ -14,6 +14,7 @@ class AuctionData
         period: time,
         bid_step: obj.bid_step,
         status: obj.status,
+        product_status: obj.product.status,
         product_id: obj.product_id,
         product_name: obj.product.name,
         product_price: obj.product.price,
@@ -30,32 +31,40 @@ class AuctionData
   def push_data(key, data)
     db = DbData.new
     timer = JSON.parse($redis.get(key))
-    if timer['status'] == 'on'
-      if timer['product_quantity'].positive?
-        start_at = timer['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
-        end_at = timer['end_at'].to_s.to_time.strftime('%H:%M:%S').to_time
-        if Time.now > start_at && Time.now < end_at
-          db.create_auction(timer)
-          decreasing_time(key)
-          finish_auction(key)
-          key = JSON.parse($redis.get(key))
-          data << key
-        else
-          auction = Auction.auction_timer(timer['id']).last
-          if auction.status == 'run'
+    if timer['product_status'] == 'selling'
+      if timer['status'] == 'on'
+        if timer['product_quantity'].positive?
+          start_at = timer['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
+          end_at = timer['end_at'].to_s.to_time.strftime('%H:%M:%S').to_time
+          if Time.now > start_at && Time.now < end_at
+            db.create_auction(timer)
             decreasing_time(key)
             finish_auction(key)
             key = JSON.parse($redis.get(key))
             data << key
+          else
+            auction = Auction.auction_timer(timer['id']).last
+            unless auction.nil?
+              if auction.status == 'run'
+                decreasing_time(key)
+                finish_auction(key)
+                key = JSON.parse($redis.get(key))
+                data << key
+              end
+            end
           end
+        else
+          timer_db = Timer.find_by(id: timer['id'])
+          timer_db.update_attribute(:status, 'off')
+          $redis.del(timer['id'])
+          ActionCable.server.broadcast("notice_sold_#{timer_db.id}", obj: 'notice')
         end
-      else
-        timer_db = Timer.find_by(id: timer['id'])
-        timer_db.update_attribute(:status, 'off')
-        $redis.del(timer['id'])
-        ActionCable.server.broadcast("notice_sold_#{timer_db.id}", obj: 'notice')
       end
-    end
+    else
+      timer_db = Timer.find_by(id: timer['id'])
+      timer_db.update_attribute(:status, 'off')
+      $redis.del(timer['id']) unless timer.nil?
+    end 
   end
 
   def decreasing_time(key)
@@ -109,6 +118,7 @@ class AuctionData
       product_id: obj.product_id,
       product_name: obj.product.name,
       product_price: obj.product.price,
+      product_status: obj.product.status,
       product_price_start: obj.product.price_at,
       product_quantity: obj.product.quantity,
       product_pictures: obj.product.assets,

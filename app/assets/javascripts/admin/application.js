@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require activestorage
-//= require turbolinks
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require ckeditor/init

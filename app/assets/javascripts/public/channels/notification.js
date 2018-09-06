@@ -1,10 +1,10 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   check = document.querySelector('#user-notif');
   if (check) {
     addEventChangeStatus(check.dataset.userId);
     App.notification = App.cable.subscriptions.create({
       channel: "NotificationChannel",
-      user_id: check.dataset.userId,
+      user_id_notif: check.dataset.userId,
     },
      {
       connected: function () {

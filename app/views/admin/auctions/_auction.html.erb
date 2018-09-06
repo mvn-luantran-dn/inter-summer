@@ -4,6 +4,7 @@
   <td class="center"><%= auction.timer.created_at %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.user.name if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid if auction.auction_details.order('price_bid DESC').first %></td>
+  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid - auction.timer.product.price if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center">
     <% if auction.status == 'run' %>
       <p class="auction-item run"><%= auction.status %></p>
@@ -12,9 +13,9 @@
     <% end %>
   </td>
   <td class="center">
+    <%= link_to 'Detail', admin_auction_path(auction), class: 'button-item detail-items btn-margin' %> 
     <%= link_to 'Delete', admin_auction_path(auction), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
-    <%= link_to 'Detail', admin_auction_path(auction), class: 'button-item detail-items' %> 
 
   </td>
 </tr>

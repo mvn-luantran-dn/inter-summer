@@ -12,25 +12,30 @@
             <%= search_field_tag 'name', '', { class: 'form-control', placeholder: 'Search' } %>
           <% end %>
         </div>
-        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-          <thead>
-            <tr>
-              <th class="center"><input type="checkbox" id="checkAll"></th>
-              <th class="center">Start at</th>
-              <th class="center">End at</th>
-              <th class="center">Period</th>          
-              <th class="center">Bid Step</th>
-              <th class="center">Status</th>
-              <th class="center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= form_tag(delete_admin_product_timers_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
-              <%= render @timers %>
-            <% end %>
-          </tbody>
-        </table>
-        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
+        <% if @timers.any? %>
+          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+            <thead>
+              <tr>
+                <th class="center"><input type="checkbox" id="checkAll"></th>
+                <th class="center">Start at</th>
+                <th class="center">End at</th>
+                <th class="center">Period</th>          
+                <th class="center">Bid Step</th>
+                <th class="center">Status</th>
+                <th class="center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= form_tag(delete_admin_product_timers_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
+                <%= render @timers %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= will_paginate %>          
+          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
+        <% else %>
+          <p class="space-bottom">No timer</p>
+        <% end %>
       </div>
     </div>
   </div>

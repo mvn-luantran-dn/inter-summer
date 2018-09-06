@@ -54,9 +54,9 @@ class Bid
   end
 
   def self.append_user_bid(key, auction)
-    auction_details = auction.auction_details.order('price_bid DESC')
+    auction_details_arr = auction.auction_details.order('price_bid DESC')
     arr = []
-    auction_details.each do |obj|
+    auction_details_arr.each do |obj|
       hash_tmp = {
         name: obj.user.name,
         price_bid: obj.price_bid,

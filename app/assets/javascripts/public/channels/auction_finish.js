@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   check = document.querySelector('#product_id');
   if (check) {
     App.auction_finish = App.cable.subscriptions.create( {
@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function () {
       received: function(data) {
         current_id = auction.loadIdCurrentUser();
         if (current_id === data.obj) {
+          $('#itemCount').show();
           number = parseInt($('#itemCount').html()) + 1;
           $('#itemCount').html(number);
           swal({
