@@ -98,7 +98,7 @@ class Admin::ProductsController < Admin::BaseController
     end
 
     def load_categories
-      @categories = Category.all
+      @categories = Category.where(status: 'selling')
     end
 
     def product_can_delete(product)
