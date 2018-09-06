@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get '/signup', to: 'users#new'
   resources :users do
-    resources :orders
+    resources :orders, :except => :show
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
     resources :auctions

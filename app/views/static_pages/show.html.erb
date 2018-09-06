@@ -69,26 +69,23 @@
       </div>
     </div>
     <div class="service_condition">
-      <div class="return_condition"><a id="view_return"><label>Trả lại sản phẩm</label></a></div>
-      <div class="shipping_condition"><a id="view_shipping"><label>Giao hàng</label></a></div>
-      <div class="payment_condition"><a id="view_payment"><label>Thanh toán</label></a></div>
-      <div id="view_return_condition">Chính sách hoàn trả trong 14 ngày áp dụng cho tất cả sản phẩm, cho phép bạn an tâm mua các thiết bị điện tử, quần áo, giày dép và hơn thế nữa.
-        Chú ý: Tất cả sản phẩm phải được hoàn trả trong tình trạng ban đầu. Khi đáp ứng được điều kiện hoàn trả, bạn sẽ được hoàn lại đầy đủ số tiền không bao gồm 10% phí dịch vụ. Người mua hàng sẽ chịu trách nhiệm cho phí vận chuyển hàng trả lại.
+      <div class="return_condition"><a id="view_return"><label>Return Policy</label></a></div>
+      <div class="shipping_condition"><a id="view_shipping"><label>Shipping</label></a></div>
+      <div class="payment_condition"><a id="view_payment"><label>Payment</label></a></div>
+      <div id="view_return_condition">We offer a 14 day return policy on all products so you can safely purchase clothes, shoes etc. with no concerns. Note: All products should be returned in the same condition as received. You will receive a full refund excluding the 10% service charge. We are also not responsible for the return shipping fees.
       </div>
-      <div id="view_shipping_condition"><span id="ContentPlaceHolder1_lb343">Bạn sẽ nhận được kiện hàng trong vòng 1-3 ngày làm việc sau khi thanh toán thành công.
-        Với mỗi hoá đơn, không kể số lượng sản phẩm bao gồm trong hoá đơn, bạn chỉ cần thanh toán 1 lần phí vận chuyển và 10% phí dịch vụ để đảm bảo kiện hàng của bạn được gửi nhanh chóng an toàn. 
-        Phí dịch vụ không áp dụng cho các sản phẩm khuyến mãi có giá cố định.
+      <div id="view_shipping_condition"><span>After your payment has been confirmed, you will receive your parcel within 2-3 business days. No matter how many items you have on your invoice, you will always only pay one delivery charge plus a 10% service charge to make sure your parcel is sent safe and fast.
         </span>
       </div>
-      <div id="view_payment_condition"><span id="ContentPlaceHolder1_lb344">Chúng tôi cung cấp phương thức thanh toán thuận tiện và an toàn đối với những thanh toán trực tuyến bằng thẻ Visa hoặc Master</span></div>
+      <div id="view_payment_condition"><span>We offer convenient and secure gateway to make online payments through credit/debit Visa or MasterCard.</span></div>
     </div>
     <div id="ContentPlaceHolder1_UpdatePanel3">
       <div id="view_history">
         <ul class="bidding_history">
           <li class="history_heading">
-            <span class="bid_user">Tài khoản</span>
-            <span class="bid_amount">Giá dự thầu, ₫</span>
-            <span class="bid_time">Thời gian đấu giá</span>
+            <span class="bid_user">User</span>
+            <span class="bid_amount">Amount</span>
+            <span class="bid_time">Time</span>
           </li>
           <div id="bid-final">
             <%= render @auction_details %>
@@ -97,12 +94,12 @@
       </div>
     </div>
     <div class="product_details">
-      <a id="show_history">Ẩn lịch sử đấu giá</a>
+      <a id="show_history">Hide history bidding</a>
       <ul class="product_details_tab">
-        <li class="border-show-details"><a id="show_details" class="active">Chi tiết sản phẩm</a></li>
+        <li class="border-show-details"><a id="show_details" class="active">Product Details</a></li>
       </ul>
       <div id="view_details">
-        <h3>Mô tả sản phẩm</h3>
+        <h3>Product Description</h3>
         <%= raw @product.detail %>
       <div class="fb-comments" data-href="http://localhost:3000/auctions/<%= @auction.timer.id %>" data-width="970" data-numposts="5"></div>
       </div>

@@ -31,7 +31,8 @@ class OrdersController < ApplicationController
     if @order.update_attributes(order_params)
       total = @order.total_price + 29000
       @order.update_attributes(status: 'checkouted', total_price: total)
-      redirect_to root_path, success: 'Success'
+      flash[:success] = 'Success'
+      redirect_to root_path
     else
       render :edit
     end

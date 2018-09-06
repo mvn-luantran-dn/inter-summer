@@ -58,7 +58,7 @@
                           </h2>
                           <%= form_group_for f, :type_payment, label: false  do %>
                             <ul class="payment_option_list carts-det form-group">
-                              <li class="payment_option_item">
+                              <li class="payment_option_item" id="hover-cash-on-delivery">
                                 <div class="payment_option_list_inner">
                                   <%= f.radio_button :type_payment, "Cash on delivery"%>
                                   <span class="method_option_title">Cash on Delivery</span>
@@ -67,12 +67,12 @@
                                   </div>
                                 </div>
                               </li>
-                              <li class="payment_option_item">
+                              <li class="payment_option_item" id="hover-ngan-luong">
                                 <div class="payment_option_list_inner">
                                   <%= f.radio_button :type_payment, "Ngan Luong"%>
                                   <span class="method_option_title">ATM/Bank Transfer</span>
                                   <div class="method_option_images">
-                                    <a target="_blank" href="https://www.nganluong.vn/button_payment.php?receiver=thanphong936@gmail.com&product_name=<%= @order.id %>&price=<%= @order.total_price %>&return_url=(URL thanh toán thành công)&comments=(Ghi chú về đơn hàng)"><img src="https://www.nganluong.vn/css/newhome/img/button/safe-pay-3.png"border="0" /></a>
+                                    <a target="_blank" href="https://www.nganluong.vn/button_payment.php?receiver=thanphong936@gmail.com&product_name=<%= @order.id %>&price=<%= @order.total_price + 29000 %>&return_url=(URL thanh toán thành công)&comments=(Ghi chú về đơn hàng)"><img src="https://www.nganluong.vn/css/newhome/img/button/safe-pay-3.png"border="0" /></a>
                                   </div>
                                 </div>
                               </li>

@@ -9,4 +9,12 @@ $(document).ready(function () {
       $('#Phone').html(number);
       $('#Address').html(getaddress);
   });
+  $('#hover-cash-on-delivery').click(function(){
+    console.log('1')
+    $('#order_type_payment_cash_on_delivery').prop('checked', true);
+  });
+  $('#hover-ngan-luong').click(function(){
+    console.log(2)
+    $('#order_type_payment_ngan_luong').prop('checked', true);
+  });
 });
