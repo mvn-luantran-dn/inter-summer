@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :orders, :except => :show
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
+    post '/orders/:id', to: 'orders#cancel_order'
     resources :auctions
   end
   resources :products, :categories
