@@ -70,6 +70,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = '123456'
       user.role = 'user'
+      user.status = 'on'
       user.activated_at = Time.zone.now
       user.save!
     end
