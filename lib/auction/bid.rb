@@ -20,7 +20,8 @@ class Bid
           }
           ActionCable.server.broadcast("message_#{key}", obj: obj)
         else
-          auction_details = auction.auction_details
+          auction_details = auction.auction_details.order('price_bid DESC')
+          id_user_win_old = auction_details.first.user.id
           user = auction_details.find_by(user_id: user_id)
           if user.nil?
             auction.auction_details.create!(
@@ -30,6 +31,15 @@ class Bid
           else
             user.update_attributes(price_bid: data['price'], created_at: DateTime.now)
           end
+          name_user = User.find_by(id: user_id).name
+          Notification.create!(
+            content: "#{name_user} is bidding higher price at #{timer['product_name']}.Price now: #{data['price']}",
+            user_id: id_user_win_old,
+            status: 1,
+            timer_id: key
+          )
+          notification = Notification.all.where(user_id: id_user_win_old).order('created_at DESC')
+          ActionCable.server.broadcast("notification_#{id_user_win_old}", obj: notification)
           Bid.append_user_bid(key, auction)
           Bid.set_auction_countinue(timer, data, key)
         end

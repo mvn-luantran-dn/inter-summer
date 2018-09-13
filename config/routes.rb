@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   end
   mount ActionCable.server => '/cable'
   get '/current_user' => 'users#id_current_user'
+  get '/change/:id' => 'notifications#change'
 end

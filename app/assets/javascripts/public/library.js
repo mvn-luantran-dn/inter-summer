@@ -23,3 +23,22 @@ function formatMoney(number) {
     currency: 'VND'
   });
 }
+
+function addEventChangeStatus(user_id) {
+  $('#change-status').on('click', function () {
+    $('#quantity-notify').hide();
+    $.ajax({
+      url: "/change/" + user_id,
+      type: 'GET',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'JSON',
+      async: false,
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  });
+}
