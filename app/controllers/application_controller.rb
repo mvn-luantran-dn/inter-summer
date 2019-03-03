@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
   def load_products
-    @products_footer = Product.where(status: 'selling').order('created_at DESC').limit(3)
-    @categories_footer = Category.where(status: 'selling', parent_id: nil).limit(5)
+    @products_footer = Product.order('created_at DESC').limit(3)
+    @categories_footer = Category.where(parent_id: nil).limit(5)
   end
 
   def load_notification

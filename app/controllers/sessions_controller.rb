@@ -4,20 +4,20 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user.status == 'on'
-      if user&.authenticate(params[:session][:password])
+    user = User.with_deleted.find_by(email: params[:session][:email].downcase)
+    if user&.authenticate(params[:session][:password])
+      if user.deleted_at
         flash[:success] = 'Login success'
         login(user)
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         remember(user)
         redirect_to root_path
       else
-        flash.now[:danger] = 'Invalid email/password combination'
+        flash.now[:danger] = 'User block. Contact amdin open'
         render :new
       end
     else
-      flash.now[:danger] = 'User block. Contact amdin open'
+      flash.now[:danger] = 'Invalid email/password combination'
       render :new
     end
   end

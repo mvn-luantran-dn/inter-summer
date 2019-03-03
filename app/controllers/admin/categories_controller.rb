@@ -4,22 +4,20 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
-    @categories_no_parent = Category.where(parent_id: nil)
+    @categories_no_parent = Category.root
     if params[:content].blank?
-      @categories = Category.where(status: 'selling').paginate(page: params[:page], per_page: 10).order('id DESC')
+      @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
     else
-      @categories = Category.search_name(params[:content]).where(status: 'selling').paginate(page: params[:page], per_page: 10).order('id DESC')
+      @categories = Category.search_name(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
     end
   end
 
   def new
-    @parent_id = params[:format] unless params[:format].nil?
     @category = Category.new
   end
 
   def create
     @category = Category.new(category_params)
-    @category.status = "selling"
     if @category.save
       flash[:success] = 'Add category success'
       redirect_to admin_categories_path
@@ -43,7 +41,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if check_delete_category @category
-      update_category_chid @category
       flash[:success] = 'Category deleted'
     else
       flash[:success] = 'Delete error'
@@ -114,7 +111,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
 
     def product_can_delete(product)
-      if !product.timers.where(status: 'on').empty?
+      if !product.timers.empty?
         return false
       else
         Item.where(product_id: product.id).each do |item|
@@ -123,15 +120,6 @@ class Admin::CategoriesController < Admin::BaseController
           end
         end
       end
-      true
-    end
-
-    def update_category_chid category
-      category.update_attribute(:status, 'unselling')
-      category.products.each do |product|
-        product.update_attribute(:status, 'unselling')
-      end
-      update_category_chid category.childcategories if category.childcategories.any?
       true
     end
 end

@@ -1,5 +1,7 @@
 require 'csv'
 class Product < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :category
   has_many :timers, dependent: :destroy
   has_many :assets, as: :module, dependent: :destroy

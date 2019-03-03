@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+
   has_many :auction_details
   has_many :notifications
   attr_accessor :remember_token, :activation_token, :reset_token

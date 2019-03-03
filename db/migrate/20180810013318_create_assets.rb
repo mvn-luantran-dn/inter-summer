@@ -5,6 +5,7 @@ class CreateAssets < ActiveRecord::Migration[5.2]
       t.string :file_name
       t.integer :module_id
       t.string :module_type
+      t.datetime :deleted_at
 
       t.timestamps
     end

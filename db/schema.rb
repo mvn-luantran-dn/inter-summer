@@ -10,46 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_020154) do
+ActiveRecord::Schema.define(version: 2019_03_03_082835) do
 
-  create_table "assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "assets", force: :cascade do |t|
     t.string "file"
     t.string "file_name"
     t.integer "module_id"
     t.string "module_type"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["module_id"], name: "index_assets_on_module_id"
     t.index ["module_type"], name: "index_assets_on_module_type"
   end
 
-  create_table "auction_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "auction_details", force: :cascade do |t|
     t.bigint "auction_id"
     t.bigint "user_id"
     t.integer "price_bid"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auction_id"], name: "index_auction_details_on_auction_id"
     t.index ["user_id"], name: "index_auction_details_on_user_id"
   end
 
-  create_table "auctions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "auctions", force: :cascade do |t|
     t.bigint "timer_id"
     t.string "status"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["timer_id"], name: "index_auctions_on_timer_id"
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
   end
 
-  create_table "ckeditor_assets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
     t.integer "data_file_size"
@@ -61,17 +67,18 @@ ActiveRecord::Schema.define(version: 2018_09_05_020154) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
     t.integer "amount"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_items_on_order_id"
     t.index ["product_id"], name: "index_items_on_product_id"
   end
 
-  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id"
     t.integer "status"
@@ -81,20 +88,21 @@ ActiveRecord::Schema.define(version: 2018_09_05_020154) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.string "address"
     t.string "phone"
+    t.string "name"
     t.integer "total_price"
+    t.datetime "deleted_at"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
-    t.string "name"
     t.string "type_payment"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.bigint "category_id"
     t.string "name"
     t.text "detail"
@@ -102,24 +110,48 @@ ActiveRecord::Schema.define(version: 2018_09_05_020154) do
     t.integer "quantity"
     t.integer "price_at"
     t.string "status"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "timers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "promotions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "discount"
+    t.string "description"
+    t.text "detail"
+    t.bigint "user_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_promotions_on_user_id"
+  end
+
+  create_table "promotions_categories", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "promotion_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_promotions_categories_on_category_id"
+    t.index ["promotion_id"], name: "index_promotions_categories_on_promotion_id"
+  end
+
+  create_table "timers", force: :cascade do |t|
     t.bigint "product_id"
     t.time "start_at"
     t.time "end_at"
     t.time "period"
     t.integer "bid_step"
-    t.string "status"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_timers_on_product_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "password_digest"
@@ -131,9 +163,12 @@ ActiveRecord::Schema.define(version: 2018_09_05_020154) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.datetime "deleted_at"
+    t.string "address"
+    t.string "phone"
+    t.integer "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -145,5 +180,8 @@ ActiveRecord::Schema.define(version: 2018_09_05_020154) do
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "promotions", "users"
+  add_foreign_key "promotions_categories", "categories"
+  add_foreign_key "promotions_categories", "promotions"
   add_foreign_key "timers", "products"
 end

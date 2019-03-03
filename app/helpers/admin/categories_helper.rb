@@ -6,11 +6,11 @@ module Admin::CategoriesHelper
   def tree_list(categories)
     content_tag(:ul) do
       categories.each do |category|
-        if category.childcategories.any?
+        if category.child_categories.any?
           concat(
             content_tag(:li, id: category.id) do
               concat(category.name)
-              concat(tree_list(category.childcategories))
+              concat(tree_list(category.child_categories))
             end
           )
         else

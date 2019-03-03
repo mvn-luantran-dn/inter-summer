@@ -38,5 +38,7 @@ module Autions
       port: 6379,
       db: 0
     }, { expires_in: 7.days }
+
+    ActionCable.server.config.logger = Logger.new Rails.root.join('log', 'action_cable.log')
   end
 end

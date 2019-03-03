@@ -6,7 +6,7 @@ class CreateTimers < ActiveRecord::Migration[5.2]
       t.time :end_at
       t.time :period
       t.integer :bid_step
-      t.string :status
+      t.datetime :deleted_at
 
       t.timestamps
     end
