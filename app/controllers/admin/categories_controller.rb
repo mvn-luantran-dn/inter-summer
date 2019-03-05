@@ -1,15 +1,17 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_action :load_categories, only: %i[new create]
-  before_action :find_category, except: %i[index new create show_import import delete_more_cat]
-  before_action :all_categories_without_self, only: %i[edit update]
+  before_action :root_categories, only: %i[new create]
+  before_action :find_category, only: %i[show edit update]
+  before_action :root_categories_without_self, only: %i[edit update]
 
   def index
     @categories_no_parent = Category.root
-    if params[:content].blank?
-      @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
-    else
-      @categories = Category.search_name(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
-    end
+    @categories = if params[:content].blank?
+                    Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+                  else
+                    Category.search_name(params[:content])
+                            .paginate(page: params[:page], per_page: 10)
+                            .order('id DESC')
+                  end
   end
 
   def new
@@ -41,6 +43,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     if check_delete_category @category
+      @category.destroy!
       flash[:success] = 'Category deleted'
     else
       flash[:success] = 'Delete error'
@@ -89,8 +92,8 @@ class Admin::CategoriesController < Admin::BaseController
       params.require(:category).permit(:name, :parent_id)
     end
 
-    def load_categories
-      @categories = Category.all
+    def root_categories
+      @categories = Category.root
     end
 
     def find_category
@@ -98,27 +101,24 @@ class Admin::CategoriesController < Admin::BaseController
       redirect_to '/404' unless @category
     end
 
-    def all_categories_without_self
-      @categories = Category.get_without_self(@category.id).get_without_parent_self(@category.id)
+    def root_categories_without_self
+      id = @category.id
+      @categories = Category.get_without_self(id).get_without_parent_self(id)
     end
 
     def check_delete_category(category)
       category.products.each do |product|
         return false unless product_can_delete product
       end
-      check_delete_category category.childcategories if category.childcategories.any?
+      check_delete_category category.child_categories if category.child_categories.any?
       true
     end
 
     def product_can_delete(product)
-      if !product.timers.empty?
-        return false
-      else
-        Item.where(product_id: product.id).each do |item|
-          if item.order.status != 'received'
-            return false
-          end
-        end
+      return false unless product.timers.empty?
+
+      Item.where(product_id: product.id).each do |item|
+        return false if item.order.status != 'received'
       end
       true
     end

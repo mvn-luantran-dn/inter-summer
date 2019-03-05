@@ -7,7 +7,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = '/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i'.frezee
+
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -18,8 +19,11 @@ class User < ApplicationRecord
   scope :search_name_email, ->(content) { where 'name LIKE ? or email LIKE ? ', "%#{content}%", "%#{content}%" }
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost = if ActiveModel::SecurePassword.min_cost
+              BCrypt::Engine::MIN_COST
+           else
+              BCrypt::Engine.cost
+           end
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -35,6 +39,7 @@ class User < ApplicationRecord
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
+
     BCrypt::Password.new(digest).is_password?(token)
   end
 

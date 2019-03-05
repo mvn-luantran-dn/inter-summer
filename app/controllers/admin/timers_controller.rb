@@ -39,22 +39,22 @@ class Admin::TimersController < Admin::BaseController
   end
 
   def delete_more_timer
-    if request.post?
-      if params[:ids]
-        delete_ids = []
-        params[:ids].each do |id|
-          if check_delete_timer Timer.find(id.to_i)
-            delete_ids << id.to_i
-          else
-            return redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
-          end
+    return unless request.post?
+
+    if params[:ids]
+      delete_ids = []
+      params[:ids].each do |id|
+        if check_delete_timer Timer.find(id.to_i)
+          delete_ids << id.to_i
+        else
+          return redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
         end
-        unless delete_ids.empty?
-          delete_ids.each do |id|
-            Timer.find(id).destroy
-          end
-          redirect_to admin_product_timers_path, notice: 'Delete success'
+      end
+      unless delete_ids.empty?
+        delete_ids.each do |id|
+          Timer.find(id).destroy
         end
+        redirect_to admin_product_timers_path, notice: 'Delete success'
       end
     end
   end
@@ -77,20 +77,17 @@ class Admin::TimersController < Admin::BaseController
       if $redis.get(timer.id)
         if timer_params['status'] == 'off'
           auction = timer.auctions.last
-          if auction.status == 'run'
-            auction.destroy
-          end
+          auction.destroy if auction.status == 'run'
           $redis.del(timer.id)
         else
           AuctionData.update(timer)
         end
-      else
-        AuctionData.add(timer) if timer_params['status'] == 'on'
+      elsif timer_params['status'] == 'on'
+        AuctionData.add(timer)
       end
     end
 
     def check_delete_timer(timer)
-      return true if timer.status == 'off'
-      false
+      timer.status == 'off'
     end
 end

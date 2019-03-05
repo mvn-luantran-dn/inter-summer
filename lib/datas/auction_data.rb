@@ -1,5 +1,6 @@
 require "#{Rails.root}/app/helpers/application_helper"
 include ApplicationHelper
+
 require 'datas/db_data'
 class AuctionData
   def self.send_data_to_redis
@@ -64,7 +65,7 @@ class AuctionData
       timer_db = Timer.find_by(id: timer['id'])
       timer_db.update_attribute(:status, 'off')
       $redis.del(timer['id']) unless timer.nil?
-    end 
+    end
   end
 
   def decreasing_time(key)

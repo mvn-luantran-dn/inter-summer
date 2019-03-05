@@ -1,5 +1,5 @@
 AllCops:
- TargetRubyVersion: '2.5.0'
+ TargetRubyVersion: '2.5.1'
  Exclude:
    - 'tmp/**/*'
    - 'log/**/*'
@@ -137,3 +137,7 @@ Rails/SkipsModelValidations:
    - "lib/tasks/*.rake"
    - "lib/tasks/migrate/*.rake"
    - 'app/operations/**/*'
+GlobalVars:
+  AllowedVariables:
+    - "$redis"
+

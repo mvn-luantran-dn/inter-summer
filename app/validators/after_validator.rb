@@ -8,7 +8,6 @@ class AfterValidator < ActiveModel::Validator
   private
 
     def time_validation(record)
-      return true if record[:end_at] < record[:start_at]
-      false
+      record[:end_at] < record[:start_at]
     end
 end

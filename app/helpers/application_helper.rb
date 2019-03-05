@@ -15,8 +15,9 @@ module ApplicationHelper
 
   def size_cart
     return unless logged_in?
+
     order = Order.find_by(user_id: current_user.id, status: 'wait')
-    order.items.size unless order.nil?
+    order&.items&.size
   end
 
   def redirect_logined

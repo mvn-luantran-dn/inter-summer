@@ -2,7 +2,9 @@ class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: %i[show edit update destroy]
 
   def index
-    if params[:content].present? && params[:"time-start"].present? && params[:"time-end"].present? && params[:"date-start"].present? && params[:"date-end"].present?
+    if params[:content].present? && params[:"time-start"].present? &&
+       params[:"time-end"].present? && params[:"date-start"].present? &&
+       params[:"date-end"].present?
       content = params[:content]
       time_start = params[:"time-start"]
       time_end = params[:"time-end"]
@@ -10,10 +12,13 @@ class Admin::AuctionsController < Admin::BaseController
       date_end = params[:"date-end"].to_time
       start_time = convert_time(time_start, date_start)
       end_time = convert_time(time_end, date_end)
-      @auctions = Auction.search(content, start_time, end_time).paginate(page: params[:page], per_page: 10).order('id DESC')
-      byebug
+      @auctions = Auction.search(content, start_time, end_time)
+                         .paginate(page: params[:page], per_page: 10)
+                         .order('id DESC')
     else
-      @auctions = Auction.includes(:auction_details).paginate(page: params[:page], per_page: 10).order('id DESC')
+      @auctions = Auction.includes(:auction_details)
+                         .paginate(page: params[:page], per_page: 10)
+                         .order('id DESC')
     end
   end
 

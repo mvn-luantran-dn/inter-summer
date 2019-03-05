@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
         obj_timer['product_quantity'] += 1
         $redis.set(timer.id, obj_timer.to_json)
       end
-      quantity = product.quantity + 1
+      _quantity = product.quantity + 1
       @order.update_attribute(:total_price, total)
       @order.destroy unless @order.items.any?
       flash[:success] = 'Delete success'

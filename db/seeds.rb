@@ -1,4 +1,4 @@
-User.create!(name:  'admin',
+User.create!(name: 'admin',
              email: 'admin@auction.com',
              password: 'password',
              password_confirmation: 'password',
@@ -10,7 +10,7 @@ User.create!(name:  'admin',
   email = "user-#{n + 1}@auction.com"
   password = 'password'
   role = 'user'
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
                password: password,
                role: role,

@@ -7,11 +7,16 @@ class Admin::ProductsController < Admin::BaseController
   def index
     respond_to do |format|
       format.html do
-        if params[:content].blank?
-          @products = Product.where(status: ProductStatus::SELLING).paginate(page: params[:page], per_page: 10).order('id DESC')
-        else
-          @products = Product.where(status: ProductStatus::SELLING).search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
-        end
+        @products = if params[:content].blank?
+                      Product.where(status: ProductStatus::SELLING)
+                                        .paginate(page: params[:page], per_page: 10)
+                                        .order('id DESC')
+                    else
+                      Product.where(status: ProductStatus::SELLING)
+                             .search_product(params[:content])
+                             .paginate(page: params[:page], per_page: 10)
+                             .order('id DESC')
+                    end
       end
 
       format.csv do
@@ -36,6 +41,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new(product_params)
     @product.status = ProductStatus::SELLING
     return redirect_to admin_products_url, notice: 'Add product success' if @product.save
+
     render :new
   end
 
@@ -77,7 +83,7 @@ class Admin::ProductsController < Admin::BaseController
         end
         unless delete_ids.empty?
           delete_ids.each do |id|
-            Product.find(id)..update_attribute(:status, ProductStatus::UNSELLING)
+            Product.find(id).update_attribute(:status, ProductStatus::UNSELLING)
           end
           redirect_to admin_products_url, notice: 'Delete success'
         end
@@ -117,7 +123,7 @@ class Admin::ProductsController < Admin::BaseController
     end
 
     def product_can_update(product)
-      if !product.timers.where(status: 'on').empty?
+      unless product.timers.where(status: 'on').empty?
         flash[:notice] = 'Please turn off all timer'
         return false
       end
