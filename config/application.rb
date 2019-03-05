@@ -40,5 +40,6 @@ module Autions
     }, { expires_in: 7.days }
 
     ActionCable.server.config.logger = Logger.new Rails.root.join('log', 'action_cable.log')
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end

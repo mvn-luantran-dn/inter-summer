@@ -5,7 +5,7 @@ en:
         name: 'Name'
         email: 'Email'
         password: 'Password'
-        password_confirmation: 'password_confirmation'
+        password_confirmation: 'Password confirmation'
         role: 'Role'
       category: 
         name: 'Name'

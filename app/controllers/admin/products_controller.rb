@@ -9,8 +9,8 @@ class Admin::ProductsController < Admin::BaseController
       format.html do
         @products = if params[:content].blank?
                       Product.where(status: ProductStatus::SELLING)
-                                        .paginate(page: params[:page], per_page: 10)
-                                        .order('id DESC')
+                             .paginate(page: params[:page], per_page: 10)
+                             .order('id DESC')
                     else
                       Product.where(status: ProductStatus::SELLING)
                              .search_product(params[:content])

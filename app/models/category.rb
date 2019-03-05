@@ -17,6 +17,7 @@ class Category < ApplicationRecord
   scope :search_name, ->(content) { where 'name LIKE ?', "%#{content}%" }
   scope :include_basic, -> { includes(:parent_category, :child_categories) }
   scope :root, -> { where(parent_id: nil) }
+  scope :common_order, -> { order(id: :desc) }
 
   def self.import_file(file)
     spreadsheet = Roo::Spreadsheet.open file
@@ -35,6 +36,6 @@ class Category < ApplicationRecord
       return if category.nil?
       return if category.parent_category.blank?
 
-      errors.add(:parent_id, I18n.t('categories.can_not_two_level'))
+      errors.add(:parent_id, I18n.t('categories.errors.can_not_two_level'))
     end
 end

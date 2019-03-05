@@ -1,0 +1,16 @@
+en:
+  categories:
+    create:
+      success: 'Add category success'
+    update:
+      success: 'Update catefory success'
+    destroy:
+      success: 'Delete category success'
+      error: 'Delete category error'
+    import:
+      notice: 'Please choose file'
+      success: 'Data imported'
+      error: 'Import error'
+    errors:
+      can_not_two_level: can_not_two_level
+  

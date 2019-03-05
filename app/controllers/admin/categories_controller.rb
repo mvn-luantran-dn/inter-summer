@@ -4,13 +4,13 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :root_categories_without_self, only: %i[edit update]
 
   def index
-    @categories_no_parent = Category.root
+    @categories_no_parent = Category.include_basic.root
     @categories = if params[:content].blank?
-                    Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+                    Category.paginate(page: params[:page], per_page: 10).common_order
                   else
                     Category.search_name(params[:content])
                             .paginate(page: params[:page], per_page: 10)
-                            .order('id DESC')
+                            .common_order
                   end
   end
 
@@ -21,7 +21,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success] = 'Add category success'
+      flash[:success] = I18n.t('categories.create.success')
       redirect_to admin_categories_path
     else
       render :new
@@ -34,7 +34,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if @category.update_attributes(category_params)
-      flash[:success] = 'Update success'
+      flash[:success] = I18n.t('categories.update.success')
       redirect_to admin_categories_path
     else
       render :edit
@@ -44,22 +44,22 @@ class Admin::CategoriesController < Admin::BaseController
   def destroy
     if check_delete_category @category
       @category.destroy!
-      flash[:success] = 'Category deleted'
+      flash[:success] = I18n.t('categories.destroy.success')
     else
-      flash[:success] = 'Delete error'
+      flash[:danger] = I18n.t('categories.destroy.error')
     end
     redirect_to admin_categories_url
   end
 
   def import
     if params[:file].nil?
-      flash[:notice] = 'Please choose file'
+      flash[:notice] = I18n.t('categories.import.notice')
       render :show_import
     else
       if Category.import_file params[:file]
-        flash[:notice] = 'Data imported'
+        flash[:notice] = I18n.t('categories.import.success')
       else
-        flash[:danger] = 'Import error'
+        flash[:danger] = I18n.t('categories.import.error')
       end
       redirect_to admin_categories_path
     end
@@ -73,14 +73,14 @@ class Admin::CategoriesController < Admin::BaseController
           if check_delete_category Category.find(id.to_i)
             delete_ids << id.to_i
           else
-            redirect_to admin_categories_path, notice: 'Delete error'
+            redirect_to admin_categories_path, notice: I18n.t('categories.destroy.error')
           end
         end
         unless delete_ids.empty?
           delete_ids.each do |id|
             update_category_chid @category
           end
-          redirect_to admin_categories_path, notice: 'Delete success'
+          redirect_to admin_categories_path, notice: I18n.t('categories.destroy.success')
         end
       end
     end
