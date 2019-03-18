@@ -1,0 +1,14 @@
+en:
+  timers:
+    create:
+      success: 'Add timer success'
+    update:
+      success: 'Update timer success'
+    destroy:
+      success: 'Delete timer success'
+      error: 'Delete timer error'
+    check:
+      timer: 'Timer off before delete'
+      order: 'Product in order. Please wait for chekout'
+
+  

@@ -1,0 +1,17 @@
+en:
+  users:
+    create:
+      success: 'Add users success'
+    update:
+      success: 'Update users success'
+    destroy:
+      success: 'Delete users success'
+      error: 'Delete users error'
+      root: 'Admin root. Can not delete or block'
+    block:
+      success: 'User blocked'
+      error: 'Block user error'
+    open:
+      success: 'User opened'
+      error: 'Open user error'
+  

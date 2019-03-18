@@ -7,7 +7,7 @@
 <%= form_group_for f, :parent_id, label: false  do %>
   <div class="form-group">
     <%= f.label(:parent_id, 'Parent_id:')%>
-    <%= f.select(:parent_id, options_for_select(@categories.collect{ |u| [u.name, u.id] }, selected: @parent_id), { prompt: 'Choose id parent' }, { class: 'form-control' } ) %>
+    <%= f.select(:parent_id, options_for_select(@cat_list.collect{ |u| [u.name, u.id] }, selected: @parent_id), { prompt: 'Choose id parent' }, { class: 'form-control' } ) %>
   </div>
 <% end %>
 <%= f.submit "Submit", class: 'btn btn-success' %>

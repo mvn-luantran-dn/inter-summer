@@ -1,5 +1,13 @@
 class User < ApplicationRecord
   acts_as_paranoid
+  strip_attributes
+  has_secure_password
+
+  GENDER_MALE    = 1
+  GENDER_FEMALE  = 2
+  GENDER_OTHER   = 3
+
+  enum gender: { male: GENDER_MALE, female: GENDER_FEMALE, other: GENDER_OTHER }
 
   has_many :auction_details
   has_many :notifications
@@ -7,22 +15,26 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = '/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i'.frezee
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
 
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password_confirmation, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :role, presence: true
+  validates :address, presence: true, length: { minimum: 10 }
+  validates :phone, presence: true, length: { maximum: 15 },
+                    format: { with: PHONE_REGEX }, numericality: true
   scope :search_name_email, ->(content) { where 'name LIKE ? or email LIKE ? ', "%#{content}%", "%#{content}%" }
+  scope :common_order, -> { order('id DESC') }
 
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
-              BCrypt::Engine::MIN_COST
+             BCrypt::Engine::MIN_COST
            else
-              BCrypt::Engine.cost
+             BCrypt::Engine.cost
            end
     BCrypt::Password.create(string, cost: cost)
   end

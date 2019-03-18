@@ -2,26 +2,31 @@ class Admin::UsersController < Admin::BaseController
   before_action :logged_in_user, only: %i[index edit update destroy block]
   before_action :find_user, only: %i[show edit update destroy block]
   before_action :admin_user, only: %i[destroy block]
+  before_action :load_genders_user, only: %i[new create edit update]
 
   def index
-    if params[:content].blank?
-      @users = User.paginate(page: params[:page], per_page: 10).order('id DESC')
-    else
-      @users = User.search_name_email(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
-    end
+    @users = if params[:content].blank?
+               User.paginate(page: params[:page], per_page: 10).common_order
+             else
+               User.search_name_email(params[:content])
+                   .paginate(page: params[:page], per_page: 10)
+                   .common_order
+             end
   end
 
   def new
     @user = User.new
+    @date_birth_day = Time.zone.today - 18.years
   end
 
   def create
-    @user = User.new(user_params)
-    @user.status = 'on'
+    password = generate_password
+    @user = User.new(user_params.merge(password: password))
     @user.activated_at = Time.zone.now
-    byebug
+    @user.status = false
     if @user.save
-      flash[:success] = 'Add user success'
+      flash[:success] = I18n.t('users.create.success')
+      send_mail_password(@user, password)
       redirect_to admin_users_path
     else
       render :new
@@ -30,7 +35,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = 'Update success'
+      flash[:success] = I18n.t('users.update.success')
       redirect_to admin_users_path
     else
       render :edit
@@ -38,32 +43,29 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    if @user.name == 'admin'
-      flash[:danger] = 'Admin root'
+    if @user.root && @user.role == 'admin'
+      flash[:danger] = I18n.t('users.destroy.root')
+    elsif @user.destroy
+      flash[:success] = I18n.t('users.destroy.success')
     else
-      @user.destroy
-      flash[:success] = 'User deleted'
+      flash[:danger] = I18n.t('users.destroy.error')
     end
     redirect_to admin_users_url
   end
 
   def block
-    if @user.name == 'admin'
-      flash[:danger] = 'Admin root'
-    else
-      if @user.status == 'on'
-        if @user.update_attribute(:status, 'off')
-          flash[:success] = 'User blocked'
-        else
-          flash[:notice] = 'Block user error'
-        end
+    if @user.root && @user.role == 'admin'
+      flash[:danger] = I18n.t('users.destroy.root')
+    elsif @user.deactivated_at
+      if @user.update_attribute(:deactivated_at, Time.zone.now)
+        flash[:success] = I18n.t('users.block.success')
       else
-        if @user.update_attribute(:status, 'on')
-          flash[:success] = 'User opened'
-        else
-          flash[:notice] = 'Block user error'
-        end
+        flash[:notice] = I18n.t('users.block.error')
       end
+    elsif @user.update_attribute(:deactivated_at, Time.zone.now)
+      flash[:success] = I18n.t('users.open.success')
+    else
+      flash[:notice] = I18n.t('users.open.error')
     end
     redirect_to admin_users_url
   end
@@ -71,7 +73,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+      params.require(:user).permit(:name, :email, :role, :address, :phone, :birth_day, :gender)
     end
 
     def logged_in_user
@@ -88,5 +90,17 @@ class Admin::UsersController < Admin::BaseController
 
     def admin_user
       redirect_to(admin_users_url) unless current_user.role == 'admin'
+    end
+
+    def generate_password
+      SecureRandom.urlsafe_base64(6)
+    end
+
+    def send_mail_password(user, password)
+      UserMailer.create_account(user, password).deliver_later
+    end
+
+    def load_genders_user
+      @genders = User.genders
     end
 end

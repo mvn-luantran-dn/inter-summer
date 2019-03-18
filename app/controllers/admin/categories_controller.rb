@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :root_categories, only: %i[new create]
-  before_action :find_category, only: %i[show edit update]
+  before_action :find_category, only: %i[show edit update destroy]
   before_action :root_categories_without_self, only: %i[edit update]
 
   def index
@@ -93,7 +93,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
 
     def root_categories
-      @categories = Category.root
+      @cat_list = Category.root
     end
 
     def find_category
@@ -102,15 +102,18 @@ class Admin::CategoriesController < Admin::BaseController
     end
 
     def root_categories_without_self
-      id = @category.id
-      @categories = Category.get_without_self(id).get_without_parent_self(id)
+      @cat_list = Category.root.get_without_self(@category.id)
     end
 
     def check_delete_category(category)
       category.products.each do |product|
         return false unless product_can_delete product
       end
-      check_delete_category category.child_categories if category.child_categories.any?
+      if category.child_categories.any?
+        category.child_categories.each do |chid_cat|
+          check_delete_category(chid_cat)
+        end
+      end
       true
     end
 

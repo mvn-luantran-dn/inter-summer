@@ -1,21 +1,20 @@
 require 'csv'
 
 class Admin::ProductsController < Admin::BaseController
-  before_action :find_product, only: %i[show edit update destroy]
+  before_action :find_product, only: %i[edit update destroy]
   before_action :load_categories, only: %i[new create edit update]
+  before_action :detail_product, only: :show
 
   def index
     respond_to do |format|
       format.html do
         @products = if params[:content].blank?
-                      Product.where(status: ProductStatus::SELLING)
-                             .paginate(page: params[:page], per_page: 10)
-                             .order('id DESC')
+                      Product.paginate(page: params[:page], per_page: 10)
+                             .common_order
                     else
-                      Product.where(status: ProductStatus::SELLING)
-                             .search_product(params[:content])
+                      Product.search_product(params[:content])
                              .paginate(page: params[:page], per_page: 10)
-                             .order('id DESC')
+                             .common_order
                     end
       end
 
@@ -39,10 +38,12 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
-    @product.status = ProductStatus::SELLING
-    return redirect_to admin_products_url, notice: 'Add product success' if @product.save
-
-    render :new
+    if @product.save
+      flash[:success] = I18n.t('products.create.success')
+      redirect_to admin_products_url
+    else
+      render :new
+    end
   end
 
   def edit; end
@@ -53,7 +54,8 @@ class Admin::ProductsController < Admin::BaseController
         @product.timers.each do |timer|
           AuctionData.update(timer) unless $redis.get(timer.id).nil?
         end
-        redirect_to admin_products_path, notice: 'Update success'
+        flash[:success] = I18n.t('products.update.success')
+        redirect_to admin_products_path
       else
         render :edit
       end
@@ -64,29 +66,31 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if product_can_delete @product
-      @product.update_attribute(:status, ProductStatus::UNSELLING)
-      flash[:success] = 'Delete product success'
+      flash[:success] = I18n.t('products.destroy.success')
+    else
+      flash[:danger] = I18n.t('products.destroy.error')
     end
     redirect_to admin_products_url
   end
 
   def delete_more_product
-    if request.post?
-      if params[:ids]
-        delete_ids = []
-        params[:ids].each do |id|
-          if product_can_delete Product.find(id.to_i)
-            delete_ids << id.to_i
-          else
-            redirect_to admin_products_url
-          end
+    return unless request.post?
+
+    if params[:ids]
+      delete_ids = []
+      params[:ids].each do |id|
+        if product_can_delete Product.find(id.to_i)
+          delete_ids << id.to_i
+        else
+          redirect_to admin_products_url
         end
-        unless delete_ids.empty?
-          delete_ids.each do |id|
-            Product.find(id).update_attribute(:status, ProductStatus::UNSELLING)
-          end
-          redirect_to admin_products_url, notice: 'Delete success'
+      end
+      unless delete_ids.empty?
+        delete_ids.each do |id|
+          Product.find(id).update_attribute(:status, ProductStatus::UNSELLING)
         end
+        flash[:success] = I18n.t('products.destroy.success')
+        redirect_to admin_products_url
       end
     end
   end
@@ -109,12 +113,12 @@ class Admin::ProductsController < Admin::BaseController
 
     def product_can_delete(product)
       if !product.timers.where(status: 'on').empty?
-        flash[:notice] = 'Please turn off all timer'
+        flash[:notice] = I18n.t('products.check.timer')
         return false
       else
         Item.where(product_id: product.id).each do |item|
           if item.order.status != 'received'
-            flash[:notice] = 'Product in order. Please wait for chekout'
+            flash[:notice] = I18n.t('products.check.order')
             return false
           end
         end
@@ -124,9 +128,15 @@ class Admin::ProductsController < Admin::BaseController
 
     def product_can_update(product)
       unless product.timers.where(status: 'on').empty?
-        flash[:notice] = 'Please turn off all timer'
+        flash[:notice] = I18n.t('products.check.timer')
         return false
       end
       true
+    end
+
+    def detail_product
+      return @product if @product
+
+      @product = Product.includes(:assets).find_by(id: params[:id]) || redirect_to_not_found
     end
 end

@@ -16,6 +16,7 @@ class Admin::TimersController < Admin::BaseController
     @timer = @product.timers.new(timer_params)
     if @timer.save
       AuctionData.add(@timer)
+      flash[:success] = I18n.t('timers.create.success')
       return redirect_to(admin_product_timers_path)
     end
     render :new
@@ -24,38 +25,37 @@ class Admin::TimersController < Admin::BaseController
   def update
     if @timer.update_attributes(timer_params)
       update_timer(@timer)
-      return redirect_to admin_product_timers_path, notice: 'Update success'
+      flash[:success] = I18n.t('timers.update.success')
+      return redirect_to admin_product_timers_path
     end
     render :edit
   end
 
   def destroy
     if check_delete_timer @timer
-      flash[:notice] = 'Delete timer success' if @timer.destroy
+      flash[:success] = I18n.t('timers.destroy.success') if @timer.destroy
     else
-      flash[:alert] = 'Timer off before delete'
+      flash[:alert] = I18n.t('timers.check.timers')
     end
     redirect_to admin_product_timers_path
   end
 
   def delete_more_timer
-    return unless request.post?
+    return unless request.post? || params[:ids]
 
-    if params[:ids]
-      delete_ids = []
-      params[:ids].each do |id|
-        if check_delete_timer Timer.find(id.to_i)
-          delete_ids << id.to_i
-        else
-          return redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
-        end
+    delete_ids = []
+    params[:ids].each do |id|
+      if check_delete_timer Timer.find(id.to_i)
+        delete_ids << id.to_i
+      else
+        return redirect_to admin_product_timers_path, notice: 'Please turn off all timer'
       end
-      unless delete_ids.empty?
-        delete_ids.each do |id|
-          Timer.find(id).destroy
-        end
-        redirect_to admin_product_timers_path, notice: 'Delete success'
+    end
+    unless delete_ids.empty?
+      delete_ids.each do |id|
+        Timer.find(id).destroy
       end
+      redirect_to admin_product_timers_path, notice: I18n.t('timers.destroy.success')
     end
   end
 

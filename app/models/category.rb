@@ -13,7 +13,6 @@ class Category < ApplicationRecord
   validate :can_not_greater_than_two_level
 
   scope :get_without_self, ->(id) { where.not(id: id) }
-  scope :get_without_parent_self, ->(parent_id) { where.not(parent_id: parent_id) }
   scope :search_name, ->(content) { where 'name LIKE ?', "%#{content}%" }
   scope :include_basic, -> { includes(:parent_category, :child_categories) }
   scope :root, -> { where(parent_id: nil) }

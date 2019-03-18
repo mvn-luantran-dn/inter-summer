@@ -1,0 +1,14 @@
+en:
+  products:
+    create:
+      success: 'Add product success'
+    update:
+      success: 'Update product success'
+    destroy:
+      success: 'Delete product success'
+      error: 'Delete product error'
+    check:
+      timer: 'Please turn off all timer'
+      order: 'Product in order. Please wait for chekout'
+
+  

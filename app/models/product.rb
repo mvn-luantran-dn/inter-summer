@@ -18,6 +18,8 @@ class Product < ApplicationRecord
                            "%#{content}%", "%#{content}%", content.to_s.to_i)
   end
 
+  scope :common_order, -> { order('id DESC') }
+
   def change_status_to_sale
     self.update_attribute(:status, ProductStatus::SELLING)
   end
