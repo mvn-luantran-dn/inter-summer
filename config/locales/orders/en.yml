@@ -1,0 +1,10 @@
+en:
+  auctions:
+    update:
+      success: 'Update auction success'
+    destroy:
+      success: 'Delete auction success'
+      error: 'Delete auction error'
+      alert: 'Please wait for order checkout'
+    
+  

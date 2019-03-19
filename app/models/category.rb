@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
   acts_as_paranoid
+  strip_attributes
 
   has_many :products, dependent: :destroy
   has_many :child_categories, class_name: Category.name,

@@ -1,4 +1,7 @@
 class Timer < ApplicationRecord
+  acts_as_paranoid
+  strip_attributes
+
   before_destroy :delete_redis
   belongs_to :product
   has_many :auctions, dependent: :destroy

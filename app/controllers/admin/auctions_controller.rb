@@ -1,5 +1,6 @@
 class Admin::AuctionsController < Admin::BaseController
-  before_action :find_auction, only: %i[show edit update destroy]
+  before_action :find_auction, only: :destroy
+  before_action :auction_details, only: :show
 
   def index
     if params[:content].present? && params[:"time-start"].present? &&
@@ -14,11 +15,11 @@ class Admin::AuctionsController < Admin::BaseController
       end_time = convert_time(time_end, date_end)
       @auctions = Auction.search(content, start_time, end_time)
                          .paginate(page: params[:page], per_page: 10)
-                         .order('id DESC')
+                         .common_order
     else
       @auctions = Auction.includes(:auction_details)
                          .paginate(page: params[:page], per_page: 10)
-                         .order('id DESC')
+                         .common_order
     end
   end
 
@@ -29,31 +30,29 @@ class Admin::AuctionsController < Admin::BaseController
   def destroy
     if check_delete_auction @auction
       @auction.destroy
-      flash[:success] = 'Auction deleted'
-      redirect_to admin_auctions_path
+      flash[:success] = I18n.t('actions.destroy.success')
     else
-      redirect_to admin_auctions_path, notice: 'Please wait auction finish'
+      flash[:danger] = I18n.t('actions.destroy.alert')
     end
+    redirect_to admin_auctions_path
   end
 
   def delete_more_auction
-    if request.post?
-      if params[:ids]
-        delete_ids = []
-        params[:ids].each do |id|
-          if check_delete_auction Auction.find(id.to_i)
-            delete_ids << id.to_i
-          else
-            return redirect_to admin_auctions_path, notice: 'Please wait auction finish'
-          end
-        end
-        unless delete_ids.empty?
-          delete_ids.each do |id|
-            Auction.find(id).destroy
-          end
-          redirect_to admin_auctions_path, notice: 'Delete success'
-        end
+    return unless request.post? || params[:ids]
+
+    delete_ids = []
+    params[:ids].each do |id|
+      if check_delete_auction Auction.find(id.to_i)
+        delete_ids << id.to_i
+      else
+        flash[:danger] = I18n.t('actions.destroy.alert')
+        return redirect_to admin_auctions_path
       end
+    end
+    unless delete_ids.empty?
+      Auction.where(delete_ids).delete_all
+      flash[:success] = I18n.t('actions.destroy.success')
+      redirect_to admin_auctions_path
     end
   end
 
@@ -73,7 +72,10 @@ class Admin::AuctionsController < Admin::BaseController
     end
 
     def check_delete_auction(auction)
-      return true if auction.status == 'finished'
-      false
+      auction.status == Common::Const::AuctionStatus::FINISHED
+    end
+
+    def auction_details
+      @auction = Auction.includes(:assets).find_by(id: params[:id]) || redirect_to_not_found
     end
 end

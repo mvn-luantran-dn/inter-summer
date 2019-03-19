@@ -77,7 +77,7 @@ class Admin::TimersController < Admin::BaseController
       if $redis.get(timer.id)
         if timer_params['status'] == 'off'
           auction = timer.auctions.last
-          auction.destroy if auction.status == 'run'
+          auction.destroy if auction.status == Common::Const::AuctionStatus::RUNNING
           $redis.del(timer.id)
         else
           AuctionData.update(timer)

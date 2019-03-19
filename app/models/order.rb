@@ -1,4 +1,20 @@
 class Order < ApplicationRecord
+  acts_as_paranoid
+  strip_attributes
+
+  STATUS_WAITTING  = 'waitting'.freeze
+  STATUS_ORDERED   = 'ordered'.freeze
+  STATUS_DELIVERY  = 'delivering'.freeze
+  STATUS_COMPETED  = 'completed'.freeze
+  STATUS           = %w[waitting ordered delivering completed].freeze
+
+  enum status: {
+         waitting:   STATUS_WAITTING,
+         ordered:    STATUS_ORDERED,
+         delivering: STATUS_DELIVERY,
+         completed:  STATUS_COMPETED
+       }
+
   belongs_to :user
   has_many :items, dependent: :destroy
 
@@ -9,6 +25,7 @@ class Order < ApplicationRecord
   validates :phone, presence: true, length: { maximum: 15 },
                     format: { with: PHONE_REGEX }, numericality: true, on: :update
   validates :type_payment, presence: true, on: :update
+  scope :common_order, -> { order('id DESC') }
   scope :search, ->(content, status, time_start, time_end) {
                    where 'name = ? or address = ?
                            or phone = ? or type_payment = ? or status = ? or created_at BETWEEN ? AND ?', content, content, content, content, status, time_start, time_end

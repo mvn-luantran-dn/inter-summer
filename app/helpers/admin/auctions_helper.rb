@@ -6,7 +6,7 @@ module Admin::AuctionsHelper
   def money(auctions)
     total = 0
     auctions.each do |auction|
-      next unless auction.status == 'finished'
+      next unless auction.status == Common::Const::AuctionStatus::FINISHED
 
       price_bid = auction.auction_details.order('price_bid DESC').first.price_bid
       price = auction.timer.product.price

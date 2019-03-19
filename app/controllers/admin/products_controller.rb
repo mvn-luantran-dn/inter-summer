@@ -74,25 +74,21 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def delete_more_product
-    return unless request.post?
+    return unless request.post? || params[:ids]
 
-    if params[:ids]
-      delete_ids = []
-      params[:ids].each do |id|
-        if product_can_delete Product.find(id.to_i)
-          delete_ids << id.to_i
-        else
-          redirect_to admin_products_url
-        end
-      end
-      unless delete_ids.empty?
-        delete_ids.each do |id|
-          Product.find(id).update_attribute(:status, ProductStatus::UNSELLING)
-        end
-        flash[:success] = I18n.t('products.destroy.success')
+    delete_ids = []
+    params[:ids].each do |id|
+      if product_can_delete Product.find(id.to_i)
+        delete_ids << id.to_i
+      else
         redirect_to admin_products_url
       end
     end
+    return if delete_ids.empty?
+
+    Product.where(delete_ids).delete_all
+    flash[:success] = I18n.t('products.destroy.success')
+    redirect_to admin_products_url
   end
 
   private

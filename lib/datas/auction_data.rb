@@ -46,7 +46,7 @@ class AuctionData
           else
             auction = Auction.auction_timer(timer['id']).last
             unless auction.nil?
-              if auction.status == 'run'
+              if auction.status == Common::Const::AuctionStatus::RUNNING
                 decreasing_time(key)
                 finish_auction(key)
                 key = JSON.parse($redis.get(key))

@@ -1,4 +1,7 @@
 class Asset < ApplicationRecord
+  acts_as_paranoid
+  strip_attributes
+
   attr_accessor :_destroy
   belongs_to :module, polymorphic: true
   validates :file_name, presence: true

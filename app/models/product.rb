@@ -1,6 +1,7 @@
 require 'csv'
 class Product < ApplicationRecord
   acts_as_paranoid
+  strip_attributes
 
   belongs_to :category
   has_many :timers, dependent: :destroy

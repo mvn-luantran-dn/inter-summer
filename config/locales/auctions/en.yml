@@ -1,0 +1,7 @@
+en:
+  auctions:
+    destroy:
+      success: 'Delete auction success'
+      alert: 'Please wait auction finished'
+    
+  

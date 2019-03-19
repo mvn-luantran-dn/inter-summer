@@ -4,7 +4,7 @@ namespace :start do
   desc 'Send data to channel'
   task send_data: :environment do
     AuctionData.send_data_to_redis
-    set_interval(1) do
+    loop_interval(1) do
       data = []
       auction_keys = $redis.keys('*')
       auction_keys.each do |key|
@@ -15,7 +15,7 @@ namespace :start do
   end
 end
 
-def set_interval(delay)
+def loop_interval(delay)
   mutex = Mutex.new
   Thread.new do
     mutex.synchronize do

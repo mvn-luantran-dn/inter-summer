@@ -1,6 +1,6 @@
 class Bid
   def self.bidding(data, key)
-    timer = JSON.load($redis.get(key))
+    timer = JSON.parse($redis.get(key))
     auction = Auction.auction_timer(timer['id']).last
     return if auction.nil?
 

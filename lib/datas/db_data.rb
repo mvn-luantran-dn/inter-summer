@@ -5,9 +5,11 @@ class DbData
     auction_size = auction.size
     if auction_size.positive?
       auction = auction.last
-      Auction.create!(timer_id: timer_id, status: 'run') if auction.status == 'finished'
+      if auction.status == Common::Const::AuctionStatus::FINISHED
+        Auction.create!(timer_id: timer_id, status: Common::Const::AuctionStatus::RUNNING)
+      end
     else
-      Auction.create!(timer_id: timer_id, status: 'run')
+      Auction.create!(timer_id: timer_id, status: Common::Const::AuctionStatus::RUNNING)
     end
   end
 
@@ -15,7 +17,7 @@ class DbData
     timer_id = timer['id']
     auction = Auction.auction_timer(timer_id)
     auction = auction.last
-    auction.update_attribute(:status, 'finished')
+    auction.update_attribute(:status, Common::Const::AuctionStatus::FINISHED)
   end
 
   def user_win(timer)
@@ -47,12 +49,11 @@ class DbData
       order.total_price = auction_dls.price_bid
       order.name = auction_dls.user.name
       order.save
-      create_item(order, product, auction_dls)
     else
       total_price = order.total_price + auction_dls.price_bid.to_i
       order.update_attribute(:total_price, total_price)
-      create_item(order, product, auction_dls)
     end
+    create_item(order, product, auction_dls)
   end
 
   def create_item(order, product, auction_dls)

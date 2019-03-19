@@ -6,7 +6,7 @@
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid - auction.timer.product.price if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center">
-    <% if auction.status == 'run' %>
+    <% if auction.status == Common::Const::AuctionStatus::RUNNING %>
       <p class="auction-item run"><%= auction.status %></p>
     <% else %>
       <p class="auction-item finish"><%= auction.status %></p>

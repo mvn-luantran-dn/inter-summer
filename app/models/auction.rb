@@ -6,4 +6,6 @@ class Auction < ApplicationRecord
     joins(timer: [:product]).where('products.name LIKE ? or auctions.created_at BETWEEN ? AND ?',
                                    "%#{content}%", start_time, end_time)
   end
+
+  scope :common_order, -> { order('id DESC') }
 end
