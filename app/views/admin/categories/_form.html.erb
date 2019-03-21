@@ -18,5 +18,11 @@
     <%= f.select(:parent_id, options_for_select(@cat_list.collect{ |u| [u.name, u.id] }, selected: @parent_id), { prompt: 'Choose id parent' }, { class: 'form-control' } ) %>
   </div>
 <% end %>
+<%= form_group_for f, :decsription, label: false  do %>
+  <div class="form-group">
+    <%= f.label :decsription %>
+    <%= f.text_field :description, placeholder: 'Desciption', class: 'form-control' %>
+  </div>
+<% end %>
 <%= f.submit "Submit", class: 'btn btn-success' %>
 <%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id          :bigint(8)        not null, primary key
+#  name        :string
+#  parent_id   :integer
+#  deleted_at  :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :string
+#
+
 class Category < ApplicationRecord
   acts_as_paranoid
   strip_attributes

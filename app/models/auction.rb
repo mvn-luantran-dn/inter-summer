@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: auctions
+#
+#  id         :bigint(8)        not null, primary key
+#  timer_id   :bigint(8)
+#  status     :string
+#  deleted_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Auction < ApplicationRecord
   belongs_to :timer
   has_many :auction_details, dependent: :destroy

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: assets
+#
+#  id          :bigint(8)        not null, primary key
+#  file        :string
+#  name        :string
+#  module_id   :integer
+#  module_type :string
+#  deleted_at  :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Asset < ApplicationRecord
   acts_as_paranoid
   strip_attributes

@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :bigint(8)        not null, primary key
+#  category_id :bigint(8)
+#  name        :string
+#  detail      :text
+#  price       :integer
+#  quantity    :integer
+#  price_at    :integer
+#  status      :string
+#  deleted_at  :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'csv'
 class Product < ApplicationRecord
   acts_as_paranoid

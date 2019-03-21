@@ -1,3 +1,31 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :bigint(8)        not null, primary key
+#  name              :string           not null
+#  email             :string           not null
+#  password_digest   :string
+#  remember_digest   :string
+#  role              :string
+#  provider          :string
+#  uid               :string
+#  activation_digest :string
+#  activated_at      :datetime
+#  reset_digest      :string
+#  reset_sent_at     :datetime
+#  deleted_at        :datetime
+#  address           :string
+#  phone             :string
+#  gender            :integer          default("male"), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  status            :boolean
+#  root              :boolean          default(FALSE)
+#  deactivated_at    :datetime
+#  birth_day         :date
+#
+
 class User < ApplicationRecord
   acts_as_paranoid
   strip_attributes

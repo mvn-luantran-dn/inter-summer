@@ -1,0 +1,10 @@
+en:
+  payments:
+    create:
+      success: 'Add payment success'
+    update:
+      success: 'Update catefory success'
+    destroy:
+      success: 'Delete payment success'
+      error: 'Delete payment error'
+  

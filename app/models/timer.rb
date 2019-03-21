@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: timers
+#
+#  id         :bigint(8)        not null, primary key
+#  product_id :bigint(8)
+#  start_at   :time
+#  end_at     :time
+#  period     :time
+#  bid_step   :integer
+#  deleted_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Timer < ApplicationRecord
   acts_as_paranoid
   strip_attributes

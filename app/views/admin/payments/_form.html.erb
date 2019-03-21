@@ -1,0 +1,22 @@
+<%= form_group_for f, :name, label: false  do %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name Payment', class: 'form-control' %>
+  </div>
+<% end %>
+<div class="image-list">
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :file %>
+    <% image_url = f.object&.asset&.file_url %>
+    <%= image_tag(image_url, class: "img-resize") if image_url %>
+  </div>
+</div>
+<%= form_group_for f, :description, label: false  do %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: 'Description Payment', class: 'form-control' %>
+  </div>
+<% end %>
+<%= f.submit "Submit", class: 'btn btn-success' %>
+<%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>

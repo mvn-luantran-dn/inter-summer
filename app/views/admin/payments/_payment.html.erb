@@ -1,0 +1,15 @@
+<tr class="odd gradeX">
+  <td class="name-payment">
+    <% if payment.asset.present? %>
+      <%= image_tag(payment&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+    <% else %>
+      <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+    <% end %>
+    <%= link_to payment.name, admin_payment_path(payment), class: 'detail-item' %>
+  </td>
+  <td class="description-payment"><%= payment.description %></td>
+  <td class="action-payment">
+    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_payment_path(payment), class: 'button-item update-item-cat' %>
+    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_payment_path(payment), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+  </td>
+</tr>

@@ -55,6 +55,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'paranoia', '~> 2.2'
 gem 'strip_attributes'
+gem 'annotate'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

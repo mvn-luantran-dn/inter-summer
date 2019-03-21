@@ -38,7 +38,6 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
-    binding.pry
     if @product.save
       flash[:success] = I18n.t('products.create.success')
       redirect_to admin_products_url

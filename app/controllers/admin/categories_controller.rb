@@ -4,7 +4,7 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :root_categories_without_self, only: %i[edit update]
 
   def index
-    @categories_no_parent = Category.include_basic.root
+    # @categories_no_parent = Category.include_basic.root
     @categories = if params[:content].blank?
                     Category.include_basic.root
                             .paginate(page: params[:page], per_page: 10)

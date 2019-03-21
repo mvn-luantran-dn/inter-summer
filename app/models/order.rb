@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id           :bigint(8)        not null, primary key
+#  user_id      :bigint(8)
+#  address      :string
+#  phone        :string
+#  name         :string
+#  total_price  :integer
+#  deleted_at   :datetime
+#  status       :string           default(NULL), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  type_payment :string
+#
+
 class Order < ApplicationRecord
   acts_as_paranoid
   strip_attributes
