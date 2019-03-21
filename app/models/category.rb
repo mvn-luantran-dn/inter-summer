@@ -10,12 +10,13 @@ class Category < ApplicationRecord
   belongs_to :parent_category, class_name: Category.name,
                                foreign_key: :parent_id,
                                optional: true
+  has_one :asset, as: :module, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 100 }
   validate :can_not_greater_than_two_level
 
   scope :get_without_self, ->(id) { where.not(id: id) }
   scope :search_name, ->(content) { where 'name LIKE ?', "%#{content}%" }
-  scope :include_basic, -> { includes(:parent_category, :child_categories) }
+  scope :include_basic, -> { includes(:asset, :parent_category, :child_categories) }
   scope :root, -> { where(parent_id: nil) }
   scope :common_order, -> { order(id: :desc) }
 

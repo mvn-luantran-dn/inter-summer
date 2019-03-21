@@ -23,7 +23,7 @@ var auction = {
       html += '<div class="item-box">';
       html += '<h4>'+ e.product_name +'</h4>';
       html += '<div class="item-box-left">';
-      html += '<a href="/auctions/'+ e.id +'"><img style="border-width:0px;", src="' + e.product_pictures[0].file_name.url  + '"></a>';
+      html += '<a href="/auctions/'+ e.id +'"><img style="border-width:0px;", src="' + e.product_pictures[0].file.url  + '"></a>';
       html += '<div class="info_data timeout last_minute"></div>';
       html += '</div>';
       html += '<div class="item-box-right">';

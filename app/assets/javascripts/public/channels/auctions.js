@@ -24,7 +24,7 @@ $(document).ready(function () {
           if (e.product_category == cat_id) {
             html += '<div class="col-sm-6 col-md-3 ser">';
             html += '<div class="product-item thumbnail">';
-            html += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file_name.url + '" alt="' + e.product_name + '"></a>';
+            html += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file.url + '" alt="' + e.product_name + '"></a>';
             html += '<div class="caption text-center">';
             html += '<a href="/auctions/' + e.id + '"><h3>' + e.product_name + '</h3></a>';
             html += '<p><span id="countdowntimer" class="text-danger">' + time_convert(e.period) + '</span></p>';
@@ -42,7 +42,7 @@ $(document).ready(function () {
         list.forEach(function (e) {
           html += '<div class="col-sm-6 col-md-3 ser">';
           html += '<div class="product-item thumbnail">';
-          html += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file_name.url + '" alt="' + e.product_name + '"></a>';
+          html += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file.url + '" alt="' + e.product_name + '"></a>';
           html += '<div class="caption text-center">';
           html += '<a href="/auctions/' + e.id + '"><h3>' + e.product_name + '</h3></a>';
           html += '<p><span id="countdowntimer" class="text-danger">' + time_convert(e.period) + '</span></p>';
@@ -53,7 +53,7 @@ $(document).ready(function () {
           if(e.period < 20) {
             finish += '<div class="col-sm-6 col-md-3 ser">';
             finish += '<div class="product-item thumbnail">';
-            finish += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file_name.url + '" alt="' + e.product_name + '"></a>';
+            finish += '<a href="/auctions/' + e.id + '"><img src="' + e.product_pictures[0].file.url + '" alt="' + e.product_name + '"></a>';
             finish += '<div class="caption text-center">';
             finish += '<a href="/auctions/' + e.id + '"><h3>' + e.product_name + '</h3></a>';
             finish += '<p><span id="countdowntimer" class="text-danger">' + time_convert(e.period) + '</span></p>';

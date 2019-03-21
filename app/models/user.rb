@@ -9,6 +9,12 @@ class User < ApplicationRecord
 
   enum gender: { male: GENDER_MALE, female: GENDER_FEMALE, other: GENDER_OTHER }
 
+  ROLE_ADMIN = 'admin'.freeze
+  ROLE_USER  = 'user'.freeze
+
+  enum role: { admin: ROLE_ADMIN, user: ROLE_USER }
+
+  has_one :asset, as: :module, dependent: :destroy
   has_many :auction_details
   has_many :notifications
   attr_accessor :remember_token, :activation_token, :reset_token

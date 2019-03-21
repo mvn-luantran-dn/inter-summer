@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_021857) do
+ActiveRecord::Schema.define(version: 2019_03_20_123405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assets", force: :cascade do |t|
     t.string "file"
-    t.string "file_name"
+    t.string "name"
     t.integer "module_id"
     t.string "module_type"
     t.datetime "deleted_at"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_021857) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
   end
 
   create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_021857) do
     t.integer "timer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -95,7 +97,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_021857) do
     t.string "name"
     t.integer "total_price"
     t.datetime "deleted_at"
-    t.integer "status"
+    t.string "status", default: "0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type_payment"

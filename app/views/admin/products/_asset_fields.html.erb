@@ -1,9 +1,9 @@
 <div class='image-item'>
-  <%= form_group_for f, :file_name, label: false  do %>
+  <%= form_group_for f, :file, label: false  do %>
     <div class="form-group">
-      <%= f.label :file_name %>
-      <%= f.file_field :file_name %>
-      <%= image_tag(f.object.file_name_url, class: "img-resize") if f.object.file_name_url.present? %>
+      <%= f.label :Image %>
+      <%= f.file_field :file %>
+      <%= image_tag(f.object.file_url, class: "img-resize") if f.object.file_url.present? %>
     </div>
   <% end %>
   <%= f.hidden_field :_destroy, value: 'false' %>

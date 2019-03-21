@@ -1,23 +1,32 @@
 <tr class="odd gradeX">
   <td class="center"><%= user.id %></td>
-  <td class="center"><%= link_to user.name, '#', class: 'detail-item' %></td>
+  <td class="">
+    <% if user.asset.present? %>
+      <%= image_tag(user&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+    <% else %>
+      <img src="/avatar-default.png" alt="Avatar Default" class= "avatar" />
+    <% end %>
+    <%= link_to user.name, admin_user_path(user), class: 'detail-item' %>
+  </td>
   <td class="center"><%= user.email %></td>
   <td class="center"><%= user.role %></td>
-  <td class="center ">
-    <% if user.status == 'on' %>
-      <p class="auction-item run">Open</p>
-    <% else %>
-      <p class="auction-item finish">Block</p>
-    <% end %>
-  <td class="center">
-    <%= link_to 'Update', edit_admin_user_path(user), class: 'button-item update-item btn-margin' %> 
-    <!--<% if admin_user? && !current_user?(user) %>
-      <%= link_to 'Delete', admin_user_path(user), method: :delete, class: 'button-item delete-item',
-                          data: { confirm: "You sure?" } %>
-    <% end %> -->
+  <td class="center"><%= user.address %></td>
+  <td class="center"><%= user.phone %></td>
+  <td class="center"><%= user.gender.camelize %></td>
+  <td class="center action-user">
+    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_user_path(user), class: 'button-item update-item btn-margin' %> 
     <% if admin_user? && !current_user?(user) %>
-      <%= link_to 'Block', block_admin_user_path(user), method: :get, class: 'button-item delete-item',
+      <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_user_path(user), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
+    <% end %>
+    <% if admin_user? && !current_user?(user) %>
+      <% if user.deactivated_at.present? %>
+        <%= link_to raw('<i class="fa fa-unlock-alt fa-2x"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+                            data: { confirm: "You sure?" } %>
+      <% else %>
+        <%= link_to raw('<i class="fa fa-lock fa-2x"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+                            data: { confirm: "You sure?" } %>
+      <% end %>
     <% end %>
   </td>
 </tr>

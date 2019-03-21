@@ -1,5 +1,5 @@
 module Admin::ProductsHelper
   def image_first_of_object(product)
-    product.assets.first.file_name_url
+    product.assets.first.file_url
   end
 end

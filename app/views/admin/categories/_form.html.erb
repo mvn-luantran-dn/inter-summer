@@ -4,6 +4,14 @@
     <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
   </div>
 <% end %>
+<div class="image-list">
+  <div class="form-group">
+    <%= f.label :file %>
+    <%= f.file_field :Image %>
+    <% image_url = f.object&.asset&.file_url %>
+    <%= image_tag(image_url, class: "img-resize") if image_url %>
+  </div>
+</div>
 <%= form_group_for f, :parent_id, label: false  do %>
   <div class="form-group">
     <%= f.label(:parent_id, 'Parent_id:')%>

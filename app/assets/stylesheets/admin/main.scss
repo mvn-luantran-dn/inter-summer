@@ -39,6 +39,12 @@
 .delete-item {
   background-color: #d9534f;
   margin-left: 10px;
+  padding: 10px 14px;
+}
+.block-item {
+  background-color: #faf600;
+  margin-left: 10px;
+  padding: 10px 14px;
 }
 .detail-items {
   background-color: #d6d912;
@@ -50,15 +56,16 @@
   margin-right: 0;
 }
 .img-resize {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+  margin-top: 15px;
 }
 .center {
   text-align: center;
 }
 .auction-item {
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
 }
 .run {
   background-color: #3be339;
@@ -66,9 +73,9 @@
 .finish {
   background-color: #9ca2b8;
 }
-.btn-margin {
-  margin-left: 30%;
-}
+// .btn-margin {
+//   margin-left: 30%;
+// }
 .search-edit {
   margin-bottom: 40px;
 }
@@ -121,4 +128,49 @@
 }
 .space-bottom {
   margin-top: 50px;
+}
+.action-user {
+  width: 18%;
+}
+// category admin
+.action-cat {
+  width: 20%;
+}
+.name-cat {
+  width: 15%;
+}
+.description-cat {
+  width: 45%;
+}
+.update-item-cat {
+  background-color: #5bc0de;
+}
+// avatar
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+// user-avatar
+.img-user {
+  vertical-align: middle;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-top: 15px;
+}
+// img-product
+.img-product {
+  width: 200px;
+  height: 200px;
+}
+.action-product {
+  width: 26%;
+}
+.center-td {
+  vertical-align: middle;
+  text-align: center;
 }

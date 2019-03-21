@@ -17,7 +17,7 @@
             <div class="form-group col-lg-9">
               <%= select_tag(:status, options_for_select(["wait","checkouted","delivered", "received"]), { prompt: 'Choose status', class: 'form-control col-3' }) %>
             </div>
-            <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
+            <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
         <% if @orders.any? %>

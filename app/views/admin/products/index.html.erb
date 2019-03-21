@@ -8,12 +8,12 @@
       <div class="panel-body">
         <div class='header-panel-body'>
           <div class="link-left">
-            <%= link_to 'Add product', new_admin_product_path, class: 'button-item add-item' %>
+            <%= link_to raw('<i class="fa fa-plus"></i> Add product'), new_admin_product_path, class: 'button-item add-item' %>
             <%= link_to raw('<i class="fa fa-download fa-3x"></i>'), admin_products_path(format: :csv), class: 'csv-file' %>
           </div>
           <%= form_tag admin_products_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
             <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
-            <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
+            <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
         <% if @products.any? %>
@@ -24,7 +24,7 @@
                 <th class="center">Name</th>
                 <th class="center">Category</th>
                 <th class="center">Picture</th>              
-                <th class="center">Detail</th>
+                <!--<th class="center">Detail</th>-->
                 <th class="center">Price</th>
                 <th class="center">Quantity</th>
                 <th class="center">Price start</th>

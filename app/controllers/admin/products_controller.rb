@@ -38,6 +38,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
+    binding.pry
     if @product.save
       flash[:success] = I18n.t('products.create.success')
       redirect_to admin_products_url
@@ -96,7 +97,7 @@ class Admin::ProductsController < Admin::BaseController
     def product_params
       params.require(:product).permit(:name, :category_id, :detail, :price,
                                       :price_at, :quantity, assets_attributes:
-                                      %i[id file_name _destroy])
+                                      %i[id file _destroy])
     end
 
     def find_product

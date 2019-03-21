@@ -6,9 +6,12 @@ class Admin::CategoriesController < Admin::BaseController
   def index
     @categories_no_parent = Category.include_basic.root
     @categories = if params[:content].blank?
-                    Category.paginate(page: params[:page], per_page: 10).common_order
+                    Category.include_basic.root
+                            .paginate(page: params[:page], per_page: 10)
+                            .common_order
                   else
-                    Category.search_name(params[:content])
+                    Category.include_basic.root
+                            .search_name(params[:content])
                             .paginate(page: params[:page], per_page: 10)
                             .common_order
                   end
@@ -21,6 +24,9 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
+      if params[:category][:file].present?
+        Asset.create!(asset_params.merge(module_type: Category.name, module_id: @category.id))
+      end
       flash[:success] = I18n.t('categories.create.success')
       redirect_to admin_categories_path
     else
@@ -34,6 +40,10 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if @category.update_attributes(category_params)
+      if params[:category][:file].present?
+        @category.asset.destroy! if @category.asset.present?
+        Asset.create!(asset_params.merge(module_type: Category.name, module_id: @category.id))
+      end
       flash[:success] = I18n.t('categories.update.success')
       redirect_to admin_categories_path
     else
@@ -89,7 +99,11 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
     def category_params
-      params.require(:category).permit(:name, :parent_id)
+      params.require(:category).permit(:name, :parent_id, :description)
+    end
+
+    def asset_params
+      params.require(:category).permit(:file)
     end
 
     def root_categories

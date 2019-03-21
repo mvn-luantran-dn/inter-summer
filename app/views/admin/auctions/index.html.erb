@@ -27,7 +27,7 @@
               <input type="date" name="date-start" id="date-start" class="form-control">
               <input type="date" name="date-end" class="form-control">
             </div>
-            <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
+            <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
         <% if @auctions.any? %>

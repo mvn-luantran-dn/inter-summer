@@ -1,13 +1,36 @@
 <tr class="odd gradeX">
-  <td class="center"><%= check_box_tag 'ids[]', category.id, false, :class => 'table-row-checkbox' %></td>
-  <td class="center"><%= link_to category.name, '#', class: 'detail-item' %></td>
-  <% if category.parent_id.nil? %>
-    <td class="center">No</td>
-  <% else %>
-    <td class="center"><%= parent_name(category.parent_id) %></td>
-  <% end %>
-  <td class="center">
-    <%= link_to 'Update', edit_admin_category_path(category), class: 'button-item update-item' %>
-    <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+  <td class="name-cat">
+    <% if category.asset.present? %>
+      <%= image_tag(category&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+    <% else %>
+      <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+    <% end %>
+    <%= link_to category.name, admin_category_path(category), class: 'detail-item' %>
+  </td>
+  <td class="center description-cat">Empty</td>
+  
+  <td class="action-cat">
+    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_category_path(category), class: 'button-item update-item-cat' %>
+    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_category_path(category), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
   </td>
 </tr>
+<% if category.child_categories.any? %>
+  <% category.child_categories.each do |cat| %>
+    <tr class="odd gradeX">
+      <td class="center name-cat">
+        <% if cat.asset %>
+          <%= image_tag(cat&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+        <% else %>
+          <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+        <% end %>
+        <%= link_to cat.name, '#', class: 'detail-item' %>
+      </td>
+      <td class="center description-cat">Empty</td>
+      
+      <td class="action-cat">
+        <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_category_path(cat), class: 'button-item update-item-cat' %>
+        <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_category_path(cat), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

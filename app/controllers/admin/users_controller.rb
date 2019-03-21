@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :find_user, only: %i[show edit update destroy block]
   before_action :admin_user, only: %i[destroy block]
   before_action :load_genders_user, only: %i[new create edit update]
+  before_action :load_roles, only: %i[new create edit update]
 
   def index
     @users = if params[:content].blank?
@@ -25,6 +26,9 @@ class Admin::UsersController < Admin::BaseController
     @user.activated_at = Time.zone.now
     @user.status = false
     if @user.save
+      if params[:user][:file].present?
+        Asset.create!(asset_params.merge(module_type: User.name, module_id: @user.id))
+      end
       flash[:success] = I18n.t('users.create.success')
       send_mail_password(@user, password)
       redirect_to admin_users_path
@@ -35,6 +39,10 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update_attributes(user_params)
+      if params[:user][:file].present?
+        @user.asset.destroy! if @user.asset.present?
+        Asset.create!(asset_params.merge(module_type: User.name, module_id: @user.id))
+      end
       flash[:success] = I18n.t('users.update.success')
       redirect_to admin_users_path
     else
@@ -56,13 +64,13 @@ class Admin::UsersController < Admin::BaseController
   def block
     if @user.root && @user.role == 'admin'
       flash[:danger] = I18n.t('users.destroy.root')
-    elsif @user.deactivated_at
+    elsif @user.deactivated_at.blank?
       if @user.update_attribute(:deactivated_at, Time.zone.now)
         flash[:success] = I18n.t('users.block.success')
       else
         flash[:notice] = I18n.t('users.block.error')
       end
-    elsif @user.update_attribute(:deactivated_at, Time.zone.now)
+    elsif @user.update_attribute(:deactivated_at, nil)
       flash[:success] = I18n.t('users.open.success')
     else
       flash[:notice] = I18n.t('users.open.error')
@@ -74,6 +82,10 @@ class Admin::UsersController < Admin::BaseController
 
     def user_params
       params.require(:user).permit(:name, :email, :role, :address, :phone, :birth_day, :gender)
+    end
+
+    def asset_params
+      params.require(:user).permit(:file)
     end
 
     def logged_in_user
@@ -102,5 +114,9 @@ class Admin::UsersController < Admin::BaseController
 
     def load_genders_user
       @genders = User.genders
+    end
+
+    def load_roles
+      @roles = User.roles
     end
 end

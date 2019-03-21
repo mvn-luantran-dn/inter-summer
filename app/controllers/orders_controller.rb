@@ -44,6 +44,6 @@ class OrdersController < ApplicationController
     end
 
     def find_order
-      @order = Order.find_by(user_id: current_user.id, status: 'wait')
+      @order = Order.find_by(user_id: current_user.id, status: Order::STATUS_WAITTING)
     end
 end

@@ -1,7 +1,7 @@
 class PictureUploader < CarrierWave::Uploader::Base
   before :cache, :save_original_filename
   def save_original_filename(file)
-    model.file ||= file.original_filename if file.respond_to?(:original_filename)
+    model.name ||= file.original_filename if file.respond_to?(:original_filename)
   end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
