@@ -8,12 +8,10 @@ class Order < ApplicationRecord
   STATUS_COMPETED  = 'completed'.freeze
   STATUS           = %w[waitting ordered delivering completed].freeze
 
-  enum status: {
-         waitting:   STATUS_WAITTING,
-         ordered:    STATUS_ORDERED,
-         delivering: STATUS_DELIVERY,
-         completed:  STATUS_COMPETED
-       }
+  enum status: { waitting: STATUS_WAITTING,
+                 ordered: STATUS_ORDERED,
+                 delivering: STATUS_DELIVERY,
+                 completed: STATUS_COMPETED }
 
   belongs_to :user
   has_many :items, dependent: :destroy

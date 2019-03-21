@@ -8,9 +8,9 @@
   <td class="center-td"><%= product.quantity %></td>
   <td class="center-td"><%= product.price_at %></td>
   <td class="center action-product">
-    <%= link_to 'Manage Timer', admin_product_timers_path(product), class: 'button-item update-timer-item' %> 
-    <%= link_to 'Update', edit_admin_product_path(product), class: 'button-item update-item' %> 
-    <%= link_to 'Delete', admin_product_path(product), method: :delete, class: 'button-item delete-item',
+    <%= link_to raw('<i class="fa fa-clock-o fa-2x"></i>'), admin_product_timers_path(product), class: 'button-item update-timer-item' %> 
+    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_product_path(product), class: 'button-item update-item' %> 
+    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_product_path(product), method: :delete, class: 'button-item delete-item',
                         data: { confirm: "You sure?" } %>
   </td>
 </tr>
