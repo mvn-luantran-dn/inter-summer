@@ -1,0 +1,16 @@
+<tr class="odd gradeX">
+  <td class="center"><%= check_box_tag 'ids[]', promotion.id, false, :class => 'table-row-checkbox' %></td>
+  <td class="center-td"><%= link_to promotion.name, admin_promotion_path(promotion), class: 'detail-item' %></td>
+  <td class="center-td date-tab"><%= promotion.start_date.strftime("%A, %B %d, %Y") %></td>  
+  <td class="center-td date-tab"><%= promotion.end_date.strftime("%A, %B %d, %Y") %></td>
+  <td class="center-td"><%= promotion.description %></td>
+  <td class="center-td cat-tab">
+    <%= promotion.categories.pluck(:name).join(', ') %>
+  </td>
+  <td class="center action-product">
+    <%= link_to raw('<i class="fa fa-clock-o fa-2x"></i>'), '#', class: 'button-item update-timer-item' %> 
+    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_promotion_path(promotion), class: 'button-item update-item' %> 
+    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_promotion_path(promotion), method: :delete, class: 'button-item delete-item',
+                        data: { confirm: "You sure ?" } %>
+  </td>
+</tr>

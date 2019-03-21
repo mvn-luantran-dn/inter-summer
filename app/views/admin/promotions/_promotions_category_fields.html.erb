@@ -1,0 +1,20 @@
+<div class='image-item cat-item'>
+  <%= form_group_for f, :category_id, label: false  do %>
+     <div class="form-group category-pro">
+    <%= f.label(:category_id, 'Category:')%>
+    <%
+      @cat = @categories - f.object&.promotion&.categories.to_a + [f.object&.category]
+      @cat = @cat.compact
+    %>
+    <%= f.select(:category_id, options_for_select(@cat.collect{ |c| [c.name, c.id] }, selected: f.object.category_id), { prompt: 'Choose category' }, { class: 'form-control select-cat'}) %>
+  </div>
+  <% end %>
+  <%= form_group_for f, :discount, label: false  do %>
+     <div class="form-group">
+    <%= f.label :discount %>
+    <%= f.number_field :discount, placeholder: 'Discount', class: 'form-control' %>
+  </div>
+  <% end %>
+  <%= f.hidden_field :_destroy, value: 'false' %>
+  <%= link_to "Remove", '#', onClick: "removeField(this); return false;", class: "btn btn-warning remove-cat" %>
+</div>

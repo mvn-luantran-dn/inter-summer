@@ -18,7 +18,7 @@ module Admin::BaseHelper
     link_to_function(name,
                      h("add_fields(this,
                        \"#{association}\", \"#{escape_javascript(fields)}\");return false;"),
-                     class: 'btn btn-primary add')
+                     class: 'btn btn-primary add cat-pro')
   end
 
   def link_to_function(name, js, opts = {})

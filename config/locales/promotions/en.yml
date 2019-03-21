@@ -1,0 +1,9 @@
+en:
+  promotions:
+    create:
+      success: 'Add promotion success'
+    update:
+      success: 'Update catefory success'
+    destroy:
+      success: 'Delete promotion success'
+      error: 'Delete promotion error'

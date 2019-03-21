@@ -4,7 +4,7 @@
     <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
   </div>
 <% end %>
-<%= form_group_for f, :name, label: false  do %>
+<%= form_group_for f, :category_id, label: false  do %>
   <div class="form-group">
     <%= f.label(:category_id, 'Category:')%>
     <%= f.select(:category_id, options_for_select(@categories.collect{ |u| [u.name, u.id] }, selected: @product.category_id), { prompt: 'Choose category' }, { class: 'form-control' } ) %>

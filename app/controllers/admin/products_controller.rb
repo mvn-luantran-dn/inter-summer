@@ -108,7 +108,7 @@ class Admin::ProductsController < Admin::BaseController
     end
 
     def product_can_delete(product)
-      if !product.timers.where(status: 'on').empty?
+      if product.timers.where(is_running: true).any?
         flash[:notice] = I18n.t('products.check.timer')
         return false
       else
@@ -123,7 +123,7 @@ class Admin::ProductsController < Admin::BaseController
     end
 
     def product_can_update(product)
-      unless product.timers.where(status: 'on').empty?
+      if product.timers.where(is_running: true).any?
         flash[:notice] = I18n.t('products.check.timer')
         return false
       end

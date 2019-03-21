@@ -1,0 +1,40 @@
+<%= form_group_for f, :name, label: false  do %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Name Promotion', class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :description, label: false  do %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: 'Description Promotion', class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :detail, label: false  do %>
+  <div class="form-group">
+    <%= f.label :detail %>
+    <%= f.text_area :detail, placeholder: 'Detail', class: 'form-control', class: "ckeditor" %>
+  </div>
+<% end %>
+
+<div class="image-list">
+  <%= f.fields_for :promotions_categories do |pro_cat| %>
+    <%= render "promotions_category_fields", f: pro_cat %>
+  <% end %>
+</div>
+<%= link_to_add_fields("Add Category Promotion", f, :promotions_categories) %>
+
+<%= form_group_for f, :start_date, label: false  do %>
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date, class: 'form-control' %>
+  </div>
+<% end %>
+<%= form_group_for f, :end_date, label: false  do %>
+  <div class="form-group">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date, class: 'form-control' %>
+  </div>
+<% end %>
+<%= f.submit "Submit", class: 'btn btn-success' %>
+<%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
