@@ -7,14 +7,14 @@
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid - auction.timer.product.price if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center">
     <% if auction.status == Common::Const::AuctionStatus::RUNNING %>
-      <p class="auction-item run"><%= auction.status %></p>
+      <img src="/run.gif" alt="running" class= "avatar" />
     <% else %>
-      <p class="auction-item finish"><%= auction.status %></p>
+      <img src="/stop.png" alt="running" class= "avatar" />      
     <% end %>
   </td>
-  <td class="center">
-    <%= link_to 'Detail', admin_auction_path(auction), class: 'button-item detail-items btn-margin' %> 
-    <%= link_to 'Delete', admin_auction_path(auction), method: :delete, class: 'button-item delete-item',
+  <td class="center auction-action">
+    <%= link_to raw('<i class="fa fa-info-circle"></i>'), admin_auction_path(auction), class: 'button-item update-item btn-margin' %> 
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_auction_path(auction), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
 
   </td>

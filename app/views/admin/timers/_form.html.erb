@@ -1,4 +1,3 @@
-<% status = Common::Const::TimerStatus %>
 <%= form_group_for f, :time_validation, label: false  do %>
 <% end %>
 <%= form_group_for f, :start_at, label: false  do %>
@@ -31,16 +30,16 @@
 <div class="form-group">
   <%= f.label :status %>
   <br>
-  <% if @timer.status == status::OFF %>
-    <%= f.radio_button :status, status::ON %> 
-    <%= label :status_on, status::ON %>
-    <%= f.radio_button :status, status::OFF, checked: true %>
-    <%= label :status_off, status::OFF %>
+  <% if @timer.is_running %>
+    <%= f.radio_button :is_running, true, checked: true %> 
+    <%= label :status_on, 'On' %>
+    <%= f.radio_button :is_running, false %>
+    <%= label :status_off, 'Off' %>
   <% else %>
-    <%= f.radio_button :status, status::ON, checked: true %> 
-    <%= label :status_on, status::ON %>
-    <%= f.radio_button :status, status::OFF %>
-    <%= label :status_off, status::OFF %>
+    <%= f.radio_button :is_running, true %> 
+    <%= label :status_on, 'On' %>
+    <%= f.radio_button :is_running, false, checked: true %>
+    <%= label :status_off, 'Off' %>
   <% end %>
 </div>
 <%= f.submit "Submit", class: 'btn btn-success' %>

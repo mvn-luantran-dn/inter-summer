@@ -10,8 +10,8 @@
   <td class="center description-cat">Empty</td>
   
   <td class="action-cat">
-    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_category_path(category), class: 'button-item update-item-cat' %>
-    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_category_path(category), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_category_path(category), class: 'button-item update-item' %>
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_category_path(category), method: :delete, data: { confirm: "You sure ?" }, class: 'button-item delete-item' %>
   </td>
 </tr>
 <% if category.child_categories.any? %>
@@ -28,8 +28,8 @@
       <td class="center description-cat">Empty</td>
       
       <td class="action-cat">
-        <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_category_path(cat), class: 'button-item update-item-cat' %>
-        <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_category_path(cat), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+        <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_category_path(cat), class: 'button-item update-item' %>
+        <%= link_to raw('<i class="fa fa-trash"></i>'), admin_category_path(cat), method: :delete, data: { confirm: "You sure ?" }, class: 'button-item delete-item' %>
       </td>
     </tr>
   <% end %>

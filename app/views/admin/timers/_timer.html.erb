@@ -4,16 +4,16 @@
   <td class="center"><%= timer.end_at.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.period.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.bid_step %></td>
-  <td class="center">
-  <% if timer.status == 'on' %>
-    <p class="auction-item run"><%= timer.status %></p>
+  <td class="center timer-status">
+  <% if timer.is_running %>
+    <img src="/run.gif" alt="running" class= "avatar" />
   <% else %>
-    <p class="auction-item finish"><%= timer.status %></p>
+    <img src="/ban.png" alt="running" class= "avatar" />
   <% end %>
   </td>
-  <td class="center">
-    <%= link_to 'Update', edit_admin_product_timer_path(@product, timer), class: 'button-item update-item btn-margin' %> 
-    <%= link_to 'Delete', admin_product_timer_path(@product, timer), method: :delete, class: 'button-item delete-item',
+  <td class="center timer-action">
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_product_timer_path(@product, timer), class: 'button-item update-item' %> 
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_product_timer_path(@product, timer), method: :delete, class: 'button-item delete-item',
                         data: { confirm: "You sure?" } %>
   </td>
 </tr>

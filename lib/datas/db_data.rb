@@ -1,10 +1,10 @@
 class DbData
   def create_auction(timer)
     timer_id = timer['id']
-    auction = Auction.all.auction_timer(timer_id)
-    auction_size = auction.size
+    auction = ActiveRecord::Base.logger.silence { Auction.all.auction_timer(timer_id) }
+    auction_size = ActiveRecord::Base.logger.silence { auction.size }
     if auction_size.positive?
-      auction = auction.last
+      auction = ActiveRecord::Base.logger.silence { auction.last }
       if auction.status == Common::Const::AuctionStatus::FINISHED
         Auction.create!(timer_id: timer_id, status: Common::Const::AuctionStatus::RUNNING)
       end
@@ -15,7 +15,7 @@ class DbData
 
   def close_auction(timer)
     timer_id = timer['id']
-    auction = Auction.auction_timer(timer_id)
+    auction = ActiveRecord::Base.logger.silence { Auction.auction_timer(timer_id) }
     auction = auction.last
     auction.update_attribute(:status, Common::Const::AuctionStatus::FINISHED)
   end

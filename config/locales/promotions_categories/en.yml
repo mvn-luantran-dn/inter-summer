@@ -1,0 +1,10 @@
+en:
+  promotions_categories:
+    create:
+      success: 'Add promotion category success'
+    update:
+      success: 'Update promotion category success'
+    destroy:
+      success: 'Delete promotion category success'
+      error: 'Delete promotion category error'
+  

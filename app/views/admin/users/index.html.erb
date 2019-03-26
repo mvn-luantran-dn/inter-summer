@@ -7,7 +7,7 @@
       </div>
       <div class="panel-body">
         <div class='header-panel-body'>
-          <%= link_to raw('<i class="fa fa-plus"></i> Add user'), new_admin_user_path, class: 'button-item add-item' %>
+          <%= link_to raw('<i class="fa fa-plus"></i> Add user'), new_admin_user_path, class: 'add-item' %>
           <%= form_tag admin_users_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
             <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
             <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>

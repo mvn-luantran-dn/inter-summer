@@ -62,7 +62,7 @@ class Admin::TimersController < Admin::BaseController
   private
 
     def timer_params
-      params.require(:timer).permit(%i[start_at end_at period status bid_step])
+      params.require(:timer).permit(%i[start_at end_at period is_running bid_step])
     end
 
     def find_product
@@ -75,19 +75,19 @@ class Admin::TimersController < Admin::BaseController
 
     def update_timer(timer)
       if $redis.get(timer.id)
-        if timer_params['status'] == 'off'
+        if timer_params['is_running']
+          AuctionData.update(timer)
+        else
           auction = timer.auctions.last
           auction.destroy if auction.status == Common::Const::AuctionStatus::RUNNING
           $redis.del(timer.id)
-        else
-          AuctionData.update(timer)
         end
-      elsif timer_params['status'] == 'on'
+      elsif timer_params['is_running']
         AuctionData.add(timer)
       end
     end
 
     def check_delete_timer(timer)
-      timer.status == 'off'
+      timer.is_running == false
     end
 end

@@ -11,7 +11,10 @@ namespace :show do
           start_at = timer_check['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
           end_at = timer_check['end_at'].to_s.to_time.strftime('%H:%M:%S').to_time
           if Time.now > start_at && Time.now < end_at
-            cat_timer << timer_check if timer['product_category'] == timer_check['product_category'] && timer_check['id'] != timer['id'] && timer_check['status'] == 'on'
+            if timer['product_category'] == timer_check['product_category'] &&
+               timer_check['id'] != timer['id'] && timer_check['status']
+              cat_timer << timer_check
+            end
           end
           break if cat_timer.size == 5
         end

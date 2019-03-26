@@ -8,9 +8,9 @@
     <%= promotion.categories.pluck(:name).join(', ') %>
   </td>
   <td class="center action-product">
-    <%= link_to raw('<i class="fa fa-clock-o fa-2x"></i>'), '#', class: 'button-item update-timer-item' %> 
-    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_promotion_path(promotion), class: 'button-item update-item' %> 
-    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_promotion_path(promotion), method: :delete, class: 'button-item delete-item',
+    <%= link_to raw('<i class="fa fa-clock-o"></i>'), admin_promotion_promotions_categories_path(promotion), class: 'button-item update-item' %> 
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_promotion_path(promotion), class: 'button-item update-item' %> 
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_promotion_path(promotion), method: :delete, class: 'button-item delete-item',
                         data: { confirm: "You sure ?" } %>
   </td>
 </tr>

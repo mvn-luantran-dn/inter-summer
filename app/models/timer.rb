@@ -27,7 +27,7 @@ class Timer < ApplicationRecord
   validates_time :end_at, between: ['8:00am', '11:00pm']
   validates :period, presence: true
   validates :bid_step, presence: true
-  validates :status, presence: true
+  validates :is_running, presence: true
 
   def delete_redis
     $redis.del(self.id)

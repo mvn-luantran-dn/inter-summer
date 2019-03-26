@@ -14,7 +14,7 @@ class AuctionData
         end_at: obj.end_at,
         period: time,
         bid_step: obj.bid_step,
-        status: obj.status,
+        status: obj.is_running,
         product_status: obj.product.status,
         product_id: obj.product_id,
         product_name: obj.product.name,
@@ -33,7 +33,7 @@ class AuctionData
     db = DbData.new
     timer = JSON.parse($redis.get(key))
     if timer['product_status'] == 'selling'
-      if timer['status'] == 'on'
+      if timer['status']
         if timer['product_quantity'].positive?
           start_at = timer['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
           end_at = timer['end_at'].to_s.to_time.strftime('%H:%M:%S').to_time
@@ -56,14 +56,14 @@ class AuctionData
           end
         else
           timer_db = Timer.find_by(id: timer['id'])
-          timer_db.update_attribute(:status, 'off')
+          timer_db.update_attribute(:is_running, false)
           $redis.del(timer['id'])
           ActionCable.server.broadcast("notice_sold_#{timer_db.id}", obj: 'notice')
         end
       end
     else
       timer_db = Timer.find_by(id: timer['id'])
-      timer_db.update_attribute(:status, 'off')
+      timer_db.update_attribute(:is_running, false)
       $redis.del(timer['id']) unless timer.nil?
     end
   end
@@ -115,7 +115,7 @@ class AuctionData
       end_at: obj.end_at,
       period: time,
       bid_step: obj.bid_step,
-      status: obj.status,
+      status: obj.is_running,
       product_id: obj.product_id,
       product_name: obj.product.name,
       product_price: obj.product.price,
@@ -144,7 +144,7 @@ class AuctionData
     data['product_pictures'] = timer.product.assets
     data['product_category'] = timer.product.category_id
     data['period'] = period
-    data['status'] = timer.status
+    data['status'] = timer.is_running
     $redis.set(timer.id, data.to_json)
   end
 

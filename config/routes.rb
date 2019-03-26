@@ -57,7 +57,10 @@ Rails.application.routes.draw do
     end
     get '/sale/:id', to: 'status_products#sale', as: '/sale'
     get '/unsale/:id', to: 'status_products#unsale', as: '/unsale'
-    resources :payments, :promotions
+    resources :payments
+    resources :promotions do
+      resources :promotions_categories
+    end
     get '/category_pro' => 'promotions#category_pro'
   end
   mount ActionCable.server => '/cable'

@@ -8,7 +8,7 @@
       <div class="panel-body">
         <div class='header-panel-body'>
           <div class="link-left">
-            <%= link_to raw('<i class="fa fa-plus"></i> Add category'), new_admin_category_path, class: 'button-item add-item' %>
+            <%= link_to raw('<i class="fa fa-plus"></i> Add category'), new_admin_category_path, class: 'add-item' %>
             <%= link_to raw('<i class="fa fa-upload fa-3x"></i>'), import_admin_categories_path, class: 'csv-file' %>            
           </div>
           <%= form_tag admin_categories_path, method: :get, class: 'col-lg-3', id: 'search'  do %>

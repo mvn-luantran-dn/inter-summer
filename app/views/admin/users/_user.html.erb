@@ -14,17 +14,17 @@
   <td class="center"><%= user.phone %></td>
   <td class="center"><%= user.gender.camelize %></td>
   <td class="center action-user">
-    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_user_path(user), class: 'button-item update-item btn-margin' %> 
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_user_path(user), class: 'button-item update-item btn-margin' %> 
     <% if admin_user? && !current_user?(user) %>
-      <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_user_path(user), method: :delete, class: 'button-item delete-item',
+      <%= link_to raw('<i class="fa fa-trash"></i>'), admin_user_path(user), method: :delete, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
     <% end %>
     <% if admin_user? && !current_user?(user) %>
       <% if user.deactivated_at.present? %>
-        <%= link_to raw('<i class="fa fa-unlock-alt fa-2x"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+        <%= link_to raw('<i class="fa fa-unlock-alt"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
                             data: { confirm: "You sure?" } %>
       <% else %>
-        <%= link_to raw('<i class="fa fa-lock fa-2x"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+        <%= link_to raw('<i class="fa fa-lock"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
                             data: { confirm: "You sure?" } %>
       <% end %>
     <% end %>

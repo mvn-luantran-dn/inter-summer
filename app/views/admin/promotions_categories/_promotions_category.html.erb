@@ -1,0 +1,17 @@
+<tr class="odd gradeX">
+  <td class="center"><%= check_box_tag 'ids[]', promotions_category.id, false, :class => 'table-row-checkbox' %></td>
+  <td class="">
+    <% if promotions_category.category.asset.present? %>
+      <%= image_tag(promotions_category.category&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+    <% else %>
+      <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+    <% end %>
+    <%= promotions_category.category.name %>
+  </td>
+  <td class="center"><%= promotions_category.discount %></td>
+  <td class="center pro-cat-action">
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_promotion_promotions_category_path(@promotion, promotions_category), class: 'button-item update-item btn-margin' %> 
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_promotion_promotions_category_path(@promotion, promotions_category), method: :delete, class: 'button-item delete-item',
+                        data: { confirm: "You sure ?" } %>
+  </td>
+</tr>

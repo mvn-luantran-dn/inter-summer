@@ -1,17 +1,25 @@
 .button-item {
   text-decoration: none;
-  padding: 10px;
+  padding: 8px;
   border-radius: 5px;
-  color: white;
   float: left;
-  margin-bottom: 10px;
 }
 .button-item:hover {
-  color: whitesmoke;
+  color: #ca6b6b;
   text-decoration: none;
 }
 .add-item {
-  background-color: green;  
+  background-color: green;
+  float: left;
+  margin-bottom: 30px;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.add-item:hover {
+  text-decoration: none;
+  color: white;  
 }
 .add-item-child {
   background-color: #998f8f;
@@ -29,22 +37,16 @@
   height: 35px;
 }
 .update-item {
-  background-color: #5bc0de;
-  margin-left: 10px;
-}
-.update-timer-item {
-  background-color: #3348b7;
-  margin-left: 10px;
+  color: #423838;
+  font-size: 17px;
 }
 .delete-item {
-  background-color: #d9534f;
-  margin-left: 10px;
-  padding: 10px 14px;
+  color: #423838;
+  font-size: 17px;
 }
 .block-item {
-  background-color: #faf600;
-  margin-left: 10px;
-  padding: 10px 14px;
+  color: #423838;
+  font-size: 17px;
 }
 .detail-items {
   background-color: #d6d912;
@@ -73,9 +75,6 @@
 .finish {
   background-color: #9ca2b8;
 }
-// .btn-margin {
-//   margin-left: 30%;
-// }
 .search-edit {
   margin-bottom: 40px;
 }
@@ -130,11 +129,11 @@
   margin-top: 50px;
 }
 .action-user {
-  width: 18%;
+  width: 11%;
 }
 // category admin
 .action-cat {
-  width: 20%;
+  width: 8%;
 }
 .name-cat {
   width: 15%;
@@ -164,11 +163,11 @@
 }
 // img-product
 .img-product {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
 }
 .action-product {
-  width: 18%;
+  width: 11%;
 }
 .center-td {
   vertical-align: middle;
@@ -180,9 +179,6 @@
 }
 .description-payment {
   width: 30%
-}
-.action-payment {
-  width: 10%;
 }
 // add promotions category
 .cat-item {
@@ -201,4 +197,16 @@
 }
 .date-tab {
   width: 18%;
+}
+.pro-cat-action {
+  width: 8%
+}
+.timer-action {
+  width: 8%;
+}
+.timer-status {
+  font-size: 17px;
+}
+.auction-action {
+  width: 8%;
 }

@@ -9,7 +9,7 @@
   </td>
   <td class="description-payment"><%= payment.description %></td>
   <td class="action-payment">
-    <%= link_to raw('<i class="fa fa-edit fa-2x"></i>'), edit_admin_payment_path(payment), class: 'button-item update-item-cat' %>
-    <%= link_to raw('<i class="fa fa-trash fa-2x"></i>'), admin_payment_path(payment), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
+    <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_payment_path(payment), class: 'button-item update-item' %>
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_payment_path(payment), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
   </td>
 </tr>

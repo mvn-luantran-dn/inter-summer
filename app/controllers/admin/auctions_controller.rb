@@ -76,6 +76,6 @@ class Admin::AuctionsController < Admin::BaseController
     end
 
     def auction_details
-      @auction = Auction.includes(:assets).find_by(id: params[:id]) || redirect_to_not_found
+      @auction = Auction.find_by(id: params[:id]) || redirect_to_not_found
     end
 end

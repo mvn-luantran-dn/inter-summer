@@ -8,7 +8,7 @@
       <div class="panel-body">
         <div class='header-panel-body'>
           <div class="link-left">
-            <%= link_to raw('<i class="fa fa-plus"></i> Add product'), new_admin_product_path, class: 'button-item add-item' %>
+            <%= link_to raw('<i class="fa fa-plus"></i> Add product'), new_admin_product_path, class: 'add-item' %>
             <%= link_to raw('<i class="fa fa-download fa-3x"></i>'), admin_products_path(format: :csv), class: 'csv-file' %>
           </div>
           <%= form_tag admin_products_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
