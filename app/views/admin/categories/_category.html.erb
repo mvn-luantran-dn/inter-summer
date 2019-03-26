@@ -7,8 +7,13 @@
     <% end %>
     <%= link_to category.name, admin_category_path(category), class: 'detail-item' %>
   </td>
-  <td class="center description-cat">Empty</td>
-  
+  <td class="center description-cat">
+    <% if category.description.present? %>
+      <%= category.description %>
+    <% else %>
+      Empty
+    <% end %>
+  </td>
   <td class="action-cat">
     <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_category_path(category), class: 'button-item update-item' %>
     <%= link_to raw('<i class="fa fa-trash"></i>'), admin_category_path(category), method: :delete, data: { confirm: "You sure ?" }, class: 'button-item delete-item' %>
@@ -25,7 +30,13 @@
         <% end %>
         <%= link_to cat.name, '#', class: 'detail-item' %>
       </td>
-      <td class="center description-cat">Empty</td>
+      <td class="center description-cat">
+        <% if cat.description.present? %>
+          <%= cat.description %>
+        <% else %>
+          Empty
+        <% end %>
+      </td>
       
       <td class="action-cat">
         <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_category_path(cat), class: 'button-item update-item' %>

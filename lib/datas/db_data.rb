@@ -15,15 +15,13 @@ class DbData
 
   def close_auction(timer)
     timer_id = timer['id']
-    auction = ActiveRecord::Base.logger.silence { Auction.auction_timer(timer_id) }
-    auction = auction.last
+    auction = ActiveRecord::Base.logger.silence { Auction.auction_timer(timer_id).last }
     auction.update_attribute(:status, Common::Const::AuctionStatus::FINISHED)
   end
 
   def user_win(timer)
     timer_id = timer['id']
-    auction = Auction.auction_timer(timer_id)
-    auction = auction.last
+    auction = Auction.auction_timer(timer_id).last
     product = auction.timer.product
     auction_dls = auction.auction_details.last
     unless auction_dls.nil?
@@ -41,11 +39,11 @@ class DbData
   end
 
   def create_order(product, auction_dls)
-    order = Order.find_by(user_id: auction_dls.user_id, status: 'wait')
+    order = Order.find_by(user_id: auction_dls.user_id, status: 'waitting')
     if order.nil?
       order = Order.new
       order.user_id = auction_dls.user_id
-      order.status = 'wait'
+      order.status = 'waitting'
       order.total_price = auction_dls.price_bid
       order.name = auction_dls.user.name
       order.save

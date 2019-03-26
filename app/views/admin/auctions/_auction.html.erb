@@ -1,6 +1,9 @@
 <tr class="odd gradeX">
   <td class="center"><%= check_box_tag 'ids[]', auction.id, false, :class => 'table-row-checkbox' %></td>
-  <td class="center"><%= link_to auction.timer.product.name, '#', class: 'detail-item' %></td>
+  <td class="center">
+    <%= image_tag image_first_of_object(auction.timer.product), class: 'avatar' %>
+    <%= link_to auction.timer.product.name, '#', class: 'detail-item' %>
+  </td>
   <td class="center"><%= auction.timer.created_at %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.user.name if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid if auction.auction_details.order('price_bid DESC').first %></td>

@@ -19,4 +19,6 @@ class AuctionDetail < ApplicationRecord
   belongs_to :user
 
   validates :price_bid, presence: true
+
+  scope :order_price, -> { order('price_bid DESC') }
 end

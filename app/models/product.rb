@@ -37,6 +37,7 @@ class Product < ApplicationRecord
   end
 
   scope :common_order, -> { order('id DESC') }
+  scope :include_basic, -> { includes(:assets) }
 
   def change_status_to_sale
     self.update_attribute(:status, ProductStatus::SELLING)

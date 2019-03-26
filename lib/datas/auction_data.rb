@@ -22,7 +22,6 @@ class AuctionData
         product_price_start: obj.product.price_at,
         product_quantity: obj.product.quantity,
         product_pictures: obj.product.assets,
-        product_detail: obj.product.detail,
         product_category: obj.product.category_id
       }
       $redis.set(obj.id, data.to_json) if timer_id.nil?
@@ -32,7 +31,7 @@ class AuctionData
   def push_data(key, data)
     db = DbData.new
     timer = JSON.parse($redis.get(key))
-    if timer['product_status'] == 'selling'
+    if timer['product_status'] == Common::Const::ProductStatus::SELLING
       if timer['status']
         if timer['product_quantity'].positive?
           start_at = timer['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
@@ -123,7 +122,6 @@ class AuctionData
       product_price_start: obj.product.price_at,
       product_quantity: obj.product.quantity,
       product_pictures: obj.product.assets,
-      product_detail: obj.product.detail,
       product_category: obj.product.category_id
     }
     $redis.set(obj.id, data.to_json)
@@ -138,7 +136,6 @@ class AuctionData
     data['product_id'] = timer.product_id
     data['product_name'] = timer.product.name
     data['product_price'] = timer.product.price
-    data['product_detail'] = timer.product.detail
     data['product_price_start'] = timer.product.price_at
     data['product_quantity'] = timer.product.quantity
     data['product_pictures'] = timer.product.assets

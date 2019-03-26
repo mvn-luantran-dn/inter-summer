@@ -7,9 +7,9 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @users = if params[:content].blank?
-               User.paginate(page: params[:page], per_page: 10).common_order
+               User.include_basic.paginate(page: params[:page], per_page: 10).common_order
              else
-               User.search_name_email(params[:content])
+               User.include_basic.search_name_email(params[:content])
                    .paginate(page: params[:page], per_page: 10)
                    .common_order
              end

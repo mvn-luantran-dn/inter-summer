@@ -63,7 +63,7 @@ class User < ApplicationRecord
                     format: { with: PHONE_REGEX }, numericality: true
   scope :search_name_email, ->(content) { where 'name LIKE ? or email LIKE ? ', "%#{content}%", "%#{content}%" }
   scope :common_order, -> { order('id DESC') }
-
+  scope :include_basic, -> { includes(:asset) }
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
              BCrypt::Engine::MIN_COST

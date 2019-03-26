@@ -9,10 +9,10 @@ class Admin::ProductsController < Admin::BaseController
     respond_to do |format|
       format.html do
         @products = if params[:content].blank?
-                      Product.paginate(page: params[:page], per_page: 10)
+                      Product.include_basic.paginate(page: params[:page], per_page: 10)
                              .common_order
                     else
-                      Product.search_product(params[:content])
+                      Product.include_basic.search_product(params[:content])
                              .paginate(page: params[:page], per_page: 10)
                              .common_order
                     end
