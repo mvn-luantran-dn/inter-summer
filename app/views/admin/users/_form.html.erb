@@ -1,51 +1,90 @@
-<%= form_group_for f, :name, label: false  do %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
-  </div>
-<% end %>
-<%= form_group_for f, :email, label: false  do %>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
-  </div>
-<% end %>
-<div class="image-list">
+<div class="image-list col-lg-12">
   <div class="form-group">
     <%= f.label :avatar %>
-    <%= f.file_field :file %>
+    <%= f.file_field :file, id: "profile-img" %>
     <% image_url = f.object&.asset&.file_url %>
-    <%= image_tag(image_url, class: "img-user") if image_url %>
+    <%  if image_url %>
+      <%= image_tag(image_url, class: "img-user", id: "profile-img-tag") %>
+    <% else %>
+      <img src="/avatar-default.png" id="profile-img-tag" class="img-user" />
+    <% end %>
   </div>
 </div>
-<%= form_group_for f, :address, label: false  do %>
+<%= form_group_for "col-lg-6", f, :name, label: false do %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :name, placeholder: 'Name', class: 'form-control', "aria-describedby": "basic-addon1" %>
+    </div>
+  </div>
+<% end %>
+<%= form_group_for "col-lg-6", f, :email, label: false  do %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
+    </div>
+  </div>
+<% end %>
+<%= form_group_for "col-lg-8", f, :address, label: false  do %>
   <div class="form-group">
     <%= f.label :address %>
-    <%= f.text_field :address, placeholder: 'Address', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :address, placeholder: 'Address', class: 'form-control' %>
+    </div>
   </div>
 <% end %>
-<%= form_group_for f, :phone, label: false  do %>
+<%= form_group_for "col-lg-4", f, :phone, label: false  do %>
   <div class="form-group">
     <%= f.label :phone %>
-    <%= f.text_field :phone, placeholder: 'Phone', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :phone, placeholder: 'Phone', class: 'form-control' %>
+    </div>
   </div>
 <% end %>
-<%= form_group_for f, :birth_day, label: false  do %>
+<%= form_group_for "col-lg-4", f, :birth_day, label: false  do %>
   <div class="form-group">
     <%= f.label :birth_day %>
-    <%= f.date_field :birth_day, class: 'form-control', value: @date_birth_day %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+      </span>
+      <%= f.date_field :birth_day, class: 'form-control', value: @date_birth_day %>
+    </div>
   </div>
 <% end %>
-<%= form_group_for f, :gender, label: false  do %>
+<%= form_group_for "col-lg-4", f, :gender, label: false  do %>
   <div class="form-group">
     <%= f.label :gender %>
-    <%= f.select(:gender, options_for_select(@genders.collect { |g| [g.first.camelize, g.first] }, selected: @user.gender), {}, { class: 'form-control' } ) %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-male" aria-hidden="true"></i>
+      </span>
+      <%= f.select(:gender, options_for_select(@genders.collect { |g| [g.first.camelize, g.first] }, selected: @user.gender), {}, { class: 'form-control' } ) %>
+    </div>
   </div>
 <% end %>
-<%= form_group_for f, :role, label: false  do %>
+<%= form_group_for "col-lg-4", f, :role, label: false  do %>
   <div class="form-group">
     <%= f.label :role %>
-    <%= f.select(:role, options_for_select(@roles.collect { |r| [r.first.camelize, r.first] }, selected: @user.role), { prompt: 'Choose role' }, { class: 'form-control' } ) %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-check-square" aria-hidden="true"></i>
+      </span>
+      <%= f.select(:role, options_for_select(@roles.collect { |r| [r.first.camelize, r.first] }, selected: @user.role), { prompt: 'Choose role' }, { class: 'form-control' } ) %>
+    </div>
   </div>
 <% end %>
 <%= f.submit "Submit", class: 'btn btn-success' %>

@@ -1,22 +1,53 @@
-<%= form_group_for f, :name, label: false  do %>
+<%= form_group_for "col-lg-12", f, :name, label: false  do %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, placeholder: 'Name Payment', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-money" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :name, placeholder: 'Name Payment', class: 'form-control' %>
+    </div>
   </div>
 <% end %>
-<div class="image-list">
+<div class="image-list col-lg-12">
   <div class="form-group">
     <%= f.label :image %>
-    <%= f.file_field :file %>
+    <%= f.file_field :file, id: "profile-img" %>
     <% image_url = f.object&.asset&.file_url %>
-    <%= image_tag(image_url, class: "img-resize") if image_url %>
+    <%  if image_url  %>
+      <%= image_tag(image_url, class: "img-resize", id: "profile-img-tag") %>
+    <% else %>
+      <img src="/product-default.png" id="profile-img-tag" class="img-resize" />
+    <% end %>
   </div>
 </div>
-<%= form_group_for f, :description, label: false  do %>
+<%= form_group_for "col-lg-12", f, :description, label: false  do %>
   <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_field :description, placeholder: 'Description Payment', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-address-card" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :description, placeholder: 'Description Payment', class: 'form-control' %>
+    </div>
   </div>
 <% end %>
 <%= f.submit "Submit", class: 'btn btn-success' %>
 <%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
+<script type="text/javascript">
+    $(document).ready(function () {
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function (e) {
+                  $('#profile-img-tag').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+      $("#profile-img").change(function(){
+          readURL(this);
+      });
+    });
+</script>

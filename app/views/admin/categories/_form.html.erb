@@ -1,28 +1,49 @@
-<%= form_group_for f, :name, label: false  do %>
+<%= form_group_for "col-lg-12", f, :name, label: false  do %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-file-o" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+    </div>  
   </div>
 <% end %>
-<div class="image-list">
+<div class="image-list col-lg-12">
   <div class="form-group">
-    <%= f.label :file %>
-    <%= f.file_field :Image %>
+    <%= f.label :image %>
+    <%= f.file_field :file, id: "profile-img" %>
     <% image_url = f.object&.asset&.file_url %>
-    <%= image_tag(image_url, class: "img-resize") if image_url %>
+    <%  if image_url  %>
+      <%= image_tag(image_url, class: "img-resize", id: "profile-img-tag") %>
+    <% else %>
+      <img src="/product-default.png" id="profile-img-tag" class="img-resize" />
+    <% end %>
   </div>
 </div>
-<%= form_group_for f, :parent_id, label: false  do %>
+<%= form_group_for "col-lg-5", f, :parent_id, label: false  do %>
   <div class="form-group">
     <%= f.label(:parent_id, 'Parent_id:')%>
-    <%= f.select(:parent_id, options_for_select(@cat_list.collect{ |u| [u.name, u.id] }, selected: @parent_id), { prompt: 'Choose id parent' }, { class: 'form-control' } ) %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-university" aria-hidden="true"></i>
+      </span>
+      <%= f.select(:parent_id, options_for_select(@cat_list.collect{ |u| [u.name, u.id] }, selected: @parent_id), { prompt: 'Choose id parent' }, { class: 'form-control' } ) %>
+    </div>
   </div>
 <% end %>
-<%= form_group_for f, :decsription, label: false  do %>
+<%= form_group_for "col-lg-12", f, :decsription, label: false  do %>
   <div class="form-group">
     <%= f.label :decsription %>
-    <%= f.text_field :description, placeholder: 'Desciption', class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-id-card-o" aria-hidden="true"></i>
+      </span>
+      <%= f.text_field :description, placeholder: 'Desciption', class: 'form-control' %>
+    </div>
   </div>
 <% end %>
-<%= f.submit "Submit", class: 'btn btn-success' %>
-<%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
+<div class="form-group col-lg-12">
+  <%= f.submit "Submit", class: 'btn btn-success' %>
+  <%= f.submit "Reset", class: 'btn btn-warning', type: 'reset' %>
+</div>
