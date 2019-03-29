@@ -15,6 +15,16 @@ class Admin::UsersController < Admin::BaseController
              end
   end
 
+  def show
+    respond_to do |format|
+      format.json do
+        user = User.find_by(id: params[:id])
+        avatar = user.asset
+        render json: { user: user, asset: avatar }
+      end
+    end
+  end
+
   def new
     @user = User.new
     @date_birth_day = Time.zone.today - 18.years

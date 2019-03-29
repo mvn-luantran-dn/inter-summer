@@ -52,8 +52,8 @@ $(document).ready(function () {
       }
     }
   });
-  CKEDITOR.config.height = 500;
-  CKEDITOR.config.width = 800;
+  CKEDITOR.config.height = 300;
+  CKEDITOR.config.width = 1000;
   CKEDITOR.config.entities_processNumerical = 'force';
   if ($('textarea').length > 0) {
     var data = $('.ckeditor');
@@ -177,3 +177,8 @@ $(document).ready(function () {
     readURL(this);
   });
 });
+
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}

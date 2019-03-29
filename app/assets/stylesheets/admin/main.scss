@@ -184,10 +184,10 @@
 .cat-item {
   display: flex;
 }
-.category-pro {
-  width: 160px;
-  margin-right: 60px;
-}
+// .category-pro {
+//   width: 160px;
+//   margin-right: 60px;
+// }
 .remove-cat {
   margin: 25px 0 0 40px;
   height: 10%;
@@ -209,4 +209,29 @@
 }
 .auction-action {
   width: 8%;
+}
+// detail avatar
+.avatar-detail {
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  left: 50%;
+  top: 0;
+  margin-bottom: 10px;
+  transform: translate(-50%,0);
+}
+.detail-item:hover {
+  cursor: pointer;
+}
+.timer-icon {
+  font-size: 17px !important;
+  margin-top: 4px;
+}
+.cat-pro {
+  margin-left: 15px;
+}
+.nested {
+  margin-bottom: 20px;
 }

@@ -1,27 +1,25 @@
-<%= form_group_for f, :time_validation, label: false  do %>
-<% end %>
-<%= form_group_for f, :start_at, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :start_at, label: false  do %>
   <div class="form-group">
     <%= f.label :start_at %>
     <br>
     <%= f.time_select :start_at, {include_seconds: true, default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' } %>
   </div>
 <% end %>
-<%= form_group_for f, :end_at, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :end_at, label: false  do %>
   <div class="form-group">
     <%= f.label :end_at %>
     <br>    
     <%= f.time_select :end_at, {include_seconds: true, default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' } %>
   </div>
 <% end %>
-<%= form_group_for f, :period, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :period, label: false  do %>
   <div class="form-group">
     <%= f.label :period %>
     <br>    
     <%= f.time_select :period, { include_seconds: true, default: {hour: '00', minute: '00', second: '00'}}, { class: 'form-control-static' } %>
   </div>
 <% end %>
-<%= form_group_for f, :bid_step, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :bid_step, label: false  do %>
   <div class="form-group">
     <%= f.label :bid_step %>
     <%= f.number_field :bid_step, class: 'form-control' %>

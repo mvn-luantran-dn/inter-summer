@@ -17,5 +17,7 @@ class Payment < ApplicationRecord
   has_many :order
   has_one :asset, as: :module, dependent: :destroy
 
+  validates :name, presence: true
+
   scope :common_order, -> { order('id DESC') }
 end

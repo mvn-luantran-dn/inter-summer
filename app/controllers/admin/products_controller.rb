@@ -33,7 +33,18 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def show
-    @assets = @product.assets
+    respond_to do |format|
+      format.json do
+        product = Product.find_by(id: params[:id])
+        image = product.assets.first
+        timers = Timer.where(product_id: params[:id])
+        render json: { product: product, image: image, timers: timers }
+      end
+
+      format.html do
+        @assets = @product.assets
+      end
+    end
   end
 
   def create

@@ -1,20 +1,30 @@
 <div class='image-item cat-item'>
-  <%= form_group_for f, :category_id, label: false  do %>
-     <div class="form-group category-pro">
+  <%= form_group_for "col-lg-4", f, :category_id, label: false  do %>
+     <div class="form-group">
     <%= f.label(:category_id, 'Category:')%>
     <%
       @cat = @categories - f.object&.promotion&.categories.to_a + [f.object&.category]
       @cat = @cat.compact
     %>
-    <%= f.select(:category_id, options_for_select(@cat.collect{ |c| [c.name, c.id] }, selected: f.object.category_id), { prompt: 'Choose category' }, { class: 'form-control select-cat'}) %>
+    <div class="input-group col-lg-8">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </span>
+      <%= f.select(:category_id, options_for_select(@cat.collect{ |c| [c.name, c.id] }, selected: f.object.category_id), { prompt: 'Choose category' }, { class: 'form-control select-cat'}) %>
+    </div>
   </div>
   <% end %>
-  <%= form_group_for f, :discount, label: false  do %>
+  <%= form_group_for "col-lg-4", f, :discount, label: false  do %>
      <div class="form-group">
     <%= f.label :discount %>
-    <%= f.number_field :discount, placeholder: 'Discount', class: 'form-control' %>
+    <div class="input-group col-lg-6">
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-percent" aria-hidden="true"></i>
+      </span>
+      <%= f.number_field :discount, placeholder: 'Discount', class: 'form-control' %>
+    </div>
   </div>
   <% end %>
   <%= f.hidden_field :_destroy, value: 'false' %>
-  <%= link_to "Remove", '#', onClick: "removeField(this); return false;", class: "btn btn-warning remove-cat" %>
+  <%= link_to raw('<i class="fa fa-trash" aria-hidden="true"></i>'), '#', onClick: "removeField(this); return false;", class: "btn btn-warning remove-cat" %>
 </div>
