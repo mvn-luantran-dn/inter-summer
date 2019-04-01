@@ -20,12 +20,14 @@
                           data: { confirm: "You sure?" } %>
     <% end %>
     <% if admin_user? && !current_user?(user) %>
-      <% if user.deactivated_at.present? %>
-        <%= link_to raw('<i class="fa fa-unlock-alt"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
-                            data: { confirm: "You sure?" } %>
+      <% if user.deactivated_at.blank? %>
+        <!--<%= link_to raw(''), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+                            data: { confirm: "You sure?" } %> -->
+        <i class="fa fa-unlock-alt block-item" id="block-<%= user.id %>" name="<%= user.name %>" action="block"></i>
       <% else %>
-        <%= link_to raw('<i class="fa fa-lock"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
-                            data: { confirm: "You sure?" } %>
+        <!--<%= link_to raw('<i class="fa fa-lock"></i>'), block_admin_user_path(user), method: :get, class: 'button-item block-item',
+                            data: { confirm: "You sure?" } %> -->
+        <i class="fa fa-lock block-item" id="block-<%= user.id %>" name="<%= user.name %>" action="open"></span>
       <% end %>
     <% end %>
   </td>

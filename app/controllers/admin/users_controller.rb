@@ -72,20 +72,23 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def block
-    if @user.root && @user.role == 'admin'
-      flash[:danger] = I18n.t('users.destroy.root')
-    elsif @user.deactivated_at.blank?
-      if @user.update_attribute(:deactivated_at, Time.zone.now)
-        flash[:success] = I18n.t('users.block.success')
-      else
-        flash[:notice] = I18n.t('users.block.error')
+    respond_to do |format|
+      format.json do
+        if @user.root && @user.role == 'admin'
+          render json: { message: I18n.t('users.destroy.root') }
+        elsif @user.deactivated_at.blank?
+          if @user.update_attribute(:deactivated_at, Time.zone.now)
+            render json: { message: I18n.t('users.block.success') }
+          else
+            render json: { message: I18n.t('users.block.error') }
+          end
+        elsif @user.update_attribute(:deactivated_at, nil)
+          render json: { message: I18n.t('users.open.success') }
+        else
+          render json: { message: I18n.t('users.open.error') }
+        end
       end
-    elsif @user.update_attribute(:deactivated_at, nil)
-      flash[:success] = I18n.t('users.open.success')
-    else
-      flash[:notice] = I18n.t('users.open.error')
     end
-    redirect_to admin_users_url
   end
 
   private

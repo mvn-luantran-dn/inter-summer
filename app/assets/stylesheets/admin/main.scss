@@ -46,7 +46,8 @@
 }
 .block-item {
   color: #423838;
-  font-size: 17px;
+  font-size: 17px !important;
+  margin-top: 12px;
 }
 .detail-items {
   background-color: #d6d912;
@@ -234,4 +235,8 @@
 }
 .nested {
   margin-bottom: 20px;
+}
+.block-item:hover {
+  cursor: pointer;
+  color: #ca6b6b;
 }

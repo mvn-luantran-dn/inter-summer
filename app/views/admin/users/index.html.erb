@@ -94,6 +94,35 @@
   </div>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="full-name" class="col-form-label">Full name:</label>
+            <input type="text" class="form-control" id="full-name" disabled>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Reason:</label>
+            <textarea class="form-control" id="reason"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="block-user">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 $(document).ready(function(){
   $(".detail-item").click(function(){
@@ -125,6 +154,57 @@ $(document).ready(function(){
       }
     });
     $("#myModal").modal();
+  });
+
+  $(".block-item").click(function(){
+    var object = $(event.target);
+    $('#full-name').val(object.attr("name"));
+    var arr = object.attr("id").split('-');
+    user_id = arr[1];
+    if(object.attr("action") == 'block'){
+      $('#exampleModalLabel').html("Block User.");
+    } else {
+      $('#exampleModalLabel').html("Open User.");
+    }
+    localStorage.setItem('user_id', user_id);
+    localStorage.setItem('action', object.attr("action"));
+    $("#exampleModal").modal();  
+  });
+  
+  $("#block-user").click(function(){
+    $('#exampleModal').modal('hide');
+    var user_id = localStorage.getItem('user_id');
+    var id = '#block-' + user_id;
+    var action = localStorage.getItem('action');
+    if(action== 'block'){
+      $(id).removeClass("fa-unlock-alt");
+      $(id).addClass("fa-lock");
+    } else {
+      $(id).removeClass("fa-lock");
+      $(id).addClass("fa-unlock-alt");
+    }
+    $.ajax({
+      url: '/admin/users/' + user_id + '/block',
+      type: "GET",
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'JSON',
+      async: true,
+      success: function (response) {
+         $.bootstrapGrowl(response.message,{
+            ele: 'body', // which element to append to
+            type: 'success', // (null, 'info', 'danger', 'success')
+            offset: { from: 'top', amount: 50 }, // 'top', or 'bottom'
+            align: 'right', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10
+        });
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
   });
 });
 </script>

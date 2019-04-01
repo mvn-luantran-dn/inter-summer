@@ -101,7 +101,6 @@ $(document).ready(function () {
       async: true,
       success: function (response) {
         var select_cat_last = $('.image-list').find('.select-cat').slice(-1)[0];
-        console.log(select_cat_last);
         var option = document.createElement("option");
         option.text = "Choose Category";
         option.value = "0";
