@@ -1,11 +1,11 @@
 <tr class="odd gradeX">
   <td class="name-cat">
     <% if category.asset.present? %>
-      <%= image_tag(category&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+      <%= image_tag(category&.asset&.file_url, class: "avatar detail-item", alt: "Avatar", id: category.id) %>
     <% else %>
-      <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+      <img src="/product-default.png" alt="Avatar Default" class= "avatar detail-item" id= "<%= category.id %>"/>
     <% end %>
-    <%= link_to category.name, admin_category_path(category), class: 'detail-item' %>
+    <span class= 'detail-item' id= "<%= category.id %>"><%= category.name %></span>
   </td>
   <td class="center description-cat">
     <% if category.description.present? %>
@@ -24,11 +24,11 @@
     <tr class="odd gradeX">
       <td class="center name-cat">
         <% if cat.asset %>
-          <%= image_tag(cat&.asset&.file_url, class: "avatar", alt: "Avatar") %>
+          <%= image_tag(cat&.asset&.file_url, class: "avatar detail-item", alt: "Avatar", id: cat.id) %>
         <% else %>
-          <img src="/product-default.png" alt="Avatar Default" class= "avatar" />
+          <img src="/product-default.png" alt="Avatar Default" class= "avatar detail-item" id= "<%= cat.id %>"/>
         <% end %>
-        <%= link_to cat.name, '#', class: 'detail-item' %>
+        <span class= 'detail-item' id= "<%= cat.id %>"><%= cat.name %></span>
       </td>
       <td class="center description-cat">
         <% if cat.description.present? %>

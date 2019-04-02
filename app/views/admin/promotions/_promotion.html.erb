@@ -1,6 +1,13 @@
 <tr class="odd gradeX">
   <td class="center"><%= check_box_tag 'ids[]', promotion.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center-td"><%= link_to promotion.name, admin_promotion_path(promotion), class: 'detail-item' %></td>
+  <td class="center-td">
+    <% if promotion.asset %>
+      <%= image_tag(promotion&.asset&.file_url, class: 'img-product', id: promotion.id ) %>      
+    <% else %>
+      <img src="/product-default.png" alt="Avatar Default" class= "img-product" id= "<%= promotion.id %>"/>
+    <% end %>
+  </td>
   <td class="center-td date-tab"><%= promotion.start_date.strftime("%A, %B %d, %Y") %></td>  
   <td class="center-td date-tab"><%= promotion.end_date.strftime("%A, %B %d, %Y") %></td>
   <td class="center-td"><%= promotion.description %></td>

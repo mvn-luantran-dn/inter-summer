@@ -9,6 +9,18 @@
     </div>
   </div>
 <% end %>
+<div class="image-list col-lg-12">
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :file, id: "profile-img" %>
+    <% image_url = f.object&.asset&.file_url %>
+    <%  if image_url  %>
+      <%= image_tag(image_url, class: "img-resize", id: "profile-img-tag") %>
+    <% else %>
+      <img src="/product-default.png" id="profile-img-tag" class="img-resize" />
+    <% end %>
+  </div>
+</div>
 <%= form_group_for "col-lg-12", f, :description, label: false  do %>
   <div class="form-group">
     <%= f.label :description %>

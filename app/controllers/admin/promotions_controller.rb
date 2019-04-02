@@ -31,6 +31,9 @@ class Admin::PromotionsController < Admin::BaseController
     @promotion = Promotion.new(promotion_params)
     @promotion.user_id = @current_user.id
     if @promotion.save
+      if params[:promotion][:file].present?
+        Asset.create!(asset_params.merge(module_type: Promotion.name, module_id: @promotion.id))
+      end
       flash[:success] = I18n.t('promotions.create.success')
       redirect_to admin_promotions_url
     else
@@ -42,6 +45,10 @@ class Admin::PromotionsController < Admin::BaseController
 
   def update
     if @promotion.update_attributes(promotion_params)
+      if params[:promotion][:file].present?
+        @promotion.asset.destroy! if @promotion.asset.present?
+        Asset.create!(asset_params.merge(module_type: Promotion.name, module_id: @promotion.id))
+      end
       flash[:success] = I18n.t('promotions.update.success')
       redirect_to admin_promotions_path
     else
@@ -75,6 +82,10 @@ class Admin::PromotionsController < Admin::BaseController
         :name, :start_date, :end_date, :detail, :description,
         promotions_categories_attributes: %i[id category_id discount _destroy]
       )
+    end
+
+    def asset_params
+      params.require(:promotion).permit(:file)
     end
 
     def find_promotion

@@ -6,15 +6,11 @@
         <p>List Users</p>
       </div>
       <div class="panel-body">
-        <div class='header-panel-body'>
+        <div class='header-panel-body col-lg-12'>
           <%= link_to raw('<i class="fa fa-plus"></i> Add user'), new_admin_user_path, class: 'add-item' %>
-          <%= form_tag admin_users_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
-            <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
-            <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
-          <% end %>
         </div>
         <% if @users.any? %>
-          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+          <table width="100%" class="table table-striped table-hover dataTable" id="dataTables-example" aria-describedby="dataTables-example_info">
             <thead>
               <tr>
                 <th class="center">SISID</th>
@@ -31,10 +27,10 @@
               <%= render @users %>
             </tbody>
           </table>
-          <%= will_paginate %>
         <% else %>
           <p>No user</p>
         <% end %>
+
       </div>
     </div>
   </div>
@@ -125,6 +121,10 @@
 
 <script>
 $(document).ready(function(){
+  $("#dataTables-example").dataTable().fnDestroy();
+  $("#dataTables-example").dataTable( {
+    "order": [[ 1, "desc" ]]
+  } );
   $(".detail-item").click(function(){
     var user_id = event.target.id;
     $.ajax({
@@ -173,6 +173,7 @@ $(document).ready(function(){
   
   $("#block-user").click(function(){
     $('#exampleModal').modal('hide');
+    $('#reason').val('');
     var user_id = localStorage.getItem('user_id');
     var id = '#block-' + user_id;
     var action = localStorage.getItem('action');
@@ -183,7 +184,9 @@ $(document).ready(function(){
       $(id).removeClass("fa-lock");
       $(id).addClass("fa-unlock-alt");
     }
+    var reason = $('#reason').val();
     $.ajax({
+      data: { reason: reason },
       url: '/admin/users/' + user_id + '/block',
       type: "GET",
       contentType: 'application/json; charset=utf-8',

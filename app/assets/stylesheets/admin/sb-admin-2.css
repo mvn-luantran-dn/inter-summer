@@ -261,10 +261,10 @@ body {
 /* DataTables Overrides */
 
 table.dataTable thead .sorting,
-table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
-table.dataTable thead .sorting_asc_disabled,
-table.dataTable thead .sorting_desc_disabled {
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc_disabled,
+table.dataTable thead .sorting_asc_disabled {
     background: transparent;
 }
 

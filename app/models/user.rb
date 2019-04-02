@@ -61,7 +61,6 @@ class User < ApplicationRecord
   validates :address, presence: true, length: { minimum: 10 }
   validates :phone, presence: true, length: { maximum: 15 },
                     format: { with: PHONE_REGEX }, numericality: true
-  scope :search_name_email, ->(content) { where 'name LIKE ? or email LIKE ? ', "%#{content}%", "%#{content}%" }
   scope :common_order, -> { order('id DESC') }
   scope :include_basic, -> { includes(:asset) }
   def self.digest(string)

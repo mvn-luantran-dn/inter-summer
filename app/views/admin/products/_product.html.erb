@@ -3,7 +3,6 @@
   <td class="center-td"><%= link_to product.name, admin_product_path(product), class: 'detail-item' %></td>
   <td class="center-td"><%= parent_name(product.category_id) %></td>
   <td class="center-td"><%= image_tag image_first_of_object(product), class: 'img-product' %></td>
-  <!--<td class="center col-sm-3"><div class="more"><%= product.detail %></div></td>-->
   <td class="center-td"><%= product.price %></td>
   <td class="center-td"><%= product.quantity %></td>
   <td class="center-td"><%= product.price_at %></td>

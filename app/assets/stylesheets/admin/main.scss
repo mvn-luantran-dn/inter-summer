@@ -9,7 +9,7 @@
   text-decoration: none;
 }
 .add-item {
-  background-color: green;
+  background-color: rgba(13,130,223,0.95);
   float: left;
   margin-bottom: 30px;
   color: white;
@@ -148,8 +148,8 @@
 // avatar
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   margin-right: 5px;
 }
@@ -239,4 +239,7 @@
 .block-item:hover {
   cursor: pointer;
   color: #ca6b6b;
+}
+.action-payment {
+  width: 10%;
 }

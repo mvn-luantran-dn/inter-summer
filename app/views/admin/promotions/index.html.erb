@@ -6,14 +6,10 @@
         <p>List Promotions</p>
       </div>
       <div class="panel-body">
-        <div class='header-panel-body'>
+        <div class='header-panel-body col-lg-12'>
           <div class="link-left">
             <%= link_to raw('<i class="fa fa-plus"></i> Add promotion'), new_admin_promotion_path, class: 'add-item' %>
           </div>
-          <%= form_tag admin_promotions_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
-            <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
-            <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
-          <% end %>
         </div>
         <% if @promotions.any? %>
           <table width="100%" class="table table-striped table-hover" id="dataTables-example">
@@ -21,6 +17,7 @@
               <tr>
                 <th class="center"><input type="checkbox" id="checkAll"></th>
                 <th class="center">Name</th>
+                <th class="center">Picture</th>
                 <th class="center">Start date</th>
                 <th class="center">End date</th>              
                 <th class="center">Description</th>

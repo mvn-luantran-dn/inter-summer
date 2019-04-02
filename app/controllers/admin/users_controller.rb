@@ -6,13 +6,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :load_roles, only: %i[new create edit update]
 
   def index
-    @users = if params[:content].blank?
-               User.include_basic.paginate(page: params[:page], per_page: 10).common_order
-             else
-               User.include_basic.search_name_email(params[:content])
-                   .paginate(page: params[:page], per_page: 10)
-                   .common_order
-             end
+    @users = User.include_basic.common_order
   end
 
   def show
@@ -78,11 +72,13 @@ class Admin::UsersController < Admin::BaseController
           render json: { message: I18n.t('users.destroy.root') }
         elsif @user.deactivated_at.blank?
           if @user.update_attribute(:deactivated_at, Time.zone.now)
+            UserMailer.block_account(@user, params[:reason]).deliver_later
             render json: { message: I18n.t('users.block.success') }
           else
             render json: { message: I18n.t('users.block.error') }
           end
         elsif @user.update_attribute(:deactivated_at, nil)
+          UserMailer.open_account(@user, params[:reason]).deliver_later
           render json: { message: I18n.t('users.open.success') }
         else
           render json: { message: I18n.t('users.open.error') }

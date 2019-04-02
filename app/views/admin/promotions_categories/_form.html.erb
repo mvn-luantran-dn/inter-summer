@@ -1,10 +1,10 @@
-<%= form_group_for f, :category_id, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :category_id, label: false  do %>
   <div class="form-group">
     <%= f.label(:category_id, 'Category:')%>
     <%= f.select(:category_id, options_for_select(@categories.collect{ |u| [u.name, u.id] }, selected: @pro_cat.category_id), { prompt: 'Choose category' }, { class: 'form-control' } ) %>
   </div>
 <% end %>
-<%= form_group_for f, :discount, label: false  do %>
+<%= form_group_for 'col-lg-12', f, :discount, label: false  do %>
   <div class="form-group">
     <%= f.label :discount %>
     <%= f.number_field :discount, class: 'form-control' %>
