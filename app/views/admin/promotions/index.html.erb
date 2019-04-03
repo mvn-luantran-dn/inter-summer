@@ -11,31 +11,25 @@
             <%= link_to raw('<i class="fa fa-plus"></i> Add promotion'), new_admin_promotion_path, class: 'add-item' %>
           </div>
         </div>
-        <% if @promotions.any? %>
-          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-            <thead>
-              <tr>
-                <th class="center"><input type="checkbox" id="checkAll"></th>
-                <th class="center">Name</th>
-                <th class="center">Picture</th>
-                <th class="center">Start date</th>
-                <th class="center">End date</th>              
-                <th class="center">Description</th>
-                <th class="center">Category</th>
-                <th class="center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure ?" }) do %>
-                <%= render @promotions %>
-              <% end %>
-            </tbody>
-          </table>
-          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-          <%= will_paginate %>
-        <% else %>
-          <p>No Promtions</p>
-        <% end %>
+        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+          <thead>
+            <tr>
+              <th class="center"><input type="checkbox" id="checkAll"></th>
+              <th class="center">Name</th>
+              <th class="center">Picture</th>
+              <th class="center">Start date</th>
+              <th class="center">End date</th>              
+              <th class="center">Description</th>
+              <th class="center">Category</th>
+              <th class="center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure ?" }) do %>
+              <%= render @promotions %>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

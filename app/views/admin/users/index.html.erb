@@ -9,28 +9,23 @@
         <div class='header-panel-body col-lg-12'>
           <%= link_to raw('<i class="fa fa-plus"></i> Add user'), new_admin_user_path, class: 'add-item' %>
         </div>
-        <% if @users.any? %>
-          <table width="100%" class="table table-striped table-hover dataTable" id="dataTables-example" aria-describedby="dataTables-example_info">
-            <thead>
-              <tr>
-                <th class="center">SISID</th>
-                <th class="">Name</th>
-                <th class="center">Email</th>
-                <th class="center">Role</th>
-                <th class="center">Address</th>
-                <th class="center">Phone</th>
-                <th class="center">Gender</th>
-                <th class="center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= render @users %>
-            </tbody>
-          </table>
-        <% else %>
-          <p>No user</p>
-        <% end %>
-
+        <table width="100%" class="table table-striped table-hover dataTable" id="dataTables-example" aria-describedby="dataTables-example_info">
+          <thead>
+            <tr>
+              <th class="center">SISID</th>
+              <th class="">Name</th>
+              <th class="">Email</th>
+              <th class="center">Role</th>
+              <th class="center">Address</th>
+              <th class="center">Phone</th>
+              <th class="center">Gender</th>
+              <th class="center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @users %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -9,27 +9,22 @@
         <div class='header-panel-body col-lg-12'>
           <%= link_to raw('<i class="fa fa-plus"></i> Add Promotion Category'), new_admin_promotion_promotions_category_path(@promotion), class: 'add-item' %>
         </div>
-        <% if @promotions_categories.any? %>
-          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-            <thead>
-              <tr>
-                <th class="center"><input type="checkbox" id="checkAll"></th>
-                <th class="">Category Name</th>
-                <th class="center">Discount</th>
-                <th class="center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure?" }) do %>
-                <%= render @promotions_categories %>
-              <% end %>
-            </tbody>
-          </table>
-          <%= will_paginate %>          
-          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-        <% else %>
-          <p class="space-bottom">No Promotions Categories</p>
-        <% end %>
+        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+          <thead>
+            <tr>
+              <th class="center"><input type="checkbox" id="checkAll"></th>
+              <th class="">Category Name</th>
+              <th class="center">Discount</th>
+              <th class="center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure?" }) do %>
+              <%= render @promotions_categories %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
       </div>
     </div>
   </div>

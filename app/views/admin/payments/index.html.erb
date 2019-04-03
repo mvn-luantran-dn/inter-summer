@@ -11,26 +11,21 @@
             <%= link_to raw('<i class="fa fa-plus"></i> Add Payment'), new_admin_payment_path, class: 'add-item' %>
           </div>
         </div>
-        <% if @payments.any? %>
-          <table width="100%" class="table table-striped table-hover" id="dataTables-example">
-            <thead>
-              <tr>
-                <th class="">Payment Name</th>
-                <th class="">Description</th>
-                <th class="action-cat">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure?" }) do %>
-                <%= render @payments %>
-              <% end %>
-            </tbody>
-          </table>
-          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-          <%= will_paginate %>
-        <% else %>
-          <p>No payments</p>
-        <% end %>
+        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+          <thead>
+            <tr>
+              <th class="">Payment Name</th>
+              <th class="">Description</th>
+              <th class="action-cat">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= form_tag('#',:id => 'form_id', data: { confirm: "Your sure?" }) do %>
+              <%= render @payments %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
       </div>
     </div>
   </div>

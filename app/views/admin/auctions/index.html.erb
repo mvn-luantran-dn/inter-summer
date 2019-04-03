@@ -30,7 +30,6 @@
             <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
-        <% if @auctions.any? %>
           <p class="total-space"><strong class="total-auction blue-space">Total auction:</strong> <%= @auctions.size %></p>
           <p class="total-space">
             <strong class="total-auction red-space">Total auction run:</strong>
@@ -49,17 +48,12 @@
                 <th class="center">Action</th>
               </tr>
             </thead>
-              <tbody>
-                <%= form_tag(delete_admin_auctions_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
-                  <%= render @auctions %>
-                <% end %>
+            <tbody>
+              <%= form_tag(delete_admin_auctions_path,:id => 'form_id', data: { confirm: "Your sure?" }) do %>
+                <%= render @auctions %>
+              <% end %>
             </tbody>
           </table>
-          <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
-          <%= will_paginate %>
-        <% else %>
-          <p>No auction</p>
-        <% end %>
       </div>
     </div>
   </div>

@@ -36,9 +36,10 @@ class Admin::ProductsController < Admin::BaseController
     respond_to do |format|
       format.json do
         product = Product.find_by(id: params[:id])
-        image = product.assets.first
+        image = product.assets
         timers = Timer.where(product_id: params[:id])
-        render json: { product: product, image: image, timers: timers }
+        category = Category.find_by(id: product.category_id)
+        render json: { product: product, images: image, timers: timers, category: category }
       end
 
       format.html do
@@ -49,6 +50,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
+    @product.status = Common::Const::ProductStatus::SELLING
     if @product.save
       flash[:success] = I18n.t('products.create.success')
       redirect_to admin_products_url
