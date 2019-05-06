@@ -1,36 +1,54 @@
 <div class="row bootstrap snippets">
-  <!-- Cart -->
   <div class="col-lg-12 col-md-12 col-sm-12 text-center">
     <div class="col-lg-12 col-sm-12 hero-feature">
       <% if @items.present? %>
         <div class="table-responsive">
-          <table class="table table-bordered tbl-cart">
+          <table class="shop_table shop_table_responsive cart" cellspacing="0">
             <thead>
               <tr>
-                <td class="hidden-xs">Image</td>
-                <td>Product Name</td>
-                <td class="td-qty">Quantity</td>
-                <td>Unit Price</td>
-                <td>Remove</td>
+                <th class="product-remove">&nbsp;</th>
+                <th class="product-thumbnail">&nbsp;</th>
+                <th class="product-name">Product</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Amount</th>
+                <th class="product-subtotal">Money</th>
               </tr>
             </thead>
             <tbody>
-              <%= render @items %>
-              <tr>
-                <td colspan="3" align ="right">Total</td>
-                <td class="total" colspan="2"><b><%= @order.total_price %></b></td>
-              </tr>
+              <%= render @items %>              
             </tbody>
           </table>
         </div>
-        <div class="btn-group btns-cart">
-          <%= link_to raw('<i class="fa fa-arrow-circle-left">Back to shopping</i>'), root_path, class: "btn btn-primary" %>
-          <%= link_to raw('<i class="fa fa-arrow-circle-right">Checkout</i>'), edit_user_order_path(current_user, @order), class: "btn btn-primary" %>
+        <div class="cart-collaterals">
+          <div class="cart_totals ">
+            <h2>Cart Totals</h2>
+            <table cellspacing="0" class="shop_table shop_table_responsive">
+              <tbody>
+                <tr class="cart-subtotal">
+                  <th>Total</th>
+                  <td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount">1.020.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></td>
+                </tr>
+                <tr class="shipping">
+                  <th>Shipement</th>
+                  <td data-title="Giao hàng">
+                    Free ship <input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0" value="free_shipping:9" class="shipping_method">		
+                  </td>
+                </tr>
+                <tr class="order-total">
+                  <th>Thành tiền</th>
+                  <td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount">1.020.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="wc-proceed-to-checkout">
+              <%= link_to "Proceed to payment", edit_user_order_path(current_user, @order), class: "checkout-button button alt wc-forward" %>
+              <%= link_to raw('Countinue to shopping <span>→</span>'), root_path, class: "return-shop" %>
+            </div>
+          </div>
         </div>
       <% else %>
         <h2>Bạn chưa mua hàng</h2>
       <% end %>  
     </div>
   </div>
-  <!-- End Cart -->
 </div>

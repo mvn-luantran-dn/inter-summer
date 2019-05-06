@@ -36,14 +36,14 @@ class AuctionData
         if timer['product_quantity'].positive?
           start_at = timer['start_at'].to_s.to_time.strftime('%H:%M:%S').to_time
           end_at = timer['end_at'].to_s.to_time.strftime('%H:%M:%S').to_time
-          if Time.now > start_at && Time.now < end_at
+          if Time.now.between?(start_at, end_at)
             db.create_auction(timer)
             decreasing_time(key)
             finish_auction(key)
             key = JSON.parse($redis.get(key))
             data << key
           else
-            auction = Auction.auction_timer(timer['id']).last
+            auction = ActiveRecord::Base.logger.silence { Auction.auction_timer(timer['id']).last }
             unless auction.nil?
               if auction.status == Common::Const::AuctionStatus::RUNNING
                 decreasing_time(key)

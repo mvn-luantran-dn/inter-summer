@@ -1,31 +1,21 @@
 <% provide(:title, 'Cart') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Orders</li>
+  </ol>
+</nav>
 <div id="my_orders" class="container main">
   <div id="content">
-    <h1>
-      Cart
-    </h1>
-    <!-- UPDATES - In-Cart Only display 'in-cart' if users have product in the cart -->
     <div class="">
       <div class="div-inline-block full-width clearfix">
-        <div class="float-left">
-          <h2>
+        <div>
+          <h2 class="title-page">
             Cart - wait to checkout
           </h2>
         </div>
       </div>
       <%= render 'cart_table' %>
-      <div class="delivery-payment">
-        <ul>
-          <li>
-            <span>
-            <%= image_tag('delivery-car.png',alt: '')%>
-            </span>
-            <p class="minimize">
-              Free Delivery In 3 Days
-            </p>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
   <br>

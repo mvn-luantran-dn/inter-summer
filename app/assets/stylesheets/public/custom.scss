@@ -27,12 +27,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+// h1 {
+//   font-size: 3efm;
+//   letter-spacing: -2px;
+//   margin-bottom: 30px;
+//   text-align: center;
+// }
 
 h2 {
   font-size: 1.2em;
@@ -142,4 +142,172 @@ footer {
 }
 .status-spinner {
   color: #4384b1;
+}
+.cart-collaterals{
+  margin-top: 25px;
+  width: 47%;
+  float: right;
+}
+.cart-collaterals h2{
+  text-transform: uppercase;
+  float: left;
+  color: black;
+  font-size: 22px;
+}
+.cart-collaterals table.shop_table{
+  border: none;
+  width: 100%;
+}
+.cart-collaterals table.shop_table th{
+  text-transform: uppercase;
+  display: table-cell;
+  line-height: 1.125rem;
+  font-weight: bold;
+  height: 37px;
+}
+.cart-collaterals table.shop_table tr.even, .cart-collaterals table.shop_table tr.alt, .cart-collaterals table.shop_table tr:nth-of-type(even){
+  background: transparent;
+}
+.cart-collaterals table.shop_table th, .cart-collaterals table.shop_table td{
+  border-bottom: 1px solid #e5e5e5;
+}
+.cart-collaterals .wc-proceed-to-checkout{
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+}
+.cart-collaterals .wc-proceed-to-checkout a.checkout-button{
+  margin-bottom: 10px;
+  background: #35b0fe;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px;
+  border-radius: 3px;
+  font-size: 16px;
+  width: 279px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+}
+.cart-collaterals .wc-proceed-to-checkout a.checkout-button:hover {
+  text-decoration: none;
+}
+.cart-collaterals .wc-proceed-to-checkout a.return-shop{
+  line-height: 60px;
+  text-align: center;
+  width: 279px;
+  font-size: 18px;
+  padding: 0;
+  color: #000;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: bold;
+}
+.cart-collaterals .wc-proceed-to-checkout a.return-shop:hover {
+  text-decoration: none;
+}
+.cart-collaterals .wc-proceed-to-checkout a.return-shop span{
+  border: 1px solid #000;
+  line-height: 12px;
+  text-align: center;
+  border-radius: 11px;
+  display: inline-block;
+  padding: 2px 3px 4px;
+  font-size: 12px;
+  margin: 2px 0 0px 5px;
+  vertical-align: text-top;
+}
+table.shop_table.cart{
+    width: 100%;
+    border: 1px solid #eaeaea;
+    border-bottom: none;
+}
+table.shop_table.cart thead{
+    background: #fbfbfb;
+}
+table.shop_table.cart thead tr th{
+    text-transform: unset;
+    font-weight: normal;
+}
+table.shop_table.cart thead tr th, table.shop_table.cart tfoot tr th, table.shop_table.cart tfoot tr td, table.shop_table.cart tbody tr th, table.shop_table.cart tbody tr td, table.shop_table.cart tr td{
+    text-transform: uppercase;
+    border-right: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    padding: 20px;
+}
+table.shop_table.cart thead tr th:last-child, table.shop_table.cart tfoot tr th:last-child, table.shop_table.cart tfoot tr td:last-child, table.shop_table.cart tbody tr th:last-child, table.shop_table.cart tbody tr td:last-child, table.shop_table.cart tr td:last-child{
+    border-right: none;
+}
+table.shop_table.cart thead tr th{
+    padding: 10px 15px;
+}
+table.shop_table.cart thead tr th.product-remove, table.shop_table.cart thead tr th.product-quantity{
+    width: 10%;
+}
+table.shop_table.cart thead tr th.product-thumbnail{
+    width: 15%;
+}
+table.shop_table.cart thead tr th.product-name{
+    width: 30%;
+}
+table.shop_table.cart thead tr th.product-price, table.shop_table.cart thead tr th.product-subtotal{
+    width: 15%;
+}
+table.shop_table.cart tr.even, table.shop_table.cart tr.alt, table.shop_table.cart tr:nth-of-type(even){
+    background: transparent;
+}
+table.shop_table.cart tbody tr td.product-remove{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+table.shop_table.cart tbody tr td.product-remove a{
+    color: #7f7f7f;
+}
+table.shop_table.cart tbody tr td.product-name{
+    text-transform: inherit;
+    font-size: 16px;
+}
+table.shop_table.cart tbody tr td.product-name a{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+table.shop_table.cart .variation .variation-item{
+    width: auto;
+    margin-right: 15px;
+}
+table.shop_table.cart .variation .variation-item p{
+    margin: 0;
+    line-height: 19px;
+    font-size: 14px;
+}
+table.shop_table.cart .product-quantity .quantity span.text{
+    display: none;
+}
+table.shop_table.cart .product-quantity .quantity input{
+    margin-bottom: 0;
+    box-shadow: none;
+    background: #f5f5f5;
+    padding: 7px 20px;
+    height: auto;
+    font-weight: bold;
+}
+.title-page {
+  text-transform: uppercase;
+  font-size: 22px;
+  color: black;
+  float: left;
+}
+.input-amount-pro {
+  width: 100%;
+}
+.img-pro-cat {
+  width: 160px;
+  height: 145px;
 }

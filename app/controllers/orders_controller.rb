@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: %i[index edit update destroy]
+
   def index
     @items = @order.items if @order
   end
@@ -25,7 +26,10 @@ class OrdersController < ApplicationController
     redirect_to user_orders_path
   end
 
-  def edit; end
+  def edit
+    @items    = @order.items if @order
+    @payments = Payment.all
+  end
 
   def update
     if @order.update_attributes(order_params)

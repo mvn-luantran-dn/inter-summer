@@ -41,9 +41,7 @@
   line-height: 21px;
   font-family: "open sans";
 }
-h3 {
-  font-size: 18px;
-}
+
 .delivery-details ul li h3 {
   font-size: 15px;
   margin-bottom: 5px;
@@ -279,14 +277,7 @@ color: #a75d54;
   padding-bottom: 0px;
   padding-left: 0px;
 }
-h1, h2, h3 {
-  font-weight: 700;
-  font-family: "open sans", sans-serif;
-}
-h1 {
-  padding-bottom: 20px;
-  font-size: 35px;
-}
+
 #checkout h1 {
   padding-bottom: 0px;
 }
@@ -641,9 +632,7 @@ select {
   color: rgb(255, 255, 255);
   background-color: rgb(26, 183, 234);
 }
-.checkout::before {
-  content: "";
-}
+
 .checkout_progress .buttons.checkout.large, .checkout_progress .buttons.print_invoice.large {
   display: inline-block;
 }
@@ -758,34 +747,7 @@ select {
   border-bottom-left-radius: 5px;
   width: 100%;
 }
-h3 {
-  font-size: 18px;
-}
-#order_info h3, #order_info li {
-  width: 100%;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(26, 183, 234);
-  box-sizing: border-box;
-}
-#order_info h3 {
-  font-size: 19px;
-  background-image: initial;
-  background-position-x: initial;
-  background-position-y: initial;
-  background-size: initial;
-  background-repeat-x: initial;
-  background-repeat-y: initial;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: rgb(26, 183, 234);
-  color: rgb(255, 255, 255);
-}
+
 ol, ul {
   list-style-type: none;
   list-style-position: initial;
