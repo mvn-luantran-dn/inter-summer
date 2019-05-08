@@ -1,5 +1,6 @@
 class Admin::OrdersController < Admin::BaseController
   before_action :find_order, only: %i[edit update show destroy]
+  before_action :list_status, only: %i[edit update]
 
   def index
     if params[:content].blank? && params[:status].blank? &&
@@ -89,10 +90,14 @@ class Admin::OrdersController < Admin::BaseController
     end
 
     def order_params
-      params.require(:order).permit(%i[status type_payment])
+      params.require(:order).permit(%i[status])
     end
 
     def check_delete_order(order)
-      order.status == 'received'
+      order.status == 'completed'
+    end
+
+    def list_status
+      @list_status = Order::STATUS.map { |st| st.upcase }
     end
 end

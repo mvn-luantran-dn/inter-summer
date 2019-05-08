@@ -56,6 +56,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'paranoia', '~> 2.2'
 gem 'strip_attributes'
 gem 'annotate'
+gem 'state_machine'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

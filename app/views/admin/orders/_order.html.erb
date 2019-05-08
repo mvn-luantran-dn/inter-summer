@@ -5,12 +5,12 @@
   <td class="center"><%= order.phone %></td>
   <td class="center"><%= order.total_price %></td>
   <td class="center"><%= order.status %></td>
-  <td class="center"><%= order.type_payment %></td>
+  <td class="center"><%= order.payment.name %></td>
   <td class="center">
-    <% if order.status == 'checkouted' or order.status == 'delivered' %>
+    <% if order.status == 'ordered' or order.status == 'delivering' %>
       <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_order_path(order), class: 'button-item update-item btn-margin' %>
     <% end %>
-    <% if order.status == 'received' %>
+    <% if order.status == 'completed' %>
       <%= link_to raw('<i class="fa fa-edit"></i>'), admin_order_path(order), method: :delete, class: 'button-item delete-item',
                             data: { confirm: "You sure?" } %>
     <% end %>

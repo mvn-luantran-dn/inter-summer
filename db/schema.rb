@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_032841) do
+ActiveRecord::Schema.define(version: 2019_05_08_081250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,10 +97,12 @@ ActiveRecord::Schema.define(version: 2019_03_24_032841) do
     t.string "name"
     t.integer "total_price"
     t.datetime "deleted_at"
-    t.string "status", default: "0", null: false
+    t.string "status", default: "waitting", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type_payment"
+    t.integer "payment_id", null: false
+    t.string "city"
+    t.index ["payment_id"], name: "index_orders_on_payment_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -110,6 +112,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_032841) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "transport_fee"
   end
 
   create_table "products", force: :cascade do |t|
@@ -123,6 +126,8 @@ ActiveRecord::Schema.define(version: 2019_03_24_032841) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color"
+    t.string "size"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

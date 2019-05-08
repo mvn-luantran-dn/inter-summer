@@ -271,6 +271,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    state_machine (1.2.0)
     strip_attributes (1.9.0)
       activemodel (>= 3.0, < 7.0)
     sweet-alert2-rails (0.1.0)
@@ -345,6 +346,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  state_machine
   strip_attributes
   sweet-alert2-rails
   turbolinks (~> 5)

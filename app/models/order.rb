@@ -2,17 +2,17 @@
 #
 # Table name: orders
 #
-#  id           :bigint(8)        not null, primary key
-#  user_id      :bigint(8)
-#  address      :string
-#  phone        :string
-#  name         :string
-#  total_price  :integer
-#  deleted_at   :datetime
-#  status       :string           default(NULL), not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  type_payment :string
+#  id          :bigint(8)        not null, primary key
+#  user_id     :bigint(8)
+#  address     :string
+#  phone       :string
+#  name        :string
+#  total_price :integer
+#  deleted_at  :datetime
+#  status      :string           default("waitting"), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  payment_id  :integer          not null
 #
 
 class Order < ApplicationRecord
@@ -23,15 +23,36 @@ class Order < ApplicationRecord
   STATUS_ORDERED   = 'ordered'.freeze
   STATUS_DELIVERY  = 'delivering'.freeze
   STATUS_COMPETED  = 'completed'.freeze
-  STATUS           = %w[waitting ordered delivering completed].freeze
+  STATUS_CANCLED   = 'canceled'.freeze
+  STATUS           = %w[waitting ordered delivering completed canceled].freeze
 
-  enum status: { waitting: STATUS_WAITTING,
-                 ordered: STATUS_ORDERED,
-                 delivering: STATUS_DELIVERY,
-                 completed: STATUS_COMPETED }
+  state_machine :status, initial: :waitting do
+    state :waitting,   value: STATUS_WAITTING
+    state :ordered,    value: STATUS_ORDERED
+    state :delivering, value: STATUS_DELIVERY
+    state :completed,  value: STATUS_COMPETED
+    state :canceled,   value: STATUS_CANCLED
+
+    event :order_action do
+      transition waitting: :ordered
+    end
+
+    event :delivery_action do
+      transition ordered: :delivering
+    end
+
+    event :complete_action do
+      transition delivering: :completed
+    end
+
+    event :cancel_action do
+      transition %i[waitting ordered] => :canceled
+    end
+  end
 
   belongs_to :user
-  has_many :items, dependent: :destroy
+  has_many   :items, dependent: :destroy
+  belongs_to :payment
 
   PHONE_REGEX = /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
 
@@ -39,22 +60,6 @@ class Order < ApplicationRecord
   validates :address, presence: true, on: :update
   validates :phone, presence: true, length: { maximum: 15 },
                     format: { with: PHONE_REGEX }, numericality: true, on: :update
-  validates :type_payment, presence: true, on: :update
+  validates :payment_id, presence: true, on: :update
   scope :common_order, -> { order('id DESC') }
-  scope :search, ->(content, status, time_start, time_end) {
-                   where 'name = ? or address = ?
-                           or phone = ? or type_payment = ? or status = ? or created_at BETWEEN ? AND ?', content, content, content, content, status, time_start, time_end
-                 }
-  scope :search_end_time, ->(content, status, time_end) {
-                            where 'name = ? or address = ?
-                                    or phone = ? or type_payment = ? or status = ? or created_at < ?', content, content, content, content, status, time_end
-                          }
-  scope :search_start_time, ->(content, status, time_start) {
-                              where 'name = ? or address = ?
-                                      or phone = ? or type_payment = ? or status = ? or created_at > ?', content, content, content, content, status, time_start
-                            }
-  scope :search_with_out_time, ->(content, status) {
-                                 where 'name = ? or address = ?
-                                         or phone = ? or type_payment = ? or status = ?', content, content, content, content, status
-                               }
 end

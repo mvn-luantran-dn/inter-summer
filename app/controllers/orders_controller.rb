@@ -32,9 +32,9 @@ class OrdersController < ApplicationController
   end
 
   def update
+    payment = Payment.find(params[:payment_id])
+    format_params(@order, payment)
     if @order.update_attributes(order_params)
-      total = @order.total_price + 29000
-      @order.update_attributes(status: 'checkouted', total_price: total)
       redirect_to root_path, success: 'Success'
     else
       render :edit
@@ -44,7 +44,12 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.require(:order).permit(%i[name address phone type_payment])
+      params.require(:order).permit(%i[name address phone payment_id city status total_price])
+    end
+
+    def format_params(order, payment)
+      params[:order][:total_price] = order.total_price + payment.transport_fee
+      params[:order][:status] = Order::STATUS_ORDERED
     end
 
     def find_order

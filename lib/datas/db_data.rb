@@ -43,9 +43,9 @@ class DbData
     if order.nil?
       order = Order.new
       order.user_id = auction_dls.user_id
-      order.status = 'waitting'
       order.total_price = auction_dls.price_bid
       order.name = auction_dls.user.name
+      order.payment_id = Payment.first.id
       order.save
     else
       total_price = order.total_price + auction_dls.price_bid.to_i
