@@ -2,7 +2,7 @@
   <td class="center"><%= check_box_tag 'ids[]', order.id, false, :class => 'table-row-checkbox' %></td>
   <td>
      <% if order.user.asset.present? %>
-      <%= image_tag(user&.asset&.file_url, class: "avatar detail-item", alt: "Avatar", id: order.id ) %>
+      <%= image_tag(order.user&.asset&.file_url, class: "avatar detail-item", alt: "Avatar", id: order.id ) %>
     <% else %>
       <img src="/avatar-default.png" alt="Avatar Default" class= "avatar detail-item" id= "<%= order.id %>"/>
     <% end %>
