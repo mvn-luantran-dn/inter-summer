@@ -13,6 +13,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  payment_id  :integer          not null
+#  city        :string
 #
 
 class Order < ApplicationRecord

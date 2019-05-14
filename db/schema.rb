@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 2019_05_08_081250) do
     t.datetime "updated_at", null: false
     t.string "color"
     t.string "size"
+    t.string "material"
+    t.string "weight"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

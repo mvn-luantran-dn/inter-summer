@@ -13,6 +13,10 @@
 #  deleted_at  :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  color       :string
+#  size        :string
+#  material    :string
+#  weight      :string
 #
 
 require 'csv'

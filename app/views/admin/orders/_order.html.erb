@@ -1,6 +1,13 @@
 <tr class="odd gradeX">
   <td class="center"><%= check_box_tag 'ids[]', order.id, false, :class => 'table-row-checkbox' %></td>
-  <td class="center"><%= link_to order.name , '#', class: 'detail-item' %></td>
+  <td>
+     <% if order.user.asset.present? %>
+      <%= image_tag(user&.asset&.file_url, class: "avatar detail-item", alt: "Avatar", id: order.id ) %>
+    <% else %>
+      <img src="/avatar-default.png" alt="Avatar Default" class= "avatar detail-item" id= "<%= order.id %>"/>
+    <% end %>
+    <span class= 'detail-item' id= "<%= order.id %>"><%= order.name %></span>
+  </td>
   <td class="center"><%= order.address %></td>
   <td class="center"><%= order.phone %></td>
   <td class="center"><%= order.total_price %></td>

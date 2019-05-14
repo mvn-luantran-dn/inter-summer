@@ -57,6 +57,7 @@ gem 'paranoia', '~> 2.2'
 gem 'strip_attributes'
 gem 'annotate'
 gem 'state_machine'
+gem 'active_model_serializers'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

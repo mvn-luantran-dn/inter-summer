@@ -37,7 +37,13 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
-    @items = @order.items.paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.json do
+        order = Order.includes(:payment, user: :asset, items: [product: :assets])
+                     .find_by(id: params[:id])
+        render json: order, serializer: Orders::ShowSerializer
+      end
+    end
   end
 
   def edit; end
@@ -90,7 +96,7 @@ class Admin::OrdersController < Admin::BaseController
     end
 
     def order_params
-      params.require(:order).permit(%i[status])
+      params.require(:order).permit(:status)
     end
 
     def check_delete_order(order)

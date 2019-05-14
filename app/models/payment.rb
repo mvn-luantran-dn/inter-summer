@@ -2,12 +2,13 @@
 #
 # Table name: payments
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string           not null
-#  description :string
-#  deleted_at  :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :bigint(8)        not null, primary key
+#  name          :string           not null
+#  description   :string
+#  deleted_at    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  transport_fee :integer
 #
 
 class Payment < ApplicationRecord
