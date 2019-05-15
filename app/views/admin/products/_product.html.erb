@@ -5,9 +5,9 @@
   </td>
   <td class="center-td"><%= parent_name(product.category_id) %></td>
   <td class="center-td"><%= image_tag image_first_of_object(product), class: 'img-product' %></td>
-  <td class="center-td"><%= product.price %></td>
+  <td class="center-td"><%= number_with_delimiter(product.price, :delimiter => ',') %> VND</td>
   <td class="center-td"><%= product.quantity %></td>
-  <td class="center-td"><%= product.price_at %></td>
+  <td class="center-td"><%= number_with_delimiter(product.price_at, :delimiter => ',') %> VND</td>
   <td class="center action-product">
     <%= link_to raw('<i class="fa fa-clock-o"></i>'), admin_product_timers_path(product), class: 'button-item  update-item' %> 
     <%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_product_path(product), class: 'button-item update-item' %> 

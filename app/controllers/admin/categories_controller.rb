@@ -19,10 +19,8 @@ class Admin::CategoriesController < Admin::BaseController
   def show
     respond_to do |format|
       format.json do
-        cat = Category.find_by(id: params[:id])
-        asset = cat.asset
-        products = Product.where(category_id: params[:id])
-        render json: { category: cat, asset: asset, products: products }
+        cat = Category.includes(:asset, products: :assets).find_by(id: params[:id])
+        render json: cat, serializer: Categories::ShowSerializer
       end
     end
   end

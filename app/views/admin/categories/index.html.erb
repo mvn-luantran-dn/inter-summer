@@ -11,8 +11,11 @@
             <%= link_to raw('<i class="fa fa-plus"></i> Add category'), new_admin_category_path, class: 'add-item' %>
             <%= link_to raw('<i class="fa fa-upload fa-3x"></i>'), import_admin_categories_path, class: 'csv-file' %>            
           </div>
-          <%= form_tag admin_categories_path, method: :get, class: 'col-lg-3', id: 'search'  do %>
-            <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
+          <%= form_tag admin_categories_path, method: :get, class: 'col-lg-3', id: 'search-cat'  do %>
+            <div class="form-group input-search">
+              <label>Name:</label>
+              <%= search_field_tag 'content', '', { class: 'form-control', placeholder: 'Search' } %>
+              </div>
             <%= button_tag raw('<i class="fa fa-search"></i>'), class: 'btn btn-primary search-item' %>
           <% end %>
         </div>
@@ -46,10 +49,10 @@
         <div id= "avatar-user"></div>
         <ul class="list-group">
           <li class="list-group-item">
-            <strong>Name:</strong> <span id="name"></span>
+            <strong class="title-up">Name: </strong><span id="name" class="content-up"></span>
           </li>
           <li class="list-group-item">
-            Description: <span id="description"></span>
+            <strong class="title-up">Description: </strong><span id="description" class="content-up"></span>
           </li>
         </ul>
         <div>
@@ -63,7 +66,7 @@
                 <th class="center">Quantity</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody-append">
             </tbody>
           </table>
         </div>
@@ -78,6 +81,7 @@
 $(document).ready(function(){
   $(".detail-item").click(function(){
     $("#dataTables-example-pro").dataTable().fnDestroy();
+    $("#tbody-append").empty();
     var cat_id = event.target.id;
     $.ajax({
       url: '/admin/categories/' + cat_id,
@@ -86,28 +90,29 @@ $(document).ready(function(){
       dataType: 'JSON',
       async: true,
       success: function (response) {
-        $('#name').html(response.category.name);
-        $('#description').html(response.category.description);
+        $('#name').html(response.name);
+        $('#description').html(response.description);
         if(response.asset) {
-          html = '<img src="' + response.asset.file.url + '" alt= "Category" class= "avatar-detail">'
+          html = '<img src="' + response.asset.file_url + '" alt= "Category" class= "avatar-detail">'
           $('#avatar-user').html(html);
         } else {
           html = '<img src="/product-default.png" alt= "Category" class= "avatar-detail">'
           $('#avatar-user').html(html);
         }
-        var html = "";
+        content = "";
         var products = response.products;
         $.each(products, function( index, product ) {
-          html += '<tr class="odd gradeX">' +
-                  '<td class="center">' + product.id + '</th>' +
-                  '<td class="">' + product.name + '</th>' +
-                  '<td class="center">' + product.price + '</th>' +
-                  '<td class="center">' + product.quantity + '</th>' +
-                  '</tr>';
+          img_html = '<img src="' + product.assets[0].file_url + '" alt= "Avatar" class= "avatar detail-item">'
+          content += '<tr class="odd gradeX">' +
+                     '<td class="center">' + (index + 1) + '</td>' +
+                     '<td class="">' + img_html + product.name + '</td>' +
+                     '<td class="center">' + product.price + '</td>' +
+                     '<td class="center">' + product.quantity + '</td>' +
+                     '</tr>';
         });
-        $('.detail-product').append(html);
+        $('.detail-product').append(content);
         $("#dataTables-example-pro").dataTable( {
-          "order": [[ 1, "asc" ]]
+          "order": [[ 0, "asc" ]]
         });
       },
       error: function (err) {

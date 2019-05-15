@@ -1,39 +1,17 @@
 class Admin::OrdersController < Admin::BaseController
   before_action :find_order, only: %i[edit update show destroy]
-  before_action :list_status, only: %i[edit update]
+  before_action :list_status, only: %i[edit update index]
 
   def index
-    if params[:content].blank? && params[:status].blank? &&
-       params[:"date-start"].blank? && params[:"date-end"].blank?
-      @orders = Order.paginate(page: params[:page], per_page: 10).common_order
-    else
-      content = params[:content]
-      status = params[:status]
-      if params[:"date-end"].blank?
-        if params[:"date-start"].blank?
-          @orders = Order.search_with_out_time(content, status)
-                         .paginate(page: params[:page], per_page: 10)
-                         .common_order
-        else
-          date_start = params[:"date-start"].to_time
-          @orders = Order.search_start_time(content, status, date_start)
-                         .paginate(page: params[:page], per_page: 10)
-                         .common_order
-        end
-      else
-        date_end = params[:"date-end"].to_time
-        if params[:"date-start"].blank?
-          @orders = Order.search_end_time(content, status, date_end)
-                         .paginate(page: params[:page], per_page: 10)
-                         .common_order
-        else
-          date_start = params[:"date-start"].to_time
-          @orders = Order.search(content, status, date_start, date_end)
-                         .paginate(page: params[:page], per_page: 10)
-                         .common_order
-        end
+    @orders = Order.common_order.to_a
+    if params[:start_date].present? && params[:end_date].present?
+      @orders.select! do |order|
+        order.created_at.between?(params[:start_date].to_date, params[:end_date].to_date)
       end
     end
+    return @orders unless params[:status].present?
+
+    @orders.select! { |order| order.status == params[:status].downcase }
   end
 
   def show

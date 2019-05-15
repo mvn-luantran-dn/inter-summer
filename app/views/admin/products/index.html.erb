@@ -48,13 +48,13 @@
         <div id= "list-image"></div>
         <ul class="list-group">
           <li class="list-group-item">
-            <strong>Product:</strong> <span id="name"></span>
+            <strong class="title-up">Product:</strong> <span id="name" class="content-up"></span>
           </li>
           <li class="list-group-item">
-            Category: <span id="category"></span>
+            <strong class="title-up">Category:</strong> <span id="category" class="content-up"></span>
           </li>
           <li class="list-group-item">
-            Quantity: <span id="quantity"></span>
+            <strong class="title-up">Quantity:</strong> <span id="quantity" class="content-up"></span>
           </li>
         </ul>
         <div>
@@ -82,7 +82,7 @@ $(document).ready(function(){
       success: function (response) {
         $('#name').html(response.product.name);
         $('#category').html(response.category.name);
-        $('#quantity').html(response.product.quntity);
+        $('#quantity').html(response.product.quantity);
         if(response.images) {
           html = '';
           var images = response.images;

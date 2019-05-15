@@ -10,8 +10,9 @@
   </td>
   <td class="center"><%= order.address %></td>
   <td class="center"><%= order.phone %></td>
-  <td class="center"><%= order.total_price %></td>
-  <td class="center"><%= order.status %></td>
+  <td class="center"><%= number_with_delimiter(order.total_price, :delimiter => ',') %> VND</td>
+  <td class="center"><%= order.status.upcase %></td>
+  <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y") %></td>
   <td class="center"><%= order.payment.name %></td>
   <td class="center">
     <% if order.status == 'ordered' or order.status == 'delivering' %>

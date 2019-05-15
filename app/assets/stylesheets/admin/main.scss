@@ -27,14 +27,25 @@
 .header-panel-body{
   position: relative;
 }
-#search {
+.search {
   position: absolute;
-  right: 0;
+  display: flex;
+}
+#search-order {
+  left: 44%;
+}
+#search-auction {
+  left: 35%;
+}
+#search-cat {
+  position: absolute;
+  left: 76%;
   display: flex;
 }
 .search-item {
   margin-left: 10px;
   height: 35px;
+  margin-top: 33px;
 }
 .update-item {
   color: #423838;
@@ -257,4 +268,16 @@
 }
 .action-payment {
   width: 10%;
+}
+
+// search
+.input-search {
+  margin: 10px 25px 10px 0px;
+}
+.title-up {
+  margin-left: 180px;
+}
+.content-up {
+  position: absolute;
+  left: 55%;
 }

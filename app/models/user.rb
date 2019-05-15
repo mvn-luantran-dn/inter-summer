@@ -45,6 +45,7 @@ class User < ApplicationRecord
   has_one :asset, as: :module, dependent: :destroy
   has_many :auction_details
   has_many :notifications
+  has_many :orders
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest

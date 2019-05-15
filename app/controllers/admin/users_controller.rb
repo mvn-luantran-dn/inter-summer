@@ -12,9 +12,9 @@ class Admin::UsersController < Admin::BaseController
   def show
     respond_to do |format|
       format.json do
-        user = User.find_by(id: params[:id])
-        avatar = user.asset
-        render json: { user: user, asset: avatar }
+        user = User.includes(:asset, orders: [:payment, items: [product: :assets]])
+                   .find_by(id: params[:id])
+        render json: user, serializer: Users::ShowSerializer
       end
     end
   end
