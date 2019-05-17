@@ -1,8 +1,8 @@
 <tr class="odd gradeX">
   <td class="center"><%= check_box_tag 'ids[]', auction.id, false, :class => 'table-row-checkbox' %></td>
   <td class="">
-    <%= image_tag image_first_of_object(auction.timer.product), class: 'avatar' %>
-    <%= link_to auction.timer.product.name, '#', class: 'detail-item' %>
+    <%= image_tag image_first_of_object(auction.timer.product), class: 'avatar detail-item', id: auction.id %>
+    <span class= 'detail-item' id= "<%= auction.id %>"><%= auction.timer.product.name %></span>
   </td>
   <td class="center"><%= auction.timer.created_at.strftime("%m/%d/%y, %I:%M:%p") %></td>
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.user.name if auction.auction_details.order('price_bid DESC').first %></td>
@@ -10,9 +10,9 @@
   <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid - auction.timer.product.price if auction.auction_details.order('price_bid DESC').first %></td>
   <td class="center">
     <% if auction.status == Common::Const::AuctionStatus::RUNNING %>
-      <img src="/run.gif" alt="running" class= "avatar" />
+      <img src="/play.png" alt="running" class= "avatar-action" />
     <% else %>
-      <img src="/stop.png" alt="running" class= "avatar" />      
+      <img src="/stop.png" alt="running" class= "avatar-action" />      
     <% end %>
   </td>
   <td class="center auction-action">

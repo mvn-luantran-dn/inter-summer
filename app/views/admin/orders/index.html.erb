@@ -134,7 +134,7 @@ $(document).ready(function(){
         content = "";
         var items = response.items;
         $.each(items, function( index, item ) {
-          img_html = '<img src="' + response.items[0].product.assets[0].file_url + '" alt= "Avatar" class= "avatar detail-item">'
+          img_html = '<img src="' + item.product.assets[0].file_url + '" alt= "Avatar" class= "avatar detail-item">'
           content += '<tr class="odd gradeX">' +
                      '<td class="center">' + (index + 1) + '</td>' +
                      '<td class="">' + img_html + item.product.name + '</td>' +

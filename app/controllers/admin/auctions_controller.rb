@@ -1,6 +1,7 @@
 class Admin::AuctionsController < Admin::BaseController
   before_action :find_auction, only: :destroy
   before_action :auction_details, only: :show
+  before_action :list_status, only: :index
 
   def index
     if params[:content].present? && params[:"time-start"].present? &&
@@ -18,13 +19,18 @@ class Admin::AuctionsController < Admin::BaseController
                          .common_order
     else
       @auctions = Auction.includes(:auction_details)
-                         .paginate(page: params[:page], per_page: 10)
                          .common_order
     end
   end
 
   def show
-    @auction_details = @auction.auction_details.paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.json do
+        auction = Auction.includes(auction_details: [user: :asset], timer: [product: :assets])
+                         .find_by(id: params[:id])
+        render json: auction, serializer: Auctions::ShowSerializer
+      end
+    end
   end
 
   def destroy
@@ -77,5 +83,9 @@ class Admin::AuctionsController < Admin::BaseController
 
     def auction_details
       @auction = Auction.find_by(id: params[:id]) || redirect_to_not_found
+    end
+
+    def list_status
+      @list_status = Common::Const::AuctionStatus::STATUS.map { |st| st.upcase }
     end
 end

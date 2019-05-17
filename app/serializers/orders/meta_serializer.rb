@@ -1,6 +1,4 @@
 class Orders::MetaSerializer < ApplicationSerializer
-  include ActionView::Helpers::NumberHelper
-
   attributes %i[total_price status city quantity]
 
   belongs_to :payment, serializer: Payments::MetaSerializer

@@ -13,6 +13,8 @@ module Common
     module AuctionStatus
       RUNNING  = 'running'.freeze
       FINISHED = 'finished'.freeze
+
+      STATUS = ['running', 'finished'].freeze
     end
   end
 end
