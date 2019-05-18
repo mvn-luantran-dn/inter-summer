@@ -4,10 +4,14 @@
     <%= image_tag image_first_of_object(auction.timer.product), class: 'avatar detail-item', id: auction.id %>
     <span class= 'detail-item' id= "<%= auction.id %>"><%= auction.timer.product.name %></span>
   </td>
-  <td class="center"><%= auction.timer.created_at.strftime("%m/%d/%y, %I:%M:%p") %></td>
-  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.user.name if auction.auction_details.order('price_bid DESC').first %></td>
-  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid if auction.auction_details.order('price_bid DESC').first %></td>
-  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid - auction.timer.product.price if auction.auction_details.order('price_bid DESC').first %></td>
+  <% auction_detail = auction.auction_details.first %>
+  <td class="center"><%= auction.created_at.strftime("%m/%d/%y, %I:%M:%p") %></td>
+  <td class="center"><%= auction_detail.user.name if auction_detail %></td>
+  <td class="center">
+    <%= number_with_delimiter(auction_detail.price_bid, :delimiter => ',') + ' VND' if auction_detail %>
+  </td>
+  <td class="center">
+    <%= number_with_delimiter(auction_detail.price_bid - auction.timer.product.price, :delimiter => ',') + ' VND' if auction_detail %></td>
   <td class="center">
     <% if auction.status == Common::Const::AuctionStatus::RUNNING %>
       <img src="/play.png" alt="running" class= "avatar-action" />
@@ -16,8 +20,8 @@
     <% end %>
   </td>
   <td class="center auction-action">
-    <%= link_to raw('<i class="fa fa-info-circle"></i>'), admin_auction_path(auction), class: 'button-item update-item btn-margin' %> 
-    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_auction_path(auction), method: :delete, class: 'button-item delete-item',
+    <!--<%= link_to raw('<i class="fa fa-info-circle"></i>'), admin_auction_path(auction), class: 'button-item update-item btn-margin' %>-->
+    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_auction_path(auction), method: :delete, class: 'button-item delete-item auction-delete',
                           data: { confirm: "You sure?" } %>
 
   </td>

@@ -6,7 +6,7 @@
     <%= image_tag(item.product.assets.first.file_url ,alt: "", class: "img-pro-cat") %>
   </td>
   <td class="product-name" data-title="Product">
-    <p> item.product.name </p>
+    <p><%= item.product.name %></p>
   </td>
   <td class="product-price" data-title="Giá">
     <span class="woocommerce-Price-amount amount"><%= item.amount %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>					

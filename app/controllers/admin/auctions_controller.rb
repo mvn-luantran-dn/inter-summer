@@ -4,23 +4,17 @@ class Admin::AuctionsController < Admin::BaseController
   before_action :list_status, only: :index
 
   def index
-    if params[:content].present? && params[:"time-start"].present? &&
-       params[:"time-end"].present? && params[:"date-start"].present? &&
-       params[:"date-end"].present?
-      content = params[:content]
-      time_start = params[:"time-start"]
-      time_end = params[:"time-end"]
-      date_start = params[:"date-start"].to_time
-      date_end = params[:"date-end"].to_time
-      start_time = convert_time(time_start, date_start)
-      end_time = convert_time(time_end, date_end)
-      @auctions = Auction.search(content, start_time, end_time)
-                         .paginate(page: params[:page], per_page: 10)
-                         .common_order
-    else
-      @auctions = Auction.includes(:auction_details)
-                         .common_order
+    format_params
+    @auctions = Auction.includes(auction_details: :user, timer: [product: :assets])
+                       .common_order
+    if params[:start_time] && params[:end_time]
+      @auctions.select do |auction|
+        auction.created_at.between?(params[:start_time], params[:end_time])
+      end
     end
+    return @auctions unless params[:status]
+
+    @auctions.select { |auction| auction.status == params[:status] }
   end
 
   def show
@@ -87,5 +81,11 @@ class Admin::AuctionsController < Admin::BaseController
 
     def list_status
       @list_status = Common::Const::AuctionStatus::STATUS.map { |st| st.upcase }
+    end
+
+    def format_params
+      params[:start_time] = params[:start_time]&.to_time
+      params[:end_time] = params[:end_time]&.to_time
+      params[:status] = params[:status]&.downcase
     end
 end
