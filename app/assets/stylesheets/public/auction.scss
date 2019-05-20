@@ -113,9 +113,10 @@ ol, ul {
   width: 100%;
   height: 40px;
   line-height: 40px;
+  margin-bottom: 50px;
 }
 .tabs_content li {
-  width: 25%;
+  width: 15%;
   float: left;
   display: inline-block;
 }
@@ -123,23 +124,6 @@ ol, ul {
   width: 100%;
   display: inline-block;
   text-align: center;
-  text-decoration-line: none;
-  text-decoration-style: initial;
-  text-decoration-color: initial;
-  background-color: rgb(238, 238, 238);
-  border-bottom-width: inherit;
-  border-bottom-style: inherit;
-  border-bottom-color: inherit;
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-left-color: rgb(204, 204, 204);
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-right-color: rgb(204, 204, 204);
-  border-top-width: 2px;
-  border-top-style: solid;
-  border-top-color: rgb(204, 204, 204);
-  letter-spacing: 1px;
 }
 .tabs_content a.active {
   background-color: rgb(255, 255, 255);
@@ -147,38 +131,40 @@ ol, ul {
   border-top-width: 2px;
   border-top-style: solid;
   border-top-color: rgb(26, 183, 234);
+  background-color: rgb(238, 238, 238);
 }
+
 .auction_list {
-  display: table;
-  padding-left: 0;
-  width: 100%;
-  margin-top: 0px;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-top-color: rgb(204, 204, 204);
-  border-right-color: rgb(204, 204, 204);
-  border-bottom-color: rgb(204, 204, 204);
-  border-left-color: rgb(204, 204, 204);
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  // display: table;
+  // padding-left: 0;
+  // width: 100%;
+  // margin-top: 0px;
+  // margin-right: auto;
+  // margin-bottom: 50px;
+  // margin-left: auto;
+  // border-top-width: 1px;
+  // border-right-width: 1px;
+  // border-bottom-width: 1px;
+  // border-left-width: 1px;
+  // border-top-style: solid;
+  // border-right-style: solid;
+  // border-bottom-style: solid;
+  // border-left-style: solid;
+  // border-top-color: rgb(204, 204, 204);
+  // border-right-color: rgb(204, 204, 204);
+  // border-bottom-color: rgb(204, 204, 204);
+  // border-left-color: rgb(204, 204, 204);
+  // border-image-source: initial;
+  // border-image-slice: initial;
+  // border-image-width: initial;
+  // border-image-outset: initial;
+  // border-image-repeat: initial;
+  // overflow-x: hidden;
+  // overflow-y: hidden;
+  // border-top-left-radius: 5px;
+  // border-top-right-radius: 5px;
+  // border-bottom-right-radius: 5px;
+  // border-bottom-left-radius: 5px;
 }
 .myauctions .auction_list {
   border-top-left-radius: initial;

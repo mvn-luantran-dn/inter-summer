@@ -1,94 +1,3 @@
-<!--<div class="header">
-	<div class="container">
-		<div class="header-main">
-			<div class="logo">
-        <%= link_to image_tag("logo.png", alt: "auction logo"), root_path %>
-			</div>
-      <div class="head-right">
-			  <div class="top-nav">
-				  <ul class="res">
-            <% if logged_in? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="change-status">
-                  <i class="fa fa-bell"></i>
-                  <% if @quantity_notif > 0 %>
-                    <span class="notification" id="quantity-notify"><%= @quantity_notif %></span>
-                  <% else %>
-                    <span class="notification" id="quantity-notify" style="display: none;">0</span>
-                  <% end %>
-                </a>
-                <ul class="dropdown-menu" id="list-notif">
-                  <% @notifications.each do |notif| %>
-                    <% if notif.status == 1 %>
-                      <li class='notif-item'>
-                        <a href="/auctions/<%= notif.timer_id %>">
-                          <div>
-                            <div class='content-notif'><%= notif.content %></div>
-                            <div class='content-right'><%= notif.created_at %></div>
-                          </div>
-                        </a>
-                      </li>
-                    <% else %>
-                      <li class='notif-item'>
-                        <a href="/auctions/<%= notif.timer_id %>">
-                          <div>
-                            <div><%= notif.content %></div>
-                            <div class='content-right'><%= notif.created_at %></div>
-                          </div>
-                        </a>
-                      </li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </li>   
-              <li><%= link_to "My auction", user_auctions_path(current_user) %></li>
-              <li>
-                <%= link_to raw('<i class="glyphicon glyphicon-shopping-cart"> Cart</i>'), user_orders_path(current_user), class: "cart" %>
-              </li>
-              <li>
-                <% if size_cart.present? %>
-                 <span id="itemCount"><%= size_cart.to_s %></span>
-                <% else %>
-                  <span id="itemCount" style="display: none">0</span>
-                <% end %>
-              </li>  
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Account <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif'%></li>
-                  <% if admin_user? %>
-                    <li><%= link_to "Admin", admin_root_path %></li>
-                  <% end %>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Log out", logout_path, method: :delete %>
-                </li>
-                </ul>
-              </li>
-            <% else %>
-              <li><%= link_to "Log in", login_path %></li>
-              <li><%= link_to "Sign up", signup_path %></li>
-            <% end %>
-          </ul>
-			  </div>				
-			  <div class="clearfix"></div>
-		  </div>
-			<div class="head-left">
-			  <div class="top-nav">
-				  <ul class="res">
-            <%= render @categories %>            
-            <div class="clearfix"> </div>
-          </ul>
-			  </div>				
-		  	<div class="clearfix"> </div>
-		  </div>
-		
-		<div class="clearfix"> </div>
-		</div>
-	</div>
-</div> -->
 <header>
   <div id="menu_bar" class="">
     <div class="row">
@@ -113,55 +22,14 @@
                 </div>
               </div>
               <ul id="mega-menu-main-menu" class="mega-menu max-mega-menu mega-menu-horizontal" data-event="hover_intent" data-effect="slide" data-effect-speed="600" data-effect-mobile="disabled" data-effect-speed-mobile="200" data-mobile-force-width="false" data-second-click="close" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="600" data-unbind="true">
-                <!--<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-13045" id="mega-menu-item-13045">
-                  <a class="mega-menu-link" href="https://fandy.vn/giay-the-thao/" aria-haspopup="true" aria-expanded="false" tabindex="0">Giày thể thao<span class="mega-indicator"></span></a>
-                  <ul class="mega-sub-menu" style="">
-                    <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13046" id="mega-menu-item-13046"><a class="mega-menu-link" href="https://fandy.vn/giay-the-thao/bong-da/">Giày bóng đá</a></li>
-                    <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13047" id="mega-menu-item-13047"><a class="mega-menu-link" href="https://fandy.vn/giay-the-thao/bong-ro/">Giày bóng rổ</a></li>
-                    <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13048" id="mega-menu-item-13048"><a class="mega-menu-link" href="https://fandy.vn/giay-the-thao/chay-bo/">Giày chạy bộ</a></li>
-                  </ul>
-                </li>-->
                 <%= render @categories %>
                 <% if logged_in? %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout dropdown">
-                    <a href="#" class="mega-menu-link dropdown-toggle" data-toggle="dropdown" id="change-status">
-                      <i class="fa fa-bell"></i>
-                      <% if @quantity_notif > 0 %>
-                        <span class="notification" id="quantity-notify"><%= @quantity_notif %></span>
-                      <% else %>
-                        <span class="notification" id="quantity-notify" style="display: none;">0</span>
-                      <% end %>
-                    </a>
-                    <ul class="dropdown-menu" id="list-notif">
-                      <% @notifications.each do |notif| %>
-                        <% if notif.status == 1 %>
-                          <li class='notif-item'>
-                            <a href="/auctions/<%= notif.timer_id %>">
-                              <div>
-                                <div class='content-notif'><%= notif.content %></div>
-                                <div class='content-right'><%= notif.created_at %></div>
-                              </div>
-                            </a>
-                          </li>
-                        <% else %>
-                          <li class='notif-item'>
-                            <a href="/auctions/<%= notif.timer_id %>">
-                              <div>
-                                <div><%= notif.content %></div>
-                                <div class='content-right'><%= notif.created_at %></div>
-                              </div>
-                            </a>
-                          </li>
-                        <% end %>
-                      <% end %>
-                    </ul>
-                  </li>   
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 370px;"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout dropdown">
                     <a href="#" class="mega-menu-link dropdown-toggle" data-toggle="dropdown">
                       Account <b class="caret"></b>
                     </a>
-                    <ul class="mega-sub-menu dropdown-menu">
+                    <ul class="dropdown-menu">
                       <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13066" id="mega-menu-item-13066"><a class="mega-menu-link"><%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif', class: "mega-menu-link"%></li>
                       <% if admin_user? %>
                         <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13066" id="mega-menu-item-13066"><a class="mega-menu-link"><%= link_to "Admin", admin_root_path, class: "mega-menu-link" %></li>
@@ -172,13 +40,13 @@
                     </ul>
                   </li>
                 <% else %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout">
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 370px;">
                     <%= link_to "Log in", login_path, class: "mega-menu-link" %>
                   </li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout">
                     <%= link_to "Sign up", signup_path, class: "mega-menu-link" %>
                   </li>
-                <% end %>         
+                <% end %>
               </ul>
             </div>
           </div>
@@ -186,39 +54,49 @@
       </div>
       <div class="large-1 medium-8 small-4 columns cart-box text-right">
         <div class="row">
-          <a href="https://fandy.vn/gio-hang/" class="cart" id="mini-cart">
-            <span class="cart-total">0</span>
-            <div class="show-for-large-up">
-              <div id="woocommerce_widget_cart-2" class="widget-odd widget-last widget-first widget-1 widget woocommerce widget_shopping_cart">
-                <div class="widget_shopping_cart_content">
-                  <ul class="cart_list product_list_widget ">
-                    <li class="mini_cart_item">
-                      <div class="mini-cart-thumb">
-                        <img width="250" height="225" src="//fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-250x225.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="//fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-250x225.jpg 250w, //fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-300x270.jpg 300w, //fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-768x691.jpg 768w, //fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-667x600.jpg 667w, //fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-33x30.jpg 33w, //fandy.vn/wp-content/uploads/2019/05/giay_under_amour_fat_tire_den_xanh_01-475x428.jpg 475w" sizes="(max-width: 250px) 100vw, 250px">
-                      </div>
-                      <div class="mini-cart-info">
-                        <div class="product-name">Giày Under Amour Fat Tire Low "Black/Green"</div>
-                        <div class="variation">
-                          <div class="variation-item">
-                            <div class="variation-Musc variation-label">Màu sắc:</div>
-                            <div class="variation-Musc variation-value">
-                              <p>Đen Xanh</p>
+          <% if logged_in? %>
+            <%= link_to user_orders_path(current_user), class: "cart", id: "mini-cart" do %>
+              <span class="cart-total"><%= cart_items&.size.to_i %></span>
+              <div class="show-for-large-up">
+                <div id="woocommerce_widget_cart-2" class="widget-odd widget-last widget-first widget-1 widget woocommerce widget_shopping_cart">
+                  <div class="widget_shopping_cart_content">
+                    <% if cart_items.any? %>
+                      <ul class="cart_list product_list_widget ">
+                        <% cart_items.each do |item| %>
+                          <li class="mini_cart_item">
+                            <div class="mini-cart-thumb">
+                              <%= image_tag(item.product.assets.first.file_url, width: "250", height: "225", class: "attachment-woocommerce_thumbnail size-woocommerce_thumbnail", alt: "") %>
                             </div>
-                          </div>
-                        </div>
-                        <span class="quantity">Số lượng: 1</span>						
-                      </div>
-                    </li>
-                  </ul>
-                  <p class="total">
-                    <span class="subtotal-title">Tổng thanh toán:</span> 
-                    <span class="mini-cart-subtotal">
-                    <span class="woocommerce-Price-amount amount">1.250.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>		</span>
-                  </p>
+                            <div class="mini-cart-info">
+                              <div class="product-name"><%= item.product.name %></div>
+                              <div class="variation">
+                                <div class="variation-item">
+                                  <div class="variation-Musc variation-label">Color:</div>
+                                  <div class="variation-Musc variation-value">
+                                    <p>Đen Xanh</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <span class="quantity">Size: <%= item.product.size %></span>						
+                            </div>
+                          </li>
+                        <% end %>
+                      </ul>
+                      <p class="total">
+                        <span class="subtotal-title">Money:</span> 
+                        <span class="mini-cart-subtotal">
+                        <span class="woocommerce-Price-amount amount">1.250.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>		</span>
+                      </p>
+                    <% else %>
+                      <ul class="cart_list product_list_widget ">
+                        <li class="empty">No item.</li>
+                      </ul>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            <% end %>
+          <% end %>
           <div class="search-block">
             <form method="get" id="searchform" name="searchform" action="https://fandy.vn/">
               <button class="search-button" type="submit" value="Tìm kiếm" onclick="return IsEmpty();"></button>
@@ -232,4 +110,3 @@
     </div>
   </div>
 </header>
-<!--<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%; margin-bottom: 20px;"></div>-->

@@ -1,8 +1,18 @@
 <% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
-
+<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 text-center">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Password</li>
+    </ol>
+  </nav>
+  <div class="col-lg-12">
+    <h2 class="title-page">
+      Forgot Password   
+    </h2>
+  </div>
+  <div class="col-md-6 col-md-offset-3 text-center" style="margin-bottom: 30px;">
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>

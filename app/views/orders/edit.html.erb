@@ -1,179 +1,182 @@
 <% provide(:title, 'Cart') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Orders</li>
-  </ol>
-</nav>
-<h1 class="page-title">Payment</h1>
-<div class="woocommerce">
-  <%= form_for(@order, url: user_order_path, name: "checkout", class: "checkout woocommerce-checkout", enctype: "multipart/form-data", autocomplete: "false") do |f| %>
-    <div class="cart-box-check-out">
-      <h3 id="order_review_heading">Your cart (2)</h3>
-      <div id="order_review" class="woocommerce-checkout-review-order">
-        <div class="woocommerce-checkout-review-order-box">
-          <div class="product-scroll">
-            <% @items.each do |item| %>
-              <div class="cart_item">
-                <div class="product-avatar">
-                  <%= image_tag(item.product.assets.first.file_url ,alt: "", class: "attachment-woocommerce_thumbnail size-woocommerce_thumbnail", width: "250", height: "225") %>
-                </div>
-                <div class="product-info">
-                  <div class="product-name">
-                    <%= item.product.name %>&nbsp;							
+<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
+<div class="row">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Orders</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Payment</h1>
+  <div class="woocommerce">
+    <%= form_for(@order, url: user_order_path, name: "checkout", class: "checkout woocommerce-checkout", enctype: "multipart/form-data", autocomplete: "false") do |f| %>
+      <div class="cart-box-check-out">
+        <h3 id="order_review_heading">Your cart (2)</h3>
+        <div id="order_review" class="woocommerce-checkout-review-order">
+          <div class="woocommerce-checkout-review-order-box">
+            <div class="product-scroll">
+              <% @items.each do |item| %>
+                <div class="cart_item">
+                  <div class="product-avatar">
+                    <%= image_tag(item.product.assets.first.file_url ,alt: "", class: "attachment-woocommerce_thumbnail size-woocommerce_thumbnail", width: "250", height: "225") %>
                   </div>
-                  <div class="variation">
-                    <div class="variation-item">
-                      <div class="variation-Size variation-label">Size:</div>
-                      <div class="variation-Size variation-value">
-                          <p>37</p>
+                  <div class="product-info">
+                    <div class="product-name">
+                      <%= item.product.name %>&nbsp;							
+                    </div>
+                    <div class="variation">
+                      <div class="variation-item">
+                        <div class="variation-Size variation-label">Size:</div>
+                        <div class="variation-Size variation-value">
+                            <p>37</p>
+                        </div>
+                      </div>
+                      <div class="variation-item">
+                        <div class="variation-Musc variation-label">Color:</div>
+                        <div class="variation-Musc variation-value">
+                          <p>Vàng</p>
+                        </div>
                       </div>
                     </div>
-                    <div class="variation-item">
-                      <div class="variation-Musc variation-label">Color:</div>
-                      <div class="variation-Musc variation-value">
-                        <p>Vàng</p>
-                      </div>
+                    <div class="product-total">
+                      <span class="woocommerce-Price-amount amount"><%= item.amount %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>							
                     </div>
                   </div>
-                  <div class="product-total">
-                    <span class="woocommerce-Price-amount amount"><%= item.amount %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>							
-                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="cart-total">
-            <div class="total-box">
-              <div class="order-total">
-                <label>Total money: </label>
-                <span><strong><span class="woocommerce-Price-amount amount"><%= @items.sum(&:amount) %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </span>
-              </div>
+              <% end %>
             </div>
-            <a href="/" class="return-shop"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Continue to participate in the auction </a>
+            <div class="cart-total">
+              <div class="total-box">
+                <div class="order-total">
+                  <label>Total money: </label>
+                  <span><strong><span class="woocommerce-Price-amount amount"><%= @items.sum(&:amount) %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </span>
+                </div>
+              </div>
+              <a href="/" class="return-shop"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Continue to participate in the auction </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col2-set" id="customer_details">
-      <div class="col-1">
-        <div class="woocommerce-billing-fields">
-          <h3>Purchase information</h3>
-          <div class="fd-form-checkout">
-            <p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
-              <label for="billing_last_name" class="">Tên&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
-              <span class="woocommerce-input-wrapper">
-                <%= f.text_field :name, placeholder: "Full name", class: 'input-text', id: "billing_last_name", value: "", autocomplete: "family-name"%>
-              </span>
-            </p>
-            <p class="form-row form-row-last validate-required validate-email" id="billing_email_field" data-priority="30">
-              <label for="billing_email" class="">Địa chỉ email&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
-              <span class="woocommerce-input-wrapper">
-                <%= f.text_field :email, placeholder: "Email address", class: 'input-text', id: "billing_email", value: "", autocomplete: "family-name"%>
-              </span>
-            </p>
-            <p class="form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="50">
-              <label for="billing_phone" class="">Số điện thoại&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
-              <span class="woocommerce-input-wrapper">
-                <%= f.text_field :phone, placeholder: "Phone number", class: 'input-text', id: "billing_phone", value: "", autocomplete: "family-name"%>
-              </span>
-            </p>
-            <p class="form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="70">
-              <label for="billing_address_1" class="">Địa chỉ&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
-              <span class="woocommerce-input-wrapper">
-                <%= f.text_field :address, placeholder: "Number hour or address name", class: 'input-text', id: "billing_address_1", value: "", autocomplete: "family-name"%>
-              </span>
-            </p>
-            <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="100">
-              <label for="billing_city" class="">Bang / Hạt&nbsp;<span class="optional">(tuỳ chọn)</span></label>
-              <span class="woocommerce-input-wrapper">
-                <select name="city" id="billing_state" class="state_select " autocomplete="address-level1" data-placeholder="">
-                  <option value="">Select one option</option>
-                  <option value="CANTHO">Cần Thơ</option>
-                  <option value="HOCHIMINH">Hồ Chí Minh</option>
-                  <option value="HANOI">Hà Nội</option>
-                  <option value="HAIPHONG">Hải Phòng</option>
-                  <option value="DANANG" selected="selected">Đà Nẵng</option>
-                  <option value="ANGIANG">An Giang</option>
-                  <option value="BARIAVUNGTAU">Bà Rịa - Vũng Tàu</option>
-                  <option value="BACLIEU">Bạc Liêu</option>
-                  <option value="BACKAN">Bắc Kạn</option>
-                  <option value="BACNINH">Bắc Ninh</option>
-                  <option value="BACGIANG">Bắc Giang</option>
-                  <option value="BENTRE">Bến Tre</option>
-                  <option value="BINHDUONG">Bình Dương</option>
-                  <option value="BINHDINH">Bình Định</option>
-                  <option value="BINHPHUOC">Bình Phước</option>
-                  <option value="BINHTHUAN">Bình Thuận</option>
-                  <option value="CAMAU">Cà Mau</option>
-                  <option value="DAKLAK">Đak Lak</option>
-                  <option value="DAKNONG">Đak Nông</option>
-                  <option value="DIENBIEN">Điện Biên</option>
-                  <option value="DONGNAI">Đồng Nai</option>
-                  <option value="GIALAI">Gia Lai</option>
-                  <option value="HAGIANG">Hà Giang</option>
-                  <option value="HANAM">Hà Nam</option>
-                  <option value="HATINH">Hà Tĩnh</option>
-                  <option value="HAIDUONG">Hải Dương</option>
-                  <option value="HAUGIANG">Hậu Giang</option>
-                  <option value="HOABINH">Hòa Bình</option>
-                  <option value="HUNGYEN">Hưng Yên</option>
-                  <option value="KHANHHOA">Khánh Hòa</option>
-                  <option value="KIENGIANG">Kiên Giang</option>
-                  <option value="KOMTUM">Kom Tum</option>
-                  <option value="LAICHAU">Lai Châu</option>
-                  <option value="LAMDONG">Lâm Đồng</option>
-                  <option value="LANGSON">Lạng Sơn</option>
-                  <option value="LAOCAI">Lào Cai</option>
-                  <option value="LONGAN">Long An</option>
-                  <option value="NAMDINH">Nam Định</option>
-                  <option value="NGHEAN">Nghệ An</option>
-                  <option value="NINHBINH">Ninh Bình</option>
-                  <option value="NINHTHUAN">Ninh Thuận</option>
-                  <option value="PHUTHO">Phú Thọ</option>
-                  <option value="PHUYEN">Phú Yên</option>
-                  <option value="QUANGBINH">Quảng Bình</option>
-                  <option value="QUANGNAM">Quảng Nam</option>
-                  <option value="QUANGNGAI">Quảng Ngãi</option>
-                  <option value="QUANGNINH">Quảng Ninh</option>
-                  <option value="QUANGTRI">Quảng Trị</option>
-                  <option value="SOCTRANG">Sóc Trăng</option>
-                  <option value="SONLA">Sơn La</option>
-                  <option value="TAYNINH">Tây Ninh</option>
-                  <option value="THAIBINH">Thái Bình</option>
-                  <option value="THAINGUYEN">Thái Nguyên</option>
-                  <option value="THANHHOA">Thanh Hóa</option>
-                  <option value="THUATHIENHUE">Thừa Thiên - Huế</option>
-                  <option value="TIENGIANG">Tiền Giang</option>
-                  <option value="TRAVINH">Trà Vinh</option>
-                  <option value="TUYENQUANG">Tuyên Quang</option>
-                  <option value="VINHLONG">Vĩnh Long</option>
-                  <option value="VINHPHUC">Vĩnh Phúc</option>
-                  <option value="YENBAI">Yên Bái</option>
-                </select>
-              </span>
-            </p>
-            <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="100">
-              <span class="woocommerce-input-wrapper">
-                <select name="payment_id" id="billing_state" class="state_select " autocomplete="address-level1" data-placeholder="">
-                  <option value="">Choose a form of payment</option>
-                  <%= @payments.each do |payment| %>
-                    <option value="<%= payment.id %>"><%= payment.name %></option>
-                  <% end %>
+      <div class="col2-set" id="customer_details">
+        <div class="col-1">
+          <div class="woocommerce-billing-fields">
+            <h3>Purchase information</h3>
+            <div class="fd-form-checkout">
+              <p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
+                <label for="billing_last_name" class="">Tên&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
+                <span class="woocommerce-input-wrapper">
+                  <%= f.text_field :name, placeholder: "Full name", class: 'input-text', id: "billing_last_name", value: "", autocomplete: "family-name"%>
+                </span>
+              </p>
+              <p class="form-row form-row-last validate-required validate-email" id="billing_email_field" data-priority="30">
+                <label for="billing_email" class="">Địa chỉ email&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
+                <span class="woocommerce-input-wrapper">
+                  <%= f.text_field :email, placeholder: "Email address", class: 'input-text', id: "billing_email", value: "", autocomplete: "family-name"%>
+                </span>
+              </p>
+              <p class="form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="50">
+                <label for="billing_phone" class="">Số điện thoại&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
+                <span class="woocommerce-input-wrapper">
+                  <%= f.text_field :phone, placeholder: "Phone number", class: 'input-text', id: "billing_phone", value: "", autocomplete: "family-name"%>
+                </span>
+              </p>
+              <p class="form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="70">
+                <label for="billing_address_1" class="">Địa chỉ&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label>
+                <span class="woocommerce-input-wrapper">
+                  <%= f.text_field :address, placeholder: "Number hour or address name", class: 'input-text', id: "billing_address_1", value: "", autocomplete: "family-name"%>
+                </span>
+              </p>
+              <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="100">
+                <label for="billing_city" class="">Bang / Hạt&nbsp;<span class="optional">(tuỳ chọn)</span></label>
+                <span class="woocommerce-input-wrapper">
+                  <select name="city" id="billing_state" class="state_select " autocomplete="address-level1" data-placeholder="">
+                    <option value="">Select one option</option>
+                    <option value="CANTHO">Cần Thơ</option>
+                    <option value="HOCHIMINH">Hồ Chí Minh</option>
+                    <option value="HANOI">Hà Nội</option>
+                    <option value="HAIPHONG">Hải Phòng</option>
+                    <option value="DANANG" selected="selected">Đà Nẵng</option>
+                    <option value="ANGIANG">An Giang</option>
+                    <option value="BARIAVUNGTAU">Bà Rịa - Vũng Tàu</option>
+                    <option value="BACLIEU">Bạc Liêu</option>
+                    <option value="BACKAN">Bắc Kạn</option>
+                    <option value="BACNINH">Bắc Ninh</option>
+                    <option value="BACGIANG">Bắc Giang</option>
+                    <option value="BENTRE">Bến Tre</option>
+                    <option value="BINHDUONG">Bình Dương</option>
+                    <option value="BINHDINH">Bình Định</option>
+                    <option value="BINHPHUOC">Bình Phước</option>
+                    <option value="BINHTHUAN">Bình Thuận</option>
+                    <option value="CAMAU">Cà Mau</option>
+                    <option value="DAKLAK">Đak Lak</option>
+                    <option value="DAKNONG">Đak Nông</option>
+                    <option value="DIENBIEN">Điện Biên</option>
+                    <option value="DONGNAI">Đồng Nai</option>
+                    <option value="GIALAI">Gia Lai</option>
+                    <option value="HAGIANG">Hà Giang</option>
+                    <option value="HANAM">Hà Nam</option>
+                    <option value="HATINH">Hà Tĩnh</option>
+                    <option value="HAIDUONG">Hải Dương</option>
+                    <option value="HAUGIANG">Hậu Giang</option>
+                    <option value="HOABINH">Hòa Bình</option>
+                    <option value="HUNGYEN">Hưng Yên</option>
+                    <option value="KHANHHOA">Khánh Hòa</option>
+                    <option value="KIENGIANG">Kiên Giang</option>
+                    <option value="KOMTUM">Kom Tum</option>
+                    <option value="LAICHAU">Lai Châu</option>
+                    <option value="LAMDONG">Lâm Đồng</option>
+                    <option value="LANGSON">Lạng Sơn</option>
+                    <option value="LAOCAI">Lào Cai</option>
+                    <option value="LONGAN">Long An</option>
+                    <option value="NAMDINH">Nam Định</option>
+                    <option value="NGHEAN">Nghệ An</option>
+                    <option value="NINHBINH">Ninh Bình</option>
+                    <option value="NINHTHUAN">Ninh Thuận</option>
+                    <option value="PHUTHO">Phú Thọ</option>
+                    <option value="PHUYEN">Phú Yên</option>
+                    <option value="QUANGBINH">Quảng Bình</option>
+                    <option value="QUANGNAM">Quảng Nam</option>
+                    <option value="QUANGNGAI">Quảng Ngãi</option>
+                    <option value="QUANGNINH">Quảng Ninh</option>
+                    <option value="QUANGTRI">Quảng Trị</option>
+                    <option value="SOCTRANG">Sóc Trăng</option>
+                    <option value="SONLA">Sơn La</option>
+                    <option value="TAYNINH">Tây Ninh</option>
+                    <option value="THAIBINH">Thái Bình</option>
+                    <option value="THAINGUYEN">Thái Nguyên</option>
+                    <option value="THANHHOA">Thanh Hóa</option>
+                    <option value="THUATHIENHUE">Thừa Thiên - Huế</option>
+                    <option value="TIENGIANG">Tiền Giang</option>
+                    <option value="TRAVINH">Trà Vinh</option>
+                    <option value="TUYENQUANG">Tuyên Quang</option>
+                    <option value="VINHLONG">Vĩnh Long</option>
+                    <option value="VINHPHUC">Vĩnh Phúc</option>
+                    <option value="YENBAI">Yên Bái</option>
                   </select>
-              </span>
-            </p>
-            <div class="call-now">
-              ✓ Call: <a href="tel:09050912309">0905 0912309</a> → For quick purchase
+                </span>
+              </p>
+              <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="100">
+                <span class="woocommerce-input-wrapper">
+                  <select name="payment_id" id="billing_state" class="state_select " autocomplete="address-level1" data-placeholder="">
+                    <option value="">Choose a form of payment</option>
+                    <%= @payments.each do |payment| %>
+                      <option value="<%= payment.id %>"><%= payment.name %></option>
+                    <% end %>
+                    </select>
+                </span>
+              </p>
+              <div class="call-now">
+                ✓ Call: <a href="tel:09050912309">0905 0912309</a> → For quick purchase
+              </div>
+              <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Complete the purchase" data-value="Order">
+              <div class="checkout-error"></div>
             </div>
-            <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Complete the purchase" data-value="Order">
-            <div class="checkout-error"></div>
           </div>
         </div>
+        <div class="col-2">
+        </div>
       </div>
-      <div class="col-2">
-      </div>
-    </div>
-  <% end %>
-  <div class="order-receive-popup"></div>
+    <% end %>
+    <div class="order-receive-popup"></div>
+  </div>
 </div>

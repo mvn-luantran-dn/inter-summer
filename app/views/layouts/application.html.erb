@@ -12,7 +12,9 @@
     <%= render 'layouts/header' %>
     <div id="container">
       <% flash.each do |message_type, message| %>
-        <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %></div>
+        <div class="col-lg-12">
+          <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %></div>
+        </div>
       <% end %>
       <%= yield %>
     </div>

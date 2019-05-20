@@ -1,50 +1,53 @@
 <% provide(:title, 'Cart') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Orders</li>
-  </ol>
-</nav>
-<div id="my_orders" class="container main">
-  <div id="content">
-    <div class="">
-      <div class="div-inline-block full-width clearfix">
-        <div>
-          <h2 class="title-page">
-            Cart - wait to checkout
-          </h2>
+<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%; margin-bottom: 20px;"></div>
+<div class="row">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Orders</li>
+    </ol>
+  </nav>
+  <div id="my_orders" class="container main">
+    <div id="content">
+      <div class="">
+        <div class="div-inline-block full-width clearfix">
+          <div>
+            <h2 class="title-page">
+              Cart - wait to checkout
+            </h2>
+          </div>
         </div>
+        <%= render 'cart_table' %>
       </div>
-      <%= render 'cart_table' %>
     </div>
-  </div>
-  <br>
-  <div class="delivery-details">
-    <ul>
-      <li>
-        <h3>
-          When will I receive my products?
-        </h3>
-        <p>
-          You can expect to receive your order within 1-2 business days.
-        </p>
-      </li>
-      <li>
-        <h3>
-          What is Chilindo's return policy?
-        </h3>
-        <p>
-          If you are not satisfied with your order, you can return it within 14 days
-        </p>
-      </li>
-      <li>
-        <h3>
-          Want to change your order?
-        </h3>
-        <p>
-          Give us a call at 02836222111
-        </p>
-      </li>
-    </ul>
+    <br>
+    <div class="delivery-details">
+      <ul>
+        <li>
+          <h3>
+            When will I receive my products?
+          </h3>
+          <p>
+            You can expect to receive your order within 1-2 business days.
+          </p>
+        </li>
+        <li>
+          <h3>
+            What is Chilindo's return policy?
+          </h3>
+          <p>
+            If you are not satisfied with your order, you can return it within 14 days
+          </p>
+        </li>
+        <li>
+          <h3>
+            Want to change your order?
+          </h3>
+          <p>
+            Give us a call at 02836222111
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

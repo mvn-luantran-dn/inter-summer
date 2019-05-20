@@ -1,49 +1,3 @@
-<!--<div class="footer">
-	<div class="container">
-		<div class="footer-main">
-			<div class="col-md-4 footer-grid">
-				<h3>About</h3>
-				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.account of the system.</p>
-			</div>	
-			<div class="col-md-4 footer-grid">
-				<h3>New products</h3>
-				<% @products_footer.each do |p| %>
-					<div class="ftr-sub-gd">
-						<div class="col-md-4 ftr-gd2-img">
-							<%= image_tag image_first_of_object(p), class: "footer-images" %>
-						</div>
-						<div class="col-md-8 ftr-gd2-text">
-								<%= link_to p.name  %>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				<% end %>
-			</div>
-			<div class="col-md-4 footer-grid">
-				<h3>Categories</h3>
-				<ul>
-					<%=render @categories_footer %>
-				</ul>
-			</div>
-		<div class="clearfix"> </div>
-		</div>
-	</div>
-	<div class="copyright">
-	<div class="container">
-		<div class="copy-main">
-			<div class="copy-left">
-			</div>
-			<div class="copy-right"> 
-				<ul>
-					<li><%= link_to "Home", root_path %></li>/
-					<li><%= link_to "Help", help_path %></li>/
-					<li><%= link_to "Contact", contact_path %></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-</div>-->
 <footer class="row">
   <div class="large-12 columns">
     <div class="row">
@@ -51,33 +5,32 @@
         <div class="large-12 columns top-footer">
           <div class="footer-menus">
             <div id="nav_menu-2" class="widget-odd widget-first widget-1 top-footer-box large-3 medium-6 columns widget_nav_menu">
-              <h3 class="widget-title">Về Fandy</h3>
+              <h3 class="widget-title">About Auction Online</h3>
               <div class="menu-ve-fandy-container">
                 <ul id="menu-ve-fandy" class="menu">
-                  <li id="menu-item-1456" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1456"><a href="https://fandy.vn/tat-tan-tat-ve-fandy-store/">Giới thiệu Fandy.vn</a></li>
-                  <li id="menu-item-1543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1543"><a href="https://fandy.vn/tuyen-dung/">Tuyển dụng</a></li>
-                  <li id="menu-item-7202" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7202"><a href="https://fandy.vn/chinh-sach-bao-mat/">Chính sách bảo mật</a></li>
-                  <li id="menu-item-7205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7205"><a href="https://fandy.vn/dieu-khoan-su-dung/">Điều khoản sử dụng</a></li>
+                  <li id="menu-item-1456" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1456"><a href="https://fandy.vn/tat-tan-tat-ve-fandy-store/">About Auction.vn</a></li>
+                  <li id="menu-item-7202" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7202"><a href="https://fandy.vn/chinh-sach-bao-mat/">Privacy policy</a></li>
+                  <li id="menu-item-7205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7205"><a href="https://fandy.vn/dieu-khoan-su-dung/">Terms of use</a></li>
                 </ul>
               </div>
             </div>
             <div id="nav_menu-5" class="widget-even widget-2 top-footer-box large-3 medium-6 columns widget_nav_menu">
-              <h3 class="widget-title">Hỗ trợ khách hàng</h3>
+              <h3 class="widget-title">Customer support</h3>
               <div class="menu-ho-tro-khach-hang-container">
                 <ul id="menu-ho-tro-khach-hang" class="menu">
-                  <li id="menu-item-692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-692"><a href="tel:0905090909">Hotline: 0905 09 09 09</a></li>
-                  <li id="menu-item-693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-693"><a href="#">Các câu hỏi thường gặp</a></li>
-                  <li id="menu-item-1552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1552"><a href="https://fandy.vn/huong-dan-dat-hang/">Hướng dẫn đặt hàng</a></li>
-                  <li id="menu-item-1554" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1554"><a href="https://fandy.vn/chinh-sach-doi-tra/">Chính sách đổi trả</a></li>
+                  <li id="menu-item-692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-692"><a href="tel:0905090909">Hotline: 0972 854 570</a></li>
+                  <li id="menu-item-693" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-693"><a href="#">Frequently asked questions</a></li>
+                  <li id="menu-item-1552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1552"><a href="https://fandy.vn/huong-dan-dat-hang/">Ordering guide</a></li>
+                  <li id="menu-item-1554" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1554"><a href="https://fandy.vn/chinh-sach-doi-tra/">Return policy</a></li>
                 </ul>
               </div>
             </div>
             <div id="text-4" class="widget-odd widget-3 top-footer-box large-3 medium-6 columns widget_text">
-              <h3 class="widget-title">Dịch vụ giao hàng</h3>
+              <h3 class="widget-title">Delivery service</h3>
               <div class="textwidget"><img src="https://fandy.vn/wp-content/uploads/2016/03/dich-vu-giao-hang.png"></div>
             </div>
             <div id="social-button-3" class="widget-even widget-last widget-4 top-footer-box large-3 medium-6 columns social-button">
-              <h3 class="widget-title">Kết nối với chúng tôi</h3>
+              <h3 class="widget-title">Connect with us</h3>
               <div class="social-button-box">
                 <ul>
                   <li class="facebook"><a href="https://www.facebook.com/shopfandy">Facebook</a></li>
@@ -91,17 +44,14 @@
         </div>
         <div class="large-12 columns bottom-footer">
           <div class="left-footer">
-            <a title="Fandy Store - Thời trang Giày" href="https://fandy.vn">
-            <img src="https://fandy.vn/wp-content/uploads/2017/08/logo_footer.png" alt="Fandy Store - Thời trang Giày">
-            </a>
           </div>
           <div class="right-footer">
             <div id="text-3" class="widget-odd widget-last widget-first widget-1 widget_text">
               <div class="textwidget">
                 <p>
-                  Địa chỉ: 409 Lê Duẩn – Đà Nẵng<br>
-                  Phone: 0905.090909 – Email: hotro@fandy.vn<br>
-                  © 2016 Fandy. Bản quyền thuộc Fandy<br>
+                  Address: 8 Ha Van Tinh – Đa Nang<br>
+                  Phone: 0972.854570 – Email: luan@auction.vn<br>
+                  © 2019 Auction. Copyright by Auction<br>
                   <a class="dmca-badge" title="DMCA.com Protection Status" href="https://www.dmca.com/Protection/Status.aspx?ID=c931982d-4197-4e02-8374-e34309688ed4&amp;refurl=https://fandy.vn/thanh-toan/"> <img src="//images.dmca.com/Badges/dmca_protected_sml_120ad.png?ID=c931982d-4197-4e02-8374-e34309688ed4" alt="DMCA.com Protection Status"></a> <script src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
                 </p>
               </div>
@@ -111,9 +61,4 @@
       </div>
     </div>
   </div>
-  <!--<div class="support_popup_box show-for-large-up">
-    <div class="phone">
-    	<span>0905.090909</span>
-    </div>
-    </div>-->
 </footer>

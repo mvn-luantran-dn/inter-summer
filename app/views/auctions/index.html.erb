@@ -1,16 +1,21 @@
-<div id="content">
-  <h1>My Auction</h1>
+<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
+<div class="row" id="content">
+  <div class="col-lg-12">
+    <h2 class="title-page">
+      My Auction
+    </h2>
+  </div>
   <div class="container">
     <div class="">
       <ul id="auction_tabs" class="tabs_content">
-        <li><a  class="tablinks" onclick="openTab(event, 'active_bids')"> Current Active Bids </a></li>
+        <li><a  class="tablinks active" onclick="openTab(event, 'active_bids')"> Current Active Bids </a></li>
         <li><a  class="tablinks" onclick="openTab(event, 'auctions_won')"> Auctions Won </a></li>
         <li><a  class="tablinks" onclick="openTab(event, 'auctions_lost')"> Auctions Lost </a></li>
         <li><a  class="tablinks" onclick="openTab(event, 'view-order')"> Order</a></li>
       </ul>
-      <table id="active_bids" class="auction_list table tbl-cart">
+      <table id="active_bids" class="auction_list shop_table shop_table_responsive cart">
         <thead>
-          <tr class="heading">
+          <tr class="auction_list_row heading">
             <td class="center">Status</td>
             <td class="center product_summary">Your current bid</td>
             <td class="center min_bid thb_cur">Current minimum bid</td>
@@ -35,7 +40,7 @@
           <% end %>
          </tbody> 
       </table>
-      <table id="auctions_won" class="auction_list table tbl-cart">
+      <table id="auctions_won" class="auction_list shop_table shop_table_responsive cart">
         <thead>
           <tr class="auction_list_row heading">
             <td class="center">Status</td>
@@ -62,7 +67,7 @@
           <% end %>
         </tbody>  
       </table>
-      <table id="auctions_lost" class="auction_list table tbl-cart">
+      <table id="auctions_lost" class="auction_list shop_table shop_table_responsive cart">
         <thead> 
           <tr class="auction_list_row heading">
             <td class="center">Status</td>
@@ -89,22 +94,22 @@
           <% end %>
         </tbody>
       </table>
-      <table id="view-order" class="auction_list table tbl-cart">
+      <table id="view-order" class="auction_list shop_table shop_table_responsive cart">
         <thead>
           <tr class="auction_list_row heading">
-            <th class="center">Order ID</th>
-            <th class="center">Date</th>
-            <th class="center">Order Status</th>
-            <th class="center">Total Price</th>
+            <td class="center">SSID</td>
+            <td class="center">Date</td>
+            <td class="center">Order Status</td>
+            <td class="center">Total Price</td>
           </tr>
         </thead>
         <tbody>
           <% @order.each do |order| %>
           <tr class="odd">
             <td class="center"><%= order.id %></td>
-            <td class="center"><%= order.updated_at %></td>
-            <td class="center"><%= order.status%></td>
-            <td class="center"><%= order.total_price%></td>
+            <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y") %></td>
+            <td class="center"><%= order.status %></td>
+            <td class="center"><%= number_with_delimiter(order.total_price, :delimiter => ',') %> VND</td>
           </tr>  
           <% end %>
         </tbody>

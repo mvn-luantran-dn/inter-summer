@@ -13,11 +13,11 @@ module ApplicationHelper
     time[0].to_i * 3600 + time[1].to_i * 60 + time[2].to_i
   end
 
-  def size_cart
+  def cart_items
     return unless logged_in?
 
     order = Order.find_by(user_id: current_user.id, status: Order::STATUS_WAITTING)
-    order&.items&.size
+    order&.items
   end
 
   def redirect_logined

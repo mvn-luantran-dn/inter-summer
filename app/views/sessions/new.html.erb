@@ -1,28 +1,36 @@
 <% provide(:title, 'Sign in') %>
-
-<div class="login-box">
-  <div class="left">
-    <h1>Sign in</h1>
-    <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.email_field :email, placeholder: 'Email', class: 'form-input' %>
-      <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
-      <%= f.label :remember_me, class: 'remember-me' do %>
-        <%= f.check_box :remember_me %>
-        <span>Remember</span>
+<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
+<div class="row">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Login</li>
+    </ol>
+  </nav>
+  <div class="login-box">
+    <div class="left">
+      <h1>Sign in</h1>
+      <%= form_for(:session, url: login_path) do |f| %>
+        <%= f.email_field :email, placeholder: 'Email', class: 'form-input' %>
+        <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
+        <%= f.label :remember_me, class: 'remember-me' do %>
+          <%= f.check_box :remember_me %>
+          <span>Remember</span>
+        <% end %>
+        <%= link_to "Forgot password", new_password_reset_path ,class: "forgot" %>
+        <%= f.submit "Log in", class: 'form-submit' %>
       <% end %>
-      <%= link_to "Forgot password", new_password_reset_path ,class: "forgot" %>
-      <%= f.submit "Log in", class: 'form-submit' %>
-    <% end %>
-    <p class="new-user">New user? <%= link_to "Sign up now!", signup_path, class: 'sign-up-link' %></p>
-  </div>
-  <div class="right">
-    <span class="loginwith">Sign in with<br />social network</span>
-    <div>
-      <%= link_to "Log in with facebook", '/auth/facebook' ,class: "social-signin facebook" %>
+      <p class="new-user">New user? <%= link_to "Sign up now!", signup_path, class: 'sign-up-link' %></p>
     </div>
-    <div class='gooogle-footer'>
-      <%= link_to "Log in with Google+", '/auth/google_oauth2' ,class: "social-signin google" %>
+    <div class="right">
+      <span class="loginwith">Sign in with<br />social network</span>
+      <div>
+        <%= link_to "Log in with facebook", '/auth/facebook' ,class: "social-signin facebook" %>
+      </div>
+      <div class='gooogle-footer'>
+        <%= link_to "Log in with Google+", '/auth/google_oauth2' ,class: "social-signin google" %>
+      </div>
     </div>
+    <div class="or">OR</div>
   </div>
-  <div class="or">OR</div>
 </div>
