@@ -11,11 +11,15 @@
   <body>
     <%= render 'layouts/header' %>
     <div id="container">
-      <% flash.each do |message_type, message| %>
-        <div class="col-lg-12">
-          <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %></div>
-        </div>
-      <% end %>
+      <div class="col-lg-12 alert-auction">
+        <% flash.each do |message_type, message| %>
+          <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin: 0;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>   

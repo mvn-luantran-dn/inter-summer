@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[index edit update]
   before_action :correct_user, only: %i[edit update]
   before_action :redirect_logined, only: :new
+  before_action :load_genders_user, only: %i[edit update]
 
   def new
     @user = User.new
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = 'user'
-    @user.status = 'on'
+    byebug
     if @user.save
       @user.send_activation_email
       flash[:info] = 'Please check your email to activate your account.'
@@ -49,5 +50,9 @@ class UsersController < ApplicationController
 
     def correct_user
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def load_genders_user
+      @genders = User.genders
     end
 end

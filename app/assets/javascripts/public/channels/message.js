@@ -23,7 +23,7 @@ $(document).ready(function () {
           swal({
             title: 'Notification !',
             type: 'info',
-            text: 'You are still keepping ' + price + ' đ is max price !',
+            text: 'You are still keepping ' + formatMoney(price) + ' is max price !',
             timer: 2000
           })
         }

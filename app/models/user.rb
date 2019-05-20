@@ -59,9 +59,9 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :password_confirmation, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :role, presence: true
-  validates :address, presence: true, length: { minimum: 10 }
-  validates :phone, presence: true, length: { maximum: 15 },
-                    format: { with: PHONE_REGEX }, numericality: true
+  validates :address, length: { minimum: 10 }, allow_nil: true
+  validates :phone, length: { maximum: 15 },
+                    format: { with: PHONE_REGEX }, numericality: true, allow_nil: true
   scope :common_order, -> { order('id DESC') }
   scope :include_basic, -> { includes(:asset) }
   def self.digest(string)

@@ -28,13 +28,15 @@
             <% @active.each do |active| %>
               <tr class="odd">
                 <td class="center"><label><i class="fa fa-spinner fa-2x status-spinner"></i></label></td>
-                <td class="product_summary center"><%= active.timer.product.name %>
-                                              [<a id="" href=""><%= active.id %></a>]<br>
-                                              <%= active.auction_details.find_by(user_id: current_user.id).price_bid %>
+                <td class="product_summary center">
+                  <%= active.timer.product.name %>
+                  [<a id="" href=""><%= active.id %></a>]<br>
+                  <% auction = active.auction_details.find_by(user_id: current_user.id) %>
+                  <%= number_with_delimiter(auction.price_bid, :delimiter => ',') %> VND
                 </td>
-                <td class="min_bid thb_cur center"><%= active.auction_details.order('price_bid DESC').first.price_bid %></td>
-                <td class="num_bid center">2</td>
-                <td class="ended center"><%= active.auction_details.find_by(user_id: current_user.id).created_at %></td>
+                <td class="min_bid thb_cur center"><%= number_with_delimiter(active.auction_details.order('price_bid DESC').first.price_bid, :delimiter => ',') %> VND</td>
+                <td class="num_bid center"><%= active.auction_details.find_index(auction) + 1 %></td>
+                <td class="ended center"><%= auction.updated_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
               </tr>
             <% end %> 
           <% end %>
@@ -55,13 +57,15 @@
             <% if win.auction_details.order('price_bid DESC').first.user_id == current_user.id %>
               <tr class="odd">
                 <td class="center"><label><i class="fa fa-check fa-2x status-green"></i></label></td>
-                <td class="center product_summary"><%= win.timer.product.name %>
-                                            [<a href=""><%= win.id %></a>]<br>
-                                            <%= win.auction_details.order('price_bid DESC').first.price_bid %>
+                <td class="center product_summary">
+                  <%= win.timer.product.name %>
+                  [<a href=""><%= win.id %></a>]<br>
+                  <% auction = win.auction_details.find_by(user_id: current_user.id) %>                  
+                  <%= number_with_delimiter(auction.price_bid, :delimiter => ',') %> VND                  
                 </td>
-                <td class="center max_bid thb_cur"><%= win.auction_details.order('price_bid DESC').first.price_bid %></td>
-                <td class="center num_bid">28</td>
-                <td class="center ended"><%= win.auction_details.order('price_bid DESC').first.created_at %></td>
+                <td class="min_bid thb_cur center"><%= number_with_delimiter(win.auction_details.order('price_bid DESC').first.price_bid, :delimiter => ',') %> VND</td>
+                <td class="center num_bid"><%= win.auction_details.find_index(auction) + 1 %></td>
+                <td class="center ended"><%= win.auction_details.order('price_bid DESC').first.updated_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
               </tr>
             <% end %>  
           <% end %>
@@ -82,13 +86,15 @@
             <% if lose.auction_details.order('price_bid DESC').first.user_id != current_user.id %>
               <tr class="auction_list_row odd">
                 <td class="center"><label><i class="fa fa-times fa-2x status-red"></i></label></td>
-                <td class="center product_summary"><%= lose.timer.product.name %>
-                                            [<a href=""><%= lose.id %></a>]<br>
-                                            <%= lose.auction_details.find_by(user_id: current_user.id).price_bid %>
+                <td class="center product_summary">
+                  <%= lose.timer.product.name %>
+                  [<a href=""><%= lose.id %></a>]<br>
+                  <% auction = lose.auction_details.find_by(user_id: current_user.id) %>
+                  <%=  number_with_delimiter(auction.price_bid, :delimiter => ',') %> VND
                 </td>
-                <td class="center min_bid thb_cur"><%= lose.auction_details.order('price_bid DESC').first.price_bid %></td>
-                <td class="center num_bid">2</td>
-                <td class="center ended"><%= lose.auction_details.find_by(user_id: current_user.id).created_at %></td>
+                <td class="center min_bid thb_cur"><%= number_with_delimiter(lose.auction_details.order('price_bid DESC').first.price_bid, :delimiter => ',') %> VND</td>
+                <td class="center num_bid"><%= lose.auction_details.find_index(auction) + 1 %></td>
+                <td class="center ended"><%= lose.auction_details.find_by(user_id: current_user.id).updated_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
               </tr>
             <% end %>
           <% end %>
@@ -107,7 +113,7 @@
           <% @order.each do |order| %>
           <tr class="odd">
             <td class="center"><%= order.id %></td>
-            <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y") %></td>
+            <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
             <td class="center"><%= order.status %></td>
             <td class="center"><%= number_with_delimiter(order.total_price, :delimiter => ',') %> VND</td>
           </tr>  

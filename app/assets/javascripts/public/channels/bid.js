@@ -20,8 +20,8 @@ $(document).ready(function () {
         data.obj.forEach(function (e) {
           html += '<li class="history_rows odd">';
           html += '<span class="bid_user current_winner pro_user">' + e['name'] + '</span>';
-          html += '<span class="bid_amount">' + e['price_bid'] + '</span>';
-          html += '<span class="bid_time">' + e['created_at'] + '</span>';
+          html += '<span class="bid_amount">' + formatMoney(e['price_bid']) + '</span>';
+          html += '<span class="bid_time">' + e['updated_at'] + '</span>';
           html += '</li>';
         });
         $('#bid-final').html(html);

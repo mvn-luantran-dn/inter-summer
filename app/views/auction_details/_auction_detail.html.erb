@@ -1,5 +1,5 @@
 <li class="history_rows odd">
   <span class="bid_user current_winner pro_user"><%= auction_detail.user.name %></span>
-  <span class="bid_amount"><%= auction_detail.price_bid %></span>
-  <span class="bid_time"><%= auction_detail.created_at %> </span>
+  <span class="bid_amount"><%= number_with_delimiter(auction_detail.price_bid, :delimiter => '.')  %> đ</span>
+  <span class="bid_time"><%= auction_detail.updated_at.strftime("%B %d, %Y, %H:%M:%S") %> </span>
 </li>

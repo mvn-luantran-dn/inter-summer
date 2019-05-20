@@ -26,7 +26,9 @@
               <tbody>
                 <tr class="cart-subtotal">
                   <th>Total</th>
-                  <td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount">1.020.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></td>
+                  <td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount">
+                    <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>
+                    &nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></td>
                 </tr>
                 <tr class="shipping">
                   <th>Shipement</th>
@@ -35,8 +37,9 @@
                   </td>
                 </tr>
                 <tr class="order-total">
-                  <th>Thành tiền</th>
-                  <td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount">1.020.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </td>
+                  <th>Total order</th>
+                  <td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount">
+                  <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </td>
                 </tr>
               </tbody>
             </table>
@@ -47,7 +50,7 @@
           </div>
         </div>
       <% else %>
-        <h2>Bạn chưa mua hàng</h2>
+        <h2>You haven't auctioned any product yet. Try at the next play.</h2>
       <% end %>  
     </div>
   </div>

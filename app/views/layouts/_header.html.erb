@@ -24,7 +24,7 @@
               <ul id="mega-menu-main-menu" class="mega-menu max-mega-menu mega-menu-horizontal" data-event="hover_intent" data-effect="slide" data-effect-speed="600" data-effect-mobile="disabled" data-effect-speed-mobile="200" data-mobile-force-width="false" data-second-click="close" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="600" data-unbind="true">
                 <%= render @categories %>
                 <% if logged_in? %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 370px;"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 382px;"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout dropdown">
                     <a href="#" class="mega-menu-link dropdown-toggle" data-toggle="dropdown">
                       Account <b class="caret"></b>
@@ -40,7 +40,7 @@
                     </ul>
                   </li>
                 <% else %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 370px;">
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 450px;">
                     <%= link_to "Log in", login_path, class: "mega-menu-link" %>
                   </li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout">
@@ -56,11 +56,11 @@
         <div class="row">
           <% if logged_in? %>
             <%= link_to user_orders_path(current_user), class: "cart", id: "mini-cart" do %>
-              <span class="cart-total"><%= cart_items&.size.to_i %></span>
+              <span class="cart-total" id="itemCount"><%= cart_items&.size.to_i %></span>
               <div class="show-for-large-up">
                 <div id="woocommerce_widget_cart-2" class="widget-odd widget-last widget-first widget-1 widget woocommerce widget_shopping_cart">
                   <div class="widget_shopping_cart_content">
-                    <% if cart_items.any? %>
+                    <% if cart_items&.any? %>
                       <ul class="cart_list product_list_widget ">
                         <% cart_items.each do |item| %>
                           <li class="mini_cart_item">
@@ -73,7 +73,7 @@
                                 <div class="variation-item">
                                   <div class="variation-Musc variation-label">Color:</div>
                                   <div class="variation-Musc variation-value">
-                                    <p>Đen Xanh</p>
+                                    <p><%= item.product.color %></p>
                                   </div>
                                 </div>
                               </div>
@@ -83,9 +83,13 @@
                         <% end %>
                       </ul>
                       <p class="total">
-                        <span class="subtotal-title">Money:</span> 
+                        <span class="subtotal-title">Total order:</span> 
                         <span class="mini-cart-subtotal">
-                        <span class="woocommerce-Price-amount amount">1.250.000&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>		</span>
+                          <span class="woocommerce-Price-amount amount">
+                            <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>&nbsp;
+                            <span class="woocommerce-Price-currencySymbol">VNĐ</span>
+                          </span>		
+                        </span>
                       </p>
                     <% else %>
                       <ul class="cart_list product_list_widget ">
@@ -96,11 +100,24 @@
                 </div>
               </div>
             <% end %>
+          <% else %>
+            <%= link_to '#', class: "cart", id: "mini-cart" do %>
+              <span class="cart-total" id="itemCount">0</span>
+              <div class="show-for-large-up">
+                <div id="woocommerce_widget_cart-2" class="widget-odd widget-last widget-first widget-1 widget woocommerce widget_shopping_cart">
+                  <div class="widget_shopping_cart_content">
+                    <ul class="cart_list product_list_widget ">
+                      <li class="empty">No item.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>      
           <% end %>
           <div class="search-block">
             <form method="get" id="searchform" name="searchform" action="https://fandy.vn/">
-              <button class="search-button" type="submit" value="Tìm kiếm" onclick="return IsEmpty();"></button>
-              <input type="text" id="s" name="s" value="" placeholder="Tìm kiếm..." autocomplete="off">
+              <button class="search-button" type="submit" value="Search" onclick="return IsEmpty();"></button>
+              <input type="text" id="s" name="s" value="" placeholder="Search..." autocomplete="off">
               <input type="hidden" name="post_type" value="product">
             </form>
             <div class="search-panel"></div>

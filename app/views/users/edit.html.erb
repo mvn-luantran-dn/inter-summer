@@ -12,7 +12,7 @@
       Update your profile    
     </h2>
   </div>
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 col-md-offset-3" style="margin-bottom: 30px;">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
       <%= f.label :name %>
@@ -21,8 +21,24 @@
       <%= f.email_field :email, class: 'form-control' %>
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: 'form-control' %>
+      <%= f.label :gender %>
+      <%= f.select(:gender, options_for_select(@genders.collect { |g| [g.first.camelize, g.first] }, selected: @user.gender), {}, { class: 'form-control' } ) %>
+      <%= f.label :avatar %>
+      <%= f.file_field :file, id: "profile-img" %>
+      <% image_url = f.object&.asset&.file_url %>
+      <%  if image_url %>
+        <%= image_tag(image_url, class: "img-user", id: "profile-img-tag") %>
+      <% else %>
+        <img src="/avatar-default.png" id="profile-img-tag" class="img-user" />
+      <% end %>
+      <%= f.label :birth_day %>
+      <%= f.date_field :birth_day, class: 'form-control', value: @date_birth_day %>
       <div class= "text-center">
         <%= f.submit "Save changes", class: "btn btn-primary" %>
       </div>  

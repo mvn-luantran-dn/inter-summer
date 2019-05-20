@@ -58,7 +58,7 @@ class Bid
       hash_tmp = {
         name: obj.user.name,
         price_bid: obj.price_bid,
-        created_at: obj.created_at
+        updated_at: obj.updated_at.strftime('%B %d, %Y, %H:%M:%S')
       }
       arr << hash_tmp
     end

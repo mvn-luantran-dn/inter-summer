@@ -24,11 +24,14 @@ class DbData
     auction = Auction.auction_timer(timer_id).last
     product = auction.timer.product
     auction_dls = auction.auction_details.last
-    unless auction_dls.nil?
-      sub_quantity(product, timer)
-      create_order(product, auction_dls)
-      ActionCable.server.broadcast("auction_finish_#{timer_id}", obj: auction_dls.user_id)
-    end
+    return if auction_dls.nil?
+
+    sub_quantity(product, timer)
+    create_order(product, auction_dls)
+    data = { user_id: auction_dls.user_id,
+             name: product.name,
+             img: product.assets.first.file.url }
+    ActionCable.server.broadcast("auction_finish_#{timer_id}", obj: data)
   end
 
   def sub_quantity(product, timer)

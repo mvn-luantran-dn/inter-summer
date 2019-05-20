@@ -9,14 +9,14 @@ class OrdersController < ApplicationController
     item = Item.find_by(id: params[:id])
     total = @order.total_price - item.amount
     product = item.product
-    product.update_attribute(:quantity, quantity)
+    product.quantity += 1
     if item.destroy
+      product.save!
       product.timers.each do |timer|
         obj_timer = JSON.parse($redis.get(timer.id))
         obj_timer['product_quantity'] += 1
         $redis.set(timer.id, obj_timer.to_json)
       end
-      _quantity = product.quantity + 1
       @order.update_attribute(:total_price, total)
       @order.destroy unless @order.items.any?
       flash[:success] = 'Delete success'

@@ -9,7 +9,10 @@
     <p><%= item.product.name %></p>
   </td>
   <td class="product-price" data-title="Giá">
-    <span class="woocommerce-Price-amount amount"><%= item.amount %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>					
+    <span class="woocommerce-Price-amount amount">
+      <%= number_with_delimiter(item.amount, :delimiter => ',') %>
+      &nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span>
+    </span>					
   </td>
   <td class="product-quantity" data-title="Số lượng">
     <div class="quantity">
@@ -18,6 +21,9 @@
     </div>
   </td>
   <td class="product-subtotal" data-title="Tổng">
-    <span class="woocommerce-Price-amount amount"><%= item.amount %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>					
+    <span class="woocommerce-Price-amount amount">
+      <%= number_with_delimiter(item.amount, :delimiter => ',') %>
+      &nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span>
+    </span>					
   </td>
 </tr>

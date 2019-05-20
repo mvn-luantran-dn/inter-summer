@@ -455,6 +455,7 @@ header #menu_bar #snow{
 .mini-cart-info .product-name{
     font-size: 14px;
     font-weight: 600;
+    width: 120%;
 }
 .mini-cart-info .variation{
     margin: 0;
@@ -649,7 +650,7 @@ header #menu_bar #snow{
     
 }
 .support-box .doi-hang .icon{
-    background: url('images/icon/doi-hang-icon.png') no-repeat;
+    background: url('/icon/doi-hang-icon.png') no-repeat;
     width: 26px;
     height: 30px;
     float: left;
@@ -662,7 +663,7 @@ header #menu_bar #snow{
     
 }
 .support-box .giao-hang .icon{
-    background: url('images/icon/ship-hang-icon.png') no-repeat;
+    background: url('/icon/ship-hang-icon.png') no-repeat;
     width: 36px;
     height: 24px;
     float: left;
@@ -672,7 +673,7 @@ header #menu_bar #snow{
     
 }
 .support-box .thanh-toan .icon{
-    background: url('images/icon/thanh-toan-icon.png') no-repeat;
+    background: url('/icon/thanh-toan-icon.png') no-repeat;
     width: 26px;
     height: 26px;
     float: left;
@@ -682,7 +683,7 @@ header #menu_bar #snow{
     margin-right: 0;
 }
 .support-box .ho-tro .icon{
-    background: url('images/icon/support-icon.png') no-repeat;
+    background: url('/icon/support-icon.png') no-repeat;
     width: 24px;
     height: 24px;
     float: left;
@@ -2115,6 +2116,7 @@ h1.page-title{
 .cart-box-check-out{
     width: 67%;
     float: left;
+    margin-bottom: 30px;
 }
 .cart-box-check-out .cart-total{
     float: left;
@@ -3133,7 +3135,6 @@ footer{
     top: 0;
     left: 0;
     z-index: 9999999999;
-    background: url('images/checkout-loading.gif') no-repeat center center rgba(0,0,0,0.5);
     width: 100%;
     height: 100%;
     overflow-y: auto;
