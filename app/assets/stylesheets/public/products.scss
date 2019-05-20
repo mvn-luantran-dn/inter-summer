@@ -204,25 +204,25 @@ ol, ul {
   background-clip: initial;
   background-color: rgba(255, 255, 255, 0.7);
 }
-a img {
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 0px;
-  border-left-width: 0px;
-  border-top-style: initial;
-  border-right-style: initial;
-  border-bottom-style: initial;
-  border-left-style: initial;
-  border-top-color: initial;
-  border-right-color: initial;
-  border-bottom-color: initial;
-  border-left-color: initial;
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-}
+// a img {
+//   border-top-width: 0px;
+//   border-right-width: 0px;
+//   border-bottom-width: 0px;
+//   border-left-width: 0px;
+//   border-top-style: initial;
+//   border-right-style: initial;
+//   border-bottom-style: initial;
+//   border-left-style: initial;
+//   border-top-color: initial;
+//   border-right-color: initial;
+//   border-bottom-color: initial;
+//   border-left-color: initial;
+//   border-image-source: initial;
+//   border-image-slice: initial;
+//   border-image-width: initial;
+//   border-image-outset: initial;
+//   border-image-repeat: initial;
+// }
 .product_thumb img {
   display: block;
   margin-top: -1px;
@@ -904,18 +904,7 @@ caption, th, td {
   font-weight: 400;
   vertical-align: middle;
 }
-.carousel-inner img {
-  width: 100%;
-  height: 100%;
-}
-.carousel { overflow: hidden; }
-.item { overflow: hidden; }
-.carousel-inner > .next {
-  display: none;
-}
-.carousel-inner > .prev {
-  display: none;
-}
+
 //Right col
 
 #feed_list .right_col {
@@ -962,28 +951,28 @@ a:hover {
   overflow-x: hidden;
   overflow-y: hidden;
 }
-a img {
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 0px;
-  border-left-width: 0px;
-  border-top-style: initial;
-  border-right-style: initial;
-  border-bottom-style: initial;
-  border-left-style: initial;
-  border-top-color: initial;
-  border-right-color: initial;
-  border-bottom-color: initial;
-  border-left-color: initial;
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-}
-img {
-  vertical-align: middle;
-}
+// a img {
+//   border-top-width: 0px;
+//   border-right-width: 0px;
+//   border-bottom-width: 0px;
+//   border-left-width: 0px;
+//   border-top-style: initial;
+//   border-right-style: initial;
+//   border-bottom-style: initial;
+//   border-left-style: initial;
+//   border-top-color: initial;
+//   border-right-color: initial;
+//   border-bottom-color: initial;
+//   border-left-color: initial;
+//   border-image-source: initial;
+//   border-image-slice: initial;
+//   border-image-width: initial;
+//   border-image-outset: initial;
+//   border-image-repeat: initial;
+// }
+// img {
+//   vertical-align: middle;
+// }
 .item-box .item-box-left a img {
   margin-top: -1px;
   margin-right: 0px;

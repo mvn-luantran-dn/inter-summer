@@ -2751,22 +2751,22 @@ footer{
     padding-left: 44px;
 }
 .top-footer .footer-menus .social-button-box ul li.facebook{
-    background: url(images/icon/footer-facebook-icon.png) no-repeat;
+    background: url(/footer-facebook-icon.png) no-repeat;
     height: 37px;
     line-height: 37px;
 }
 .top-footer .footer-menus .social-button-box ul li.instagram{
-    background: url(images/icon/footer-instagram-icon.png) no-repeat;
+    background: url(/footer-instagram-icon.png) no-repeat;
     height: 37px;
     line-height: 37px;
 }
 .top-footer .footer-menus .social-button-box ul li.zalo{
-    background: url(images/icon/footer-zalo-icon.png) no-repeat;
+    background: url(/footer-zalo-icon.png) no-repeat;
     height: 37px;
     line-height: 37px;
 }
 .top-footer .footer-menus .social-button-box ul li.youtube{
-    background: url(images/icon/footer-youtube-icon.png) no-repeat;
+    background: url(/footer-youtube-icon.png) no-repeat;
     height: 37px;
     line-height: 37px;
 }
@@ -3133,7 +3133,7 @@ footer{
     top: 0;
     left: 0;
     z-index: 9999999999;
-    /* background: url('images/checkout-loading.gif') no-repeat center center rgba(0,0,0,0.5); */
+    background: url('images/checkout-loading.gif') no-repeat center center rgba(0,0,0,0.5);
     width: 100%;
     height: 100%;
     overflow-y: auto;
