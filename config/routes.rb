@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       resources :promotions_categories
     end
     get '/category_pro' => 'promotions#category_pro'
+    get '/report_order', to: 'base#report'
   end
   mount ActionCable.server => '/cable'
   get '/current_user' => 'users#id_current_user'

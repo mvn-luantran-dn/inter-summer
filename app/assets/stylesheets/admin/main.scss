@@ -91,12 +91,18 @@
   margin-bottom: 40px;
 }
 #green-border {
+  color: #fff;
+  background-color: #5cb85c;
   border-color: #5cb85c;
 }
 #yellow-border {
+  color: #fff;
+  background-color: #f0ad4e;
   border-color: #f0ad4e;
 }
 #red-border {
+  color: #fff;
+  background-color: #d9534f;
   border-color: #d9534f;
 }
 #border-left {
@@ -295,3 +301,7 @@
   margin-left: 20px;
 }
 
+#myChart {
+  height: 600px;
+  width: 600px;
+}
