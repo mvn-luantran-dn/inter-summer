@@ -1,8 +1,17 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: %i[index edit update destroy]
-
+ 
   def index
     @items = @order.items if @order
+    @total = @items.inject(0) do |_result, item|
+      promotion = item.product.promotions_categories
+      price = if promotion.present?
+                item.amount * (100 - promotion.discount) / 100
+              else
+                item.amount
+              end
+      _result += price
+    end
   end
 
   def destroy
@@ -29,13 +38,23 @@ class OrdersController < ApplicationController
   def edit
     @items    = @order.items if @order
     @payments = Payment.all
+    @total = @items.inject(0) do |_result, item|
+      promotion = item.product.promotions_categories
+      price = if promotion.present?
+                item.amount * (100 - promotion.discount) / 100
+              else
+                item.amount
+              end
+      _result += price
+    end
   end
 
   def update
     payment = Payment.find(params[:payment_id])
     format_params(@order, payment)
     if @order.update_attributes(order_params)
-      redirect_to root_path, success: 'Success'
+      flash[:success] = 'Completed orderd'
+      redirect_to root_path
     else
       render :edit
     end
@@ -54,5 +73,17 @@ class OrdersController < ApplicationController
 
     def find_order
       @order = Order.find_by(user_id: current_user.id, status: Order::STATUS_WAITTING)
+    end
+
+    def total(items)
+      @total = items.inject(0) do |_result, item|
+        promotion = item.product.promotions_categories
+        price = if promotion.present?
+                  item.amount * (100 - promotion.discount) / 100
+                else
+                  item.amount
+                end
+        _result += price
+      end
     end
 end

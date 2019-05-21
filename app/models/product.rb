@@ -29,6 +29,7 @@ class Product < ApplicationRecord
   has_many :assets, as: :module, dependent: :destroy
   accepts_nested_attributes_for :assets, allow_destroy: true
   has_many :items, dependent: :destroy
+  has_one :promotions_categories, through: :category
   validates :name, presence: true, length: { maximum: 100 }
   validates :detail, presence: true
   validates :quantity, presence: true

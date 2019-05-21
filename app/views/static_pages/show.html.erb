@@ -38,10 +38,12 @@
     <div id="product_id" class="extended_view single_product" data-timer-id=<%= params['id'] %>>
       <h2 class="product_title">
         <a id="ContentPlaceHolder1_lnkTitle"><span id="ContentPlaceHolder1_lbTitle"><%= @product.name %></span></a>
-        <div class="percent-show">
-          Sale
-          <span>30%</span>
-        </div>
+        <% if @product.promotions_categories.present? %>
+          <div class="percent-show">
+            Sale
+            <span><%= @product.promotions_categories.discount %>%</span>
+          </div>
+        <% end %>
       </h2>
       <div id="ContentPlaceHolder1_UpdatePanel2">
       </div>
@@ -152,8 +154,21 @@
         <div id="view_details">
           <h3>Product description</h3>
           <%= raw @product.detail %>
-        <div class="fb-comments" data-href="http://localhost:4000/auctions/<%= @auction.timer.id %>" data-width="930" data-numposts="5"></div>
-        </div>
+        <!--<div class="fb-comments" data-href="http://localhost:4000/auctions/<%= @auction.timer.id %>" data-width="930" data-numposts="5"></div>-->
+        <div id="wpac-review"></div>
+        <script type="text/javascript">
+        wpac_init = window.wpac_init || [];
+        wpac_init.push({widget: 'Review', id: 18655});
+        (function() {
+            if ('WIDGETPACK_LOADED' in window) return;
+            WIDGETPACK_LOADED = true;
+            var mc = document.createElement('script');
+            mc.type = 'text/javascript';
+            mc.async = true;
+            mc.src = 'https://embed.widgetpack.com/widget.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+        })();
+        </script>
       </div>
     </div>  
   </div>  

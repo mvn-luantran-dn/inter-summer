@@ -51,7 +51,7 @@
                 <div class="order-total">
                   <label>Total money: </label>
                   <span><strong><span class="woocommerce-Price-amount amount">
-                  <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </span>
+                  <%= number_with_delimiter(@total, :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </span>
                 </div>
               </div>
               <a href="/" class="return-shop"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Continue to participate in the auction </a>

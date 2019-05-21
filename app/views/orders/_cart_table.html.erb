@@ -10,7 +10,7 @@
                 <th class="product-thumbnail">&nbsp;</th>
                 <th class="product-name">Product</th>
                 <th class="product-price">Price</th>
-                <th class="product-quantity">Amount</th>
+                <th class="product-quantity">Sale</th>
                 <th class="product-subtotal">Money</th>
               </tr>
             </thead>
@@ -27,7 +27,7 @@
                 <tr class="cart-subtotal">
                   <th>Total</th>
                   <td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount">
-                    <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>
+                    <%= number_with_delimiter(@total, :delimiter => ',') %>
                     &nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></td>
                 </tr>
                 <tr class="shipping">
@@ -39,7 +39,7 @@
                 <tr class="order-total">
                   <th>Total order</th>
                   <td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount">
-                  <%= number_with_delimiter(cart_items.sum(&:amount), :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </td>
+                  <%= number_with_delimiter(@total, :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </td>
                 </tr>
               </tbody>
             </table>

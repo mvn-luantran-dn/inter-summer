@@ -26,4 +26,7 @@ class Promotion < ApplicationRecord
   has_one :asset, as: :module, dependent: :destroy
 
   scope :common_order, -> { order('id DESC') }
+  scope :on_sale, ->(date = Time.zone.now) {
+    where('promotions.end_date >= ? AND promotions.start_date <= ?', date, date)
+  }
 end
