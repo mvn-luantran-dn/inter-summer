@@ -1,0 +1,22 @@
+<div class="large-3 medium-6 small-6 columns product-item post-5397 product type-product status-publish has-post-thumbnail product_cat-giay-thoi-trang pa_color-xanh-duong pa_size-giay-181 pa_size-giay-182 pa_size-giay-183 pa_size-giay-184 pa_size-giay-185 pa_size-giay-186 pa_size-giay-187 pa_size-giay-188 pa_size-giay-189 yith_product_brand-adidas  instock sale shipping-taxable purchasable product-type-variable">
+  <div class="row product-box">
+    <div class="percent">
+      Sale
+      <span>30%</span>
+    </div>
+    <div class="thumbnail">
+      <%= image_tag(product.assets.first.file_url, class: "avatar detail-item") %>
+      <%= image_tag(product.assets.second.file_url, class: "img-behind") %>
+    </div>
+    <h3 class="product-title"><%= product.name %></h3>
+    <span class="price-info">
+    <span class="sale_price">
+      <span class="woocommerce-Price-amount amount">
+        <%= number_with_delimiter(product.price, :delimiter => '.') %>&nbsp;
+        <span class="woocommerce-Price-currencySymbol">VNĐ</span>
+      </span>
+    </span>
+    <span class="regular_price"></span>
+    </span>
+  </div>
+</div>

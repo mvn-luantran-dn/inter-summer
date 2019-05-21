@@ -97,9 +97,9 @@ p {
   margin: 30px 0 ;
   border: 0;
 }
-.product-item {
-  border: 1px solid burlywood;
-}
+// .product-item {
+//   border: 1px solid burlywood;
+// }
 .icon-auction {
   width: 12%;
 }
@@ -351,4 +351,18 @@ table.shop_table.cart .product-quantity .quantity input{
   text-decoration: none;
   color: #262626;
   background-color: white;
+}
+
+.percent-show {
+  background: url(/sale-icon.png) no-repeat;
+  position: absolute;
+  top: 20%;
+  right: 28%;
+  color: #fff;
+  font-size: 10px;
+  width: 35px;
+  height: 40px;
+  text-align: center;
+  line-height: 14px;
+  padding-top: 4px;
 }

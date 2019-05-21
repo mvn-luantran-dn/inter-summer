@@ -23,19 +23,22 @@
               </div>
               <ul id="mega-menu-main-menu" class="mega-menu max-mega-menu mega-menu-horizontal" data-event="hover_intent" data-effect="slide" data-effect-speed="600" data-effect-mobile="disabled" data-effect-speed-mobile="200" data-mobile-force-width="false" data-second-click="close" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="600" data-unbind="true">
                 <%= render @categories %>
+                <li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-13068" id="mega-menu-item-13068">
+                  <%= link_to 'SALE', products_promotions_path, class: "mega-menu-link" %>
+                </li>
                 <% if logged_in? %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 382px;"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 290px;"><%= link_to "My auction", user_auctions_path(current_user), class: "mega-menu-link" %></li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout dropdown">
                     <a href="#" class="mega-menu-link dropdown-toggle" data-toggle="dropdown">
                       Account <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif'%>
+                        <%= link_to "My Profile", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif'%>
                       </li>
                       <% if admin_user? %>
                         <li>
-                          <%= link_to "Admin", admin_root_path %>
+                          <%= link_to "Go to Admin", admin_root_path %>
                         </li>
                       <% end %>
                       <li>
@@ -44,7 +47,7 @@
                     </ul>
                   </li>
                 <% else %>
-                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 450px;">
+                  <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout" style="margin-left: 360px;">
                     <%= link_to "Log in", login_path, class: "mega-menu-link" %>
                   </li>
                   <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout">

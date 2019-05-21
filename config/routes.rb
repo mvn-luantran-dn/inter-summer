@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'omniauths#create'
   get 'auth/failure', to: redirect('/')
   get '/signup', to: 'users#new'
+  get '/products/promotions', to: 'promotions#index'
   resources :users do
     resources :orders
     get '/orders/:id', to: 'orders#edit'

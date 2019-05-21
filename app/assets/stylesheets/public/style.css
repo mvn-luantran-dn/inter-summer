@@ -218,7 +218,7 @@ header #menu_bar #snow{
 #menu_bar .main-menu ul li{
 	display: inline-block;
 	padding: 0 10px;
-	line-height: 73px;
+	line-height: 50px;
     position: relative;
 }
 #menu_bar .main-menu ul li a{
@@ -231,9 +231,7 @@ header #menu_bar #snow{
     font-family: inherit;
     font-size: 14px;
 }
-#menu_bar .main-menu ul li:hover a{
-    line-height: 69px;
-}
+
 #menu_bar .main-menu ul ul.sub-menu{
     position: absolute;
     width: 250px;
@@ -864,7 +862,7 @@ header #menu_bar #snow{
     margin-right: 0;
 }
 .product-box .percent{
-    background: url('images/deal-ticker-small.png') no-repeat;
+    background: url('/deal-ticker-small.png') no-repeat;
     position: absolute;
     top: 0;
     right: 20px;
