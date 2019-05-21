@@ -131,9 +131,6 @@ p {
 .content-notif {
   color: #860a0a;
 }
-.dropdown-menu>li>a {
-  height: 45px;
-}
 .status-green {
   color: green;
 }
@@ -318,4 +315,40 @@ table.shop_table.cart .product-quantity .quantity input{
   border-radius: 50%;
   margin-right: 5px;
   margin-top: 15px;
+}
+
+.pro-info {
+    float: left;
+    width: 100%;
+    margin: 15px 0;
+}
+.pro-info h2{
+    font-size: 20px;
+}
+
+.pro-info ul li{
+    border-bottom: 1px solid #e5e5e5;
+    padding: 15px 0;
+    float: left;
+    width: 100%;
+}
+.pro-info ul li:last-child{
+    border-bottom: 0;
+}
+.pro-info ul li label{
+    float: left;
+    width: 50%;
+    color: #585858;
+    font-size: 14px;
+}
+.pro-info ul li span{
+    font-size: 14px;
+    float: left;
+    width: 50%;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: white;
 }

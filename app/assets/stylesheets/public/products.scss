@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .left_col {
-  width: 1000px;
+  width: 960px;
   float: left;
 }
 .right_col {
-  width: 300px;
+  width: 305px;
   float: right;
 }
 .wrap {
@@ -14,7 +14,7 @@
   margin-top: 10px;
 }
 .extended_view {
-  width: 1000px;
+  width: 960px;
   margin-bottom: 10px;
   padding-bottom: 10px;
   display: block;
@@ -235,9 +235,9 @@ ol, ul {
 }
 .product_info {
   display: inline-block;
-  padding-left: 120px;
+  padding-left: 105px;
   padding-right: 10px;
-  width: 720px;
+  width: 688px;
 }
 .product_info .left-product, .product_info .right-product {
   padding-bottom: 10px;
@@ -562,7 +562,8 @@ select {
   cursor: pointer;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  width: 100%;
+  width: 50%;
+  margin-left: 25%
 }
 .product_info .buttons::before {
   font-family: fontawesome;
@@ -719,7 +720,7 @@ select {
   float: left;
 }
 .bid_user {
-  width: 35%;
+  width: 32%;
   padding-left: 30px;
 }
 .bid_amount {

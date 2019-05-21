@@ -30,13 +30,17 @@
                       Account <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                      <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13066" id="mega-menu-item-13066"><a class="mega-menu-link"><%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif', class: "mega-menu-link"%></li>
+                      <li>
+                        <%= link_to "Settings", edit_user_path(current_user) , 'data-user-id' => current_user.id, id: 'user-notif'%>
+                      </li>
                       <% if admin_user? %>
-                        <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13066" id="mega-menu-item-13066"><a class="mega-menu-link"><%= link_to "Admin", admin_root_path, class: "mega-menu-link" %></li>
+                        <li>
+                          <%= link_to "Admin", admin_root_path %>
+                        </li>
                       <% end %>
-                    <li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-13066" id="mega-menu-item-13066"><a class="mega-menu-link">
-                      <%= link_to "Log out", logout_path, method: :delete, class: "mega-menu-link" %>
-                    </li>
+                      <li>
+                        <%= link_to "Log out", logout_path, method: :delete %>
+                      </li>
                     </ul>
                   </li>
                 <% else %>
@@ -77,7 +81,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <span class="quantity">Size: <%= item.product.size %></span>						
+                              <span class="quantity">Size: <%= item.product.size %></span>
                             </div>
                           </li>
                         <% end %>

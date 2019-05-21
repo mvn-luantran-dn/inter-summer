@@ -1,9 +1,36 @@
 <% provide(:title, @product.name)%>
-<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
+<div class="row support-box show-for-large-up">
+	<div class="large-12 columns">
+		<div class="row" style="margin-left: 70px;">
+			<div class="box doi-hang">
+				<span class="icon"></span>
+				<span class="text">Free 3 days of change</span>
+			</div>
+			<div class="box giao-hang">
+				<span class="icon"></span>
+				<span class="text">Free delivery within the city</span>
+			</div>
+			<div class="box thanh-toan">
+				<span class="icon"></span>
+				<span class="text">Payment on delivery</span>
+			</div>
+			<div class="box ho-tro">
+				<span class="icon"></span>
+				<span class="text">Common problems</span>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="row">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <% category = @product.category.parent_category || @product.category %>
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="/categories/<%= category.id %>">
+          <%= category.name %>
+        </a>
+      </li>
       <li class="breadcrumb-item active" aria-current="page"><%= @product.name %></li>
     </ol>
   </nav>
@@ -17,7 +44,7 @@
       <div class="product_photo_wrp">
         <div class="product_photo">
           <div class="zoomWrapper" id = "first-image">
-            <%= image_tag @product.assets.first.file.url, alt: @product.name, id: "expandImg", class: "slow-images", style: "max-width: 150%;border: 1px solid #ccc;" %>        
+            <%= image_tag @product.assets.first.file.url, alt: @product.name, id: "expandImg", class: "slow-images", style: "max-width: 140%;border: 1px solid #ccc;" %>        
           </div>
           <div class="loading-image" style="display: none;"></div>
         </div>
@@ -67,24 +94,20 @@
                 <p id="pBiddingWaitMsg" class="bidding_wait_msg"></p>
               </div>
             </div>
-            <div class="">
-              <h2>Thông tin sản phẩm</h2>
+            <div class="pro-info">
+              <h2>Product information</h5>
               <ul>
                 <li>
-                  <label>Trọng lượng:</label>
-                  <span>N/A</span>
+                  <label>Weight:</label>
+                  <span><%= @product.weight || 'N/A' %></span>
                 </li>
                 <li>
-                  <label>Màu sắc:</label>
-                  <span>Đen Xanh</span>
+                  <label>Color:</label>
+                  <span><%= @product.color || 'N/A' %></span>
                 </li>
                 <li>
-                  <label>Chất liệu:</label>
-                  <span>N/A</span>
-                </li>
-                <li>
-                  <label>Sử dụng:</label>
-                  <span>N/A</span>
+                  <label>Material:</label>
+                  <span><%= @product.material || 'N/A' %></span>
                 </li>
               </ul>
             </div>
@@ -125,7 +148,7 @@
         <div id="view_details">
           <h3>Product description</h3>
           <%= raw @product.detail %>
-        <div class="fb-comments" data-href="http://localhost:3000/auctions/<%= @auction.timer.id %>" data-width="970" data-numposts="5"></div>
+        <div class="fb-comments" data-href="http://localhost:4000/auctions/<%= @auction.timer.id %>" data-width="930" data-numposts="5"></div>
         </div>
       </div>
     </div>  
