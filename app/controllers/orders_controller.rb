@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: %i[index edit update destroy]
- 
+
   def index
-    @items = @order.items if @order
+    return if @order.blank?
+
+    @items = @order.items
     @total = @items.inject(0) do |_result, item|
       promotion = item.product.promotions_categories
       price = if promotion.present?
@@ -36,6 +38,8 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    return if @order.blank?
+
     @items    = @order.items if @order
     @payments = Payment.all
     @total = @items.inject(0) do |_result, item|

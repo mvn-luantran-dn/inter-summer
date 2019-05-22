@@ -2,13 +2,24 @@
   <div class="row product-box">
     <div class="percent">
       Sale
-      <span>30%</span>
+      <span><%= product.promotions_categories.discount %>%</span>
     </div>
-    <div class="thumbnail">
-      <%= image_tag(product.assets.first.file_url, class: "avatar detail-item") %>
-      <%= image_tag(product.assets.second.file_url, class: "img-behind") %>
-    </div>
-    <h3 class="product-title"><%= product.name %></h3>
+    <% timer = product.timers.is_running&.first&.id 
+      link_auction = if timer 
+                       "/auctions/" + timer.to_s
+                     else
+                       '#'
+                     end
+    %>
+    <a href="<%= link_auction %>" title="<%= product.name %>">
+      <div class="thumbnail">
+        <%= image_tag(product.assets.first.file_url, class: "avatar detail-item") %>
+        <%= image_tag(product.assets.second.file_url, class: "img-behind") %>
+      </div>
+		</a>
+    <a href="<%= link_auction %>" title="<%= product.name %>">
+      <h3 class="product-title"><%= product.name %></h3>
+    </a>
     <span class="price-info">
     <span class="sale_price">
       <span class="woocommerce-Price-amount amount">

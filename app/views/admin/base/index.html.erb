@@ -8,7 +8,7 @@
                   <i class="fa fa-codepen fa-5x"></i>
                </div>
                <div class="col-xs-9 text-right">
-                  <div class="huge"><%= @products %></div>
+                  <div class="huge"><%= @count_pro %></div>
                   <div>Products</div>
                </div>
             </div>
@@ -93,7 +93,7 @@
    <div class="col-lg-8">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <i class="fa fa-bar-chart-o fa-fw"></i> Order Chart By Week
+            <i class="fa fa-bar-chart-o fa-fw"></i> Order Chart
          </div>
          <div class="panel-body">
             <canvas id="myChart"></canvas> 
@@ -107,93 +107,60 @@
          </div>
          <div class="panel-body">
             <div class="list-group">
-               <a href="#" class="list-group-item">
-               <i class="fa fa-comment fa-fw"></i> New Comment
-               <span class="pull-right text-muted small"><em>4 minutes ago</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-               <span class="pull-right text-muted small"><em>12 minutes ago</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-envelope fa-fw"></i> Message Sent
-               <span class="pull-right text-muted small"><em>27 minutes ago</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-tasks fa-fw"></i> New Task
-               <span class="pull-right text-muted small"><em>43 minutes ago</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-upload fa-fw"></i> Server Rebooted
-               <span class="pull-right text-muted small"><em>11:32 AM</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-               <span class="pull-right text-muted small"><em>11:13 AM</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-warning fa-fw"></i> Server Not Responding
-               <span class="pull-right text-muted small"><em>10:57 AM</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-               <span class="pull-right text-muted small"><em>9:49 AM</em>
-               </span>
-               </a>
-               <a href="#" class="list-group-item">
-               <i class="fa fa-money fa-fw"></i> Payment Received
-               <span class="pull-right text-muted small"><em>Yesterday</em>
-               </span>
-               </a>
+               <% @top_auctions.each do |pro| %>
+                 <a href="#" class="list-group-item" style="font-size: 12px;">
+                   <%= image_tag(pro.assets.first.file_url, class: "avatar detail-item", alt: "Avatar") %>
+                   <%= pro.name %>
+                 <span class="pull-right text-muted small" style="margin-top: 15px;"><em><%= pro.auctions.size %> auctions</em>
+                 </span>
+                 </a>
+               <% end %>
             </div>
          </div>
       </div>
    </div>
 </div>
 <script>
-   var ctx = document.getElementById('myChart');
-   var myChart = new Chart(ctx, {
+  window.onload = function () {
+    obj = report_order();
+    console.log(obj);
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-         datasets: [{
-               label: 'Orders',
-               data: [5, 4, 3, 2, 2, 1],
-               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-               ],
-               borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-               ],
-               borderWidth: 1
-         }]
+        labels: obj.date,
+        datasets: [{
+          label: 'Orders',
+          data: obj.count,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+            ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
       },
       options: {
-         scales: {
-               xAxes: [{
-                  stacked: true
-               }],
-               yAxes: [{
-                  stacked: true
-               }]
-         }
+        scales: {
+          xAxes: [{
+            stacked: true
+          }],
+          yAxes: [{
+            stacked: true
+          }]
+        }
       }
-   });
+    });
+  };
 </script>

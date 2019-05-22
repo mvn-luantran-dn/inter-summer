@@ -40,7 +40,9 @@
                     </div>
                     <div class="product-total">
                       <span class="woocommerce-Price-amount amount">
-                        <%= number_with_delimiter(item.amount, :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>							
+                        <% discount = item.product&.promotions_categories&.discount.to_i %>
+                        <%= number_with_delimiter(item.amount * (100 - discount) / 100, :delimiter => ',') %>
+                        &nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span>							
                     </div>
                   </div>
                 </div>
@@ -168,7 +170,7 @@
                 </span>
               </p>
               <div class="call-now">
-                ✓ Call: <a href="tel:09050912309">0905 0912309</a> → For quick purchase
+                ✓ Call: <a href="tel:0972854570">0972 854570</a> → For quick purchase
               </div>
               <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Complete the purchase" data-value="Order">
               <div class="checkout-error"></div>

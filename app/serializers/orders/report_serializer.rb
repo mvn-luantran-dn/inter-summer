@@ -1,7 +1,15 @@
-class Orders::ShowSerializer < ApplicationSerializer
-  attributes %i[abc]
+class Orders::ReportSerializer < ApplicationSerializer
+  attributes %i[date count]
 
-  def abc
-    object
+  def date
+    object&.map do |order|
+      order.first.strftime('%B %d, %m, %Y')
+    end
+  end
+
+  def count
+    object&.map do |order|
+      order.last.size
+    end
   end
 end

@@ -32,4 +32,8 @@ class Timer < ApplicationRecord
   def delete_redis
     $redis.del(self.id)
   end
+
+  scope :is_running, ->(now = Time.zone.now.strftime('%H:%M:%S')) {
+    where('timers.start_at::TIME <= ? AND timers.end_at::TIME >= ? AND timers.is_running', now, now)
+  }
 end

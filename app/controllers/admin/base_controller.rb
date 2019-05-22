@@ -6,10 +6,12 @@ class Admin::BaseController < ApplicationController
   layout 'admin/application'
 
   def index
-    @products = Product.all.size
+    @products = Product.includes(:auctions).all
+    @count_pro = @products.size
     @users = User.all.size
     @orders = Order.all.size
     @auctions = Auction.all.size
+    @top_auctions = @products.sort_by { |pro| -pro.auctions.size }.take(5)
   end
 
   def report
@@ -24,7 +26,7 @@ class Admin::BaseController < ApplicationController
 
     def statictis
       orders = Order.all.group_by { |order| order.updated_at.to_date }
-      return orders if orders.size <= 6
+      return orders.to_a if orders.size <= 6
 
       orders.drop(orders.size - 6)
     end

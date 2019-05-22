@@ -161,6 +161,24 @@ $(document).ready(function () {
 //   });
 });
 
+function report_order() {
+  result = null;
+  $.ajax({
+    url: "/admin/report_order",
+    type: 'GET',
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'JSON',
+    async: false,
+    success: function (response) {
+      result = response;
+    },
+    error: function (err) {
+      console.log(err);
+    }
+  });
+  return result;
+}
+
 $(document).ready(function () {
   function readURL(input) {
     if (input.files && input.files[0]) {
