@@ -108,7 +108,8 @@ class Admin::ProductsController < Admin::BaseController
 
     def product_params
       params.require(:product).permit(:name, :category_id, :detail, :price,
-                                      :price_at, :quantity, assets_attributes:
+                                      :price_at, :quantity, :color, :weight,
+                                      :material, :size, assets_attributes:
                                       %i[id file _destroy])
     end
 

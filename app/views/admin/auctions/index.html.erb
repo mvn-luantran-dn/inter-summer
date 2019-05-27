@@ -117,7 +117,7 @@ $(document).ready(function(){
         } else {
           avatar_html = '<img src="/avatar-default.png" alt= "Avatar" class= "avatar-detail">'
         }
-        if (!winner) { $('#winner').html(response.winner.name); }
+        if (winner) { $('#winner').html(response.winner.name); }
         $('#price').html(response.price_final);
         $('#status-auction').html(capitalize(response.status));
         html = '<img src="' + response.product.assets[0].file_url + '" alt= "Avatar" class= "avatar-detail">'

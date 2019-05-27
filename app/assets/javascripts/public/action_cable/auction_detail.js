@@ -28,7 +28,7 @@ var auction = {
       html += '</div>';
       html += '<div class="item-box-right">';
       html += '<div class="timeout last_minute">' + time_convert(e.period) + '</div>';
-      html += '<div class="current_bid right-product">'+ formatMoney(e.product_price_start) +'</div>';
+      html += '<div class="current_bid right-product">' + formatMoney(e.product_price_start) +'</div>';
       html += '<a class="buttons bidding small see_details" href="/auctions/' + e.id + '">Bid now</a>';
       html += '</div>';
       html += '</div>';
@@ -42,7 +42,7 @@ var auction = {
     if (price !== auction.current_price) {
       auction.current_price = price;
       auction.tmp_price = price;
-      $('#price-input').val(formatMoney(price));
+      $('#price-input').val(formatMoney(price + step ));
       auction.step = step;
       auction.eventAddBtnPrice(price, step);
     }

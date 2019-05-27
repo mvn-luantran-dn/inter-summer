@@ -25,7 +25,7 @@ class Admin::BaseController < ApplicationController
   private
 
     def statictis
-      orders = Order.all.group_by { |order| order.updated_at.to_date }
+      orders = Order.all.group_by { |order| order.created_at.to_date }
       return orders.to_a if orders.size <= 6
 
       orders.drop(orders.size - 6)

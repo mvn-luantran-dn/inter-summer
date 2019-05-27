@@ -56,6 +56,18 @@
           <li class="list-group-item">
             <strong class="title-up">Quantity:</strong> <span id="quantity" class="content-up"></span>
           </li>
+          <li class="list-group-item">
+            <strong class="title-up">Color:</strong> <span id="color" class="content-up"></span>
+          </li>
+          <li class="list-group-item">
+            <strong class="title-up">Size:</strong> <span id="size" class="content-up"></span>
+          </li>
+          <li class="list-group-item">
+            <strong class="title-up">Meterial:</strong> <span id="material" class="content-up"></span>
+          </li>
+          <li class="list-group-item">
+            <strong class="title-up">Weight:</strong> <span id="weight" class="content-up"></span>
+          </li>
         </ul>
         <div>
           <h4 class="modal-title">Detail</h4>
@@ -83,6 +95,10 @@ $(document).ready(function(){
         $('#name').html(response.product.name);
         $('#category').html(response.category.name);
         $('#quantity').html(response.product.quantity);
+        $('#color').html(response.product.color);
+        $('#size').html(response.product.size);
+        $('#material').html(response.product.material);
+        $('#weight').html(response.product.weight);
         if(response.images) {
           html = '';
           var images = response.images;

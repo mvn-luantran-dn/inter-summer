@@ -104,6 +104,10 @@
               <h2>Product information</h5>
               <ul>
                 <li>
+                  <label>Bid step:</label>
+                  <span><%= number_with_delimiter(@auction.timer.bid_step, :delimiter => ',') %> VND</span>
+                </li>
+                <li>
                   <label>Weight:</label>
                   <span><%= @product.weight || 'N/A' %></span>
                 </li>
@@ -154,8 +158,8 @@
         <div id="view_details">
           <h3>Product description</h3>
           <%= raw @product.detail %>
-        <!--<div class="fb-comments" data-href="http://localhost:4000/auctions/<%= @auction.timer.id %>" data-width="930" data-numposts="5"></div>-->
-        <div id="wpac-review"></div>
+        <!--<div class="fb-comments" data-href="http://localhost:4000/auctions/<%= @auction.timer.id %>" data-width="930" data-numposts="5">--></div>
+        <div id="wpac-review" style="padding: 15px 10px;"></div>
         <script type="text/javascript">
         wpac_init = window.wpac_init || [];
         wpac_init.push({widget: 'Review', id: 18655});
@@ -170,7 +174,7 @@
         })();
         </script>
       </div>
-    </div>  
+    </div> 
   </div>  
   <div class="right_col">
     <div style="padding-bottom:15px;">
@@ -178,7 +182,7 @@
     <div class="auction-item" id="cat-timer">
     </div>
   </div>
-  <div id="fb-root"></div>
+  <!--<div id="fb-root"></div>-->
 </div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
