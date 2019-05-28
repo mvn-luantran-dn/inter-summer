@@ -1,4 +1,4 @@
-<% provide(:title, "Edit user") %>
+<% provide(:title, "Change password") %>
 <div class="row">
   <nav aria-label="breadcrumb" style="margin-top: 20px;">
     <ol class="breadcrumb">
@@ -22,8 +22,8 @@
         <% end %>
         <input id="profile-img" type="file" style="margin-left: 50px;" />
       </div>
-      <%= link_to "My Profile", edit_user_path(current_user), class: "list-group-item list-group-item-action active" %>
-      <%= link_to "Change Password", edit_password_path(current_user), class: "list-group-item list-group-item-action" %>
+      <%= link_to "My Profile", edit_user_path(current_user), class: "list-group-item list-group-item-action" %>
+      <%= link_to "Change Password", edit_password_path(current_user), class: "list-group-item list-group-item-action active" %>
       <%= link_to "My Orders", my_orders_path(current_user), class: "list-group-item list-group-item-action" %>
     </div>
   </div>
@@ -32,27 +32,19 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">
-            <h4>Information</h4>
+            <h4>Change password</h4>
             <hr>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
             <div class="col-lg-12" style="margin-bottom: 30px;">
-              <%= form_for(@user) do |f| %>
+              <%= form_for(@user, url: :update_password) do |f| %>
                 <%= render 'shared/error_messages' %>
-                <%= f.label :name %>
-                <%= f.text_field :name, class: 'form-control' %>
-                <%= f.label :email %>
-                <%= f.email_field :email, class: 'form-control' %>
-                <%= f.label :address %>
-                <%= f.text_field :address, class: 'form-control' %>
-                <%= f.label :phone %>
-                <%= f.text_field :phone, class: 'form-control' %>
-                <%= f.label :gender %>
-                <%= f.select(:gender, options_for_select(@genders.collect { |g| [g.first.camelize, g.first] }, selected: @user.gender), {}, { class: 'form-control' } ) %>
-                <%= f.label :birth_day %>
-                <%= f.date_field :birth_day, class: 'form-control', value: @date_birth_day %>
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
                 <div class= "text-center">
                   <%= f.submit "Save changes", class: "btn btn-primary" %>
                 </div>  
@@ -64,22 +56,3 @@
     </div>
   </div>
 </div>
-<script>
-$(document).ready(function(){
-  $("#profile-img").click(function(){
-    console.log(event.target.result);
-    // $.ajax({
-    //   url: '/users/uploads'
-    //   type: "POST",
-    //   contentType: 'application/json; charset=utf-8',
-    //   dataType: 'JSON',
-    //   async: true,
-    //   success: function (response) {
-    //   },
-    //   error: function (err) {
-    //     console.log(err);
-    //   }
-    // });
-  });
-});
-</script>

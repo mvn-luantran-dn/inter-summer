@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show edit update correct_user]
-  before_action :logged_in_user, only: %i[index edit update]
-  before_action :correct_user, only: %i[edit update]
+  before_action :find_user, only: %i[show edit update correct_user edit_pass update_pass]
+  before_action :logged_in_user, only: %i[index edit update edit_pass update_pass]
+  before_action :correct_user, only: %i[edit update edit_pass update_pass]
   before_action :redirect_logined, only: :new
   before_action :load_genders_user, only: %i[edit update]
 
@@ -36,10 +36,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_pass
+    if @user.update_attributes(password_params)
+      flash[:success] = 'Update success'
+      redirect_to edit_password_path(@user)
+    else
+      render :edit_pass
+    end
+  end
+
+  def my_orders
+    @orders = current_user.orders.paginate(page: params[:page], per_page: 5).order('id ASC')
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :address, :phone, :gender, :birth_day)
+    end
+
+    def password_params
+      params.require(:user).permit(:password, :password_comfirm)
     end
 
     def find_user

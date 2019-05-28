@@ -1,0 +1,69 @@
+<% provide(:title, "My orders") %>
+<div class="row">
+  <nav aria-label="breadcrumb" style="margin-top: 20px;">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My account</li>
+    </ol>
+  </nav>
+  <div class="col-lg-12">
+    <h2 class="title-page" style="margin-bottom: 30px;">
+      My profile    
+    </h2>
+  </div>
+  <div class="col-md-3 ">
+    <div class="list-group ">
+      <div>
+        <% image_url = current_user&.asset&.file_url %>
+        <%  if image_url %>
+          <%= image_tag(image_url, class: "avatar-user", id: "profile-img-tag") %>
+        <% else %>
+          <img src="/avatar-default.png" id="profile-img-tag" class="avatar-user" />
+        <% end %>
+        <input id="profile-img" type="file" style="margin-left: 50px;" />
+      </div>
+      <%= link_to "My Profile", edit_user_path(current_user), class: "list-group-item list-group-item-action" %>
+      <%= link_to "Change Password", edit_password_path(current_user), class: "list-group-item list-group-item-action" %>
+      <%= link_to "My Orders", my_orders_path(current_user), class: "list-group-item list-group-item-action active" %>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>My Orders</h4>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="col-lg-12" style="margin-bottom: 30px;">
+              <table class="auction_list shop_table shop_table_responsive cart">
+                <thead>
+                  <tr class="auction_list_row heading">
+                    <td class="center">SSID</td>
+                    <td class="center">Date</td>
+                    <td class="center">Order Status</td>
+                    <td class="center">Total Price</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @orders.each do |order| %>
+                  <tr class="odd">
+                    <td class="center"><%= order.id %></td>
+                    <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
+                    <td class="center"><%= order.status %></td>
+                    <td class="center"><%= number_with_delimiter(order.total_price, :delimiter => ',') %> VND</td>
+                  </tr>  
+                  <% end %>
+                </tbody>
+              </table>
+              <%= will_paginate @orders %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

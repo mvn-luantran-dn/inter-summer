@@ -17,6 +17,6 @@ class AuctionsController < ApplicationController
                          .where('auction_details.user_id = ?', current_user.id)
                          .where(status: Common::Const::AuctionStatus::FINISHED)
                          .order('created_at DESC')
-      @order = Order.where('user_id = ? and status != ?', current_user.id, 'wait')
+      @order = Order.where('user_id = ?', current_user.id)
     end
 end

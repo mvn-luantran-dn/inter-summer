@@ -69,4 +69,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   get '/current_user' => 'users#id_current_user'
   get '/change/:id' => 'notifications#change'
+  get '/users/:id/edit_pass', to: 'users#edit_pass', as: 'edit_password'
+  get '/users/:id/my_orders', to: 'users#my_orders', as: 'my_orders'
+  patch '/users/password/:id', to: 'users#update_pass', as: 'update_password'
 end
