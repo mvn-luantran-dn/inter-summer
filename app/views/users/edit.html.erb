@@ -20,7 +20,7 @@
         <% else %>
           <img src="/avatar-default.png" id="profile-img-tag" class="avatar-user" />
         <% end %>
-        <input id="profile-img" type="file" style="margin-left: 50px;" />
+        <!--<input id="profile-img" type="file" style="margin-left: 50px;" />-->
       </div>
       <%= link_to "My Profile", edit_user_path(current_user), class: "list-group-item list-group-item-action active" %>
       <%= link_to "Change Password", edit_password_path(current_user), class: "list-group-item list-group-item-action" %>
@@ -53,6 +53,14 @@
                 <%= f.select(:gender, options_for_select(@genders.collect { |g| [g.first.camelize, g.first] }, selected: @user.gender), {}, { class: 'form-control' } ) %>
                 <%= f.label :birth_day %>
                 <%= f.date_field :birth_day, class: 'form-control', value: @date_birth_day %>
+                <%= f.label :avatar %>
+                <%= f.file_field :file, id: "profile-img" %>
+                <% image_url = f.object&.asset&.file_url %>
+                <%  if image_url %>
+                  <%= image_tag(image_url, class: "img-user", id: "profile-img-tag") %>
+                <% else %>
+                  <img src="/avatar-default.png" id="profile-img-tag" class="img-user" />
+                <% end %> 
                 <div class= "text-center">
                   <%= f.submit "Save changes", class: "btn btn-primary" %>
                 </div>  
