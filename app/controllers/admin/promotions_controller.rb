@@ -30,7 +30,6 @@ class Admin::PromotionsController < Admin::BaseController
   def create
     @promotion = Promotion.new(promotion_params)
     @promotion.user_id = @current_user.id
-    byebug
     if @promotion.save
       if params[:promotion][:file].present?
         Asset.create!(asset_params.merge(module_type: Promotion.name, module_id: @promotion.id))

@@ -14,7 +14,7 @@
     <a href="<%= link_auction %>" title="<%= product.name %>">
       <div class="thumbnail">
         <%= image_tag(product.assets.first.file_url, class: "avatar detail-item") %>
-        <%= image_tag(product.assets.second.file_url, class: "img-behind") %>
+        <%= image_tag(product.assets.second&.file_url, class: "img-behind") if product.assets.second %>
       </div>
 		</a>
     <a href="<%= link_auction %>" title="<%= product.name %>">

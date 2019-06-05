@@ -6,7 +6,7 @@
   </td>
   <% auction_detail = auction.auction_details.first %>
   <td class="center"><%= auction.created_at.strftime("%m/%d/%y, %I:%M:%p") %></td>
-  <td class="center"><%= auction_detail.user.name if auction_detail %></td>
+  <td class="center"><%= auction_detail.user&.name if auction_detail %></td>
   <td class="center">
     <%= number_with_delimiter(auction_detail.price_bid, :delimiter => ',') + ' VND' if auction_detail %>
   </td>
