@@ -16,9 +16,9 @@
       <div>
         <% image_url = current_user&.asset&.file_url %>
         <%  if image_url %>
-          <%= image_tag(image_url, class: "avatar-user", id: "profile-img-tag") %>
+          <%= image_tag(image_url, class: "avatar-user") %>
         <% else %>
-          <img src="/avatar-default.png" id="profile-img-tag" class="avatar-user" />
+          <img src="/avatar-default.png" class="avatar-user" />
         <% end %>
         <!--<input id="profile-img" type="file" style="margin-left: 50px;" />-->
       </div>
@@ -62,7 +62,7 @@
                   <img src="/avatar-default.png" id="profile-img-tag" class="img-user" />
                 <% end %> 
                 <div class= "text-center">
-                  <%= f.submit "Save changes", class: "btn btn-primary" %>
+                  <%= f.submit "Save", class: "btn btn-primary" %>
                 </div>  
               <% end %>
             </div>

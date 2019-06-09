@@ -7,15 +7,15 @@
         <p>List Orders</p>
       </div>
       <div class="panel-body">
-        <div class='header-panel-body search-auction'>
-          <%= form_tag admin_orders_path, method: :get, class: 'search col-lg-12', id: 'search-order'  do %>
+        <div class="header-panel-body search-auction">
+          <%= form_tag admin_orders_path, method: :get, class: 'search', id: 'search-order' do %>
             <div class="form-group input-search">
               <label>Start date: </label>
-              <input type="date" name="start_date" id="date-start" class="form-control">
+              <input type="date" name="start_date" id="date-start" class="form-control" />
             </div>
             <div class="form-group input-search">
               <label>End date: </label>
-              <input type="date" name="end_date" class="form-control">
+              <input type="date" name="end_date" class="form-control" />
             </div>
             <div class="form-group input-search">
               <label>Status: </label>
@@ -27,7 +27,6 @@
         <table width="100%" class="table table-striped table-hover" id="dataTables-example">
           <thead>
             <tr>
-              <th class="center"><input type="checkbox" id="checkAll"></th>
               <th>Full Name</th>
               <th class="center">Address</th>
               <th class="center">Phone</th>
@@ -44,7 +43,6 @@
               <% end %>
           </tbody>
         </table>
-        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
       </div>
     </div>
   </div>

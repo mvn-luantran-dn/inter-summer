@@ -20,12 +20,14 @@ class Order < ApplicationRecord
   acts_as_paranoid
   strip_attributes
 
-  STATUS_WAITTING  = 'waitting'.freeze
-  STATUS_ORDERED   = 'ordered'.freeze
-  STATUS_DELIVERY  = 'delivering'.freeze
-  STATUS_COMPETED  = 'completed'.freeze
-  STATUS_CANCLED   = 'canceled'.freeze
-  STATUS           = %w[waitting ordered delivering completed canceled].freeze
+  STATUS_WAITTING   = 'waitting'.freeze
+  STATUS_ORDERED    = 'ordered'.freeze
+  STATUS_DELIVERY   = 'delivering'.freeze
+  STATUS_COMPETED   = 'completed'.freeze
+  STATUS_CANCLED    = 'canceled'.freeze
+  STATUS            = %w[waitting ordered delivering completed canceled].freeze
+  STATUS_CAN_CANCLE = %w[waitting ordered].freeze
+  STATUS_UPDATE     = %w[ordered delivering completed canceled].freeze
 
   state_machine :status, initial: :waitting do
     state :waitting,   value: STATUS_WAITTING

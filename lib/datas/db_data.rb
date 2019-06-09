@@ -23,7 +23,7 @@ class DbData
     timer_id = timer['id']
     auction = Auction.auction_timer(timer_id).last
     product = auction.timer.product
-    auction_dls = auction.auction_details.last
+    auction_dls = auction.auction_details.first
     return if auction_dls.nil?
 
     sub_quantity(product, timer)

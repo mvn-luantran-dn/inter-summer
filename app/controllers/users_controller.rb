@@ -23,6 +23,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
+      if params[:user][:file].present?
+        @user.asset.destroy! if @user.asset.present?
+        Asset.create!(asset_params.merge(module_type: User.name, module_id: @user.id))
+      end
       flash[:success] = 'Update success'
       redirect_to edit_user_path(@user)
     else
@@ -52,7 +56,12 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :address, :phone, :gender, :birth_day)
+      params.require(:user).permit(:name, :email, :address, :phone,
+                                   :gender, :birth_day, :password_comfirm, :password)
+    end
+
+    def asset_params
+      params.require(:user).permit(:file)
     end
 
     def password_params

@@ -54,12 +54,20 @@ class OrdersController < ApplicationController
   end
 
   def update
-    payment = Payment.find(params[:payment_id])
-    format_params(@order, payment)
-    if @order.update_attributes(order_params)
-      flash[:success] = 'Completed orderd'
-      redirect_to root_path
+    @items = @order.items if @order
+    @payments = Payment.all
+    if params[:payment_id].present?
+      payment = Payment.find(params[:payment_id])
+      format_params(@order, payment)
+      if @order.update_attributes(order_params)
+        flash[:success] = 'Completed orderd'
+        redirect_to root_path
+      else
+        flash[:danger] = 'Please input all information'
+        render :edit
+      end
     else
+      flash[:danger] = 'Please input all information'
       render :edit
     end
   end

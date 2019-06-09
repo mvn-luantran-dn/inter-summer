@@ -1,5 +1,5 @@
 en:
-  auctions:
+  orders:
     update:
       success: 'Update auction success'
     destroy:

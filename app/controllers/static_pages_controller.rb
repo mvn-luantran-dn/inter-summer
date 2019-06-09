@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
       if @auction.nil?
         redirect_to '/404'
       else
-        @auction_details = @auction.auction_details.order('price_bid DESC')
+        @auction_details = @auction.auction_details
       end
     end
   end

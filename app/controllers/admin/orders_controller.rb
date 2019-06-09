@@ -27,7 +27,7 @@ class Admin::OrdersController < Admin::BaseController
   def edit; end
 
   def update
-    if @order.update_attributes(order_params)
+    if @order.update_attributes(status: params[:order][:status].downcase)
       flash[:success] = I18n.t('orders.update.success')
       redirect_to admin_orders_path
     else
@@ -73,15 +73,11 @@ class Admin::OrdersController < Admin::BaseController
       @order = Order.find_by(id: params[:id]) || redirect_to_not_found
     end
 
-    def order_params
-      params.require(:order).permit(:status)
-    end
-
     def check_delete_order(order)
       order.status == 'completed'
     end
 
     def list_status
-      @list_status = Order::STATUS.map { |st| st.upcase }
+      @list_status = Order::STATUS_UPDATE.map { |st| st.upcase }
     end
 end

@@ -80,11 +80,11 @@
                                 <div class="variation-item">
                                   <div class="variation-Musc variation-label">Color:</div>
                                   <div class="variation-Musc variation-value">
-                                    <p><%= item.product.color %></p>
+                                    <p><%= item.product.color || 'N/A' %></p>
                                   </div>
                                 </div>
                               </div>
-                              <span class="quantity">Size: <%= item.product.size %></span>
+                              <span class="quantity">Size: <%= item.product.size || 'N/A' %></span>
                             </div>
                           </li>
                         <% end %>

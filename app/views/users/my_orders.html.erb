@@ -46,6 +46,7 @@
                     <td class="center">Date</td>
                     <td class="center">Order Status</td>
                     <td class="center">Total Price</td>
+                    <td class="center">Action</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,11 @@
                     <td class="center"><%= order.created_at.strftime("%A, %B %d, %Y, %H:%M:%S") %></td>
                     <td class="center"><%= order.status %></td>
                     <td class="center"><%= number_with_delimiter(order.total_price, :delimiter => ',') %> VND</td>
+                    <td class="center">
+                      <% if Order::STATUS_CAN_CANCLE.include?(order.status)%>
+                        <%= link_to 'x', user_cancel_orders_path(current_user, order), class: 'remove', title: "Delete", method: :put, data: { confirm: "You sure?" } %>
+                      <% end %>
+                    </td>
                   </tr>  
                   <% end %>
                 </tbody>

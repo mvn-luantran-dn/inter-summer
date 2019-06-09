@@ -1,32 +1,39 @@
 <% provide(:title, 'Sign up') %>
-<div class="header_image" style="background: url('https://fandy.vn/wp-content/uploads/2017/09/header-default-1.png') no-repeat left;height: 350px;background-size: 100%;"></div>
-<div class="login-box sign-up">
-  <div class="left sign-up-left">
-    <h1>Sign up</h1>
-    <%= form_for(@user) do |f| %>
-      <%= form_group_for 'col-lg-12', f, :name, label: false  do %>
-        <%= f.text_field :name, placeholder: 'Name', class: 'form-input' %>
+<div class="row">
+  <nav aria-label="breadcrumb" style="margin-top: 20px;">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Sign up</li>
+    </ol>
+  </nav>
+  <div class="login-box sign-up">
+    <div class="left sign-up-left">
+      <h1>Sign up</h1>
+      <%= form_for(@user) do |f| %>
+        <%= form_group_for '', f, :name, label: false  do %>
+          <%= f.text_field :name, placeholder: 'Name', class: 'form-input' %>
+        <% end %>
+        <%= form_group_for '', f, :email, label: false  do %>
+          <%= f.email_field :email, placeholder: 'Email', class: 'form-input' %>
+        <% end %>
+        <%= form_group_for '', f, :password, label: false  do %>
+          <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
+        <% end %> 
+        <%= form_group_for '', f, :password_confirmation, label: false  do %>
+          <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: 'form-input' %>
+        <% end %>
+        <%= f.submit "Sign me up", class: 'form-submit' %>
       <% end %>
-      <%= form_group_for 'col-lg-12', f, :email, label: false  do %>
-        <%= f.email_field :email, placeholder: 'Email', class: 'form-input' %>
-      <% end %>
-      <%= form_group_for 'col-lg-12', f, :password, label: false  do %>
-        <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
-      <% end %> 
-      <%= form_group_for 'col-lg-12', f, :password_confirmation, label: false  do %>
-        <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: 'form-input' %>
-      <% end %>
-      <%= f.submit "Sign me up", class: 'form-submit' %>
-    <% end %>
-  </div>
-  <div class="right sign-up-right">
-    <span class="loginwith">Sign in with<br />social network</span>
-    <div>
-      <%= link_to "Log in with facebook", '/auth/facebook' ,class: "social-signin facebook" %>
     </div>
-    <div class='gooogle-footer'>
-      <%= link_to "Log in with Google+", '/auth/google_oauth2' ,class: "social-signin google" %>
+    <div class="right sign-up-right">
+      <span class="loginwith">Sign in with<br />social network</span>
+      <div>
+        <%= link_to "Log in with facebook", '/auth/facebook' ,class: "social-signin facebook" %>
+      </div>
+      <div class='gooogle-footer'>
+        <%= link_to "Log in with Google+", '/auth/google_oauth2' ,class: "social-signin google" %>
+      </div>
     </div>
+    <div class="or">OR</div>
   </div>
-  <div class="or">OR</div>
 </div>

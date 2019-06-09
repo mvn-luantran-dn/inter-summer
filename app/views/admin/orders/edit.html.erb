@@ -31,7 +31,7 @@
               <%= form_group_for 'col-lg-12', f, :status, label: false  do %>
                 <div class="form-group">
                   <%= f.label(:status, 'Status of order:' ) %>
-                  <%= f.select(:status, options_for_select(@list_status, selected: @order.status), {}, { class: 'form-control col-3' }) %>
+                  <%= f.select(:status, options_for_select(@list_status, selected: @order.status.upcase), {}, { class: 'form-control col-3' }) %>
                 </div>
               <% end %>
               <%= form_group_for 'col-lg-12', f, :payment_id, label: false  do %>

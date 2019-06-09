@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :orders
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
-    put '/orders/:id/cancels', to: 'orders/cancels#update'
+    put '/orders/:id/cancels', to: 'orders/cancels#update', as: 'cancel_orders'
     resources :auctions
   end
   resources :products, :categories
