@@ -79,6 +79,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if product_can_delete @product
+      @product.destroy
       flash[:success] = I18n.t('products.destroy.success')
     else
       flash[:danger] = I18n.t('products.destroy.error')

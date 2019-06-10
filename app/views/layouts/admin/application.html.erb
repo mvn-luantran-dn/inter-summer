@@ -14,13 +14,15 @@
         <%= render 'layouts/admin/nav' %>
         <div id="page-wrapper">
             <div class="row">
-              <div class="col-lg-12">
-                <h1 class="page-header"><%= yield(:manage) %></h1>
+              <div class="col-lg-12 page-header">
+                <h1 style="float: left"><%= yield(:manage) %></h1>
+                <% flash.each do |message_type, message| %>
+                  <div class="float-right alert alert-<%= message_type %> col-sm-3" id="notice-hidden">
+                    <%= message %>
+                  </div>
+                <% end %>
               </div>
             </div>
-            <% flash.each do |message_type, message| %>
-              <div class="alert alert-success col-sm-3"><%= message %></div>
-            <% end %>
             <%= yield %>
         </div>
     </div>

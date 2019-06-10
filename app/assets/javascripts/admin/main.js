@@ -193,6 +193,14 @@ $(document).ready(function () {
   $("#profile-img").change(function () {
     readURL(this);
   });
+  function initialSetup() {
+    if (document.getElementById("notice-hidden") != null) {
+      setTimeout(function () {
+        document.getElementById('notice-hidden').style.visibility = 'hidden';
+      }, 2000);
+    }
+  }
+  initialSetup();
 });
 
 const capitalize = (s) => {

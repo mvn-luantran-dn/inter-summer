@@ -13,7 +13,7 @@
     <div id="container">
       <div class="col-lg-12 alert-auction">
         <% flash.each do |message_type, message| %>
-          <div class="float-right alert alert-<%= message_type %> col-sm-3"><%= message %>
+          <div class="float-right alert alert-<%= message_type %> col-sm-3" id="notice-hidden"><%= message %>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin: 0;">
               <span aria-hidden="true">&times;</span>
             </button>
