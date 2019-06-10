@@ -1,6 +1,10 @@
-<%- attributes = ['id', 'category_id', 'name', 'price', 'price_at', 'quantity'] -%>
-<%= CSV.generate_line attributes %>
+<%- attributes = ['SSID', 'Category', 'Name', 'Price', 'Price_at', 'Quantity'] -%>
+<%= CSV.generate_line(attributes, skip_blanks: true).html_safe %>
 <%- @products.each do |product| -%>
-  <%- record = attributes.map { |attribute| product.send(attribute) } -%>
-  <%= CSV.generate_line(record) -%>
+  <%-
+    price = number_with_delimiter(product.price, :delimiter => ',') + ' VND'
+    price_at = number_with_delimiter(product.price_at, :delimiter => ',') + ' VND'
+    record = [product.id, product.category.name, product.name, price, price_at, product.quantity]
+  -%>
+  <%= CSV.generate_line(record, skip_blanks: true).html_safe -%>
 <%- end -%>

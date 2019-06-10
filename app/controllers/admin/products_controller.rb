@@ -17,12 +17,11 @@ class Admin::ProductsController < Admin::BaseController
                              .common_order
                     end
       end
-
       format.csv do
         filename = "Product_#{Time.now.to_i}.csv"
         headers['Content-Disposition'] = "attachment; filename=#{filename}"
         headers['Content-Type'] ||= 'text/csv'
-        @products = Product.all
+        @products = Product.all.order(id: :asc)
       end
     end
   end
