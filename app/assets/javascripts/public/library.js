@@ -66,4 +66,7 @@ $(document).ready(function () {
     }
   }
   initialSetup();
+  
+  span_first = $("#bid-final span:first-child")['0'];
+  $(span_first).html('<i class="fa fa-trophy" aria-hidden="true"></i> ' + $(span_first).html());
 });

@@ -17,15 +17,19 @@ $(document).ready(function () {
       },
       received: function(data) {
         html = "";
-        data.obj.forEach(function (e) {
+        $.each(data.obj, function (index, e) {
           html += '<li class="history_rows odd">';
-          html += '<span class="bid_user current_winner pro_user">' + e['name'] + '</span>';
+          if(index == 0) {
+            html += '<span class="bid_user current_winner pro_user">' + '<i class="fa fa-trophy" aria-hidden="true"></i> ' + e['name'] + '</span>';
+          } else {
+            html += '<span class="bid_user current_winner pro_user">' + e['name'] + '</span>';            
+          }
           html += '<span class="bid_amount">' + formatMoney(e['price_bid']) + '</span>';
           html += '<span class="bid_time">' + e['updated_at'] + '</span>';
           html += '</li>';
         });
         $('#bid-final').html(html);
-        $('#user-winner').html(data.obj[0]['name']);
+        $('#user-winner').html('<i class="fa fa-trophy" aria-hidden="true"></i> ' + data.obj[0]['name']);
       } 
     });
   } else {

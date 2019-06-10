@@ -28,6 +28,10 @@ en:
         address: 'Address'  
         phone: 'Phone'
         type_payment: 'Type payment'
+      payment:
+        name: 'Name'
+        description: 'Description'
+        transport_fee: 'Transport fee'
     errors:
       models:
         user:
@@ -94,5 +98,10 @@ en:
               too_long: 'Phone 15 characters is the maximum allowed'
               invalid: 'Phone input fail format'
               not_a_number: 'Please input number'
-            type_payment:
+            payment_id:
               blank: 'Please choose type Payment'
+        payment:
+          attributes:
+            name:
+              blank: 'Please input name'
+              too_long: 'Name 100 characters is the maximum allowed'

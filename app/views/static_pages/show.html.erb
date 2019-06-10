@@ -95,7 +95,12 @@
               <div class="current-winner">
                 <div class="right-winner-name">
                   <p class="info_field winner"><strong>Winner:</strong></p>
-                  <p class="info_data"><span class="current_winner" id="user-winner"><%= @auction_details.first.user.name if @auction_details.first %></span></p>
+                  <p class="info_data"><span class="current_winner" id="user-winner">
+                    <% if @auction_details.first  %>
+                      <i class="fa fa-trophy" aria-hidden="true"></i>
+                      <%= @auction_details.first.user.name %></span>
+                    <% end %>
+                  </p>
                 </div>
                 <p id="pBiddingWaitMsg" class="bidding_wait_msg"></p>
               </div>
@@ -151,7 +156,7 @@
         </div>
       </div>
       <div class="product_details">
-        <!--<a id="show_history">Hide auction history</a>-->
+        <a id="show_history">Hide auction history</a>
         <ul class="product_details_tab">
           <li class="border-show-details"><a id="show_details" class="active">Product detail</a></li>
         </ul>
