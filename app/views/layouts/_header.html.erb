@@ -132,12 +132,10 @@
             <% end %>      
           <% end %>
           <div class="search-block">
-            <form method="get" id="searchform" name="searchform" action="https://fandy.vn/">
+            <%= form_tag search_path, method: :get, id: 'searchform', name: "searchform" do %>
               <button class="search-button" type="submit" value="Search" onclick="return IsEmpty();"></button>
               <input type="text" id="s" name="s" value="" placeholder="Search..." autocomplete="off">
-              <input type="hidden" name="post_type" value="product">
-            </form>
-            <div class="search-panel"></div>
+            <% end %>
           </div>
         </div>
       </div>

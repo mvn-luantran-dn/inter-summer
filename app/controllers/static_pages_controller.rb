@@ -16,4 +16,13 @@ class StaticPagesController < ApplicationController
       end
     end
   end
+
+  def search
+    @products = if params[:s].present?
+                  Product.where('name LIKE ?', "%#{params[:s]}%")
+                         .includes(:assets, :promotions_categories)
+                else
+                  Product.includes(:assets, :promotions_categories)
+                end
+  end
 end

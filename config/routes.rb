@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root 'static_pages#home'
   get  '/help', to: 'static_pages#help'
+  get  '/search', to: 'static_pages#search'
   get  '/about', to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get '/auctions/:id', to: 'static_pages#show'

@@ -20,7 +20,6 @@
         <% else %>
           <img src="/avatar-default.png" id="profile-img-tag" class="avatar-user" />
         <% end %>
-        <input id="profile-img" type="file" style="margin-left: 50px;" />
       </div>
       <%= link_to "My Profile", edit_user_path(current_user), class: "list-group-item list-group-item-action" %>
       <%= link_to "Change Password", edit_password_path(current_user), class: "list-group-item list-group-item-action" %>

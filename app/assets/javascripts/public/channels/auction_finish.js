@@ -20,9 +20,6 @@ $(document).ready(function () {
         if (current_id === data.obj['user_id']) {
           number = parseInt($('#itemCount').html()) + 1;
           $('#itemCount').html(number);
-          // if (number == 1) {
-          // } else {
-          // }
           swal({
             html: 'Congratulations. You won the last auction.',
             type: 'info',
