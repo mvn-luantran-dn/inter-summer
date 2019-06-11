@@ -50,7 +50,9 @@ class UsersController < ApplicationController
   end
 
   def my_orders
-    @orders = current_user.orders.paginate(page: params[:page], per_page: 5).order('id ASC')
+    @orders = current_user.orders.includes(:items, :payment)
+                          .paginate(page: params[:page], per_page: 5)
+                          .order('id DESC')
   end
 
   private

@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/products/promotions', to: 'promotions#index'
   resources :users do
-    resources :orders
+    resources :orders do
+      collection do
+        get 'success'
+        get 'cancel'
+      end
+    end
     get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
     put '/orders/:id/cancels', to: 'orders/cancels#update', as: 'cancel_orders'

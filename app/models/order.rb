@@ -20,6 +20,8 @@ class Order < ApplicationRecord
   acts_as_paranoid
   strip_attributes
 
+  attr_reader :redirect_uri, :popup_uri
+
   STATUS_WAITTING   = 'waitting'.freeze
   STATUS_ORDERED    = 'ordered'.freeze
   STATUS_DELIVERY   = 'delivering'.freeze
@@ -65,4 +67,62 @@ class Order < ApplicationRecord
                     format: { with: PHONE_REGEX }, numericality: true, on: :update
   validates :payment_id, presence: true, on: :update
   scope :common_order, -> { order('id DESC') }
+
+  def setup!(return_url, cancel_url)
+    payment_request = payment_request 100
+    response = client.setup(
+      payment_request,
+      return_url,
+      cancel_url,
+      pay_on_paypal: true
+    )
+    self.token = response.token
+    self.save! rescue false
+    @redirect_uri = response.redirect_uri
+    @popup_uri = response.popup_uri
+    self
+  end
+
+  def cancel!
+    self.canceled = true
+    self.save! rescue false
+    self
+  end
+
+  def complete!(payer_id = nil)
+    payment_request = payment_request 100
+    response = client.checkout!(self.token, payer_id, payment_request)
+    self.payer_id = payer_id
+    self.transaction_id = response.payment_info.first.transaction_id
+    self.purchased_at = Time.zone.now
+    self.status = STATUS_ORDERED
+    self.save! rescue false
+    self
+  end
+
+  def details
+    client.details(self.token)
+  end
+
+  private
+
+    def client
+      Paypal::Express::Request.new PAYPAL_CONFIG
+    end
+
+    def payment_request(total)
+      t_amount = total
+      item = {
+        name: 'Paypal name bcc testing',
+        description: 'Paypal name bcc testing',
+        amount: t_amount,
+        category: :Digital
+      }
+      request_attributes = {
+        amount: t_amount,
+        description: 'Paypal instance for testing',
+        items: [item]
+      }
+      Paypal::Payment::Request.new request_attributes
+    end
 end

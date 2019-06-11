@@ -1,0 +1,14 @@
+development: &sandbox
+  username: thanhluan2896-facilitator_api1.gmail.com
+  password: K9HTKAKUW5N6544F
+  signature: Az0VhDApdy6iuxDP9KxNoSywlcc9A7TNRRgyg0yeE12yBM1SxaYQHOJA
+  sandbox: true
+
+test:
+  <<: *sandbox
+
+production: &production
+  username: thanhluan2896-facilitator_api1.gmail.com
+  password: K9HTKAKUW5N6544F
+  signature: Az0VhDApdy6iuxDP9KxNoSywlcc9A7TNRRgyg0yeE12yBM1SxaYQHOJA
+  sandbox: false

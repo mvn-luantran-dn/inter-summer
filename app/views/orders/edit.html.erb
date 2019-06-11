@@ -103,7 +103,7 @@
               <div class="call-now">
                 ✓ Call: <a href="tel:0972854570">0972 854570</a> → For quick purchase
               </div>
-              <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Complete the purchase" data-value="Order">
+              <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id='paypal_submit' value="Complete the purchase" data-value="Order">
               <div class="checkout-error"></div>
             </div>
           </div>
@@ -115,3 +115,23 @@
     <div class="order-receive-popup"></div>
   </div>
 </div>
+<script src="https://www.paypalobjects.com/js/external/dg.js"></script>
+<script>
+$(document).ready(function(){
+  $(function(){
+    var sandbox = true;
+    var submit_id = 'paypal_submit';
+    flow_config = {trigger: submit_id};
+    if (sandbox) flow_config.stage = sandbox;
+    window.paypal_flows = [];
+    window.paypal_flows.push(new PAYPAL.apps.DGFlow(flow_config));
+
+    $("#payment_customer_type_collection").click(function(){
+      $(".customer").show();
+    })
+    $("#payment_customer_type_user").click(function(){
+      $(".customer").hide();
+    })
+  });
+});
+</script>

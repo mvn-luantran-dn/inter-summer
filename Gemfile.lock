@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/ianfleeton/paypal-express.git
+  revision: c1e4cd39b2bc3eadd8089573ff33dea6f099c598
+  specs:
+    ianfleeton-paypal-express (0.8.5)
+      activesupport (>= 2.3, < 6)
+      attr_required (~> 1.0)
+      rest-client (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -58,6 +67,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    attr_required (1.0.1)
     autoprefixer-rails (9.1.0)
       execjs
     bcrypt (3.1.12)
@@ -107,6 +117,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    domain_name (0.5.20180417)
+      unf (>= 0.0.5, < 1.0.0)
     elevatezoom-rails (1.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
@@ -122,6 +134,8 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -160,6 +174,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
@@ -248,6 +263,10 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.5.0)
       redis (>= 2.2, < 5)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -296,6 +315,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.17)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
     validates_timeliness (5.0.0.alpha3)
       timeliness (~> 0.3.8)
     web-console (3.6.2)
@@ -332,6 +354,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-rails
+  ianfleeton-paypal-express!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

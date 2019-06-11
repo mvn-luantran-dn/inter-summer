@@ -58,6 +58,7 @@ gem 'strip_attributes'
 gem 'annotate'
 gem 'state_machine'
 gem 'active_model_serializers'
+gem 'ianfleeton-paypal-express', github: 'ianfleeton/paypal-express', require: 'paypal/express'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_135700) do
+ActiveRecord::Schema.define(version: 2019_06_10_135203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,12 @@ ActiveRecord::Schema.define(version: 2019_06_05_135700) do
     t.datetime "updated_at", null: false
     t.integer "payment_id", null: false
     t.string "city"
+    t.string "transaction_id"
+    t.string "token"
+    t.boolean "canceled", default: false
+    t.string "payer_id"
+    t.datetime "expires_at"
+    t.datetime "purchased_at"
     t.index ["payment_id"], name: "index_orders_on_payment_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

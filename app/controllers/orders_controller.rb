@@ -1,19 +1,12 @@
 class OrdersController < ApplicationController
+  rescue_from Paypal::Exception::APIError, with: :paypal_api_error
   before_action :find_order, only: %i[index edit update destroy]
 
   def index
     return if @order.blank?
 
     @items = @order.items
-    @total = @items.inject(0) do |_result, item|
-      promotion = item.product.promotions_categories
-      price = if promotion.present?
-                item.amount * (100 - promotion.discount) / 100
-              else
-                item.amount
-              end
-      _result += price
-    end
+    @total = total(@items)
   end
 
   def destroy
@@ -42,15 +35,7 @@ class OrdersController < ApplicationController
 
     @items    = @order.items if @order
     @payments = Payment.all
-    @total = @items.inject(0) do |_result, item|
-      promotion = item.product.promotions_categories
-      price = if promotion.present?
-                item.amount * (100 - promotion.discount) / 100
-              else
-                item.amount
-              end
-      _result += price
-    end
+    @total = total(@items)
   end
 
   def update
@@ -59,7 +44,14 @@ class OrdersController < ApplicationController
     if params[:payment_id].present?
       payment = Payment.find(params[:payment_id])
       format_params(@order, payment)
-      if @order.update_attributes(order_params)
+      if payment.name == 'Paypal'
+        @order.update_attributes(order_paypal_params)
+        @order.setup!(
+          success_user_orders_url,
+          cancel_user_orders_url
+        )
+        redirect_to @order.popup_uri
+      elsif @order.update_attributes(order_params)
         flash[:success] = 'Completed orderd'
         redirect_to root_path
       else
@@ -72,14 +64,35 @@ class OrdersController < ApplicationController
     end
   end
 
+  def success
+    handle_callback do |order|
+      order.complete!(params[:PayerID])
+      flash[:success] = 'Payment Transaction Completed'
+      root_path
+    end
+  end
+
+  def cancel
+    handle_callback do |order|
+      order.cancel!
+      flash[:danger] = 'Payment Request Canceled'
+      edit_user_order_path(current_user, order)
+    end
+  end
+
   private
 
     def order_params
       params.require(:order).permit(%i[name address phone payment_id city status total_price])
     end
 
+    def order_paypal_params
+      params.require(:order).permit(%i[name address phone payment_id city total_price])
+    end
+
     def format_params(order, payment)
-      params[:order][:total_price] = order.total_price + payment.transport_fee
+      params[:order][:total_price] = total(order.items) + payment.transport_fee
+      params[:order][:payment_id] = params[:payment_id]
       params[:order][:status] = Order::STATUS_ORDERED
     end
 
@@ -97,5 +110,20 @@ class OrdersController < ApplicationController
                 end
         _result += price
       end
+    end
+
+    def handle_callback
+      order = Order.find_by_token!(params[:token])
+      @redirect_uri = yield order
+      redirect_to @redirect_uri
+    end
+
+    def paypal_api_error(error)
+      redirect_to edit_user_order_url, error: error.response.details.collect(&:long_message)
+                                                   .join('<br />')
+    end
+
+    def payment_params
+      params.require(:order).permit(:total_price)
     end
 end
