@@ -69,4 +69,9 @@ $(document).ready(function () {
   
   span_first = $("#bid-final span:first-child")['0'];
   $(span_first).html('<i class="fa fa-trophy" aria-hidden="true"></i> ' + $(span_first).html());
+
+  $('#billing_state').change(function () {
+    fee = $(event.target).children("option:selected").attr('fee');
+    $("#toal-with-fee").html(formatMoney(parseInt($("#toal-no-fee").html()) + parseInt(fee)));
+  });
 });

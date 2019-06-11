@@ -49,11 +49,12 @@
               <% end %>
             </div>
             <div class="cart-total">
+              <span style="visibility: hidden;" id="toal-no-fee"><%= @total %></span>
               <div class="total-box">
                 <div class="order-total">
                   <label>Total money: </label>
-                  <span><strong><span class="woocommerce-Price-amount amount">
-                  <%= number_with_delimiter(@total, :delimiter => ',') %>&nbsp;<span class="woocommerce-Price-currencySymbol">VNĐ</span></span></strong> </span>
+                  <span><strong><span class="woocommerce-Price-amount amount" id="toal-with-fee">
+                  <%= number_with_delimiter(@total, :delimiter => '.') %> ₫</span></strong></span>
                 </div>
               </div>
               <a href="/" class="return-shop"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Continue to participate in the auction </a>
@@ -93,9 +94,9 @@
               <p class="form-row form-row-wide address-field validate-state" id="billing_state_field" data-priority="100">
                 <span class="woocommerce-input-wrapper">
                   <select name="payment_id" id="billing_state" class="state_select " autocomplete="address-level1" data-placeholder="">
-                    <option value="">Choose a form of payment</option>
+                    <option value="" fee="0">Choose a form of payment</option>
                     <%= @payments.each do |payment| %>
-                      <option value="<%= payment.id %>"><%= payment.name %></option>
+                      <option value="<%= payment.id %>" fee="<%= payment.transport_fee %>"><%= payment.name %> (<%= number_with_delimiter(payment.transport_fee, :delimiter => ',') %> VND)</option>
                     <% end %>
                     </select>
                 </span>
