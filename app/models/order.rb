@@ -2,18 +2,24 @@
 #
 # Table name: orders
 #
-#  id          :bigint(8)        not null, primary key
-#  user_id     :bigint(8)
-#  address     :string
-#  phone       :string
-#  name        :string
-#  total_price :integer
-#  deleted_at  :datetime
-#  status      :string           default("waitting"), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  payment_id  :integer          not null
-#  city        :string
+#  id             :bigint(8)        not null, primary key
+#  user_id        :bigint(8)
+#  address        :string
+#  phone          :string
+#  name           :string
+#  total_price    :integer
+#  deleted_at     :datetime
+#  status         :string           default("waitting"), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  payment_id     :integer          not null
+#  city           :string
+#  transaction_id :string
+#  token          :string
+#  canceled       :boolean          default(FALSE)
+#  payer_id       :string
+#  expires_at     :datetime
+#  purchased_at   :datetime
 #
 
 class Order < ApplicationRecord
@@ -69,7 +75,7 @@ class Order < ApplicationRecord
   scope :common_order, -> { order('id DESC') }
 
   def setup!(return_url, cancel_url)
-    payment_request = payment_request 100
+    payment_request = payment_request(self)
     response = client.setup(
       payment_request,
       return_url,
@@ -90,7 +96,7 @@ class Order < ApplicationRecord
   end
 
   def complete!(payer_id = nil)
-    payment_request = payment_request 100
+    payment_request = payment_request(self)
     response = client.checkout!(self.token, payer_id, payment_request)
     self.payer_id = payer_id
     self.transaction_id = response.payment_info.first.transaction_id
@@ -110,19 +116,18 @@ class Order < ApplicationRecord
       Paypal::Express::Request.new PAYPAL_CONFIG
     end
 
-    def payment_request(total)
-      t_amount = total
+    def payment_request(order)
       item = {
-        name: 'Paypal name bcc testing',
-        description: 'Paypal name bcc testing',
-        amount: t_amount,
+        name: order.items.first.product.name,
+        description: 'Paypal for ' + order.items.first.product.name,
+        amount: order.total_price / 23332,
         category: :Digital
       }
       request_attributes = {
-        amount: t_amount,
-        description: 'Paypal instance for testing',
+        amount: order.total_price / 23332,
+        description: 'Paypal for auction of ' + order.user.name,
         items: [item]
       }
-      Paypal::Payment::Request.new request_attributes
+      Paypal::Payment::Request.new(request_attributes)
     end
 end
