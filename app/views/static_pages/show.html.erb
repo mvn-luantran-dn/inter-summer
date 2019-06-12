@@ -115,7 +115,9 @@
                 <li>
                   <label>Time auction:</label>
                   <span>
-                    <%= @timer.start_at.strftime("%H:%M:%S") %> to <%= @timer.end_at.strftime("%H:%M:%S") %>
+                    <i>
+                      <%= @timer.start_at.strftime("%H:%M:%S") %> to <%= @timer.end_at.strftime("%H:%M:%S") %>
+                    </i>
                   </span>
                 </li>
                 <li>
