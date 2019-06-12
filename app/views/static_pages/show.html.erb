@@ -113,6 +113,12 @@
                   <span><%= number_with_delimiter(@auction.timer.bid_step, :delimiter => ',') %> VND</span>
                 </li>
                 <li>
+                  <label>Time auction:</label>
+                  <span>
+                    <%= @timer.start_at.strftime("%H:%M:%S") %> to <%= @timer.end_at.strftime("%H:%M:%S") %>
+                  </span>
+                </li>
+                <li>
                   <label>Weight:</label>
                   <span><%= @product.weight || 'N/A' %></span>
                 </li>

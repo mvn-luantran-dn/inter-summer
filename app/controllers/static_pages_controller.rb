@@ -3,12 +3,12 @@ class StaticPagesController < ApplicationController
   def home; end
 
   def show
-    timer = Timer.find_by(id: params[:id])
-    if timer.nil?
+    @timer = Timer.find_by(id: params[:id])
+    if @timer.nil?
       redirect_to '/404'
     else
-      @product = timer.product
-      @auction = Auction.auction_timer(timer.id).last
+      @product = @timer.product
+      @auction = Auction.auction_timer(@timer.id).last
       if @auction.nil?
         redirect_to '/404'
       else
