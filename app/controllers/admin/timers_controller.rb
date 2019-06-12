@@ -5,7 +5,7 @@ class Admin::TimersController < Admin::BaseController
   before_action :find_timer, only: %i[edit update destroy]
 
   def index
-    @timers = @product.timers.paginate(page: params[:page], per_page: 10).order('id DESC')
+    @timers = @product.timers.order('id DESC')
   end
 
   def new

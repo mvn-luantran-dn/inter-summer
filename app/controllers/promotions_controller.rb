@@ -5,7 +5,8 @@ class PromotionsController < ApplicationController
   private
 
     def load_products
-      @products = Product.includes(:assets, :promotions_categories).select do |pro|
+      @products = Product.includes(:assets, category: [promotions_categories: :promotion])
+                         .select do |pro|
         pro.promotions_categories.present?
       end
     end

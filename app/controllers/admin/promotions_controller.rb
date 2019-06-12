@@ -6,14 +6,7 @@ class Admin::PromotionsController < Admin::BaseController
   def index
     respond_to do |format|
       format.html do
-        @promotions = if params[:content].blank?
-                        Promotion.paginate(page: params[:page], per_page: 10)
-                                 .common_order
-                      else
-                        Promotion.search_product(params[:content])
-                                 .paginate(page: params[:page], per_page: 10)
-                                 .common_order
-                      end
+        @promotions = Promotion.common_order
       end
     end
   end

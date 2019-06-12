@@ -29,7 +29,6 @@ class Product < ApplicationRecord
   has_many :assets, as: :module, dependent: :destroy
   accepts_nested_attributes_for :assets, allow_destroy: true
   has_many :items, dependent: :destroy
-  has_one :promotions_categories, through: :category
   has_many :auctions, through: :timers
   validates :name, presence: true, length: { maximum: 100 }
   validates :detail, presence: true
@@ -51,5 +50,12 @@ class Product < ApplicationRecord
 
   def change_status_to_unsale
     self.update_attribute(:status, ProductStatus::UNSELLING)
+  end
+
+  def promotions_categories
+    promotions = self.category.promotions_categories.map(&:promotion).select do |p|
+      Time.zone.now.between?(p.start_date, p.end_date)
+    end
+    promotions.first&.promotions_categories&.detect { |pc| pc.category_id == self.category_id }
   end
 end
