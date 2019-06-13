@@ -1,5 +1,4 @@
 <tr class="odd gradeX">
-  <td class="center"><%= check_box_tag 'ids[]', auction.id, false, :class => 'table-row-checkbox' %></td>
   <td class="">
     <%= image_tag image_first_of_object(auction.timer.product), class: 'avatar detail-item', id: auction.id %>
     <span class= 'detail-item' id= "<%= auction.id %>"><%= auction.timer.product.name %></span>
@@ -19,10 +18,10 @@
       <img src="/stop.png" alt="running" class= "avatar-action" />      
     <% end %>
   </td>
-  <td class="center auction-action">
-    <!--<%= link_to raw('<i class="fa fa-info-circle"></i>'), admin_auction_path(auction), class: 'button-item update-item btn-margin' %>-->
+  <!--<td class="center auction-action">
+    <%= link_to raw('<i class="fa fa-info-circle"></i>'), admin_auction_path(auction), class: 'button-item update-item btn-margin' %>
     <%= link_to raw('<i class="fa fa-trash"></i>'), admin_auction_path(auction), method: :delete, class: 'button-item delete-item auction-delete',
                           data: { confirm: "You sure?" } %>
 
-  </td>
+  </td>-->
 </tr>

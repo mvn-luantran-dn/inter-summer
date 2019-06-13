@@ -56,10 +56,12 @@ class OrdersController < ApplicationController
         redirect_to root_path
       else
         flash[:danger] = 'Please input all information'
+        @total = total(@items)
         render :edit
       end
     else
       flash[:danger] = 'Please input all information'
+      @total = total(@items)
       render :edit
     end
   end

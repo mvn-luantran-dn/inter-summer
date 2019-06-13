@@ -8,7 +8,7 @@ class Admin::ProductsController < Admin::BaseController
   def index
     respond_to do |format|
       format.html do
-        Product.include_basic.common_order
+        @products = Product.include_basic.common_order
       end
       format.csv do
         filename = "Product_#{Time.now.to_i}.csv"
