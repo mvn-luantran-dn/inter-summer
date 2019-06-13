@@ -6,6 +6,9 @@ class Users::ShowSerializer < ApplicationSerializer
   has_many :item_deletes, serializer: Items::ShowSerializer
 
   def item_deletes
-    object.orders.map { |order| order.items.with_deleted - order.items }.flatten!
+    object.orders.map do |order|
+      result = order.items.with_deleted - order.items
+      result + order.items if order.status == Order::STATUS_CANCLED
+    end.flatten!.uniq
   end
 end

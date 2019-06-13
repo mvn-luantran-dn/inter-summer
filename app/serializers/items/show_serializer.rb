@@ -4,7 +4,7 @@ class Items::ShowSerializer < ApplicationSerializer
   belongs_to :product, serializer: Products::ShowSerializer
 
   def deleted_at
-    object.deleted_at&.strftime('%Y-%m-%d')
+    object.deleted_at&.strftime('%Y-%m-%d') || object.order.updated_at.strftime('%Y-%m-%d')
   end
 
   def amount

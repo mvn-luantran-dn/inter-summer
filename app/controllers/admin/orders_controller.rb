@@ -27,7 +27,7 @@ class Admin::OrdersController < Admin::BaseController
   def edit; end
 
   def update
-    if @order.update_attributes(status: params[:order][:status].downcase)
+    if @order.update_columns(status: params[:order][:status].downcase)
       flash[:success] = I18n.t('orders.update.success')
       redirect_to admin_orders_path
     else
