@@ -1,0 +1,127 @@
+<div id="checkout" class="checkout_payment">
+  <div id="content" style="min-height: 635px;">
+    <div class="wrapper">
+      <div id="heading">
+        <div class="wrapper">
+          <h1>
+            Thanh toán
+          </h1>
+        </div>
+      </div>
+      <div class="left-payment">
+        <div id="payment_progress">
+          <span class="progress_bar first">
+          <a id="lnkProgressBarBillingAddress" class="active" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarBillingAddress','')">Địa chỉ thanh toán</a></span>
+          <span class="progress_bar second">
+          <a id="lnkProgressBarDeliveryOptions" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarDeliveryOptions','')">HÌnh thức giao hàng</a></span>
+          <span class="progress_bar third" style="display: none;">
+          <a id="lnkProgressBarPaymentOptions" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarPaymentOptions','')">Các hình thức thanh toán</a></span>
+          <span class="progress_bar fourth">
+          <a id="ContentPlaceHolder1_lnkProgressBarStatus" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$lnkProgressBarStatus','')">Tình trạng đơn hàng</a></span>
+          <span class="progress_bar inactive"><a href="#invoice">
+          Hoá đơn của bạn</a></span>
+        </div>
+        <div id="ContentPlaceHolder1_billing_address" class="payment_info active">
+          <div id="ContentPlaceHolder1_UpdateProgress1" style="display:none;" role="status" aria-hidden="true">
+            <div class="divWaiting">
+              <span id="ContentPlaceHolder1_lblWait"> Please wait... </span>
+              <img id="ContentPlaceHolder1_imgWait" src="../Gfx/loader.gif" align="middle">
+            </div>
+          </div>
+          <div id="ContentPlaceHolder1_UpdatePanel1">
+            <div id="ContentPlaceHolder1_divAddressFields">
+              <h2>
+                Địa chỉ gửi hàng
+              </h2>
+              <div class="payment_info_inner">
+                <%= form_for(@order, url: user_order_path) do |f| %>
+                  <%= form_group_for f, :email, label: false  do %>
+                    <div class="form-group">
+                     <%= f.label :name %>
+                     <%= f.text_field :name, placeholder: @order.user.name, class: 'address_input form-control' %>
+                    </div>
+                  <% end %>
+                  <%= form_group_for f, :email, label: false  do %>
+                    <div class="form-group">
+                      <%= f.label :address %>
+                      <%= f.text_field :address, placeholder: 'address', class: 'address_input form-control' %>
+                    </div>
+                  <% end %>
+                  <%= form_group_for f, :email, label: false  do %>
+                    <div class="form-group">
+                      <%= f.label :phone %>
+                      <%= f.text_field :phone, placeholder: 'phone', class: 'address_input form-control' %>
+                    </div>
+                  <% end %>
+                  <div class="checkout_progress">
+                    <%= f.submit "Submit", class: 'buttons checkout large bg-btn-icon'%>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="ContentPlaceHolder1_UpdateProgress2" style="display:none;" role="status" aria-hidden="true">
+          <div class="divWaiting">
+            <span id="ContentPlaceHolder1_lblWait1"> Please wait... </span>
+            <img id="ContentPlaceHolder1_imgWait1" src="../Gfx/loader.gif" align="middle">
+          </div>
+        </div>
+        <div id="ContentPlaceHolder1_UpdatePanel2">
+        </div>
+      </div>
+      <div class="right-payment">
+        <div id="help_center" class="gotquestions">
+          <h2>Có câu hỏi?</h2>
+          <p>Vui lòng liên hệ bộ phận hỗ trợ 24 giờ của chúng tôi.</p>
+          <p class="customer_support_tel">Sdt. 02836222111</p>
+        </div>
+        <div id="ContentPlaceHolder1_UpdatePanel4">
+          <div id="ContentPlaceHolder1_pnlRightOrderInfo">
+            <div id="order_info">
+              <h3>
+                Tổng kết đơn hàng
+              </h3>
+              <ul class="purchase_items">
+                <li>
+                  <span class="order_item_label">
+                  Tổng</span>
+                  <span class="order_item_price">
+                  91.300</span>
+                </li>
+                <li>
+                  <span class="order_item_label">
+                  Giao hàng tiêu chuẩn - giao hàng tận nơi.
+                  </span>
+                  <span class="order_item_price">
+                  29.000
+                  </span>
+                </li>
+                <li>
+                  <span class="order_item_label total_payment">
+                  Số tiền cần thanh toán</span>
+                  <span class="order_item_price total_payment">
+                  120.300
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="got_question visible-xs" id="popupright">
+    <div class="popup_btn">
+      <a id="popup_button">
+      CÓ CÂU HỎI?</a> <a id="popup_close"></a>
+    </div>
+    <div class="popup_box_content">
+      <div id="help_center_mobile">
+        <h2>Có câu hỏi?</h2>
+        <p>Vui lòng liên hệ bộ phận hỗ trợ 24 giờ của chúng tôi.</p>
+        <p class="customer_support_tel">Sdt. 02836222111</p>
+      </div>
+    </div>
+  </div>
+</div>

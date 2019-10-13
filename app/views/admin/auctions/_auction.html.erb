@@ -1,9 +1,16 @@
 <tr class="odd gradeX">
   <td class="center"><%= auction.id %></td>
-  <td class="center"><%= link_to auction.product.name, '#', class: 'detail-item' %></td>
-  <td class="center"><%= auction.start_at %></td>
-  <td class="center"><%= auction.period %></td>
-  <td class="center"><%= auction.bid_step %></td>
+  <td class="center"><%= link_to auction.timer.product.name, '#', class: 'detail-item' %></td>
+  <td class="center"><%= auction.timer.created_at %></td>
+  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.user.name if auction.auction_details.order('price_bid DESC').first %></td>
+  <td class="center"><%= auction.auction_details.order('price_bid DESC').first.price_bid if auction.auction_details.order('price_bid DESC').first %></td>
+  <td class="center">
+    <% if auction.status == 'run' %>
+      <p class="auction-item run"><%= auction.status %></p>
+    <% else %>
+      <p class="auction-item finish"><%= auction.status %></p>
+    <% end %>
+  </td>
   <td class="center">
     <%= link_to 'Update', edit_admin_auction_path(auction), class: 'button-item update-item' %> 
     <%= link_to 'Delete', admin_auction_path(auction), method: :delete, class: 'button-item delete-item',

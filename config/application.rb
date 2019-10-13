@@ -18,5 +18,25 @@ module Autions
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.exceptions_app = self.routes
+
+    config.autoload_paths << "#{Rails.root}/lib"
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.time_zone = 'Asia/Ho_Chi_Minh'
+    config.active_record.default_timezone = :local
+    config.assets.enabled = true
+
+    if defined?(Rails::Server)
+      config.after_initialize do
+        Rails.application.load_tasks
+        Rake::Task['start:send_data'].invoke
+        Rake::Task['show:auction_detail'].invoke
+      end
+    end
+
+    config.cache_store = :redis_store, {
+      host: '127.0.0.1',
+      port: 6379,
+      db: 0
+    }, { expires_in: 7.days }
   end
 end

@@ -13,6 +13,9 @@
 .add-item {
   background-color: green;  
 }
+.add-item-child {
+  background-color: #998f8f;
+}
 .header-panel-body{
   position: relative;
 }
@@ -24,7 +27,10 @@
   background-color: #5bc0de;
   margin-left: 10px;
 }
-
+.update-timer-item {
+  background-color: #3348b7;
+  margin-left: 10px;
+}
 .delete-item {
   background-color: #d9534f;
   margin-left: 10px;
@@ -38,4 +44,14 @@
 }
 .center {
   text-align: center;
+}
+.auction-item {
+  border-radius: 5px;
+  padding: 2px;
+}
+.run {
+  background-color: #3be339;
+}
+.finish {
+  background-color: #9ca2b8;
 }
