@@ -28,6 +28,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def id_current_user
+    respond_to do |format|
+      format.json { render json: current_user.id }
+    end
+  end
+
   private
 
     def user_params
