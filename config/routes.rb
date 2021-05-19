@@ -11,10 +11,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   resources :users do
     resources :orders
-<<<<<<< HEAD
+    get '/orders/:id', to: 'orders#edit'
     delete '/orders/:item_id', to: 'orders#destroy'
-=======
->>>>>>> master
   end
   resources :products
   resources :account_activations, only: [:edit]
