@@ -324,6 +324,9 @@ ul.callbacks_tabs.callbacks1_tabs {
 .ftr-gd4-img {
   margin: 0px 0px 7px 0px;
 }
+.footer-images {
+  width: 80%;
+}
 /*--footer end here--*/
 /*--copy right start here--*/
 .copy-left {
@@ -616,7 +619,7 @@ span.blog-clr {
 }
 .caption a h3 {
   color: #000;
-  margin: 0.4em 0em 0.25em 0em;
+  margin: 0.75em 0em 0.75em 0em;
   font-size: 20px;
   font-weight: 700;
   line-height: 1em;
@@ -644,3 +647,19 @@ span.blog-clr {
   font-style: italic;
 }
 /*--services end here--*/
+
+//itemcount
+#itemCount {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  text-align: center;
+}
+.notification {
+  padding: 4px 8px;
+  background-color: #d04646;
+  border-radius: 100%;
+}

@@ -1,5 +1,5 @@
 <tr class="odd gradeX">
-  <td class="center"><%= category.id %></td>
+  <td class="center"><%= check_box_tag 'ids[]', category.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center"><%= link_to category.name, '#', class: 'detail-item' %></td>
   <% if category.parent_id.nil? %>
     <td class="center">No</td>
@@ -7,9 +7,8 @@
     <td class="center"><%= parent_name(category.parent_id) %></td>
   <% end %>
   <td class="center">
-    <%= link_to 'Add', new_admin_category_path(category), class: 'button-item add-item' %> 
+    <%= link_to 'Add', new_admin_category_path(category), class: 'button-item add-item-child btn-margin' %> 
     <%= link_to 'Update', edit_admin_category_path(category), class: 'button-item update-item' %>
-    <%= link_to 'Delete', admin_category_path(category), method: :delete, class: 'button-item delete-item',
-                          data: { confirm: "You sure?" } %>
+    <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "You sure?" }, class: 'button-item delete-item' %>
   </td>
 </tr>

@@ -12,8 +12,16 @@
  *
  *= require_tree .
  *= require_self
+ *= require sweetalert2
  *= require font-awesome
  */
-
+ 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'bootstrap-datetimepicker';
+.morecontent span {
+  display: none;
+}
+.morelink {
+  display: block;
+}

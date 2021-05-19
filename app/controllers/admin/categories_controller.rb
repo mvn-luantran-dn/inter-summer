@@ -1,11 +1,15 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_categories, only: %i[new create]
-  before_action :find_category, except: %i[index new create]
+  before_action :find_category, except: %i[index new create show_import import delete_more_cat]
   before_action :all_categories_without_self, only: %i[edit update]
 
   def index
     @categories_no_parent = Category.where(parent_id: nil)
-    @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+    if params[:content].blank?
+      @categories = Category.paginate(page: params[:page], per_page: 10).order('id DESC')
+    else
+      @categories = Category.search_name(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+    end
   end
 
   def new
@@ -37,9 +41,35 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category.destroy
-    flash[:success] = 'Category deleted'
+    if check_delete_category @category
+      @category.destroy
+      flash[:success] = 'Category deleted'
+    end
     redirect_to admin_categories_url
+  end
+
+  def import
+    if params[:file].nil?
+      flash[:notice] = 'Please choose file'
+      render :show_import
+    else
+      if Category.import_file params[:file]
+        flash[:notice] = 'Data imported'
+      else
+        flash[:danger] = 'Import error'
+      end
+      redirect_to admin_categories_path
+    end
+  end
+
+  def delete_more_cat
+    # if request.post?
+    #   delete_ids = params[:ids].collect {|id| id.to_i} if params[:ids]
+    #   delete_ids.each do |id|
+    #     Category.find(id).destroy
+    #   end
+    # end
+    # redirect_to admin_categories_path, notice: "Delete success"
   end
 
   private
@@ -59,5 +89,28 @@ class Admin::CategoriesController < Admin::BaseController
 
     def all_categories_without_self
       @categories = Category.get_without_self(@category.id).get_without_parent_self(@category.id)
+    end
+
+    def check_delete_category(category)
+      category.products.each do |product|
+        redirect_to admin_categories_path unless product_can_delete product
+      end
+      check_delete_category category.childcategories if category.childcategories.any?
+      true
+    end
+
+    def product_can_delete(product)
+      if !product.timers.where(status: 'on').empty?
+        flash[:notice] = 'Please turn off all timer'
+        return false
+      else
+        Item.where(product_id: product.id).each do |item|
+          if item.order.status != 'received'
+            flash[:notice] = 'Product in order. Please wait for chekout'
+            return false
+          end
+        end
+      end
+      true
     end
 end

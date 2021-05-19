@@ -1,15 +1,27 @@
-<% provide(:title, 'Auction')%>
+<% provide(:title, 'Home')%>
 <div class="services">
 	<div class="container">
 		<div class="services-main">
 			<div class="services-top">
 				<h3>Our Best Auction Online Services</h3>
-				<p>Great design is about more than style,it,s about being yoursel</p>
+				<p>Great design is about more than style,it's about being yourself</p>
 			</div>
 			<div class="services-bottom">
-				<div class="row">
-				  <%= render @products %>
-					<div class="clearfix"> </div>
+			  <nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">Auction Finish Now</li>
+					</ol>
+				</nav>
+				<div class="row" id="listauctions-finish">
+					<div class="clearfix"></div>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">All Auction</li>
+					</ol>
+				</nav>
+				<div class="row" id="listauctions">
+					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>

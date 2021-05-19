@@ -13,23 +13,40 @@
 .add-item {
   background-color: green;  
 }
+.add-item-child {
+  background-color: #998f8f;
+}
 .header-panel-body{
   position: relative;
 }
 #search {
   position: absolute;
   right: 0;
+  display: flex;
+}
+.search-item {
+  margin-left: 10px;
+  height: 35px;
 }
 .update-item {
   background-color: #5bc0de;
   margin-left: 10px;
 }
-
+.update-timer-item {
+  background-color: #3348b7;
+  margin-left: 10px;
+}
 .delete-item {
   background-color: #d9534f;
   margin-left: 10px;
 }
+.detail-items {
+  background-color: #d6d912;
+  margin-left: 10px;
+}
+
 #nav-right {
+  display: flex;
   margin-right: 0;
 }
 .img-resize {
@@ -38,4 +55,49 @@
 }
 .center {
   text-align: center;
+}
+.auction-item {
+  border-radius: 5px;
+  padding: 2px;
+}
+.run {
+  background-color: #3be339;
+}
+.finish {
+  background-color: #9ca2b8;
+}
+.btn-margin {
+  margin-left: 40%;
+}
+.search-edit {
+  margin-bottom: 40px;
+}
+#green-border {
+  border-color: #5cb85c;
+}
+#yellow-border {
+  border-color: #f0ad4e;
+}
+#red-border {
+  border-color: #d9534f;
+}
+#border-left {
+  border-left: 1px solid; 
+}
+.search-auction{
+  margin-bottom: 80px;
+}
+.search-right{
+  margin-right: 10px;
+}
+.csv-file {
+  margin-left: 20px;
+  color: #505e84;
+}
+.link-left {
+  float: left;
+}
+.delete-more {
+  margin-left: 30px;
+  display: none;
 }

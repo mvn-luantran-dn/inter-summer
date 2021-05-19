@@ -3,10 +3,20 @@
   <td class="center"><%= link_to user.name, '#', class: 'detail-item' %></td>
   <td class="center"><%= user.email %></td>
   <td class="center"><%= user.role %></td>
+  <td class="center ">
+    <% if user.status == 'on' %>
+      <p class="auction-item run">Open</p>
+    <% else %>
+      <p class="auction-item finish">Block</p>
+    <% end %>
   <td class="center">
-    <%= link_to 'Update', edit_admin_user_path(user), class: 'button-item update-item' %> 
-    <% if admin_user? && !current_user?(user) %>
+    <%= link_to 'Update', edit_admin_user_path(user), class: 'button-item update-item btn-margin' %> 
+    <!--<% if admin_user? && !current_user?(user) %>
       <%= link_to 'Delete', admin_user_path(user), method: :delete, class: 'button-item delete-item',
+                          data: { confirm: "You sure?" } %>
+    <% end %> -->
+    <% if admin_user? && !current_user?(user) %>
+      <%= link_to 'Block', block_admin_user_path(user), method: :get, class: 'button-item delete-item',
                           data: { confirm: "You sure?" } %>
     <% end %>
   </td>

@@ -1,0 +1,18 @@
+<% provide(:title, @category.name)%>
+<nav aria-label="breadcrumb" id="cat_id" data-cat-id=<%= params['id'] %>>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
+  </ol>
+</nav>
+<div class="services">
+	<div class="container">
+		<div class="services-main">
+			<div class="services-bottom">
+				<div class="row" id="auction-categories">
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

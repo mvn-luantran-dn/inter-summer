@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :phone
       t.integer :total_price
-
+      
       t.timestamps
     end
   end

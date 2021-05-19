@@ -1,12 +1,18 @@
 <tr class="odd gradeX">
-  <td class="center"><%= timer.id %></td>
-  <td class="center"><%= timer.start_at %></td>
-  <td class="center"><%= timer.end_at %></td>
-  <td class="center"><%= timer.period %></td>
+  <td class="center"><%= check_box_tag 'ids[]', timer.id, false, :class => 'table-row-checkbox' %></td>
+  <td class="center"><%= timer.start_at.strftime('%H:%M:%S') %></td>
+  <td class="center"><%= timer.end_at.strftime('%H:%M:%S') %></td>
+  <td class="center"><%= timer.period.strftime('%H:%M:%S') %></td>
   <td class="center"><%= timer.bid_step %></td>
-  <td class="center"><%= timer.status %></td>
   <td class="center">
-    <%= link_to 'Update', edit_admin_product_timer_path(@product, timer), class: 'button-item update-item' %> 
+  <% if timer.status == 'on' %>
+    <p class="auction-item run"><%= timer.status %></p>
+  <% else %>
+    <p class="auction-item finish"><%= timer.status %></p>
+  <% end %>
+  </td>
+  <td class="center">
+    <%= link_to 'Update', edit_admin_product_timer_path(@product, timer), class: 'button-item update-item btn-margin' %> 
     <%= link_to 'Delete', admin_product_timer_path(@product, timer), method: :delete, class: 'button-item delete-item',
                         data: { confirm: "You sure?" } %>
   </td>

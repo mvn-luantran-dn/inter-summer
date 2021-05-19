@@ -6,23 +6,63 @@
         <p>List Auctions</p>
       </div>
       <div class="panel-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <div class='header-panel-body search-auction'>
+          <%= form_tag admin_auctions_path, method: :get, class: 'col-lg-8', id: 'search'  do %>
+            <%= search_field_tag 'content', '', { class: 'form-control search-right', placeholder: 'Search' } %>
+            <div class="form-group col-lg-12">
+              <div class="input-group date" id="datetimepicker1">
+                <input type="text" name="time-start" class="form-control" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+              <div class="input-group date" id="datetimepicker2">
+                <input type="text" name="time-end" class="form-control" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="date" name="date-start" id="date-start" class="form-control">
+              <input type="date" name="date-end" class="form-control">
+            </div>
+            <%= button_tag 'Search', class: 'btn btn-primary search-item' %>
+          <% end %>
+        </div>
+        <table width="100%" class="table table-striped table-hover" id="dataTables-example">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Product</th>
-              <th>Start At</th>
-              <th>Period</th>
-              <th>Bid Step</th>
-              <th>Action</th>
+              <th class="center"><input type="checkbox" id="checkAll"></th>
+              <th class="center">Product</th>
+              <th class="center">Start at</th>
+              <th class="center">User win</th>
+              <th class="center">Price final</th>
+              <th class="center">Status</th>
+              <th class="center">Action</th>
             </tr>
           </thead>
             <tbody>
-              <%= render @auctions %>
+              <%= form_tag(delete_admin_auctions_path,:id => 'form_id',) do %>
+                <%= render @auctions %>
+              <% end %>
           </tbody>
         </table>
+        <%= link_to raw("<i class='fa fa-trash-o fa-2x'></i>"), "#", :onclick => "$('#form_id').submit()", class: "delete-more" %>
         <%= will_paginate %>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+      format: 'HH:mm',
+    });
+  });
+  $(function () {
+    $('#datetimepicker2').datetimepicker({
+      format: 'HH:mm'
+    });
+  });
+</script>

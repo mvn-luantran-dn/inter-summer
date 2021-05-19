@@ -1,9 +1,26 @@
+require 'csv'
+
 class Admin::ProductsController < Admin::BaseController
   before_action :find_product, only: %i[show edit update destroy]
   before_action :load_categories, only: %i[new create edit update]
 
   def index
-    @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+    respond_to do |format|
+      format.html do
+        if params[:content].blank?
+          @products = Product.paginate(page: params[:page], per_page: 10).order('id DESC')
+        else
+          @products = Product.search_product(params[:content]).paginate(page: params[:page], per_page: 10).order('id DESC')
+        end
+      end
+
+      format.csv do
+        filename = "Product_#{Time.now.to_i}.csv"
+        headers['Content-Disposition'] = "attachment; filename=#{filename}"
+        headers['Content-Type'] ||= 'text/csv'
+        @products = Product.all
+      end
+    end
   end
 
   def new
@@ -17,11 +34,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def create
     @product = Product.new(product_params)
-<<<<<<< HEAD
-    @product.status = 'selling'
-=======
-    @product.status = SELL
->>>>>>> master
+    @product.status = ProductStatus::SELLING
     return redirect_to admin_products_url, notice: 'Add product success' if @product.save
     render :new
   end
@@ -29,13 +42,43 @@ class Admin::ProductsController < Admin::BaseController
   def edit; end
 
   def update
-    return redirect_to admin_products_path, notice: 'Update success' if @product.update_attributes(product_params)
-    render :edit
+    if @product.update_attributes(product_params)
+      @product.timers.each do |timer|
+        AuctionData.update(timer) unless $redis.get(timer.id).nil?
+      end
+      redirect_to admin_products_path, notice: 'Update success'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @product.destroy
-    redirect_to admin_products_url, notice: 'Product deleted'
+    if product_can_delete @product
+      @product.destroy
+      flash[:success] = 'Delete product success'
+    end
+    redirect_to admin_products_url
+  end
+
+  def delete_more_product
+    if request.post?
+      if params[:ids]
+        delete_ids = []
+        params[:ids].each do |id|
+          if product_can_delete Product.find(id.to_i)
+            delete_ids << id.to_i
+          else
+            redirect_to admin_products_url
+          end
+        end
+        unless delete_ids.empty?
+          delete_ids.each do |id|
+            Product.find(id).destroy
+          end
+          redirect_to admin_products_url, notice: 'Delete success'
+        end
+      end
+    end
   end
 
   private
@@ -52,5 +95,20 @@ class Admin::ProductsController < Admin::BaseController
 
     def load_categories
       @categories = Category.all
+    end
+
+    def product_can_delete(product)
+      if !product.timers.where(status: 'on').empty?
+        flash[:notice] = 'Please turn off all timer'
+        return false
+      else
+        Item.where(product_id: product.id).each do |item|
+          if item.order.status != 'received'
+            flash[:notice] = 'Product in order. Please wait for chekout'
+            return false
+          end
+        end
+      end
+      true
     end
 end

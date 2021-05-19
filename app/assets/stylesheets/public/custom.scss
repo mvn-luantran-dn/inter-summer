@@ -104,6 +104,33 @@ footer {
   width: 12%;
 }
 .text-danger {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
+  color: rgb(204, 51, 85);
+}
+.last-bid-user {
+  font-size: 20px;
+}
+.head-left {
+  float: left;
+  margin-left: 5%;
+}
+.breadcrumb{
+  font-size: 18px;
+}
+.float-right{
+  float: right;
+}
+.fa-bell:before {
+  content: "\f0f3";
+  font-size: 20px;
+}
+.content-right {
+  float: right;
+}
+.content-notif {
+  color: #860a0a;
+}
+.dropdown-menu>li>a {
+  height: 45px;
 }

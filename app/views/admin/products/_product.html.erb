@@ -1,15 +1,14 @@
 <tr class="odd gradeX">
-  <td class="center"><%= product.id %></td>
+  <td class="center"><%= check_box_tag 'ids[]', product.id, false, :class => 'table-row-checkbox' %></td>
   <td class="center"><%= link_to product.name, admin_product_path(product), class: 'detail-item' %></td>
   <td class="center"><%= parent_name(product.category_id) %></td>
   <td class="center"><%= image_tag image_first_of_object(product), class: 'img-resize' %></td>
-  <td class="center"><%= product.detail %></td>
+  <td class="center col-sm-3"><div class="more"><%= product.detail %></div></td>
   <td class="center"><%= product.price %></td>
   <td class="center"><%= product.quantity %></td>
-  <td class="center"><%= render 'status', product: product %></td>
   <td class="center"><%= product.price_at %></td>
   <td class="center">
-    <%= link_to 'Manage Timer', admin_product_timers_path(product), class: 'button-item update-item' %> 
+    <%= link_to 'Manage Timer', admin_product_timers_path(product), class: 'button-item update-timer-item' %> 
     <%= link_to 'Update', edit_admin_product_path(product), class: 'button-item update-item' %> 
     <%= link_to 'Delete', admin_product_path(product), method: :delete, class: 'button-item delete-item',
                         data: { confirm: "You sure?" } %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_102244) do
+ActiveRecord::Schema.define(version: 2018_08_31_022333) do
 
   create_table "assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 2018_08_16_102244) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ckeditor_assets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "type", limit: 30
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
@@ -58,6 +70,16 @@ ActiveRecord::Schema.define(version: 2018_08_16_102244) do
     t.index ["product_id"], name: "index_items_on_product_id"
   end
 
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.integer "status"
+    t.integer "timer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "address"
@@ -65,17 +87,16 @@ ActiveRecord::Schema.define(version: 2018_08_16_102244) do
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.string "status"
-=======
->>>>>>> master
+    t.string "name"
+    t.string "type_payment"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "category_id"
     t.string "name"
-    t.string "detail"
+    t.text "detail"
     t.integer "price"
     t.integer "quantity"
     t.integer "price_at"
@@ -111,6 +132,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_102244) do
     t.datetime "reset_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -119,6 +141,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_102244) do
   add_foreign_key "auctions", "timers"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "products"
+  add_foreign_key "notifications", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "timers", "products"

@@ -1,6 +1,6 @@
 function check() {
   var number = $('.image-list').find('input[value="false"]').length;
-  if (number > 4) {
+  if (number > 3) {
     $('.add').hide();
   } else {
     $('.add').show();
@@ -31,4 +31,33 @@ function removeField(link) {
 
 $(document).ready(function () {
   check();
+});
+
+$(document).on('turbolinks:load', function () {
+  $("#checkAll").click(function () {
+    if (this.checked) {
+      $('.delete-more').show();
+    } else {
+      $('.delete-more').hide();
+    }
+    $('input:checkbox').not(this).prop('checked', this.checked);
+  });
+  $(".table-row-checkbox").change(function () {
+    if (this.checked) {
+      $('.delete-more').show();
+    } else {
+      if ($("tbody").find("input[type=checkbox]:checked").length < 1) {
+        $('.delete-more').hide();
+      }
+    }
+  });
+  CKEDITOR.config.height = 500;
+  CKEDITOR.config.width = 800;
+  CKEDITOR.config.entities_processNumerical = 'force';
+  if ($('textarea').length > 0) {
+    var data = $('.ckeditor');
+    $.each(data, function (i) {
+      CKEDITOR.replace(data[i].id)
+    });
+  }
 });

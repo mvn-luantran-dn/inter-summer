@@ -1,15 +1,29 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
-    <a class="navbar-brand" href="/admin">Autions Admin</a>
+    <a class="navbar-brand" href="/">Autions Admin</a>
   </div>
   <ul class="nav navbar-top-links navbar-right" id='nav-right'>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+      </a>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+      </a>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+      </a>
+    </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
-        <li><%= link_to raw('<i class="fa fa-user fa-fw"></i> User Profile'), '#' %></li>
-        <li><%= link_to raw('<i class="fa fa-gear fa-fw"></i> Settings'), '#' %></li>
+        <li><%= link_to raw('<i class="fa fa-user fa-fw"></i> User Profile'), edit_admin_user_path(current_user) %></li>
         <li class="divider"></li>
         <li><%= link_to raw('<i class="fa fa-sign-out fa-fw"></i> Logout'), logout_url, method: :delete %></li>
         </li>
@@ -33,7 +47,7 @@
           <%= link_to raw('<i class="fa fa-dashboard fa-fw"></i> Dashboard'), admin_root_path %>
         </li>
         <li>
-          <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
+          <a href="#"><i class="fa fa-user fa-fw"></i> Users</a>
           <ul class="nav nav-second-level">
             <li>
               <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add user'), new_admin_user_path %>
@@ -44,7 +58,7 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fa fa-sitemap fa-fw"></i> Categories<span class="fa arrow"></span></a>
+          <a href="#"><i class="fa fa-sitemap fa-fw"></i> Categories</a>
           <ul class="nav nav-second-level">
             <li>
               <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add category'), new_admin_category_path %>
@@ -55,7 +69,7 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Products<span class="fa arrow"></span></a>
+          <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Products</span></a>
           <ul class="nav nav-second-level">
             <li>
               <%= link_to raw('<i class="fa fa-plus fa-fw"></i> Add product'), new_admin_product_path %>
@@ -66,20 +80,10 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fa fa-files-o fa-fw"></i> Autions<span class="fa arrow"></a>
-          <ul class="nav nav-second-level">
-            <li>
-              <%= link_to "Manage Auction", admin_auctions_path %>
-            </li>
-          </ul>
+          <%= link_to "Manage Auction", admin_auctions_path %>
         </li>
         <li>
-          <a href="#"><i class="fa fa-table fa-fw"></i> Orders<span class="fa arrow"></a>
-          <ul class="nav nav-second-level">
-            <li>
-              <%= link_to "Manage Orders", admin_orders_path %>
-            </li>
-          </ul>
+          <%= link_to "Manage Orders", admin_orders_path %>
         </li>
       </ul>
     </div>
