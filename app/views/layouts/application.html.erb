@@ -3,16 +3,17 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all',
+    <% action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'public/application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'public/application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-    <div class="container">
+    <div class="container wrap">
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>   
