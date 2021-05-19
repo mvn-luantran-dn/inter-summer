@@ -18,5 +18,20 @@ module Autions
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.exceptions_app = self.routes
+
+    config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
+
+    if defined?(Rails::Server)
+      config.after_initialize do
+        Rails.application.load_tasks
+      end
+    end
+
+    config.cache_store = :redis_store, {
+      host: "localhost",
+      port: 6379,
+      db: 0,
+    }, {expires_in: 7.days}
   end
 end

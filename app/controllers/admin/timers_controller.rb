@@ -27,10 +27,11 @@ class Admin::TimersController < Admin::BaseController
   end
 
   private
+
     def timer_params
-      params.require(:timer).permit(%i(start_at end_at period status bid_step))
+      params.require(:timer).permit(%i[start_at end_at period status bid_step])
     end
-    
+
     def find_product
       @product = Product.find_by(id: params[:product_id]) || redirect_to_not_found
     end
