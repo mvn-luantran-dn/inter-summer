@@ -6,10 +6,12 @@
     <%= item.product.name %>
   </td>  
   <td>
-    <%= item.product.quantity %>
+    <%= 1 %>
   </td>
-  <td class="price"><%= item.product.price %></td>
+  <td class="price">
+    <%= item.amount %>
+  </td>
   <td class="text-center">
-    <%= link_to raw('<i class="fa fa-trash-o"></i>'), user_order_path(current_user, item), method: :delete, data: { confirm: "You sure?" }%>
+    <%= link_to raw('<i class="fa fa-trash-o fa-4x"></i>'), user_order_path(current_user, item), method: :delete, data: { confirm: "You sure?" }%>
   </td>
 </tr>

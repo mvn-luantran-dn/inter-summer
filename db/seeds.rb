@@ -17,35 +17,10 @@ User.create!(name:  'admin',
                password_confirmation: password,
                activated_at: Time.zone.now)
 end
-Category.create!(
-  name: 'chuoi'
-)
+
 5.times do |_n|
-  name = Faker::Pokemon.name
+  name = Faker::Name.name
   Category.create!(
-    name: name,
-    parent_id: 1
-  )
-end
-Product.create!(
-  name: 'hon',
-  category_id: 1
-)
-10.times do |_n|
-  name = Faker::Music.name
-  Product.create!(
-    name: name,
-    category_id: 2
-  )
-end
-Auction.create!(
-  product_id: '1',
-  status: 'Bidding'
-)
-10.times do |_n|
-  status = Faker::Music.name
-  Auction.create!(
-    product_id: 1,
-    status: status
+    name: name
   )
 end

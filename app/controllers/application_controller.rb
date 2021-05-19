@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
+  before_action :load_categories
 
   def redirect_to_not_found
     raise ActionController::RoutingError, 'Not Found'
@@ -10,5 +11,9 @@ class ApplicationController < ActionController::Base
 
   def page_not_found
     render(status: 404)
+  end
+
+  def load_categories
+    @categories = Category.where(parent_id: nil)
   end
 end
