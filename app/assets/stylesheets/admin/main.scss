@@ -24,7 +24,10 @@
   background-color: #5bc0de;
   margin-left: 10px;
 }
-
+.update-timer-item {
+  background-color: #3348b7;
+  margin-left: 10px;
+}
 .delete-item {
   background-color: #d9534f;
   margin-left: 10px;
@@ -38,4 +41,15 @@
 }
 .center {
   text-align: center;
+}
+.status-on {
+  color: #d9534f;
+  font-size: 20px;
+}
+.status-off {
+  color: #33c252;
+  font-size: 20px;
+}
+.btn-margin {
+  margin-left: 40%;
 }
